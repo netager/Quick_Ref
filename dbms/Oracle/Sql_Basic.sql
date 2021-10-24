@@ -5,6 +5,15 @@
 -- --, /*   */
 -- 단축키 : [Ctrl] + /
 
+-- SQL Execution Order
+5 SELECT    : 검색 대상의 표현식 정의 
+1 FROM      : 대상 집합 정의  
+2 WHERE     : 행 제한을 위한 조건식 정의 
+3 GROUP BY  : 그룹 생성을 위한 표현식 정의 
+4 HAVING    : 그룹 제한을 위한 조건식 정의 
+6 ORDER BY  : 정렬을 위한 표현식 정의
+
+
 -- 산술 연산
 select sal+100, sal-100, sal*100, sal/100 
 from emp;
@@ -667,4 +676,99 @@ select round(avg(nvl(commission_pct,0)), 2)
      , round(avg(commission_pct), 2)
   from employees;
 
+select count(*), count(department_id)
+     , count(distinct department_id) --employee_id, department_id
+from employees;
+
+
+select department_id, job_id, sum(salary)
+  from employees
+ group by department_id, job_id
+-- having department_id = 10
+ order by 1;
+
+-- oracle version up 되면서 허용되는 기능 - over()
+select department_id
+     , job_id 
+     , sum(salary) over(partition by department_id)
+     , sum(salary) over()
+  from employees;
+
+-- having 의 사용 
+select to_char(order_date, 'yyyy') as order_year
+     , cust_id, sum(order_total)
+  from orders
+ group by to_char(order_date, 'yyyy'), cust_id
+having sum(order_total) > 20000 
+ order by 1;
+
+-- Error : 'where dno' alias
+select deptno dno, empno, ename
+  from emp 
+ where dno =10;
+
+-- Error : 'group by dno' alias
+select deptno dno, count(*) 
+  from emp
+ group by dno;
+
+-- Error : 'having dno' alias
+select deptno dno, count(*)
+  from emp
+ group by deptno
+having dno <> 20;
   
+
+-- JOIN
+-- 
+select *
+  from employees emp, departments dept
+ where emp.department_id = dept.department_id
+   and employee_id = 108;
+
+select *
+  from employees emp, jobs
+where emp.job_id = jobs.job_id
+  and emp.employee_id = 206;
+
+select * 
+  from emp, dept
+ where emp.deptno = dept.deptno;
+
+-- Ansi Join : join ... on
+select *
+  from emp join dept
+    on emp.deptno = dept.deptno
+ where emp.empno = 7369;
+-- End ansi join
+
+
+select e.employee_id, e.last_name, e.salary, e.department_id,
+       d.department_id, d.department_name,
+       l.*	   
+from employees   e 
+    ,departments d  
+	,locations   l 
+where e.department_id = d.department_id 
+  and d.location_id   = l.location_id;
+
+
+select e.employee_id, e.last_name, e.salary, e.department_id,
+       d.department_id, d.department_name,
+       l.*
+  from employees e 
+  join departments d
+    on e.department_id = d.department_id
+  join locations l
+    on d.location_id = l.location_id;
+
+select * from orders, order_items
+ where orders.order_id = order_items.order_id;
+ 
+
+-- Self Join
+select e1.empno, e1.ename, e1.mgr, e2.empno, e2.ename
+  from emp e1, emp e2
+ where e1.mgr = e2.empno
+   and e1.empno = 7369;
+
