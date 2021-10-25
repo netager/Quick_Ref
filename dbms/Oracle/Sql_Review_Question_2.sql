@@ -206,26 +206,56 @@ select job, sum(sal)
   from emp
  group by job;  
   
- group by deptno
- order by deptno desc;
- 
- 
+-- 4-11.
+select job, sum(sal)
   from emp
- where job = 'SALESMAN';
+ group by job
+ having sum(sal) >= 5000;  
 
+-- 4-12.
+select job, sum(sal)
+  from emp
+ where job <> 'SALESMAN' 
+ group by job
+ having sum(sal) >= 4000
+ order by sum(sal) desc;  
 
-
+-- 4-13.
+select count(*)
+  from emp;
+  
+-- 4-14.
+select job, count(*)
+  from emp
+ group by job;
  
-select /* simple case 표현식 */ empno, deptno, sal
-     , case deptno when 10 then sal*1.1
-                   when 20 then sal*1.2
-                   else sal end as conditional_result
-  from emp;
+-- 4-15.
+select job, avg(sal)
+  from emp
+ group by job; 
+  
+-- 4-16.
+select max(a.tot_sal)
+  from (select job, avg(sal) tot_sal
+          from emp
+         group by job) a; 
+         
+-- 4-17.
+select job
+     , sum(nvl(decode(deptno, 10, sal), 0)) "10"
+     , sum(nvl(decode(deptno, 20, sal), 0)) "20"
+     , sum(nvl(decode(deptno, 30, sal), 0)) "30"
+  from emp
+ group by job;
 
-select /* searched case 표현식 */ empno, deptno, sal
-     , case when deptno <= 20 then sal*1.1
-            when deptno = 30 then sal*1.2
-            else sal end as conditional_result
-  from emp;
+-- 4-18.
+select to_char(hiredate, 'yyyy'), sum(sal)
+  from emp
+ group by to_char(hiredate, 'yyyy');
 
-select * from emp order by hiredate;
+-- 4-19.
+select sum(decode(to_char(hiredate, 'yyyy'), '1980', sal)) "1980"
+     , sum(decode(to_char(hiredate, 'yyyy'), '1981', sal)) "1981"
+     , sum(decode(to_char(hiredate, 'yyyy'), '1982', sal)) "1982"
+     , sum(decode(to_char(hiredate, 'yyyy'), '1983', sal)) "1983"
+  from emp;
