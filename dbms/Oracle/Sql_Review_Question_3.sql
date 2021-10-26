@@ -58,6 +58,54 @@ select b.dname
   from emp a, dept b
  where a.deptno = b.deptno;
 
+-- 5-10. 
+select a.ename, a.sal, b.grade, b.losal, b.hisal
+  from emp a, salgrade b
+ where a.sal between b.losal and b.hisal;
+
+-- 5-11. 
+select b.deptno, b.dname, sum(a.sal), count(*)
+  from emp a, dept b
+ where a.deptno = b.deptno
+ group by b.deptno, b.dname;
+
+-- 5-12. 
+select b.loc, sum(a.sal), count(*)
+  from emp a, dept b
+ where a.deptno = b.deptno
+   and b.loc <> 'DALLAS'
+ group by b.loc;
+
+select b.loc, sum(a.sal), count(*)
+  from emp a, dept b
+ where a.deptno = b.deptno
+ group by b.loc
+having b.loc <> 'DALLAS';
+
+-- 5-13. 
+select b.loc, to_char(a.hiredate, 'yyyy'), count(*)
+  from emp a, dept b
+ where a.deptno = b.deptno
+ group by b.loc, to_char(a.hiredate, 'yyyy');
+
+select b.loc, decode(to_char(a.hiredate , 'yyyy'), 1980, count(*)) "1980"
+  from emp a, dept b
+ where a.deptno = b.deptno
+ group by b.loc, to_char(a.hiredate, 'yyyy');
+
+select b.loc, to_char(a.hiredate , 'yyyy')
+  from emp a, dept b
+ where a.deptno = b.deptno;
+
+ 
+ select b.loc, count(*) from dept b;
+to_char(a.hiredate, 'yyyy'), count(*)
+
+
+select b.dname
+     , decode(b.dname, 'RESEARCH', a.ename)
+  from emp a, dept b
+ where a.deptno = b.deptno;
 
 
 select b.dname, a.ename from emp a, dept b
