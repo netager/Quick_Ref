@@ -1,8 +1,8 @@
--- SQL º¹½À¹®Á¦2.pdf
+-- SQL ë³µìŠµë¬¸ì œ2.pdf
 -------------------------------------------------
--- ÇÔ¼ö (30)
+-- í•¨ìˆ˜ (30)
 -------------------------------------------------
--- 3-1.
+-- 3-1. 
 select ename, upper(ename), lower(ename), initcap(ename)
   from emp;
 
@@ -50,7 +50,7 @@ select ename, length(ename)
   from emp
  where length(ename) >= 6;
 
--- 3-11. ~ 3- DATE ÇÔ¼ö·Î È¿¿ë ¾øÀ½
+-- 3-11. ~ 3- DATE í•¨ìˆ˜ë¡œ íš¨ìš© ì—†ìŒ
 
 -- 3-19.
 select ename, to_char(hiredate, 'yyyy')
@@ -95,7 +95,7 @@ select ename, decode(comm, NULL, 'no comm', comm)
 select ename, decode(comm, '', 'no comm', comm)
   from emp;
 
--- case ¹®À¸·Î NULL Ã³¸® ¾î·Æ±º ???
+-- case ë¬¸ìœ¼ë¡œ NULL ì²˜ë¦¬ ì–´ë µêµ° ???
 select empno
      , comm
      , case comm when NULL then 0
@@ -150,7 +150,7 @@ select ename, sal, job, comm
   from emp;
 
 
--- º¹¼öÇà ÇÔ¼ö (group ÇÔ¼ö) (19)  
+-- ë³µìˆ˜í–‰ í•¨ìˆ˜ (group í•¨ìˆ˜) (19)  
 -------------------------------------------------
 -- 4-1.
 select max(sal)
