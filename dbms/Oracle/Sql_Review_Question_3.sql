@@ -58,6 +58,13 @@ select b.dname
   from emp a, dept b
  where a.deptno = b.deptno;
 
+select d.dname
+     , listagg(e.ename, ',') within group (order by ename asc)
+  from emp e, dept d
+ where e.deptno = d.deptno
+ group by d.dname;
+ 
+ 
 -- 5-10. 
 select a.ename, a.sal, b.grade, b.losal, b.hisal
   from emp a, salgrade b

@@ -1,20 +1,24 @@
--- ADMIN ºñ¹Ğ¹øÈ£
+-- ADMIN ï¿½ï¿½Ğ¹ï¿½È£
 -- ADMIN / Dltnscjs100%
 
--- ÁÖ¼®
+-- ï¿½Ö¼ï¿½
 -- --, /*   */
--- ´ÜÃàÅ° : [Ctrl] + /
+-- ï¿½ï¿½ï¿½ï¿½Å° : [Ctrl] + /
+
+-- ì‹¤ìŠµì „ ìˆ˜í–‰ SQL
+alter session set nls_date_format = 'yyyy/mm/dd';
+
 
 -- SQL Execution Order
-5 SELECT    : °Ë»ö ´ë»óÀÇ Ç¥Çö½Ä Á¤ÀÇ 
-1 FROM      : ´ë»ó ÁıÇÕ Á¤ÀÇ  
-2 WHERE     : Çà Á¦ÇÑÀ» À§ÇÑ Á¶°Ç½Ä Á¤ÀÇ 
-3 GROUP BY  : ±×·ì »ı¼ºÀ» À§ÇÑ Ç¥Çö½Ä Á¤ÀÇ 
-4 HAVING    : ±×·ì Á¦ÇÑÀ» À§ÇÑ Á¶°Ç½Ä Á¤ÀÇ 
-6 ORDER BY  : Á¤·ÄÀ» À§ÇÑ Ç¥Çö½Ä Á¤ÀÇ
+5 SELECT    : ï¿½Ë»ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
+1 FROM      : ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½  
+2 WHERE     : ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ç½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
+3 GROUP BY  : ï¿½×·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
+4 HAVING    : ï¿½×·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ç½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
+6 ORDER BY  : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 
--- »ê¼ú ¿¬»ê
+-- ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 select sal+100, sal-100, sal*100, sal/100 
 from emp;
 
@@ -28,7 +32,7 @@ select (13500*0.3+13500)*12
 from dual;
 
 
--- ³¯Â¥ µ¥ÀÌÅÍ Ã³¸®
+-- ï¿½ï¿½Â¥ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 select  hiredate-100,hiredate,hiredate+100
 from emp;
 
@@ -76,28 +80,28 @@ from emp;
 select 2021/10/02 ,empno,ename
 from emp;
 
--- Null Ã³¸®
--- ¼öÄ¡ + Null = Null
--- »ê¼ú ¿¬»ê, ºñ±³ ¿¬»ê »ç¿ë ºÒ°¡
--- NullÀ» Ã³¸®ÇÏ±â À§ÇÑ nvl() »ç¿ë
+-- Null Ã³ï¿½ï¿½
+-- ï¿½ï¿½Ä¡ + Null = Null
+-- ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ò°ï¿½
+-- Nullï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ nvl() ï¿½ï¿½ï¿½
 select empno, ename, sal, comm, nvl(comm, 0), sal+comm, sal+nvl(comm, 0)
   from emp;
 
 select last_name  
--- Alias »ç¿ë
+-- Alias ï¿½ï¿½ï¿½
 select empno num, ename Name, sal SAL, sal+nvl(comm, 0) total
   from emp;
   
 select empno as num, ename as "Name", sal as SAL, sal+nvl(comm, 0) as "monthly salary"
   from emp;
   
-select '»ç¿ø¹øÈ£ ' || empno ||'ÀÇ ÀÌ¸§Àº ' || ename || ' ÀÔ´Ï´Ù' from emp
+select 'ï¿½ï¿½ï¿½ï¿½ï¿½È£ ' || empno ||'ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ' || ename || ' ï¿½Ô´Ï´ï¿½' from emp
  where empno = '7369';
  
 select 'DROP TABLE ' || table_name || ' PURGE;' as "DROP DML SQL"
  from user_tables;            
 
--- Áßº¹Çà Á¦°Å Á¶È¸ (distinct)
+-- ï¿½ßºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ (distinct)
 select distinct deptno, job 
   from emp;
 
@@ -126,7 +130,7 @@ select current_date - 1
   from dual;
 
 
--- ³¯Â¥ ÄÃ·³ Á¶È¸½Ã ³­ÇØ¼º
+-- ï¿½ï¿½Â¥ ï¿½Ã·ï¿½ ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½
 insert into emp(empno, ename, hiredate)
 values(9999, 'enkim', current_date-1);
 
@@ -146,12 +150,12 @@ select * from emp
  select * from emp
  where hiredate >= '2021/10/01';
 
--- µ¥ÀÌÅÍ Á¶È¸½Ã ´ë¼Ò¹®ÀÚ ±¸ºĞ ÇÔ
+-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½Ò¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 select empno, ename, sal, job
  from emp
 where ename = 'JONES';
 
--- ºñ±³ ¿¬»êÀÚ
+-- ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ---- >, <, =, !=, >=, <=
 ---- between .low value. and .upper value., not between .. and ..
 select empno ename, sal, hiredate
@@ -160,7 +164,7 @@ from emp
 where hiredate between '1981/01/01' and '1981/12/31';
 -- where hiredate between '1981/12/31' and '1981/12/01';-- error
 
----- in ¿¬»êÀÚ, not in
+---- in ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, not in
 select empno, ename, deptno
 from emp
 --where deptno = 10
@@ -171,28 +175,28 @@ from emp
 where deptno in (10, 20, 30, 50);
 
 
--- ³í¸® ¿¬»êÀÚ
+-- ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ---- and, or
 
 ---- like, not like
 select empno, ename
  from emp
 -- where ename like '%E%';  
--- where ename like '%E';   -- E·Î ³¡³ª´Â ¹®ÀÚ
- where ename like '%E_';  -- '_' ´Â ÇÑ°³ÀÇ ¹®ÀÚ
+-- where ename like '%E';   -- Eï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+ where ename like '%E_';  -- '_' ï¿½ï¿½ ï¿½Ñ°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
----- ¿ÍÀÏµå Ä«µå ¹®ÀÚ »ç¿ë½Ã ¹ß»ıÇÒ ¼ö ÀÖ´Â ¹®Á¦
+---- ï¿½ï¿½ï¿½Ïµï¿½ Ä«ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½
 select employee_id, job_id
   from employees
-   where job_id like '%C\_%' escape '\';   -- '_'´Â ¿ÍÀÏµå ¹®ÀÚ°¡ ¾Æ´Ï°í µ¥ÀÌÅÍÀÇ ÀÏºÎ¶ó´Â °ÍÀ» ¾Ë·Á Áà¾ßÇÔ
+   where job_id like '%C\_%' escape '\';   -- '_'ï¿½ï¿½ ï¿½ï¿½ï¿½Ïµï¿½ ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½Æ´Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ÏºÎ¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ë·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 
--- null °ªÀÇ Á¶È¸
+-- null ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸
 ---- is null, is not null
 select empno, ename, sal, comm
   from emp
 -- where comm is null;
 -- where comm = 'null';  -- Error
--- where comm = null;      -- Error ´Â ¾È³ªÁö¸¸ ¿øÇÏ´Â Ãâ·ÂÀÌ ¾È ³ª¿È
+-- where comm = null;      -- Error ï¿½ï¿½ ï¿½È³ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
  where comm = '(null)';  -- Error
  
 desc sh.sales;
@@ -203,13 +207,13 @@ select count(*) from sh.sales;
 desc sh.sales;
 
 
--- Oracle 12c ºÎÅÍ »ç¿ë °¡´ÉÇÑ ¹®¹ı(offset)
+-- Oracle 12c ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(offset)
 select employee_id, first_name
   from employees
  order by employee_id
  fetch first 5 rows only;
 
--- Oracle 12c ºÎÅÍ »ç¿ë °¡´ÉÇÑ ¹®¹ı(offset)
+-- Oracle 12c ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(offset)
 select employee_id, first_name
   from employees
  order by employee_id
@@ -223,23 +227,23 @@ select *
 order by employee_id;
 
                                                                                                                                   
--- ÇÔ¼ö »ç¿ë
+-- ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½
 -- --------
--- ´ÜÀÏÇà ÇÔ¼ö : min(), max() µî
---   - ÀÏ¹İ, ¹®ÀÚ, ¼ıÀÚ, ³¯Â¥, º¯È¯
+-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ : min(), max() ï¿½ï¿½
+--   - ï¿½Ï¹ï¿½, ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½Â¥, ï¿½ï¿½È¯
 --   - Character  : upper, lower, initcap, ...
 --   - Number     : round, trunc, mod, ceil, floor
 --   - Date       : add_months, months_between, ..
 --   - Conversion : to_char, to_date, to_number, ...
 --   - General    : nvl, nvl2, nullif, coalesce, decode, ... (case expression)
---   - ±âÅ¸        : user, sysdate(¼­¹öÀÇ ÀÏ½Ã), current_date(³»PCÀÇ ÀÏ½Ã)
+--   - ï¿½ï¿½Å¸        : user, sysdate(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï½ï¿½), current_date(ï¿½ï¿½PCï¿½ï¿½ ï¿½Ï½ï¿½)
 select to_char(sysdate,'yyyy/mm/dd hh24:mi:ss')
      , to_char(current_date,'yyyy/mm/dd hh24:mi:ss')
      , user
   from dual; 
--- ´ÙÁßÇà ÇÔ¼ö
+-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
 -- ---------------------
--- ¿¬½À¿ë Å×ÀÌºí °ú µ¥ÀÌÅÍ »ı¼º
+-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 drop table t1 purge;
 create table t1(col1 varchar2(30));
 
@@ -252,7 +256,7 @@ commit;
 
 select * from t1;
 
--- ´ÜÀÏ Çà ÇÔ¼ö : ¹®ÀÚ
+-- ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ô¼ï¿½ : ï¿½ï¿½ï¿½ï¿½
 --   - upper(), lower(), initcap()
 select 'sql is so fun'
      , upper('sql is so fun')
@@ -266,44 +270,44 @@ select empno, ename, job, deptno
  
  desc t1;
 
--- col1¿¡¼­ ¼ıÀÚ·Î¸¸ ±¸¼ºµÈ °ª Á¶È¸ 
+-- col1ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú·Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½È¸ 
 select col1, upper(col1), lower(col1), initcap(col1)
   from t1
  where lower(col1) = upper(col1);
 
--- col1¿¡¼­ ¼ıÀÚ·Î¸¸ ±¸¼ºµÈ °ª Á¶È¸ 
---  - trim()À» ÅëÇØ ¼ıÀÚ¸¦ Á¦°Å
+-- col1ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú·Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½È¸ 
+--  - trim()ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 select col1, ltrim(col1, '123456789')
   from t1
  where ltrim(col1, '123456789') is null ;
 
--- concat() : µÎ°³ÀÇ ÄÃ·³À» ÇÏ³ª·Î Ãâ·ÂÇÏÁö¸¸ ÀÔ·Â°ªÀ¸·Î 2°³ÀÇ ÀÎÀÚ¸¦ ¹ŞÀ½
+-- concat() : ï¿½Î°ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·Â°ï¿½ï¿½ï¿½ï¿½ï¿½ 2ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 select empno, ename, sal, deptno
      , empno || ename || sal || deptno as concat
      , concat(empno, concat(ename, concat(sal, deptno))) as concat_by_function
   from emp;
 
-select 1+null from dual; // Null °ú »ê¼ú¿¬»ê½Ã °á°ú´Â Null
+select 1+null from dual; // Null ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ Null
 
--- concat()·Î NullÀ» ÇÕÄ¡´Â °æ¿ì Á¤»ó Ãâ·Â
+-- concat()ï¿½ï¿½ Nullï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 select concat('',empno), concat(null, empno), concat(' ', empno) from emp;
 
--- substr(¹®ÀÚ, ½ÃÀÛ, ±æÀÌ) : ¹®ÀÚ¼ö ½ÃÀÛºÎÅÍ °¹¼ö±îÁö °¡Á®¿À±â
+-- substr(ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½) : ï¿½ï¿½ï¿½Ú¼ï¿½ ï¿½ï¿½ï¿½Ûºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 select 'sql is so fun'
      , substr('sql is so fun', 1, 4)
      , substr('sql is so fun', 1, 4)
      , dump(substr('sql is so fun', 1, 4))
   from dual
- where substr('sql is so fun', 1, 4) = 'sql ';  // °ø¹é ÁÖÀÇ
+ where substr('sql is so fun', 1, 4) = 'sql ';  // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
--- length()  : ¹®ÀÚÀÇ ±æÀÌ
--- lengthb() : ÀúÀåµÇ´Â Byte ¼ö
-select ename, length(ename), lengthb('¤¡')
+-- length()  : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+-- lengthb() : ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ Byte ï¿½ï¿½
+select ename, length(ename), lengthb('ï¿½ï¿½')
      , job ,  length(job), lengthb('a')
      , hiredate, length(hiredate)
   from emp;
   
--- instr() : ¹®ÀÚ¿­ÀÇ ¹®ÀÚÀÇ À§Ä¡¸¦ ¾Ë·ÁÁÜ
+-- instr() : ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ë·ï¿½ï¿½ï¿½
 select ename, instr(ename, 'S')
      , sal, instr(sal, 2)
      , hiredate, instr(hiredate,'/')
@@ -358,7 +362,7 @@ select 87654.546
      , round(87654.546,2)
      , round(87654.546,-1)
      , round(87654.546,-5)
-     , round(87654.546,-6)  -- ÁÖÀÇ ÇÊ¿ä
+     , round(87654.546,-6)  -- ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½
   from dual;
 
 -- trunc()
@@ -376,29 +380,29 @@ select 87654.546
      , ceil(87654.546)
   from dual;
 
--- ³¯Â¥ ÇÔ¼ö
+-- ï¿½ï¿½Â¥ ï¿½Ô¼ï¿½
 alter session set nls_date_format = 'yyyy/mm/dd';
 alter session set nls_date_format = 'yyyy/mm/dd hh24/mi/ss';
 
--- ³¯Â¥ÀÇ ¿¬»ê
+-- ï¿½ï¿½Â¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 select current_date -1 
      , current_date
      , current_date + 1
   from dual;
 
 -- to_date()
-select current_date - to_date('1972/10/07','yyyy/mm/dd') -- ÀÏ¼ö°¡ ³ª¿È
+select current_date - to_date('1972/10/07','yyyy/mm/dd') -- ï¿½Ï¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
   from dual;
 
-select (current_date - to_date('1972/10/07','yyyy/mm/dd')) / 7 -- ÁÖ¼ö°¡ ³ª¿È
+select (current_date - to_date('1972/10/07','yyyy/mm/dd')) / 7 -- ï¿½Ö¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
   from dual;
 
-select (current_date - to_date('1972/10/07','yyyy/mm/dd')) / 30 -- ´Ş¼ö°¡ ³ª¿È
+select (current_date - to_date('1972/10/07','yyyy/mm/dd')) / 30 -- ï¿½Ş¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
   from dual;
   
 select to_date('1990/10/16','yyyy/mm/dd') 
      , to_date('1990/10/16','yyyy/mm/dd') + 1 
-     , to_date('1990/10/16','yyyy/mm/dd') + 1/24  -- 1½Ã°£ 
+     , to_date('1990/10/16','yyyy/mm/dd') + 1/24  -- 1ï¿½Ã°ï¿½ 
      , to_date('1990/10/16','yyyy/mm/dd') + (3/24 + 15/(24*60) + 50/(24*60*60)) 
   from dual;
 
@@ -406,7 +410,7 @@ select empno
     ,current_date, hiredate
     ,months_between(current_date, hiredate)
     ,add_months(hiredate,3)
-    ,next_day(hiredate,'¸ñ')
+    ,next_day(hiredate,'ï¿½ï¿½')
     ,last_day(hiredate)
 from emp;
 
@@ -414,7 +418,7 @@ select empno
     ,current_date, hiredate
 --    ,months_between(current_date, hiredate)
 --    ,add_months(hiredate,3)
---    ,next_day(hiredate,'¸ñ')
+--    ,next_day(hiredate,'ï¿½ï¿½')
 --    ,last_day(hiredate)
 from emp;
 
@@ -423,12 +427,12 @@ select empno
     ,current_date, hiredate
 --    ,months_between(current_date, hiredate)
 --    ,add_months(hiredate,3)
---    ,next_day(hiredate,'¸ñ')
+--    ,next_day(hiredate,'ï¿½ï¿½')
     ,last_day(hiredate)
 from emp;
 
 select 
-    next_day(current_date,'¸ñ')
+    next_day(current_date,'ï¿½ï¿½')
     ,last_day(current_date)
 from dual;
 
@@ -439,26 +443,26 @@ from orders;
 
 
 select order_date
-      ,next_day(order_date, '±İ¿äÀÏ')
+      ,next_day(order_date, 'ï¿½İ¿ï¿½ï¿½ï¿½')
       ,last_day(order_date)
 from orders ;
 
 -- https://docs.oracle.com/cd/B19306_01/server.102/b14200/functions230.htm
 select '2019/09/19'
-     , round(to_date('2019/09/19'), 'month') -- 15ÀÏ ±âÁØÀ¸·Î
-     , round(to_date('2019/09/19'), 'year')  -- 7¿ù ±âÁØÀ¸·Î
+     , round(to_date('2019/09/19'), 'month') -- 15ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+     , round(to_date('2019/09/19'), 'year')  -- 7ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
      , round(to_date('2019/06/19'), 'year')
   from dual;
   
 select '2019/09/19'
-     , trunc(to_date('2019/09/19'), 'DAY') -- DAY, DY, D ´Â µ¿ÀÏ
-     , trunc(to_date('2019/09/19'), 'DY')  -- ±× ÁÖÀÇ Ã¹¹şÂ° ³¯
+     , trunc(to_date('2019/09/19'), 'DAY') -- DAY, DY, D ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+     , trunc(to_date('2019/09/19'), 'DY')  -- ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã¹ï¿½ï¿½Â° ï¿½ï¿½
      , trunc(to_date('2019/09/19'), 'D')  
   from dual;  
   
 select '2021/10/16'
-     , trunc(to_date('2019/09/19'), 'DAY') -- DAY, DY, D ´Â µ¿ÀÏ
-     , trunc(to_date('2019/09/19'), 'DY')  -- ±× ÁÖÀÇ Ã¹¹şÂ° ³¯
+     , trunc(to_date('2019/09/19'), 'DAY') -- DAY, DY, D ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+     , trunc(to_date('2019/09/19'), 'DY')  -- ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã¹ï¿½ï¿½Â° ï¿½ï¿½
      , trunc(to_date('2019/09/19'), 'D')  
   from dual;  
   
@@ -475,16 +479,16 @@ select hiredate, trunc(hiredate,'DAY'), trunc(hiredate, 'month')
   from emp
  where trunc(hiredate, 'month') = '1981/02/01';
 
--- º¯È¯ÇÔ¼ö
+-- ï¿½ï¿½È¯ï¿½Ô¼ï¿½
 -- 
 select 7788, dump(7788), '7788', dump('7788') from dual;
 
--- ¿À¶óÅ¬ÀÇ ¾Ï½ÃÀû Çü º¯È¯
+-- ï¿½ï¿½ï¿½ï¿½Å¬ï¿½ï¿½ ï¿½Ï½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½È¯
 select empno, ename
   from emp
 -- where empno = '7788';
 -- where empno = '7788';
- where empno like '_3%';  -- ¾Ï½ÃÀûÀ¸·Î to_char(empno) like '_3%'
+ where empno like '_3%';  -- ï¿½Ï½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ to_char(empno) like '_3%'
 
 -- to_char()
 select empno, ename, hiredate
@@ -508,32 +512,32 @@ select empno, ename, hiredate
 from emp;
 
 select empno, ename
-    , to_char(hiredate,'"ÀÔ»ç³âµµ´Â " yyyy " ÀÔ´Ï´Ù."')
-    , to_char(hiredate,'"ÀÔ»ç ºĞ±â´Â " q "  ºĞ±â ÀÔ´Ï´Ù."')
-    , to_char(hiredate,'"ÀÏÁÖÀÏ Áß " d " ¹øÂ° ³¯¿¡ ÀÔ»çÇß½À´Ï´Ù."')
+    , to_char(hiredate,'"ï¿½Ô»ï¿½âµµï¿½ï¿½ " yyyy " ï¿½Ô´Ï´ï¿½."')
+    , to_char(hiredate,'"ï¿½Ô»ï¿½ ï¿½Ğ±ï¿½ï¿½ " q "  ï¿½Ğ±ï¿½ ï¿½Ô´Ï´ï¿½."')
+    , to_char(hiredate,'"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ " d " ï¿½ï¿½Â° ï¿½ï¿½ï¿½ï¿½ ï¿½Ô»ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½."')
 from emp;
 
 select empno, ename
-    , to_char(hiredate,'"ÀÔ»ç³âµµ´Â " yyyysp " ÀÔ´Ï´Ù."')
-    , to_char(hiredate,'"ÀÔ»ç ºĞ±â´Â " qsp "  ºĞ±â ÀÔ´Ï´Ù."')
-    , to_char(hiredate,'"ÀÏÁÖÀÏ Áß " dsp " ¹øÂ° ³¯¿¡ ÀÔ»çÇß½À´Ï´Ù."')
+    , to_char(hiredate,'"ï¿½Ô»ï¿½âµµï¿½ï¿½ " yyyysp " ï¿½Ô´Ï´ï¿½."')
+    , to_char(hiredate,'"ï¿½Ô»ï¿½ ï¿½Ğ±ï¿½ï¿½ " qsp "  ï¿½Ğ±ï¿½ ï¿½Ô´Ï´ï¿½."')
+    , to_char(hiredate,'"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ " dsp " ï¿½ï¿½Â° ï¿½ï¿½ï¿½ï¿½ ï¿½Ô»ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½."')
 from emp;
 
 select empno, ename
-    , to_char(hiredate,'"ÀÔ»ç³âµµ´Â " yyyyspth " ÀÔ´Ï´Ù."')
-    , to_char(hiredate,'"ÀÔ»ç ºĞ±â´Â " qspth "  ºĞ±â ÀÔ´Ï´Ù."')
-    , to_char(hiredate,'"ÀÏÁÖÀÏ Áß " dspth " ¹øÂ° ³¯¿¡ ÀÔ»çÇß½À´Ï´Ù."')
+    , to_char(hiredate,'"ï¿½Ô»ï¿½âµµï¿½ï¿½ " yyyyspth " ï¿½Ô´Ï´ï¿½."')
+    , to_char(hiredate,'"ï¿½Ô»ï¿½ ï¿½Ğ±ï¿½ï¿½ " qspth "  ï¿½Ğ±ï¿½ ï¿½Ô´Ï´ï¿½."')
+    , to_char(hiredate,'"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ " dspth " ï¿½ï¿½Â° ï¿½ï¿½ï¿½ï¿½ ï¿½Ô»ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½."')
 from emp;
 
 select to_char(hiredate, 'yyyy mm ddd')
   from emp;
 
---¿À´ÃÀº 2021³â 10¿ù 16ÀÏÀÔ´Ï´Ù.
--- ¾Æ·¡Áß ¾î¶»°Ô ¾²´Â°Ô ÁÁÀ»±î?
-select '¿À´ÃÀº '||to_char(current_date, 'YYYY')||'³â '||to_char(current_date, 'MM')||'¿ù '||to_char(current_date, 'DD')||'ÀÏÀÔ´Ï´Ù.' as today
+--ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 2021ï¿½ï¿½ 10ï¿½ï¿½ 16ï¿½ï¿½ï¿½Ô´Ï´ï¿½.
+-- ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½î¶»ï¿½ï¿½ ï¿½ï¿½ï¿½Â°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?
+select 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ '||to_char(current_date, 'YYYY')||'ï¿½ï¿½ '||to_char(current_date, 'MM')||'ï¿½ï¿½ '||to_char(current_date, 'DD')||'ï¿½ï¿½ï¿½Ô´Ï´ï¿½.' as today
 from dual;     
 
-select to_char(current_date, '"¿À´ÃÀº" YYYY"³â" MM"¿ù" DD"ÀÏÀÔ´Ï´Ù."') as today
+select to_char(current_date, '"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" YYYY"ï¿½ï¿½" MM"ï¿½ï¿½" DD"ï¿½ï¿½ï¿½Ô´Ï´ï¿½."') as today
 from dual;
 
 select sal
@@ -541,7 +545,7 @@ select sal
      , to_char(sal, '$9')
      , to_char(sal, '$999')
      , to_char(sal, '$9,999')
-     , to_char(sal, 'fm$9999') -- ¾ÕÀ¸·Î ´ó°Ü¼­ Ãâ·Â
+     , to_char(sal, 'fm$9999') -- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ü¼ï¿½ ï¿½ï¿½ï¿½
      , to_char(sal, '$0,999')
   from emp;
   
@@ -552,18 +556,18 @@ select '$15,000' + '$20,000'
 select to_number('$15,000','$99,999') + to_number('$20,000', '$99,999')
   from dual;
 
--- ÀÏ¹İÇÔ¼ö
+-- ï¿½Ï¹ï¿½ï¿½Ô¼ï¿½
 -- nvl(), nvl2()
 
 -- nvl()
 select empno, sal, comm
      , sal*12+comm
      , sal*12+nvl(comm,0) a
-     , nvl2(comm, sal*12+comm, sal*12) b -- null ÀÌ ÀÖ°í ¾ø°í¿¡ µû¶ó IF¹® Ã³·³ »ç¿ë
+     , nvl2(comm, sal*12+comm, sal*12) b -- null ï¿½ï¿½ ï¿½Ö°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ IFï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½
      , nvl2(comm, 'sal*12+comm', 'sal*12') c 
   from emp;
 
-drop table t2 purge;    -- ¾²·¹±âÅë¿¡ ³ÖÁö¾Ê°í ¹Ù·Î Drop
+drop table t2 purge;    -- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½Ê°ï¿½ ï¿½Ù·ï¿½ Drop
 create table t2 (col1 varchar2(30)
                , col2 varchar2(30));
 
@@ -576,7 +580,7 @@ commit;
 
 select * from t2;
 
--- nullif() - °°À¸¸é null ¹İÈ¯
+-- nullif() - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ null ï¿½ï¿½È¯
 select length(empno), length(sal)
      , nullif(length(empno), length(sal))
   from emp;
@@ -603,19 +607,19 @@ select /* decode */ empno, deptno, sal
   from emp;
 
 -- case ... when ... when ... else ... end  
-select /* simple case Ç¥Çö½Ä */ empno, deptno, sal
+select /* simple case Ç¥ï¿½ï¿½ï¿½ï¿½ */ empno, deptno, sal
      , case deptno when 10 then sal*1.1
                    when 20 then sal*1.2
                    else sal end as conditional_result
   from emp;
 
-select /* searched case Ç¥Çö½Ä */ empno, deptno, sal
+select /* searched case Ç¥ï¿½ï¿½ï¿½ï¿½ */ empno, deptno, sal
      , case when deptno <= 20 then sal*1.1
             when deptno = 30 then sal*1.2
             else sal end as conditional_result
   from emp;
 
--- ¹®Á¦. emp Å×ÀÌºí¿¡¼­ ±Ş¿©¿¡ µû¶ó A, B, C·Î ±¸ºĞµÈ °á°ú¸¦ Ãâ·ÂÇÏ¼¼¿ä
+-- ï¿½ï¿½ï¿½ï¿½. emp ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ ï¿½Ş¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ A, B, Cï¿½ï¿½ ï¿½ï¿½ï¿½Ğµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½
 select empno
      , sal
      , case when sal >= 4000 then 'A'
@@ -643,7 +647,7 @@ select empno, sal, sal/2000
        end as "GRADE"
   from emp;
 
--- Áı°èÇÔ¼ö
+-- ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½
 -- sum(), avg(), min(), max()
 desc orders;
 select sum(order_total)
@@ -662,14 +666,14 @@ select order_status
 select count(*), count(order_status), count(distinct order_status) 
   from orders;
 
--- department_id¿¡ 1°³ÀÇ nullÀÌ ÀÖÀ½
+-- department_idï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ nullï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 select count(*), count(department_id), count(distinct department_id)
   from employees;
 
 select sal + comm
   from emp;
 
--- avg()´Â null °ªÀº Á¦¿Ü µÊ
+-- avg()ï¿½ï¿½ null ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 select round(avg(nvl(commission_pct,0)), 2) 
      , round(sum(commission_pct)/count(*), 2)
      , round(sum(commission_pct)/count(commission_pct),2)
@@ -687,14 +691,14 @@ select department_id, job_id, sum(salary)
 -- having department_id = 10
  order by 1;
 
--- oracle version up µÇ¸é¼­ Çã¿ëµÇ´Â ±â´É - over()
+-- oracle version up ï¿½Ç¸é¼­ ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ - over()
 select department_id
      , job_id 
      , sum(salary) over(partition by department_id)
      , sum(salary) over()
   from employees;
 
--- having ÀÇ »ç¿ë 
+-- having ï¿½ï¿½ ï¿½ï¿½ï¿½ 
 select to_char(order_date, 'yyyy') as order_year
      , cust_id, sum(order_total)
   from orders
@@ -772,3 +776,188 @@ select e1.empno, e1.ename, e1.mgr, e2.empno, e2.ename
  where e1.mgr = e2.empno
    and e1.empno = 7369;
 
+select job_id, salary
+  from employees
+ where salary in (select salary
+                   from employees
+                  where job_id = 'IT_PROG');
+
+-- "any"ëŠ” or ë¡œ í’€ì´
+-- "> any" ëŠ” ì—¬ëŸ¬ê°’ì¤‘ ê°€ì¥ ì‘ì€ê°’ ë³´ë‹¤ í° ê²ƒì„ ì¶œë ¥
+-- "< any" ëŠ” ì—¬ëŸ¬ê°’ì¤‘ ê°€ì¥ í°ê°’ ë³´ë‹¤ ì‘ì€ ê²ƒì„ ì¶œë ¥
+-- "= any" ëŠ” in ê³¼ ë™ì¼í•˜ë‹¤.
+select job_id, salary
+  from employees
+ where salary = any (select salary
+                   from employees
+                  where job_id = 'IT_PROG');
+
+-- "all"ì€ and ë¡œ í’€ì´
+-- "> all" ëŠ” ì—¬ëŸ¬ê°’ì¤‘ ê°€ì¥ í°ê°’ ë³´ë‹¤ í° ê²ƒì„ ì¶œë ¥
+-- "< all" ëŠ” ì—¬ëŸ¬ê°’ì¤‘ ê°€ì¥ ì‘ì€ê°’ ë³´ë‹¤ ì‘ì€ ê²ƒì„ ì¶œë ¥
+-- "= any" ëŠ” in ê³¼ ë™ì¼í•˜ë‹¤.
+select job_id, salary
+  from employees
+ where salary > all (select salary
+                   from employees
+                  where job_id = 'IT_PROG');
+
+-- íŒ€ì›ì´ ìˆëŠ” ì‚¬ì› ì •ë³´
+select *
+  from emp
+ where empno in (select mgr
+                   from emp
+                  where mgr is not null); 
+
+select *
+  from emp
+ where empno in (select nvl(mgr, -1)
+                   from emp);
+
+select * 
+  from emp mq
+where exists (select mgr 
+                from emp
+                where mgr = mq.empno);
+
+
+-- íŒ€ì›ì´ ì—†ëŠ” ì‚¬ì› ì •ë³´ 
+select *
+  from emp
+ where empno not in (select mgr
+                       from emp
+                      where mgr is not null); 
+ 
+select *
+  from emp
+ where empno not in (select nvl(mgr, -1)
+                       from emp);
+
+select * 
+  from emp mq
+where not exists (select mgr 
+                from emp
+                where mgr = mq.empno);
+
+alter session set nls_date_format = 'yyyy/mm/dd';
+
+select *
+  from (select empno, hiredate
+          from emp
+         order by hiredate)
+ where rownum <= 5;
+
+-- oracle 12 ë²„ì „ ì´ìƒì—ì„œ ë‚˜ì˜¨ ìƒˆë¡œìš´ ê¸°ëŠ¥
+select employee_id, first_name
+  from employees
+ order by employee_id
+ fetch first 5 rows only;
+
+select employee_id, first_name
+  from employees
+ order by employee_id
+ offset 10 rows 
+ fetch next 10 rows only;
+
+-- Oracle view
+create view vemp1
+as 
+select empno, job, deptno, sal
+from emp;
+
+select * from user_views;
+
+
+select empno, sal, a.avg_sal
+  from emp e, (select avg(sal) as avg_sal 
+                 from emp) a
+ where e.sal > a.avg_sal;
+
+-- Error ë°œìƒ 
+select empno, sal, a.avg(sal)
+  from emp e, (select avg(sal) 
+                 from emp) a
+ where e.sal > a.avg_sal;
+
+-- Corelative SubQuery
+-- ë¶€ì„œ í‰ê·  ê¸‰ì—¬ë³´ë‹¤ ë§ì€ ê¸‰ì—¬ë¥¼ ë°›ëŠ” ì‚¬ì›
+select mq.empno, mq.ename, mq.job, mq.deptno, mq.sal
+  from emp mq
+  where sal > (select avg(sal) 
+                from emp
+               where deptno = mq.deptno);
+               
+select d.*, ina.cnt
+  from dept d, (select deptno, count(*) as cnt
+                from emp
+               group by deptno) ina
+ where d.deptno = ina.deptno;
+ 
+select d.*
+  from dept d
+ where 4 <= (select count(*)
+               from emp
+              where deptno = d.deptno);
+
+-- ìŠ¤ì¹¼ë¼ ì„œë¸Œì¿¼ë¦¬ 
+select d.*, (select count(*)
+               from emp
+             where deptno = d.deptno) as cnt
+  from dept d;
+
+-- ëˆ„ì í•©
+select empno, ename, sal, (select sum(sal)
+                             from emp
+                            where empno <= e.empno) as cum_sum
+  from emp e;
+
+select empno, ename, sal, sum(sal) over(order by empno) as cum_sum
+  from emp;
+
+-- order by ì— ìŠ¤ì¹¼ë¼ ì„œë¸Œì¿¼ë¦¬ ì‚¬ìš© - ë³„ ì˜ë¯¸ëŠ” ì—†ì–´ ë³´ì„
+select department_id, employee_id, last_name
+  from employees e
+ order by (select department_name
+             from departments
+            where department_id = e.department_id);
+
+select d.* 
+  from departments d
+ where exists (select department_id
+                 from employees
+                where department_id = d.department_id);
+                
+select 1+1 
+  from dual
+ where exists (select *
+                 from emp 
+                where deptno = 40);
+
+ select department_id
+                           from employees);
+
+select *
+ from emp
+  where deptno = 30;
+  
+ order by (select department_name
+             from departments
+            where department_id = e.department_id);
+
+select * from emp mq
+where empno not in (select mgr 
+                      from emp);
+
+select * 
+  from emp mq
+where exists (select mgr 
+                from emp
+                where mgr = mq.empno);
+
+select * 
+  from emp mq
+where not exists (select mgr 
+                from emp
+                where mgr = mq.empno);
+
+-- ì§‘í•© ì—°ì‚°ì
