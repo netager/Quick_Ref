@@ -1,0 +1,214 @@
+### 2-5 빅데이터 클러스터 구성 02
+
+# Hadoop 디렉토리 하위 경로의 복제계수를 10을 변경
+$ hadoop fs -setrep 10 -R /user/hadoop/
+
+### 2-5. 빅데이터 클러스터 구성
+## HDFS 명령어 사용
+$ hdfs dfs -put Sample.txt /tmp
+$ hdfs dfs -ls /tmp
+$ hsdf dfs -cat /tmp/Sample.txt
+$ hdfs dfs -mv /tmp/Sample.txt /tmp/Sample2.txt
+$ hdfs dfs -get /tmp/Sample2.txt   # HDFS에 저장된 파일을 로컬 파일시스템으로 가져오기
+$ hdfs dfs -rm /tmp/Sample2.txt    # HDFS에 저장된 파일 삭제(휴지통)
+$ hdfs dfs -rm -skipTrash /tmp/Sample2.txt    # HDFS에 저장된 파일 삭제
+
+$ hdfs dfs -stat '%b %o %r %n' /tmp/Sample.txt  # hdfs 저장된 파일 상태 확인
+                                                # 파일크기(%b), 파일 블록크기(%o), 복제수(%r), 소유자명(%u), 파일명(%n)
+$ hdfs fsck /         # HDFS 파일 시스템 상태 검사, 전체크기, 디렉러리 수, 파일수, 노드수 등 파일시스템의 전체 상태를 보여줌
+$ hdfs dfsadmin -report  # 하둡 파일싯템의 기본 정보 및 통계를 보여줌
+
+# HDFS 파일의 비정상 상태
+$ hdfs dfsadmin -safemode leave    # 안전모드 상태로 전환됐다면 강제로 안전모드를 해제
+$ hdfs fsck / -delete              # 손상된 파일을 강제로 삭제
+$hdfs fsck / -move                 # 손상된 파일을 /lost+found 디렉터리로 옮김
+
+
+## 주키퍼(zookeeper) 명령어 사용
+$ zookeeper-client     # 주키퍼 클라이언트 실행
+
+# 주키퍼 Z노드 등록/조회/삭제
+[zk: localhost:2181(CONNECTED) 0] create /pilot-pjt bigdata
+[zk: localhost:2181(CONNECTED) 0] ls /
+[zk: localhost:2181(CONNECTED) 0] get /pilot-pjt
+[zk: localhost:2181(CONNECTED) 0] delete /pilot-pjt
+
+
+### 3.2 수집에 활용할 기술 : 플럼(flume)
+# Source -> Channer -> Sink
+# Source -> Interceptor -> Channel -> Sink(2개)
+
+### 3.3 수집에 활용할 기술 : 카프카(kafka)  ---> Topic 생성(Buffer 역할)
+# Provider(N) -> 카프카 Broker(Topic1, Topic2) -> Consumer(N개)
+
+
+ 
+
+
+
+
+# HBase
+
+$ hbase shell
+> create 'smartcar_test_table', 'cf'
+> put 'smartcar_test_table', 'row-key1', 'cf:model', 'Z0001'
+> put 'smartcar_test_table', 'row-key1', 'cf:no', 	'12345'
+> get 'smartcar_test_table', 'row-key1'
+
+> disable 'smart_test_table'
+> drop 'smart_test_table'
+> exit
+
+# HBase 웹 관리자 화면
+- http://server02.hadoop.com:16010
+
+# HBase는 자원 소모가 높은 서버이므로 사용하지 않을때에는 일시정지.
+
+# 간단한 HBase 명령어
+$ hbase shell
+  > list_snapshots
+  > delete_snapshots 'snapshot 이름'
+  > list                              # 테이블 리스트 
+  > disable 'table_name'
+  > drop 'table_name'
+  > count 'table_name'
+  > get 'table_name', 'key'
+  > deleteall 'table_name','key'
+  > scan 'table_name', {STARTROW=>'1234', ENDROW=>'1235'}
+  > scan 'table_name', {STARTROW=>'1234', LIMIT=>10}
+  > scan 'table 이름', {COLUMNS=>'패밀리이름:컬럼이름', LIMIT=>10, FILTER=>"ValueFilter(=, 'binary:조건값')"
+  > scan 'table 이름', {LIMIT=>10, COLUMNS=>['패밀리네임'], FILTER => "(SingleColumnValueFilter('패밀리네임', '필드명',=,'binary:조건값1',true, true)) AND (SingleColumnValueFilter('패밀리네임', '필드명',=,'binary:조건값2',true,true))"}
+  > scan 'table 이름', {LIMIT=>10, COLUMNS=>['패밀리네임:필드명'], TIMERANGE=> [start_timestamp, end_timestamp]} 
+
+
+
+## Redis 설치
+
+$ yum install -y gcc*
+$ yum install -y tcl
+
+$ cd /home/pilot-pjt
+$ wget http://download.redis.io/releases/redis-5.0.7.tar.gz
+$ tar -xvf redis-5.0.7.tar.gz
+$ cd /home/pilot-pjt/redis-5.0.7
+$ make
+$ make install$ cd /home/pilot-pjt/redis-5.0.7/utils
+$ chmod 755 install_server.shell
+$ ./install_server.sh
+
+# Redis 설치 확인
+$ vi /var/log/redis_6379.log/redis_6379
+
+$ service redis_6379 status [start/stop]
+
+# Redis 서버에 원격접근 가능토록 설정
+$ vi /etc/redis/6379.conf
+
+  -> bind 127.0.0.1 부분을 주석처리
+  -> protected-mod yes -> no
+$ service redis_6379 restart
+
+# Redis CLI 로 데이터 저장/조회
+$ redis-cli
+> set key:1 Hello!BigData
+> get key:1
+> del key:1
+> quit
+
+## Storm 설치 (Server02)
+$ cd /home/pilot-pjt
+$ wget http://archive.apache.org/dist/storm/apache-storm-1.2.3/apache-storm-1.2.3-tar.gz
+$ tar -xvf apache-storm-1.2.3-tar.gz
+$ ln -s apache-storm-1.2.3 storm-1
+
+# Storm 환경설정
+$ cd /home/pilot-pjt/storm/conf
+
+$ vi storm.yaml
+  > storm.zookeeper.servers:                       # zookeeper 정보
+  >  - "server02.hadoop.com"
+
+  > storm.local.dir: "/home/pilot-pjt/storm/data"  # 스톰 작동을 위한 데이터 저장소
+
+  > nimbus.seeds: ["server02.hadoop.com"]          # Nimbus 정보
+
+  > supervisor.slots.ports:                        # Worker의 포트로써 포트의 갯수만큼 Worker가 만들어짐
+     - 6700
+
+  > ui.port: 8088                                  # Storm UI 접속 포트
+
+# Storm 로그 레벨 조정 (info(INFO) -> error
+$ cd /home/pilot-pjt/storm/log4j2
+$ vi cluster.xml
+$ vi worker.xml
+
+# Storm을 편리하게 사용하기 위한 설정
+$ vi /root/.bash_profile
+  > PATH=$PATH:/home/pilot-pjt/storm/bin
+
+$ source /root/.bash_profile
+
+## Storm 설치
+# Java 환경 설정(jdk1.8)
+$ java -version
+$ rm /usr/bin/java
+$ rm /usr/bin/javac
+$ ln -s /usr/java/jdk1.8.0_181-cloudera/bin/javac /usr/bin/javac
+$ ln -s /usr/java/jdk1.8.0_181-cloudera/bin/java /usr/bin/java
+
+# 자동 기동 스크립트 설정 (storm-nimbus, storm-supervisor, storm-ui)
+https://gist.github.com/yulrizka 에서 스크립트 다운로드후 /etc/rc.d/init.d 에 저장
+
+$ chmod 755 /etc/rc.d/init.d/storm-nimbus
+$ chmod 755 /etc/rc.d/init.d/storm-supervisor
+$ chmod 755 /etc/rc.d/init.d/storm-ui
+
+# 서비스 등록 스크립트에 대한 Log 및 Pid 디렉터리를 만듬
+$ mkdir /var/log/storm
+$ mkdir /var/run/storm
+
+$ service storm-nimbus [storm-supervisor/storm-ui] start/stop/status
+
+# Storm UI 접속 및 상태 모니터링
+- http://server02.hadoop.com:8088
+
+# 스톰도 주키퍼 의존도가 높다. 주키퍼의 z노드인 /storm의 위치에 스톰의 주요 설정값이 관리되고 있음.
+
+# Storm 기동 순서 : storm-nimbus -> storm-supervisor -> storm-ui (중지는 반대로)
+
+
+# HBase 테이블 생성
+$ hbase org.apache.hadoop.hbase.util.RegionSplitter DriverCarInfo HexStringSplit -c 2 -f cf1
+
+# Storm Topology 배포
+$ cd /home/pilot-pjt/working
+$ storm jar bigdata.smartcar.storm-1.0.jar com.wikibook.bigdata.smartcar.storm.SmartCarDriverTopology DriverCarInfo
+
+# Storm Topology 제거 
+$ storm kill "배포시 사용했던 Topology 이름" -> storm kill "DriverCarInfo"
+
+
+# 적재 테스트
+1. 로그 시뮬레이터 작동
+
+2. HBase 적재 확인
+$ hbase shell
+  > count 'DriverCarInfo'
+  > scan 'DriverCarInfo', {LIMIT=>20}
+  > scan 'DriverCarInfo', {STARTROW=>'00001030106102-Z0020', LIMIT=>1}
+  > scan 'DriverCarInfo', {COLUMNS=>['cf1:car_number','cf1:area_numbr'], FILTER=>"RowFilter(=,'regexstring:30106102') AND SingleColumnValueFilter('cf1', 'area_numbr' ,=, 'regexstring:D04')"}  
+
+# Redis에 적재된 데이터 확인
+$ redis-cli
+
+
+## Redis 클라이언트 애플리케이션 작동
+
+
+## pig
+- 실무로 배우는 빅데이터 기술(확장편): https://bit.ly/bigdata2nd
+
+
+
+
+HIVE 암호 : hive/lqvbwxaLFz
