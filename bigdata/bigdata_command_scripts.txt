@@ -66,6 +66,12 @@ $ hbase shell
 
 # 간단한 HBase 명령어
 $ hbase shell
+  > create 'smartcar_test_table', 'cf'    # 테이블 및 컬럼패밀리 생성
+  > put 'smartcar_test_table', 'row-ke1','cf:model','z0001'  # 데이터 insert
+  > get 'smartcar_test_table', 'row-ke1'  # 데이터 조회
+  > disable 'smart_test_table'            # 테이블 삭제전 disable
+  > drop 'smart_test_table'               # 테이블 drop
+  
   > list_snapshots
   > delete_snapshots 'snapshot 이름'
   > list                              # 테이블 리스트 
