@@ -42,7 +42,7 @@ $ zookeeper-client     # 주키퍼 클라이언트 실행
 # Provider(N) -> 카프카 Broker(Topic1, Topic2) -> Consumer(N개)
 
 
- 
+
 
 
 
