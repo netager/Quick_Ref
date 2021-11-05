@@ -66,6 +66,12 @@ $ hbase shell
 
 # 간단한 HBase 명령어
 $ hbase shell
+  > create 'smartcar_test_table', 'cf'    # 테이블 및 컬럼패밀리 생성
+  > put 'smartcar_test_table', 'row-ke1','cf:model','z0001'  # 데이터 insert
+  > get 'smartcar_test_table', 'row-ke1'  # 데이터 조회
+  > disable 'smartcar_test_table'            # 테이블 삭제전 disable
+  > drop 'smartcar_test_table'               # 테이블 drop
+  
   > list_snapshots
   > delete_snapshots 'snapshot 이름'
   > list                              # 테이블 리스트 
@@ -83,7 +89,6 @@ $ hbase shell
 
 
 ## Redis 설치
-
 $ yum install -y gcc*
 $ yum install -y tcl
 
@@ -177,32 +182,68 @@ $ service storm-nimbus [storm-supervisor/storm-ui] start/stop/status
 # Storm 기동 순서 : storm-nimbus -> storm-supervisor -> storm-ui (중지는 반대로)
 
 
+
 # HBase 테이블 생성
 $ hbase org.apache.hadoop.hbase.util.RegionSplitter DriverCarInfo HexStringSplit -c 2 -f cf1
 
+
+5.5 실시간 적재 파일럿 실행 3단계 - 적재 기능
 # Storm Topology 배포
+1. bigdata.smartcar.storm-1.0.jar 를 /home/pilot-pjt/working 에 업로드
+2. storm 명려을 통해 DriverCarInfo라는 이름으로 배포. 배포하기 전 Storm 실행 확인
 $ cd /home/pilot-pjt/working
 $ storm jar bigdata.smartcar.storm-1.0.jar com.wikibook.bigdata.smartcar.storm.SmartCarDriverTopology DriverCarInfo
 
-# Storm Topology 제거 
-$ storm kill "배포시 사용했던 Topology 이름" -> storm kill "DriverCarInfo"
 
+# Storm Topology 제거 
+$ storm kill "배포시 사용했던 Topology 이름" -> $ storm kill "DriverCarInfo"
+
+# storm topology 확인
+- http://server02.hadoop.com:8088 로 확인
+ 
 
 # 적재 테스트
 1. 로그 시뮬레이터 작동
 
 2. HBase 적재 확인
 $ hbase shell
-  > count 'DriverCarInfo'
-  > scan 'DriverCarInfo', {LIMIT=>20}
+  > count 'DriverCarInfo'   # DriverCarInfo 테이블에 적재된 데이터 로우 수를 1000 단위로 출력
+  > scan 'DriverCarInfo', {LIMIT=>20}  # 20개 데이터만 조회
   > scan 'DriverCarInfo', {STARTROW=>'00001030106102-Z0020', LIMIT=>1}
   > scan 'DriverCarInfo', {COLUMNS=>['cf1:car_number','cf1:area_numbr'], FILTER=>"RowFilter(=,'regexstring:30106102') AND SingleColumnValueFilter('cf1', 'area_numbr' ,=, 'regexstring:D04')"}  
 
+3. Hbase 웹관리자에 접속해서 적재한 데이터가 분산 적재되는지 확인
+- http://server02.hadoop.com:16010/
+
+
 # Redis에 적재된 데이터 확인
 $ redis-cli
+$ 127.0.0.1:6379> smembers 20160103
 
+5.6 실시가 적재 파일럿 실행 4단계 - 적재 테스트
+# Redis 클라이언트 애플리케이션 작동
+- bigdata.smartcar.redis-1.0.jar를 /home/pilot-pjt-working 으로 업로드
 
-## Redis 클라이언트 애플리케이션 작동
+- 레디스 클라이언트 애플리케이션 실행 - redis에 있는 데이터를 가져와서 과속한 차량에 경고, 메시지를 보낼 수 있음
+$ cd /home/pilot-pjt/working
+$ java -cp bigdata.smartcar.redis-1.0.jar com.wikibook.bigdata.smartcar.redis.OverSpeedCarInfo 20160103
+
+# 실시간 로그 시뮬레이터 중지
+$ ps -ef | grep smartcar.log/redis_6379
+$ kill -9 [pid]
+
+# 적재 테스트가 종료되면 원할한 자원 관리를 위해 수집/적재 서비스를 정지 시킴.
+# 아래 순서로 정지
+- 플럼 서비스 : CM홈 -> [Flume] -> [정지]
+- 카프카 서비스: CM홈 -> [Kafka] -> [정지]
+- 스톰 서비스: server02 접속
+$ service storm-ui stop
+$ service storm-supervisor stop
+$ service storm-nimbus stop
+- 레디스 서비스: server02에 ssh 접속 
+$ service redis_6379 stop
+- HBase 서비스: CM홈 -> [HBase] -> [정지]
+
 
 
 ## pig
