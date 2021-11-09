@@ -6,10 +6,49 @@
   - Storm 서버 로그 위치 : /home/pilot-pjt/storm/logs
   - Zeppelin 서버 로그 위치 : /home/pilot-pjt/zeppelin-0.8.2-bin-all/logs
   
-
 # 의존성 : 시작 순서
   - zookeeper -> hadoop -> yarn
-### 2-5 빅데이터 클러스터 구성 02
+
+### 1-1 빅데이터 개념
+### 1-2 빅데이터 목적
+### 1-3 빅데이터 활용
+### 1-4 빅데이터 프로젝트
+### 1-5 빅데이터 기술의 변화
+### 1-6 빅데이터 구현 기술
+### 1-6 빅데이터 보안
+
+### 2-1 파일럿 프로젝트 도메인의 이해
+### 2-2 빅데이터 파일럿 아키텍처 이해 02 - 소프트웨어
+### 2-2 빅데이터 파일럿 아키텍처 이해 02 - 하드웨어 
+### 2-3 빅데이터 파일럿 PC 환경 구성 01 - 개발환경
+### 2-3 빅데이터 파일럿 PC 환경 구성 02 - 리눅스 가상머신 환경 구성
+
+
+### 2-4 VM 통합 환경 구성
+## 파일럿 PC의 호스트 파일 수정하기
+  - 관련 파일 : c:\windows\system32\drivers\etc\hosts
+    - 192.168.56.101 server01.hadoop.com
+    - 192.168.56.102 server03.hadoop.com  
+## 클라우데라 매니저 접속 하기
+  - 접속 URL : http://server01.hadoop.com:7180
+  - admin/admin
+
+## 클라우데라 매니저 클러스터 구성
+  - 클러스터 이름 : Cluster 1
+  - Specify Hosts : server01.hadoop.com, server02.hadoop.com
+  - 리포지토리 선택 
+    - 방식 선택 : Parcel 사용(권장됨)
+	- CDH 버전 : CDH-6.3.2-1.cdh6.3.2.p0.1605554
+	- 추가 Parcel : 없음
+	- 없음
+	- 없음
+	- 없음
+  - Install Parcels : 선택한 Parcel을 다운로드하여 모든 호스트에 설치 됨.
+  - Inspect Cluster 
+    - I understand the risks, let me continue with cluster setup. 선택하고 계속 진행  
+	
+  
+### 2-5 빅데이터 클러스터 구성 02 - 기본 SW(하둡, 주키퍼 등) 설치
 ## 설치 위치
 # HDFS(하둡)
 - 설치 위치
@@ -37,11 +76,16 @@
 # 주키퍼
 - 설치 위치
   - Server : server02.hadoop.com
+ 
 
+### 2-5 빅데이터 클러스터 구성 03 - DataNode 추가 및 환경 설정
+  - 고사양 파일럿 환경에서 사용 
+  
+### 2-5 빅데이터 클러스터 구성 04 - HDFS와 주키퍼 명령 사용해 보기
 ## 환경 설정
 # Hadoop 
   - 복제 계수 : 3 -> 1
-  - 접근권한 해제(HDFS 권한 검사) : 체크박스를 해제
+  - HDFS 권한 검사 : 체크박스를 해제  # 접근권한 해제
   - HDFS 블록 크기 : 128MiB -> 64MiB
 
 # YARN
@@ -49,9 +93,9 @@
   - yarn.nodemanger.resource.memory-mb : 1GiB -> 5GiB
   - Scheduler 클래스(yarn.resourcemanager.scheduler.class : FifoScheduler로 변경 
 
-
 # 실무에서 Hadoop 디렉토리 하위 경로의 복제계수를 10으로 변경하면 조회시 속도 향상. 물론 자원의 소비는 감안
 $ hadoop fs -setrep 10 -R /user/hadoop/
+
 
 ### 2-5. 빅데이터 클러스터 구성
 ## HDFS 명령어 사용(server02.hadoop.com)
@@ -306,7 +350,6 @@ $ service storm-nimbus [storm-supervisor/storm-ui] start/stop/status
 # HBase Region 스플릿
 - 저사양 파일럿 환경 : 리전 스플릿 수를 2로 설정(yarn 기반)
 $ hbase org.apache.hadoop.hbase.util.RegionSplitter DriverCarInfo HexStringSplit -c 2 -f cf1
-
 
 
 5.5 실시간 적재 파일럿 실행 3단계 - 적재 기능
