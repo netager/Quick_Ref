@@ -1209,3 +1209,551 @@ $ service redis_6379 stop
 #21. 다음 코드로 Precision, Recall, F1-Score에 대한 평가 결과를 확인할 수 있다.
 
 
+7. 분석 파일럿 실행 5단계 - 03. 스마트카 고객 정보 군집
+## 스마트카 고객정보 군집 분석1
+# 데이터 마이닝 중 3번째인 군집 분석을 진행. 사용될 데이터셋은 "스마트카 고객 마스터 정보"로 하이브의
+  External 영역에 SmartCar_Master 테이블이다.
+
+# 머하웃 Canopy 분석
+   - K-Means의 중요한 K값을 찾기 위해 Canopy 분석 
+# 스파크ML K-Means 분석 
+
+#01. 휴의 하이브 에디터로 "스마트카 마스터 정보" 데이터셋을 조회해서 로컬 디스크에 저장한다. 휴의 하이브 에디터
+     에서 다음의 QL을 실행한다. "CH07/hiveQL/그림-7.82.hql 
+
+#02. 군집분석을 하기 위한 "스마트카 사용자 마스터" 데이터셋이 정상적으로 만들어졌는지 확인하다. Server02에
+     SSH로 접속하고 다음 명령을 실행해 내용을 확인한다.
+  - $ more /home/pilot-pjt/mahout-data/clustering/input/*
+
+#03. 머하웃의 Canopy 분석의 입력 데이터로 사용하기 위해 HDFS 상에 /pilot-pjt/mahout/clustering/input/
+     경로를 생성하고 앞서 생성한 "스마트카 사용자 마스터" 데이터인 "000000_0" 파일의 이름을 "smartcar_master.txt"로
+     변경해 HDFS에 저장한다.
+  - $ hdfs dfs -mkdir -p /pilot-pjt/mahout/clustering/input/
+  - $ cd /home/pilot-pjt/mahout-data/clustering/input
+  - $ mv 000000_0 smartcar_master.txt
+  - $ hdfs dfs -put smartcar_master.txt /pilot-pjt/mahout/clustering/input   
+  
+#04. HDFS에 정상적으로 적재되었는지 휴의 파일 브라우저로 확인
+
+#05. 머하웃의 Canopy 분석을 하기 위해서는 원천 파일이 시퀀스 파일이어야 한다. HDFS에 적재한 고객 마스터 데이터인
+     "smartcar_master.txt" 파일은 텍스트 파일 형식이므로 시퀀스 파일로 변환한다. 시퀀스 파일은 키/값 형식의
+     바이너리 데이터셋으로 분산 환경에서 성능과 용량 면에서 효율성을 높인 데이터 포맷이다. 이번 군집분석에서는 시퀀스
+     파일의 키를 차량 번호로 하고, 나머지 사용자 마스터(차량연도, 차량 용량, 모델, 나이, 연령 등)를 값으로 구성하기
+     위해 간단한 시퀀스 파일 변환 프로그램인 "com.wikibook.bigdata.smartcar.mahout.TextToSequence"를
+     이용한다. 소스 프로그램은 "workplace/bigdata.smartcar.mahout에 있으니 참고.
+     TextToSequence 프로그램을 실행하기 위해 사전에 빌드해 놓은 bigdata.smartcar.mahout-1.0.jar 파일을
+     Server02의 /home/pilot-pjt/mahout-data에 업로드한다.
+  - FTP를 통해 Server02에 접속 
+  - 머하웃 작업 경로 : /home/pilot-pjt/mahout-data 
+  - "CH07/bigdata/smartcar.mahout-1.0.jar 파일을 /home/pilot-pjt/mahout-data에 업로드 
+
+#06. 텍스트 형식의 "스마트카 사용자 마스터" 파일을 시퀀스 파일로 변환한다. 변환 대상은 앞서 HDFS에 저장해 둔 
+     /pilot-pjt/mahout/clustering/input/smartcar_master.txt 파일이고, 변환 결과는 HDFS의
+     /pilot-pjt/mahout/clustering/output/seq에 생성된다.
+  - $ hadoop jar /home/pilot-pjt/mahout-data/bigdata.smartcar.mahout-1.0.jar com.wikibook.
+    bigdata.smartcar.mahout.TextToSequence /pilot-pjt/mahout/clustering/input/smartcar_master.
+    txt /pilot-pjt/mahout/clustering/output/seq 
+
+#07. 변환된 시퀀스 파일을 휴의 파일 브라우저를 통해 확인해 보자. 해당 경로에 part-m-00000이라는 이름의 시퀀스 파일이
+     생성됐을 것이다. 파일을 클릭해도 바이너리 형식으로 내용은 확인할 수 없다.
+  - 참고로 시퀀스 파일의 내용을 확인하기 위해 다음의 HDFS 명령을 이용할 수 있다.
+    - $ hdfs dfs -text /pilot-pjt/mahout/clustering/output/seq/part-m-00000  
+
+#08. 시퀀스 파일로 변환된 스마트가 마스터 데이터를 확인했으면 해당 시퀀스 파일을 로우별(차량번호)로 n-gram 기반의
+     TF(Term Frequency) 가중치가 반영된 벡터 데이터로 변환한다. n-gram의 벡터 모델은 단어의 분류와 빈도 수를
+     측정하는 알고리즘 정도로 이해하자. 여기서는 차량번호별 각 항목의 단어를 분리해 벡터화하기 위해 사용하겠다.
+     다음 명령을 실행해 스마트카 마스터 데이터를 다차원의 공간 벡터로 변환해 HDFS의 /pilot-pjt/mahout/clustering/output/vec에
+	 생성한다.
+  - $ mahout seq2sparse -i /pilot-pjt/mahout/clustering/output/seq -o /pilot-pjt/mahout/clustering/
+      output/vec -wt tf -s 5 -md 3 -ng 2 -x 85 --namedVector
+  - 옵션 설명 
+    - wt : 단어 빈도 가중치 방식
+	- md : 최소 문서 출현 횟수 
+	- ng : ngrams 최댓값 
+	- namedVector : 네임벡터 데이터 생성
+  - 맵리듀스 잡이 여러 차례 실행되고 벡터 데이터가 정상적으로 만들어지면 휴의 파일 브라우저를 통해 
+    /pilot-pjt/mahout/clustering/output/vec 경로에 df-count, df-vector 등의 디렉터리와 파일이 
+    생성돼 있음을 확인할 수 있다. 
+
+#09. Canopy 군집분석으로 최적의 군집 개수를 파악하기 위해서는 센트로이드로부터 거리를 나타내는 t1, t2 옵션을 바꿔가며
+     반복적인 군집분석을 수행해야 한다. 다음과 같음 명령을 첫번째 Canopy 군집분석을 실행해 본다.
+  - $ mahout canopy -i /pilot-pjt/mahout/clustering/output/vec/tf-vectors/ -o 
+      /pilot-pjt/mahout/clustering/canopy/out -dm org.apache.mahout.common.distance.
+      SquaredEuclideanDistanceMeasure -t1 50 -t2 45 -ow
+  - 적용된 옵션 
+    - i : 벡터 파일 경로 
+    - o : 출력 결과 경로 
+    - dm : 군집 거리 측정 알고리즘 
+    - t1 : 거리값1
+    - t2 : 거리값2 
+	
+  - Canopy 군집분석이 정상적으로 수행되면 HDFS의 /pilot-pjt/mahout/clustering/canopy/out/ 경로에 
+    clusters-xx-final이라는 디렉터리가 만들어지고 그 안에 결과 파일이 생성돼 있을 것이다.
+    첫 번째 실행에서 "t1=50, t2=45"로 설정하고, 유사도 거리 측정을 위해 SquareEuclideanDistanceMeasure
+    를 사용했다. 참고로 Canopy 군집부석에서는 t1, t2의 길이가 그림 7.89처럼 "t1 > t2"이어야 하고, 중심점으로부터 
+    "t2"의 반경 안에 있는 데이터는 해당 군집의 데이터로 확정되며, "t2"와 "t1" 사이에 데이터는 다른 군집 영역에 다시 
+    포함되어 다른 군집의 데이터로 취급될 수 있다. 
+
+#10. Canopy 군집분석 결과를 다음 명령어로 확인한다.
+  - $ mahout clusterdump -i /pilot-pjt/mahout/clustering/canopy/out/clusters-*-final 
+  - 그림 7.90에서 보면 Canopy 군집분석 결과 1개의 군집이 만들어졌다. 만약 1개의 군집으로 분석됐다면 t1, t2의
+    초기값을 너무 크게 잡은 것이다. 
+  - t1:50, t2:45, 클러스터 개수:1
+
+#11. t1, t2의 값을 각각 10, 8로 설정한 후 실행
+  - $ mahout canopy -i /pilot-pjt/mahout/clustering/output/vec/tf-vector/ -o 
+      /pilot-pjt/mahout/clustering/canopy/out -dm org.apache.mahout.common.distance.
+      SquareEuclideanDistanceMeasure -t1 10 -t2 8 -ow
+  - Canopy 군집분석에 대한 실행 결과를 다음 명령어로 확인
+    - $ mahout clusterdump -i /pilot-pjt/mahout/clustering/canopy/out/clusters-*-final 
+  
+#12. t1, t2의 값을 각각 12, 10로 설정한 후 실행
+  - $ mahout canopy -i /pilot-pjt/mahout/clustering/output/vec/tf-vector/ -o 
+      /pilot-pjt/mahout/clustering/canopy/out -dm org.apache.mahout.common.distance.
+      SquareEuclideanDistanceMeasure -t1 12 -t2 10 -ow
+  - Canopy 군집분석에 대한 실행 결과를 다음 명령어로 확인
+    - $ mahout clusterdump -i /pilot-pjt/mahout/clustering/canopy/out/clusters-*-final 
+  - 148개의 군집이 생성. 분석 요건과 데이터의 성격에 따라 적절한 군집의 개수를 판단.
+
+	
+## 스마트카 고객정보 군집 분석2
+#13. Canopy 군집분석에서 나온 클러스터 수(148)를 참고해서 다음에 진행할 K-Means 군집의 K값을 "148"보다 좀
+     더 큰 값인 "200"으로 확정한다. K-Means 분석은 제플린에서 스파크ML을 이용한다. 먼저 제플린이 종료됐다면
+     다음 명령어를 통해 제플린 서버를 실행하고, 크롬 브라우저를 통해 제플린 웹IDE에 접속한다.
+  - $ zeppelin-daemon.sh start
+  - 제플린 웹IDE URL: http://server02.hadoop.com:8081/
+
+#14. 제플린 상단 메뉴의 [Notebook] -> [Create new note]를 선택하고 [Note Name]은 "SmartCar-Clustering"으 
+     로 입력하고 [Default Intercepter]는 "spark"를 선택한 후 [Create] 버튼을 클릭한다.
+
+#15. 첫 번째 입력창(Paragraph)에 사용할 라이브러리를 다음과 같이 입력하고 Shift+Enter 또는 우측 상단의 [Run]
+     버튼으로 실행한다. 관련 전체 소스코드는 CH07/SparkML/SmartCar-Clustering.scala를 참고한다.
+
+#16. 하이브에서 생성해 둔 스마트카 마스터 데이터셋을 로드하고, 결과를 확인하기 위해 다음과 같이 코드를 입력한 후
+     실행 버튼을 클릭한다. 5개의 데이터가 조회된다.
+  - val ds = spark.read.option("delimiter", " ").csv("/pilot-pjt/mahout/clustering/input/smartcar_master.txt")
+  - ds.show(5)
+
+#17. 다음 코드를 실행해 스마트카 마스터 데이터셋의 컬럼명, 타입 등을 재구성한다.
+  - val dsSmartCar_Master_1 = ds.selectExpr(
+                              "cast(_c0 as string) car_number",
+							  "cast(_c1 as string) car_capacity",
+							  "cast(_c2 as string) car_year",
+							  "cast(_c3 as string) car_model",							  "cast(_c4 as string) car_number",
+							  "cast(_c5 as string) sex",
+							  "cast(_c6 as string) marriage",
+							  "cast(_c7 as string) job",
+							  "cast(_c8 as string) region"
+							  )
+
+#18. 다음 작업을 통해 문자형 카테고리 컬럼을 숫자형 컬럼으로 생성해 새로운 컬럼으로 추가한다.
+
+#19. 앞선 머하웃의 Canopy 분석의 결과 중 스마트카 마스터 데이터에서 유효한 변수(차량용량, 차량연식, 차량모델, 
+     운전자성별, 운전자결혼여부)만 선정해 클러스터링의 Features 변수로 사용한다.
+
+#20. 기존 필드를 삭제하고 재구성된 스마트카 마스터 데이터셋을 확인해 본다. 이제 스파크ML을 이용해 K-Means 군집
+     분석을 하기 위한 데이터 전처리 작업이 끝났다.
+	 
+#21. 다음 코드로 K-Means 군집 분석을 실행한다. 군집(클러스터)의 개수는 앞선 머하웃의 Canopy 분석에서 얻은 결과에
+     따라 200을 설정한다.
+
+#22. K-Means 군집의 결과를 다음 코드를 실행해 확인해 본다. 출력된 결과 중 prediction 필드는 군집 번호로서 
+     0번 ~ 199번까지 총 200개의 군집을 나타내며, car_number 필드는 각 군집번호에 포함된 차량번호를 나타낸다.
+	 
+#23. 군집 모델의 정확도를 평가하기 위해 다음 코드를 실행해 평균 실루엣(Silhouette) 스코어를 확인해 본다. 실루엣
+     스코어는 -1 ~ 1의 값을 가지며 각각 다음과 같은 의미를 가진다.
+  - -1에 가까운 값 : 잘못된 군집에 포함된 개체가 많음
+  -  0에 가까운 값 : 군집에 포함되지 않은 개체가 많음
+  -  1에 가까운 값 : 군집에 포함된 개체가 많음
+  즉, 1에 가까운 값일수록 좋은 군집 모형일 가능성이 높다. 그림 7.104를 보면 실루엣 스코어가 0.85로, 비교적 좋은 
+     군집 모델로 평가될 것으로 예상된다.
+
+#24. 군집된 결과를 데이터 탐색 과정을 통해 좀 더 분석해 보자. 앞서 군집 결과인 그림 7.103을 보면 1번 군집에 15개의
+     차량 번호가 군집됐다. 15개의 차량 번호를 임팔라의 쿼리로 조회해서 어떤 특징이 있는지 확인해 본다. 휴를 실행해
+     상단의 쿼리콤보에서 [편집기] -> [Impala]를 선택한 후 임팔라 편집기에서 다음 쿼리를 실행한다.	
+
+#25. 조회 결과인 그림 7.106을 보면서 군집 1번의 특징을 파악해 보자.
+  - 고객 성향 : 1번 군집은 50 ~ 60대의 기혼 남성들로, 스마트카 F모델 차량을 선호한다.
+  - 소득 추정 : 1번 군집에 속한 고랙군의 차량은 1500CC 이하의 차랴으로, 소득 수준이 낮을 것으로 추정된다.
+  - 분석 결과 : 스마트카를 신규 구입하거나 재구매할 가능성이 있는 50 ~ 60대 기혼 남성 고객을 대상으로 저가형 
+              스마트카 F모델을 타깃 마케팅한다.
+
+
+7.8 분석 파일럿 실행 6단계 - 스쿱 
+## 분석 결과 외부 제공
+# 빅데이터시스템에서 외부 RDBMS로 또는 반대로 데이터를 Import, Export 함.
+
+## 스쿱의 내보내기 기능 - 이상 운전 차량 정보
+# 사용할 DBMS 정보 및 환경 설정
+  - RDBMS 유형 : PostgreSQL
+  - 설치 IP : 192.168.56.101
+  - 설치 포트 : 7432
+  - 데이터베이스 : postgresql 
+  - 접속 계정 : cloudera-scm
+  - 접속 패스워드 : vsqBur5ygT
+    - 패스워드이 경우 독자들의 파일럿 환경마다 다소 차이다 있다. Server01에 접속해 다음 명령으로 확인하다.
+	- $ cat /var/lib/cloudera-scm-server-db/data/generated_password.txt
+
+#1. PostgreSQL에 콘솔로 접속해서 기본적인 데이터베이스 작업을 진행한다. 먼저 Server01의 SSH를 통해 접속한 후
+    다음 명령으로 PostgreSQL 데이터베이스에 연결한다.
+  - $ psql -U cloudera-scm -p 7432 -h localhost -d postgres 
+  - 패스워드 입력창이 나타나면 그림 7.108에서 확인한 패스워드를 입력. 
+    - vsqBur5ygT
+
+#2. HDFS에 "이상 운전 패턴" 데이터를 PostgreSQL의 테이블로 저장하기 위한 RDBMS 테이블을 생성.
+    테이블 명은 samartcar_symptom_info로 한다.
+  - postgres=# create table smartcar_symptom_info(
+       car_number      varchar,
+       speed_p_avg     varchar,
+       speed_p_symptom varchar,
+   	   break_p_avg     varchar,
+	   break_p_symptom varchar,
+	   steer_a_cnt     varchar,
+	   steer_p_symptom varchar,
+	   biz_date        varchar
+	   );
+
+  - select 쿼리를 실행해서 정상적으로 생성됐는지 확인해 본다.
+    - postgres=# select * from smartcar_symptom_info;
+#3. Server01에서 스쿱 명령을 실행하기 위해 새로운 SSH 창을 하나 더 열어 Server01에 접속. 먼저 스쿱 명령을
+    실행하기 위해서는 PostgreSQL JDBC 드라이버를 스쿱의 라이브러리 경로에 복사해 놓아야 한다. 
+    - $ cp /opt/cloudera/parcels/CDH/jars/postgresql-*.jar /opt/cloudera/parcels/CDH/lib/sqoop/lib
+  - 다음으로 내보내기 명령을 실행한다. 
+    - $ sqoop export --connect jdbc:postgresql://192.168.56.101:7432/postgres --username cloudera-scm 
+	    --password vsqBur5ygT --table smartcar_symptom_info --export-dir /user/hive/warehouse/managed_smartcar_symptom_info 
+	- --username : PostgreSQL 계정
+    - --password : PostgreSQL 패스워드
+    - --table : PostgreSQL 데이터베이스 테이블명 
+    - --export-dir : 내보내기 할 HDFS 데이터 경로 
+  - 내보내기 확인
+    - postgres=# select * from smartcar_symptom_info;
+
+## 스쿱을 활용할 떄 주의할 점 
+  - 일반적으로 RDBMS는 중요 업무 시스템의 온라인 서비스 저장소로 사용되는데, 이때 스쿱의 대규모 Export/Import 맵(Map) 작업들이
+    RDBMS에 연결되면서 큰 오버헤드를 발생시킬수 있기 때문이다. 예를 들어, 100대의 하둡 데이터노드가 있고, 스쿱 명령으로 대규모 데이터에 
+    대한 가져오기/내보내기를 할 경우 최악의 경우에 100대의 서버에서 동시에 Map 작업이 생성되어 RDBMS로 연결된 JDBC 작업이 수행될 수 있기 
+    때문이다. 이로 인해 RDBMS의 자원 점유율이 커지고 RDBMS를 사용하는 중요 온라인 시스템 서비스에 영향을 줄 수 있다.
+    스쿱의 실행 옵션 중 --split-by 또는 --num-mappers를 이용하면 문제를 최소화할 수 있으니 참고.
+
+	
+8.1 분석환경 확장 개요
+## 분산환경 분석 도구 Vs. 외부환경 분석 도구 
+## 분산 환경을 지원하는 분석 도구 
+  - 외부 독립형 분석 도구의 단점은 대용량 데이터를 이용한 분석 및 학습에 과도한 시간이 소요된다는 것이다. 최근에는 GPU 파워를 이용해 
+    빠른 연산은 가능해졌으나 대용량 데이터 로드에 발생하는 I/O 오버헤드와 자원(CPU/메모리) 증설 한계는 피할 수 없다. 이 같으 이유로
+    최근 들어 독립형 방식의 분석 도구도 대규모 분산환경(스케일아웃 방식)을 지원하기 위한 다양한 시도를 하고 있다.
+    텐서프로는 지난 2016년 4월경 텐서플로 분산 버전을 공식적으로 출시했고, R은 오래전부터 RHive를 통해 하둡 분산 환경에서 분석
+    작업을 수행할 수 있도록 지원해 왔다.
+    하지만 분산 분석 환경의 경우 요청 작업을 여러 대의 서버에 나누어 실행해야 하고, 그 결과를 다시 하나로 모으는 맵/리듀스 메커니즘
+    (그림4.4 참고)이 기본적으로 요구된다. 이러한 이유로 분산 환경에서 기존 분석 알고리즘이 작동하기 위해서는 프로그램 수정과 복잡도가 
+    증가하며 환경에 대한 호환성 문제를 고려해야 한다.
+    사용하려는 분석 도구와 라이브러리의 분산 컴퓨팅 지원 여부는 관련 소프트에어의 공식 사이트에서 확인한 후 사용하기 바란다.
+    참고로 대표적인 분산 환경인 아파치 스파크(http://spark.apache.org)에서 지원하는 주요 머신러닝 알고리즘(MLlib)은 다음 표와 같다.
+  - Classification(분류)
+    - Logistic regression
+	- Decision tree classifier
+	- Random forest classifier
+	- Gradient-boosted tree classifier 
+	- Multilayer perceptron classifier 
+	- Linear Support Vector Machine 
+	- One-vs-Rest classifier(a.k.a One-vs-All)
+	- Naive Bayes
+  - Clustering(군집)
+    - K-Means
+	- Latent Dirichlet allocation(LDA) 
+	- Bisecting k-means
+	- Gaussian Mixture Model(GMM)
+  - Regression(회귀)
+    - Linear regresion
+	- Generalized linear regression
+	- Available families
+	- Decision tree regression
+	- Random forest regression
+	- Gradient-boosted tree regression
+	- Survival regression
+	Isotonic regression 
+	
+# R을 이용한 회귀분석 - 스마트카 배기량에 따른 운전자의 연소득 예측 
+# 텐서플로 이용한 신경망 분석 - 주행 중 스마트카의 사고 위험 징후 판별
+# 예측 모델 API 구성 - 딥러닝 모델을 웹서비스 REST API로 구성 
+
+
+8.2 R을 이용한 회귀분석 - 운전자 연소득 예측 
+## 스마트카 배기량에 따른 운전자 연소득 예측 
+  - 로컬 파일 -> 하이브 -> RJDBC -> R 
+
+## 선형 회귀분석의 기본 원리
+  - 선형 회귀분석을 깊게 이해하려면 여러가지 수학적 회귀 공식과 통계 기법 이론이 필요하지만 기본 원리만 알고 있어도 
+    선형 회귀분석을 구현하는 데 크게 어려움이 없다. 선형 회귀분석은 그림8.3에서 보는 것처럼 입력값(X)와 결과값(Y)의 
+    데이터 관계가 선형을 이루는 건 알고 있지만 정확한 기울기 값을 정의하는 모델을 찾고자 할 때 사용한다. 
+  - 예를 들면, 임의의 회귀선을 긋고 기울기와 편향값이 업데이트되면서 회귀선이 이동하는데, 각 점간의 거리에 대한 평균값이
+    최소가 되는 회귀선에서 이동을 멈추게 되고 이 선이 최적의 선형 회귀 모델이 되는 것이다.
+
+## 로지스틱 회귀분석의 기본 원리 
+  - 로지스틱 회귀분석도 선형 회귀분석과 유사한 방식을 사용하나 회귀선이 아닌 결과값을 "0"과 "1"로 가지는 
+    시그모이드 함수를 쓴다는 차이점이 있다. 그림 8.4와 같이 임의의 시그모이드 선을 긋고 각 점 간의 거리에 대한 평균 또는
+    엔트로피를 비교해 가며 최적의 로지스틱 회귀 모델을 찾는다.
+
+## R설치 및 환경구성
+  - R 다운로드 및 설치: https://www.r-project.org
+  - R-studio 다운로드 및 설치 : https://www.rstudio.com/
+
+## 분석 데이터셋 생성
+#1. "스마트카 고객 마스터2" 파일을 Server02로 업로드한다.
+  - FTP 클라이언트 파일질라 실행
+  - 파일럿 작업경로 : /home/pilot-pjt/working 
+  - CH08/CarMaster2Income.txt 파일을 /home/pilot-pjt/working에 업로드 
+
+#2. Hue에서 하이브 에디터에 접속해 SmartCar_Master2Income 테이블을 생성한다. 이때 스마트카 배기량(car_capacity)과
+    연소득(income) 필드의 데이터 타입은 int(숫자형)로서 각각 회귀분석의 독립변수와 종속변수로 사용된다. 
+  - 테이블 생성문 : CH08/그림-8.7.hql 
+  
+
+#3. 로컬 파일시스템에 적재된 "스마트카 고객 마스터2.txt" 파일을 앞서 생성한 하이브 테이블인 SmartCar_Master2Income에
+    직접 로드한다.
+  - LOAD DATA LOCAL
+           INPATH '/home/pilot-pjt/working/CarMaster2Income.txt'
+           OVERWRITE INTO TABLE SmartCar_Master2Income;
+
+#4. 하이브 테이블에 로컬파일이 정상적으로 로드됐는지 조회 쿼리를 실행해 본다.
+  - select car_number, car_capacity, income from SmartCar_Master2Income;
+
+
+## 하이브 클라이언트 라이브러리 구성
+#1. 사용자의 파일럿 PC에 하이브 클라이언트 라이브러리를 관리하기 위한 두 개의 디렉터리를 생성한다.
+  - c://hiveJar 디렉터리를 생성한다.
+  - c://hadoopJar 디렉터리를 생성한다.
+
+#2. Server02로 부터 관련 라이브러리를 다운로드한다. 총 8개의 Jar 파일로 하이브 클라이언트 라이브러리 파일 5개와 
+    하둡 클라이언트 라이브러리 파일 3개다. 먼저 Server02에 FTP로 접속해 하이브 클라이언트 라이브러리 파일 5개를 
+    c://hiveJar 디렉터리에 다운로드 한다.
+  - 하이브 클라이언트 라이브러리
+    - 경로 : /opt/cloudera/parcels/CDH/jars/
+    - 파일 : hive-jdbc-2.1.1-cdh6.3.2.jar, hive-service-2.1.1-cdh6.3.2.jar, httpclient-4.5.3.jar,
+            httpcore-4.4.6.jar, hive-jdbc-2.1.1-cdh6.3.2-standalone.jar 
+  - 하둡 클라이언트 라이브러리 
+    - 경로 : /opt/cloudera/parcels/CDH/jars/
+    - 파일 : hadoop-common-3.0.0-cdh6.3.2.jar, libthrift-0.9.3.jar, hadoop-client-3.0.0-cdh6.3.2.jar
+
+## 하이브 데이터 로드 
+#1. R-Studio 실행
+
+#2. 필요한 R 패키지 "DBI", "rJava", "RJDBC"를 추가로 설치한다. 다음 명령을 R 콘솔에서 차례로 실행한다.
+    R 패키지 설치 명령을 실행하면 CRAN(The Comprehensive R Archive Network)에서 직접 다운로드하므로
+	인터넷이 연결된 상태여야 한다.
+  - > install.packages("DBI")
+  - > install.packages("rJava")
+  - > install.packages("RJDBC") 
+  - > install.packages("log4r")
+  
+#3. 추가 패키지 설치가 완료되면 설치된 패키지의 라이브러리를 로드한다.
+  - > library("DBI")
+  - > library("rJava")
+  - > library("RJDBC")
+  - > library("log4r")
+
+#4. 이제 파일럿 환경의 하이브 데이터웨어하우스에 접속해 "스마트카 고객 마스터2" 테이블인 "SmartCar_Master2Income"
+    테이블을 확인해 보겠다. 앞서 hiveJar와 hadoopJar 디렉터리를 R의 클래스패스로 설정했다.
+	다음의 R 명령은 "CH08/R명령.txt"로 제공하니 참조.
+
+#5. 하이브의 JDBC 드라이버를 로드하고 Server02에 설치돼 있는 하이브 서버2로 접속한다. 이때 접속 계정과 비밀번호는 
+    브라우저를 통해 "http://server01.hadoop.com:7180/api/v11/clusters/Cluster 1/services/hive/config"
+    에 접속하면 확인할 수 있다. - admin/admin  
+	- 계정 : hive1/jXWW8OXx6i
+
+  - 다음 명령을 통해 하이브 JDBC를 로드하고 하이브 서버 2에 연결한다.
+    - > drv <- JDBC("org.apache.hive.jdbc.HiveDriver", "C://bigdata/hiveJar/hive-jdbc-2.1.1-cdh6.3.2.jar",identifier.quote="`")
+    - > conn <- dbConnect(drv, "jdbc:hive2://server02.hadoop.com:10000/default", "hive1","jXWW8OXx6i")
+  
+#6. 하이브의 데이터웨어하우스에 생성된 테이블 목록을 조회한다. 참고로 저자의 경우 "Smartcar_Master2Income"
+    테이블만 조회했지만 6, 7장에서 만든 다른 하이브 테이블도 조회가 가능하다.
+  - > dbListTables(conn);
+
+#7. 여기까지 성공적으로 진행되면 이제 하이브의 "스마트카 고객 마스터2" 테이블에 질의하고 내용까지 확인해 보자.
+  - > data <- dbGetQuery(conn, "select * from smartcar_master2income")
+  - > View(data) 
+  
+
+8.2 R을 이용한 회귀분석 - 운전자 연소득 예측 
+## 데이터 탐색 및 회귀분석 생성 
+#1. 먼저 히스토그램과 박스플롯 명령으로 "income" 데이터의 분포도를 파악하고, Q-Q 플롯 기능을 이용해 정규성을 
+    확인한다.
+  - > hist(data$smartcar_master2income.income)
+  - > boxplot(data$smartcar_master2income.income)
+  - > qqnorm(data$smartcar_master2income.income)
+  - > qqline(data$smartcar_master2income.income)  
+  
+#2. 이제 "스마트카 고객 마스터2" 데이터셋을 트레이닝 데이터셋으로 삼아 스마트카의 배기량에 따라 운전자의 연소득을 
+    예측하는 회귀모델을 만들고 그 결과를 확인해 보자.
+  - > model <- lm(data$smartcar_master2income.income~smartcar_master2income.car_capacity, data=data)
+  - > summary(model) 
+
+#3. 이제 생성된 회귀모델을 테스트해 보자. 테스트 데이터로 "CH08/CarMaster2Income_Test.txt" 파일을 이용한다.
+    총 30건의 데이터가 있으며 스마트카의 배기량 정보화 운전자의 연소득 정보 등으로 구성돼 있다. 여기서 스마트카 배기량 
+    데이터 30건을 앞서 만든 회귀모델에 입력해 운전자의 연소득을 예측해 본다. 그리고 그 예측 결과를 운전자의 실제 여소득과 
+    비교해서 회귀모델에 대한 정확도를 확인한다.
+  - CH08/CarMaster2Income_Test.txt 파일을 "c://bigdata/test_data" 디렉터리를 만들어 복사한다.
+  - > test_data <- read.csv("c://bigdata/test_data/CarMaster2Income_Test.txt", sep="|", 
+      header=T, encoding="UTF-8")
+  - > predict(model, test_data, interval="prediction")
+
+8.3 텐서플로 신경망 분석 - 스마트카 이상 징후
+## 주행 중 스마트카 위험 징후 판별(분류)
+# 로컬파일 -> CSV 로더 -> 텐서플로/케라스 -> 텐서보드
+                                  -> 플라스크(웹애플리케이션)
+
+## 신경망 딥러닝의 기본 원리 
+  - 신경망 분석의 매커니즘을 간단하게 알아보자. 신경망의 구성요소는 크게 입력층, 은닉층, 출력층으로 이뤄지며, 각각의
+    층은 뉴런(활성화 함수)으로 구성된다. 또한 은닉층의 레이어와 뉴런의 구성 방식에 따라 DNN, RNN, CNN 등으로 
+    신경망의 종류가 나뉜다.
+
+## 설치 및 환경 구성
+  - 아나콘다(Anaconda) 설치: https://continuum.io/downloads
+  - 텐서플로 설치(파이썬 pip 명령으로 설치) 
+
+## 개발 환경 실행 
+#1. Anaconda3에서 Anaconda Prompt를 실행한다. 기본 설정대로 설치했다면 [시작] -> [모든 프로그램] ->
+    [Anaconda3(64-bit)] -> [Anaconda Prompt]를 차례로 선택해 실행할 수 있다. 
+
+#2. 다음 명령으로 파이썬3.5 환경을 구성한다. 환경의 이름은 "py35"로 지정한다.
+  - (base) c:\Users\[사용자명]> conda create -n py35 python=3.5
+ 
+#3. 파이썬 3.5 환경을 활성화한다. 파이썬 3.5 환경의 이름을 "py35"로 지정했으므로 "active py35"를 입력한다.
+    참고로 아나콘다 프롬포트는 독자의 PC 환경에 따라 다르게 표시된다.
+  - (base) c:\Users\[사용자명]> activate py35 
+
+#4. 파이썬 3.5 환경의 프롬프트가 표시되면 이번에는 텐서플로와 개발에 필요한 추가 라이브러리들을 아래 명령으로 설치하낟.
+  - (py35) > python -m pip install --upgrade pip
+  - (py35) > conda install tensorflow
+  - (py35) > conda install notebook
+  - (py35) > conda install pandas
+  - (py35) > conda install matplotlib
+  - (py35) > conda install scikit-learn
+  - (py35) > conda install keras
+  - (py35) > pip install pywin32
+
+  - 설치가 모두 완료되면 주피터 노트북을 실행한다.
+    - (py35) > jupyter notebook 
+
+#5. 주피터 노트북이 정상적으로 실행되면 노트북에 접속한다. 주피터 노트북 창이 활성화되면 그림 8.19처럼 우측 상단의
+    [New] -> [Python 3]을 차례로 선택한다. 
+
+#6. 노트북에 텐서프로 라이브러리를 임포트하는 코드를 입력하고 "Shift + Enter" 수행. 
+  - import tensorflow as tf 
+ 
+
+## 딥러닝 학습 및 평가 
+#1. 학습할 데이터셋을 "c://bigdata/training_data" 경로를 만들어 복사한다. 
+  - "CH08/CarDrivingIncidentInfo.csv" 파일을 "c://bigdata/training_data" 디렉터리를 만들어 복사해 놓는다.
+  - "CH08/CarDrivingIncidentInfo_Test.csv" 파일을 "c://bidata/test_data" 디렉터리를 만들어 복사해 놓는다.  
+
+#2. 주피터 노트북에서 필요한 라이브러리를 임포트하고, 학습데이터를 판다스의 데이터프레임으로 로드하는 코드를 입력한후 실행한다.
+    전체 소스코드는 "CH08/smartcar_dnn_model.py"에 있음.
+
+#3. 다음 코드를 입력해 데이터프레임에 로드된 학습데이터를 배열 구조의 입력값(X)과 결과값(Y)로 분리 구성하고 범주화와
+    스케일 작업으로 데이터 전처리를 진행한다. 
+
+#4. DNN 모델을 케라스의 Sequential로 구성한다. 입력 레이어, 은닉1 레이어, 은닉2 레이어, 은닉3 레이어, 출력 레이어를
+    정의하고 활성화 함수는 Relu 와 Softmax로 설정한다. 모델을 컴파일하고 요약 정보를 출력한다. 
+	
+#5. 정의한 모델을 학습시킨다. 배치 사이즈 2000으로, 에폭은 50번을 반복하며 학습을 진행한다. 에폭이 진행될 때마다 loss 값은 
+    줄고 정확도는 증가하는 모습을 볼 수 있다. 추가로 진행 과정을 테서보드 이벤트 로그로 지정했다. 
+	
+#6. 다음 코드를 실행해 학습된 DNN 모델의 최종 결과값을 확인해 본다. 정확도가 0.9997(99%)까지 향상됐다. 
+
+#7 이어서 학습 결과를 시각화해 출력해 본다. 훈련/검증 정확도(train/val acc)와 훈련/검증 손실값(train/val loss)이 
+   각각 상승/하향 곡선을 그리다가 애폭 10을 기점으로 완만해진 결과를 얻었다. 
+
+#8. 학습된 모델을 테스트 데이터로 예측(y_predict_result) 후, 실제값(Y_test)과 비교해 성능을 평가하는 ROC 차트를
+    출력해 본다. ROC 차트를 해석하자면 대각선 라인을 중심으로 ROC 커브가 상단에 형성되면 좋은 모델이고, 하단에 형성되면 
+    좋지 않은 모델이다. 아래 DNN 모델의 경우 ROC 커브가 민감도(Sensitivity) 1에 매우 근접해서 정확도가 100%에 
+    가까운 결과를 보여 준다.
+
+#9. 마지막으로 생성된 모델을 다음 경로를 만들어 저장한다. 이후 단계에서 저장된 모델을 활용해 웹 애플리케이션 서비스를 만들어 보곘다.
+
+
+## 텐서보드 사용 
+#1. Anaconda Prompt를 실행 
+
+#2. 파이썬 3.5 환경을 활성화 
+  - (base) > activate py35 
+  
+#3. 프롬포트에 "tensorboard --logdir ./graph"를 입력해 텐서보드를 실행한다. 실행 로그가 출력되면 마지막 줄에
+    텐서보드에 접속할 수 있는 URL이 표시된다. 이 URL을 복사해 둔다. 
+  - (py35) > tensorboard --logdir ./graph 
+
+#4. 크롬브라우저를 실행해 복사한 URL을 이용하여 텐서보드에 접속하면 학습된 DNN 모델의 결과를 다양한 시각화를 통해 
+    확인할 수 있다. 
+  - 텐서보드 접속 URL : http://[컴퓨터명]:6006 
+ 
+## AI기반 애플리케이션 구축 
+# 주행중인 스마트카 -> 주행정보(10개) -> API -> 웹 애플리케이션(플라스크) -> 이상징후 판별결과 -> 주행중인 스마트카 
+
+#1. 파이썬 3.5 환경을 활성화 
+  - (base) > activate py35 
+
+#2. 파이썬 3.5 환경에서 pip 명령을 통해 플라스크를 설치한다. 
+  - (py35) > pip install flask 
+
+#3. 플라스크 설치가 완료되면 웹 애플리케이션 프로그램을 작성한다.
+    [시작] -> [모든 프로그램] -> [Anaconda3(64-bit)] -> [Anaconda Navigator(Anaconda3)]를 실행한다. 
+    아나콘다 내비게이터가 활성화되면 애플리케이션 대시보드에서 Spyder의 [Launch] 버튼을 클릭해 파이썬 개발 도구인
+    스파이더(Spyder)를 실행한다.
+
+#4. 스파이더가 실행되면 에디터 창에 플라스크의 REST API로 사용할 소스코드를 그림 8.33처럼 작성한다. 관련 소스코드는 
+    "CH08/smartcar_dnn_service.py"로 제공하므로 참조한다. 
+
+#5. 파일럿 PC의 C 드라이브에 "c://bigdata/flask" 폴더를 생성하고, flask 하위 폴더로 "app" 폴더를 생성한다. 
+  - c://bigdata/flask/app/ 
+
+#6. 스파이더 에디터에서 [File] -> [Save] 메뉴를 선택하고 앞에서 작성한 플라스크 REST API의 소스코드를 
+    "c://bigdata/flask/app/" 경로에 "smartcar_dnn_service.py"라는 이름으로 저장한다. 
+
+#7. 이제 스마트카 이상징후 판별 서비스를 위한 플라스크 서비스 서버를 실행한다. 
+    [시작] -> [모든 프로그램] -> [Anaconda3 (64-bit)] -> [Anaconda Prompt(Anaconda3)]를 차례로
+    선택해 py35 환경을 활성화하고, 앞에서 저장한 "smartcar_dnn_service.py" 프로그램을 실행한다. 
+  - (base) > activate py35 
+  - (py35) > python c://bigdata/flask/app/smartcar_dnn_service.py 
+
+#8. 플라스크의 REST API 서비스가 정상적으로 실행되면 다음과 같은 메시지가 출력된다. 
+  - Running on http://0.0.0.0:9001/"
+
+#9. 주행 중인 스마트카의 10개 상태 값(0 ~ 2)을 가정해 정의한다. 
+
+#10. 크롬 브라우저를 실행해 플라스크에서 실행중인 스마트카 이상징후 판별 REST API 서비스를 호출한다. 주행 중인 
+     스마트카의 상태값 10개를 정의한 전체 URL은 다음과 같다. 
+  - REST API 서비스 URL: http://127.0.0.1:9001/smartcar/predict?wea=2&temp=0&hum=1&arrOthCar=2
+                       &time=0&acciArea=1&drvCond=1&innCond=2&carSpd=2&steeAng=0 
+  - 위 REST API URL을 크롬 브라우저에 입력해 스마트카 이상징후 판별 서비스 API를 호출한다. 
+
+#11. API 호출 결과가 그림 8.35처럼 출력된다. "prediction:"은 이상징후 판별 결과이고, "success:"는 API 처리 결과다. 
+
+
+8.4 파일럿 프로젝트 확장하기 
+## 빅데이터 샘플 파일 활용 
+# 예측 모델 및 분석 대회 플랫폼
+  - https://www.kaggle.com 
+
+# 캘리포니아 주립대의 머신러닝 데이터 
+  - http://archive.ics.uci.edu/ml/index.php 
+
+# 대한민국 공공 데이터 포털 
+  - http://www.data.go.kr 
+
+# 미국정부 데이터 카달로그 
+  - https://catalog.data.gov/dataset 
+
+# 서울 열린 데이터 광장 
+  - http://data.seoul.go.kr/index.jsp  
+
+## 빅데이터 기술 확장 
+  - 유튜브 강의 : http://bit.ly/bigdata2nd 
+    - 약 20개의 기술 요소를 다루고 있음.
+    - Pig, Sqoop Import, Tensorflow, Oozie, NiFi, Hive Bucket, Hadoop HDFS 등 
+
+
+### 빅데이터, AI 기반 스마트카 플랫폼
+  - 스마트카 - 외부 데이터 - 빅데이터 수집 - 빅데이터 레이크 - 빅데이터 웨어하우스(마트) - AI 개발/분석 - AI 학습/운영 
+    - AI 모델 서비스(flask) - 외부 업무 시스템 
+
+	
