@@ -28,7 +28,7 @@
 ## 파일럿 PC의 호스트 파일 수정하기
   - 관련 파일 : c:\windows\system32\drivers\etc\hosts
     - 192.168.56.101 server01.hadoop.com
-    - 192.168.56.102 server03.hadoop.com  
+    - 192.168.56.102 server02.hadoop.com  
 ## 클라우데라 매니저 접속 하기
   - 접속 URL : http://server01.hadoop.com:7180
   - admin/admin
@@ -131,8 +131,8 @@ $ zookeeper-client     # 주키퍼 클라이언트 실행
 # 1. 작업폴더 생성
   - $ cd /home
   - $ mkdir /home/pilot-pjt
-  - $ mkdir /home/pilot-pjt/car-batch-log
-  - $ mkdir /home/pilot-pjt/driver-realtime-log
+  - $ mkdir /home/pilot-pjt/working/car-batch-log
+  - $ mkdir /home/pilot-pjt/working/driver-realtime-log
   - chmod 777 -R /home/pilot-pjt
 
 # 2. java 컴파일과 실행환경을 1.7에서 1.8로 변경
@@ -186,19 +186,126 @@ $ zookeeper-client     # 주키퍼 클라이언트 실행
   
 # Provider(N) -> 카프카 Broker(Topic1, Topic2) -> Consumer(N개)
 
+3.3 수집 파일럿 실행 1단계 - 아키텍처
 
-3.7  수집 파일럿 실행 5단계
+3.4 수집 파일럿 실행 2단계 - 환경 구성
+## 플럼 설치
+#1. CM의 홈에서 [서비스 추가] 화면으로 이동한다. 추가할 서비스 유형 중 [Flume]을 선택하고 우측 하단의 [계속] 버튼을 클릭한다.
+#2. 플럼을 설치할 서버 호스트를 server02.hadoop.com으로 선택하고 [확인] -> [계속] 버튼을 클릭한다.
+#3. 설치 완료 메시지가 보이면 플럼을 Server02에 성공적으로 설치한 것이다. [완료] 버튼을 클릭해 플럼 설치를 종료한다.
+#4. CM의 홈 화면에 플럼 메뉴가 추가되었고 프럼의 Default 그룹의 Heap Memory가 너무 작게 설정되어 있다.
+    - CM홈 -> [Flume] -> [구성]에서 검색란에 "java heap"이라고 입력.
+	  - 변경전 : 50, 변경후 : 100
+#5. CM홈 -> [Flume] 우측의 콤보박스를 선택하고 [시작]메뉴을 선택해 플럼 에이전트를 구동한다.
+
+3.5 수집 파일럿 실행 3단계 - 플럼 수집 기능
+## SmartCar 에이전트 생성 
+# Agent 이름 : SmartCar_Agent
+# 구성파일 - CH03 폴더 확인
+
+3.6 수집 파일럿 실행 4단계 - 카프카 기능
+## 카프카 Topci 생성 
+  - $ kafka-topics --create --zookeeper server02.hadoop.com:2128 --replication-factor 1 --partitions 1 --topic SmartCar-Topic 
+  - replication-factor 옵션은 카프카를 다중 Broker로 만들고 전송한 데이터를 replication-factor 개수만큼 복제하게 되는데,
+    파일럿 프로젝트에서는 단일 카프카 브로커이므로 복제 개수는 1개만 설정  
+  - partitions 옵션은 해당 Topic에 데이터들이 partitions의 개수만큼 분리 저장하게 된다. 이 역시 다중 Broker에서 쓰기/읽기 성능 향상을 위해
+    사용하는 옵션이다. 파일럿 환경에서는 1로만 설정한다.  
+
+## 카프카 Producer 사용 
+# 카프카 Producer 사용
+  - $ kafka-console-producer --broker-list server02.hadoop.com:9092 -topic SmartCar-Topic
+
+# 카프카 Consumer 사용
+  - kafka-console-consumer --bootstrap-server server02.hadoop.com:9092 --topic SmartCar-Topic --partition 0 --from-beginning
+
+
+3.7  수집 파일럿 실행 5단계 - 수집기능 테스트
 ## SmartCar 로그 시뮬레이터 작동
-$ cd /home/pilot-pjt/working
+#1. Server02에 SSH 접속하고 bigdata.smartcar.loggen-1.0.jar 가 위치한 곳으로 이동한다.
+    - $ cd /home/pilot-pjt/working
 
-$ java -cp bigdata.smartcar.loggen-1.0.jar com.wikibook.bigdata.smartcar.loggen.CarLogMain 20160101 3 &
+#2. 스마트카 로그 시뮬레이터를 백그라운드 방식으로 실행한다.
+    - $ java -cp bigdata.smartcar.loggen-1.0.jar com.wikibook.bigdata.smartcar.loggen.CarLogMain 20160101 3 &
+    - $ java -cp bigdata.smartcar.loggen-1.0.jar com.wikibook.bigdata.smartcar.loggen.DriverLogMain 20160101 3 &
 
-$ java -cp bigdata.smartcar.loggen-1.0.jar com.wikibook.bigdata.smartcar.loggen.DriverLogMain 20160101 3 &
+#3. 정상 작동하는 지 확인 
+    - /home/pilot-pjt/working/SmartCar 경로에 SmartCarStatusInfo_20160101.txt 파일 생성 확인
+	  - $ cd /home/pilot-pjt/working/SmartCar 
+	  - $ vi SmartCarStatusInfo_20160101.txt 
+	- /home/pilot-pjt/working/driver-realtime-log 경로에 SmartCarDriverInfo.log 파일 생성 확인   
+	  - $ cd /home/pilot-pjt/working/driver-realtime-log
+	  - $ tail -f SmartCarDriverInfo.log 
 
-$ mv /home/pilot-pjt/working/SmartCar/SmartCarStatusInfo_20160101.txt /home/pilot-pjt-working/car-batch-log/
+#4. SpoolDir 경로로 옮김  
+    - $ mv /home/pilot-pjt/working/SmartCar/SmartCarStatusInfo_20160101.txt /home/pilot-pjt-working/car-batch-log/
 
+## 파일럿 환경의 로그 확인 
+# 빅데이터 시스템에서는 에코시스템들의 로그를 확인하는 것이 중요하다. 많은 소프트웨어가 설치되고 서로간의 의존성이 커서 로그를 통해 다양한 문제점을 확인
+    하기 때문이다.
+	- Hadoop 에코시스템 서버들의 로그 확인 : /var/log/디렉터리( cloudera, Hadoop, oozie 등)
+	- Redis 서버 로그 위치 : /var/log/redis_6379.log 
+	- Storm 서버 로그 위치 : /home/pilot-pjt/storm/logs/
+	- Zeppelin 서버 로그 위치 : /home/pilot-pjt/zeppelin-0.8.2-bin-all/logs
+	
+## HDFS 문제 발생
+# HDFS 파일 시스템 검사 : $hdfs fsck /
 
-### 5.4 실시간 적재 파일럿 실행 2단계 - 환경구성
+# HDFS에 Safe 모드 발생 후 빠져나오지 못할 경우
+  - $ hdfs dfsadmin -safemode leave    # 안전모드 상태로 전환됐다면 강제로 안전모드를 해제
+# HDFS에 CORRUPT BLOCKS/FILES 등이 발생해 복구가 불가능한 경우  
+  - $ hdfs fsck / -delete              # 손상된 파일을 강제로 삭제
+  - $ hdfs fsck / -move                # 손상된 파일을 /lost+found 디렉터리로 옮김
+
+4.1 빅데이터 적재 개요
+4.2 빅데이터 적재에 활용하는 기술 - 하둡 & 주키퍼 
+4.3 적재 파일럿 실행 1단계 - 적재 아키텍처 
+4.4 적재 파일럿 실행 2단계 - 적재 환경 구성
+4.5 적재 파일럿 실행 3단계 - 적재 기능 구현
+## SmartCar 에이전트 수정 
+
+4.6 적재 파일럿 실행 4단계 - 적재 기능 테스트 
+## 플럼의 사용자 정의 Interceptor 추가
+   - FTP 클라이언트인 파일질라 실행해 Server02에 접속 
+   - 업로드 경로: /opt/cloudera/parcels/CDH/lib/flume-ng/lib 
+   - CH04/bigdata.smartcar.flume-1.0.jar 파일을 /opt/cloudera/parcels/CDH/lib/flume-ng/lib 경로에 업로드 
+
+## 플럼의 Conf 파일 수정
+#1. CM홈 -> [Flume] -> [구성]을 선택해서 CH04/예제4.2/SmartCar_Agent.conf 파일을 열어 복사후 붙여 넣는다.
+
+#2. 플럼의 [변경 내용 저장] 버튼을 클릭한다.
+
+#3. CM 홈으로 다시 이동해서 플럼을 재시작한다.
+
+## SmartCar 로그 시뮬레이터 작동
+#1. cd /home/pilot-pjt/working 
+
+#2. 스마트카 상태정보 생성 시뮬레이터 실행 
+
+#3. 정상 확인 
+
+## 플럼 이벤트 작동 
+#1. 스마트카 상태 로그를 car-batch-log로 move
+    - $ mv /home/pilot-pjt/working/SmartCar/SmartCarStatusInfo_20160101.txt /home/pilot-pjt/working/car-batch-log/ 
+
+#2. 플럼의 실행 로그 확인 
+    - $ cd /var/log/flume-ng/ 
+	- $ tail -f /var/log/flume-ng/flume-cmf-flume-AGENT-server02.hadoop.com.log 
+	  - "... Writer callback called"라는 메시지가 보이면 모든 HDFS 적재가 성공적으로 끝난 것이다.  
+	
+#3. HDFS 적재 확인
+    - $ hdfs dfs -ls -R /pilot-pjt/collect/car-batch-log/
+	- $ hdfs dfs -cat /pilot-pjt/collect/car-batch-log/wrk_date=20160529/car-batch-log.14xxxx.log 
+    - $ hdfs dfs -tail /pilot-pjt/collect/car-batch-log/wrk_date=20160529/car-batch-log.14xxxx.log 
+
+#4. 시뮬레이터 프로세스 종료 
+    - $ ps -ef | grep smartcar.log 
+    - $ kill -9 [pid]
+
+5.2 실시간 적재에 활용하는 기술 02 - Storm & Esper.pdf
+5.실시간 적재 파일럿 실행 1단계 - 아키텍처
+5.4 실시간 적재 파일럿 실행 2단계3 01 - 환경구성
+
+5.4 실시간 적재 파일럿 실행 2단계 02 - HBase 설치
 ## HBase
 # HBase 설치
   - Master : server01.hadoop.com  
@@ -249,8 +356,7 @@ $ hbase shell
   > scan 'table 이름', {LIMIT=>10, COLUMNS=>['패밀리네임'], FILTER => "(SingleColumnValueFilter('패밀리네임', '필드명',=,'binary:조건값1',true, true)) AND (SingleColumnValueFilter('패밀리네임', '필드명',=,'binary:조건값2',true,true))"}
   > scan 'table 이름', {LIMIT=>10, COLUMNS=>['패밀리네임:필드명'], TIMERANGE=> [start_timestamp, end_timestamp]} 
 
-
-## Redis 설치
+5.4 실시간 적재 파일럿 실행 2단계 03 - Redis 설치
 $ yum install -y gcc*
 $ yum install -y tcl
 
@@ -284,7 +390,7 @@ $ redis-cli
 > del key:1
 > quit
 
-## Storm 설치 (Server02)
+5.4 실시간 적재 파일럿 실행 2단계 04 - Storm 설치
 $ cd /home/pilot-pjt
 $ wget https://archive.apache.org/dist/storm/apache-storm-1.2.3/apache-storm-1.2.3.tar.gz
 $ tar -xvf apache-storm-1.2.3-tar.gz
