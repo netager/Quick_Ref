@@ -237,14 +237,362 @@
 	          - filter(dataframe, 조건1, 조건2, ...)
               - filter(hf, Month == 1, DayofMonth == 1)
               - filter(hf, Month == 1 | Month == 2)			  
+			  
     - select() - 선택한 변수(열)를 추출
-    - mutate() - 새로운 변수(열)을 추가(함수 내에서 계산 가능)
-    - arrange() - 데이터 정렬(내림차순, 오름차순)
-    - distinct() - 중복된 값 제거하기
-    - group_by() - 데이터 그룹으로 나누기(summarise() 함수와 함께 사용하면 그룹별 연산이 가능)
-    - summarise() - 수치형 값에 대한 요약 통계량 계산
-	
-  
+	  - 데이터프레임 변수(열) 선별하기
+	    - select(dateframe, 변수1, 변수2, ...) : 선별하고자 하는 변수 이름을 기입
+	  - select(hf, Year, Month, DayOfWeek) # Year, Month, DayOfWiik 열을 추출
 
+    - mutate() - 새로운 변수(열)을 추가(함수 내에서 계산 가능)
+	  - mutate(dataframe, 새로운변수 = 기존변수 조합한 수식 ...)
+
+    - arrange() - 데이터 정렬(내림차순, 오름차순), 기본적으로 오름차순
+	  - arrange(dataframe, 정렬기준1(변수명1), 정렬기준2(변수명2), ...)
+	  - desc() - 내림차순(descending) 정렬
+
+    - distinct() - 중복없는 유일한 값 추출
+	  - distinct(dataframe, 기준변수1, 기준변수2, ...)
+	    - distinct(hf, Year) # Year에 대해 유일 값 추출
+	    - distinct(hf, Year, Month) # Year와 Month에 대해 유일 값 추출
+
+    - summarise() - 수치형 값에 대한 요약 통계량 계산(mean, median, sd, min, max, sum)
+	  - summarise(dataframe, 변수명1=mean(x,na,rm=TRUE), 변수명2 = max(x), ...)
+	  - 결측값을 제외하고 계산하려면 na.rm=TRUE 추가
+	  - summarise(hf, 지연평균 = mean(ArrDelay), 지연최대 = max(ArrDelay)) # 도착지연평균, 도착지연 최대값에서
+	  - summarise(hf, 지연평균 = mean(ArrDelay, na.rm = TRUE), 지연최대 = max(ArrDelay, na.r m = TRUE))
 	  
+	- summarise() 함수 + group_by 함수
+      - group_by() 함수와 함께 사용하여 그룹별 요약 통계량 계산(mean, sum, sd, min, max)
+      - summarise(group_by(dataframe, 지정열(level열)), 변수명1 = mean(x, na.rm=TRUE), ...)
+        - 결측값을 제외하고 계산하려면 na.rm=TRUE 추가
+		
+    - group_by() - 데이터 그룹으로 나누기(summarise() 함수와 함께 사용하면 그룹별 연산이 가능)
+
+
+7. 지하철 승하차 데이터 분석 따라하기_1
+## 분석 데이터 다운로드
+  - www.data.go.kr 접속
+  - "대전광역시도시철도공사 역별 수송실적" 조회 및 다운로드
+  
+## 데이터 불러오기 
+# 작업 경로 확인 및 불러오기  
+  - 주요 함수
+    - getwd() - 현재 설정된 작업공간(working directory) 확인
+	- setwd() - 새로운 작업공간 설정
+	- read.csv() - csv 형식의 파일을 R로 불러오기
+
+## 데이터 전처리 	  
+# 데이터 확인 및 데이터프레임 이름 변경
+  - head(daejeon_subway)
+  - tail(daejeon_subway)
+  
+  - names(daejeon_subway) # 데이터 프레임 변수명 확인
+  - names(daejeon_subway) <- c("연도", "역번호","역명","Jan_승차", "Jan_하차", "Feb_승차","Feb_하차",
+                             "Mar_승차","Mar_하차", "Apr_승차","Apr_하차", "May_승차","May_하차", "Jun_승차","Jun_하차",
+                             "Jul_승차","Jul_하차", "Aug_승차","Aug_하차", "Sep_승차","Sep_하차", "Oct_승차","Oct_하차",
+                             "Nov_승차","Nov_하차", "Dec_승차","Dec_하차")
+  - names(daejeon_subway) # 데이터 프레임 변수명 확인
+  - str(daejeon_subway) # 데이터구조 확인
+  - dim(daejeon_subway) # 데이터 차원(행, 열 확인)
+  - length(daejeon_subway) # 데이터 객체의 컬럼 개수
+  
+# 값이 없는 변수(열) 제거하기
+  - 10월 이후의 승/하차 정보는 없어(0으로 채워져 있음) 삭제 필요
+  - 인덱싱(INDEXING)을 이용하여 필요한 값(행 또는 열) 선택 가능 
+  - 인덱싱(Indexing)
+    - 대괄호 [i, j]로 표시, [i번째 행, j번째 열]
+    - [ , ] - 행 또는 열의 자리에 비어져 있으면 전체 행 또는 전체 열을 의미 
+    - 연속된 값은 : 로 표시	
+	  - [,1:5] - 1열부터 5열까지 전체 행을 선택 
+  - daejeon_subway_new <- daejeon_subway[,1:20]
+  - daejeon_subway_new # 새로운 변수값 확인
+
+
+8. 지하철 승하차 데이터 분석 따라하기_2
+## 데이터 분석 
+# 1월 승차인원이 가장 많은 정류장은?
+  - 주요 함수
+    - max() - 최대값 찾기 
+	- filter() - 조건에 맞는 데이터만 필터링해서 결과값으로 나타내는 함수 
+  - 실습	
+    - library(dply)
+    - max_jan <- max(daejeon_subway_new$jan_승차) # 1월 승차 인원중 최대값 찾기
+    - max_jan
+    - filter(daejeon_subway_new, jan_승차 == max_jan) # 최대값을 가지는 행 추출
+  - 방법2
+    - arrange()을 이용한 방법
+      - arrange() - 순서대로 정렬하기(기본 오름차순, desc() 옵션: 내림차순 정렬)
+      - 실습
+        - Jan_max_row <- arrange(daejeon_subway_new, desc(Jan_승차))
+        - Jan_max_row[1, ]
+ 
+        - (arrange(daejeon_subway_new, desc(Jan_승차)))[1, ] 
+  - 방법3
+    - 주요 함수 - which.min(), which.max() - 특정 값이 최소, 최대인 쉘의 위치 리턴
+	- 실습  
+	  - which.max(daejeon_subway_new$Jan_승차)
+	  - daejeon_subway_new[which.max(daejeon_subway_new$jan_승차),]
+
+# 역별 1월과 3월 승차인원의 차이는?
+  - 주요 함수
+    - mutate() - 데이터프레임 자료형에 새로운 파생 column을 만드는 함수
+	  - mutate(dataframe, 새로운 column명 = 기존 column을 조합한 수식)
+	  - daejeon_subway_new$diff <- daejeon_subway_new$Jan_승차 - daejeon_subway_new$Mar_승차
+      - head(daejeon_subway_new)
+      - daejeon_subway_new1 <- mutate(daejeon_subway_new, diff = Jan_승차 - Mar_승차)
+	  - head(daejeon_subway_new1)
+
+# 역별 1월과 3월의 승차인원의 차이를 그래프로?
+  - 주요 함수
+    - boxplot() - 상자도표 그리기 
+	  - main - 그래프 전체 제목, xlab - x축 제목, ylab - y축 제목, names - names - 복수의 box의 이름을
+        horizontal - 가로 형태 box 그리기	  
+    - boxplot(daejeon_subway_new$Jan_승차, daejeon_subway_new$Mar_승차, main='지하철 승차인원 분포차이',
+              xlab='1월 vs 3월', ylab='승차인원(명)', names=c('1월','3월'))	
+      - boxplot - 특이값(Outlier), 최대값(maximum), 75th percentile, 평균(mean), 중간값(median), 25th percentile
+	              최소값(minimum)
+                - 1.5 * IQR, IQR, 1.5 * IQR - IQR - 사분위수범위				  
+  - rm(list=ls())
+  - [Ctrl] + L - Console 창 Clear
+	  
+9. 기상정보를 활용한 불쾌지수 분석_1
+## 공공데이터 로드
+  - 주소창 입력 : www.data.go.kr
+  - "제주특별자치도개발공사 기상정보" 입력 및 다운로드
+
+# 사용할 패키지 설치 및 불러오기
+  - 주요 함수
+    - install.packages() - 사용할 패키지 다운로드 하기
+	- library() - 다운받은 패키지 불러오기
+  - install.packages("dplyr")
+  - install.packages("ggplot2") - 다양한 그래프를 그릴수 있는 패키지
+  - library(dplyr)
+  - library(ggplot2)  
+
+# 원본데이터 불러오기
+  - 주요 함수  
+    - file.choose() - 파일을 직접 선택하기
+	- read.csv() - csv 형식의 파일 R로 불러오기 
+  - data.raw <- read.csv(file.choose())
+  
+## 데이터 전처리
+# 데이터 확인 및 데이터프레임 이름 변경
+  - 주요 함수 
+    - View() - 뷰어창에서 데이터를 확인
+	- head(), tail() - 상위, 하위 6개 관측치 미리보기
+	- str() - 데이터 구조, 변수 개수, 변수 명, 관측치 미리보기
+	- dim() - 데이터 객체의 차원
+	- length() - 데이터 객체의 요소들의 개수
+	- names() - 데이터프레임 변수명(열이름) 확인 및 변경 
+  - 변수명 변경 
+    - names(data.raw) # 데이터프레임 열이름 확인
+    - names(data.raw) <- c("일자","평균기온","최소기온","평균지표온도",
+                           "최대지표온도","최소지표온도","습도","일사량","풍속")	
+    - names(data.raw)
+
+# 일교차 변수 추가하기 1
+  - (data.raw$최대기온 - data.raw$최소기온)
+  - data.raw$일교차 <- (data.raw$최대기온 - data.raw$최소기온)
+  - head(data.raw)	
+	
+# 일교차 변수 추가하기 2  
+  - 주요 함수
+    - mutate() - 데이터프레임 자료형에 새로운 파생 column을 만드는 함수 
+    - mutate(dataframe, 새로운 column명 = 기존 column을 조합한 수식)	
+  - data.raw_tempdist <- mutate(data.raw, 일교차 = 최대기온 - 최소기온)
+  - head(data.raw_tempdist)  
+	
+# 월(month) 변수 추가하기 
+  - 주요 함수
+    - mutate() - 데이터프레임 자료형에 새로운 파생 column을 만드는 함수 
+	- substr() - 문자열 일부 추출. ex) substr("Statistics", 1, 4) -> "Stat"
+  - data.month <- mutate(data.raw_tempdist, 월 = substr(data.raw_tempdist$일자,6,7))	
+  - head(data.month)
+  
+10. 기상정보를 활용한 불쾌지수 분석_2
+## 데이터 분석
+# 일교차의 기초 통계량 구하기 
+  - 주요 함수
+    - mean() - 평균을 구하는 함수
+    - sd() - 표준편차를 구하는 함수 
+    - max() - 최대값을 구하는 함수 
+    - min() - 최소값을 구하는 함수 
+  - mean(data.raw_tempdist$일교차)
+  - sd(data.raw_tempdist$일교차)
+  - max(data.raw_tempdist$일교차)
+  - min(data.raw_tempdist$일교차)
+
+# 데이터 그룹화 시키기 
+  - 주요 함수 
+    - group_by() - 데이터를 집단별로 그룹화 
+    - group_by(데이터명, 기준이 될 변수명)
+  - data.group <- group_by(data.month, 월)
+  - data.group  
+
+# 그룹화 된 데이터로 월 평균 일교차 확인 및 변수 추가
+  - 주요 함수
+    - summarise() - 수치형 값에 대한 요약 통계량을 계산하는 함수 
+    - mutate() - 
+  - data.group.avg <- summarise(data.group, avg=mean(일교차))
+  - head(data.group_avg)
+  - data.avg.td <- mutate(data.group, 월평균 = mean(일교차))
+  - head(data.avg.td)  
+  
+# 불쾌지수 변수 생성 
+  - 불쾌지수 산출 
+    - 불쾌지수 = 1.8T - 0.55(1 - RH)(1.8T - 26) + 32
+  	          (T:기온(섭씨), RH:상대습도(%))
+  - data.thi <- mutate(data.month, 불쾌지수 = 1.8 * 평균기온 - 0.55 *(1-습도/100)*(1.8*평균기온 - 26) * 32)
+  - head(data.thi)
+  
+# 불쾌지수 변수 생성
+  - 불쾌지수 70 초과인 날은 몇일?
+    - data.thi$불쾌지수 > 70
+	- data.thi_70 <- data.thi[data.thi$불쾌지수 > 70]
+	- head(data.thi_70)
+    - dim(data.thi_70)[1]
+
+    - filter(data.thi, 불쾌지수 > 70)
+
+## 데이터 시각화 
+# 월 평균 일교차 그래프 그리기
+  - 꺽은 선 + 점 그래프 그리기 
+  - 주요 함수 
+    - ggplot() - ggplot2 패키지의 그래프를 그리기 위한 함수 
+	  - ggplot 함수 내 옵션
+	    - geom_line - 선그래프 그리기
+		- geom_point - 점 그래프 그리기 
+		- aes - 데이터의 변수 및 미적요소들을 설정 
+		- ggtitle - 그래프 제목
+		- xlab - x축 제목
+		- ylab - y축 제목
+		- theme - 그래프 배경, 제목, 축선 등 수정
+	- as.numeric() - 숫자형으로 변경 
+  - ggplot(data = data.group_avg, aes(x=as.numeric(월), y=avg)) + geom_line() + geom_point()	
+  - ggplot(data = data.group_avg, aes(x=as.numeric(월), y=avg)) + geom_line() + 
+           geom_point(size=2, color = 'red') + ggtitle("월 평균 일교차") +
+           ylab("기온") + xlab("월") + theme(plot.title = element_text(hjust = 0.5))		   
+
+# 불쾌지수 그래프 그리기
+  - 꺽은 선 그래프 그리기 
+  - 주요 함수
+    - as.Date() - 문자형(chr)으로 되어있는 변수를 날짜형(Date)으로 변경
+      cf) str()함수를 통해서 변수 값의 형식을 반드시 확인해야 함	
+    - head(data.thi$일자)
+    - str(data.thi$일자)
+    - head(as.Date(data.thi$일자))
+    - str(as.Date(data.thi$일자))
+  - ggplot(data = data.thi, aes(x=as.Date(일자), y=불쾌지수)) + geom_line() +
+           ggtitle("일별 불쾌지수") + xlab("날짜")
+  - ggplot(data = data.thi, aes(x=as.Date(일자), y=불쾌지수)) + geom_line() +
+           ggtitle("일별 불쾌지수") + xlab("날짜")		   
+
+  - 불쾌지수가 70인 경계선 추가 
+    - 주요 함수 
+      - geom_hline() - 수평선 추가 ex) geom_hline(yintercept=70) - y=70인 수평선 긋기 
+      - geom_vline() - 수직선 추가 ex) geom_vline(xintercept=70) - x=70인 수평선 긋기 	  
+    - ggplot(data = data.thi, aes(x=as.Date(일자), y=불쾌지수)) + geom_line() +
+             ggtitle("일별 불쾌지수") + xlab("날짜") +
+             geom_hline(yintercept=70, linetype="dashed", size=1, color="red")			 
+			 
+11. 유동인구 데이터 분석 따라하기_1 
+## 데이터 불러오기
+# 사용할 패키지 설치 및 불러오기
+  - 패키지 설치 
+    - install.packages() - 사용할 패키지 다운로드 하기 
+	- library() - 다운받은 패키지 불러오기
+	
+    - install.packages("dplyr")
+    - library(dplyr)
+	
+  - 파일 불러오기 
+    - file.choose() 
+    - read.csv()
+   
+    - data.raw <- read.csv(file.choose(), header=T)
+    - data.raw <- read.csv(file.choose(), header=T, fileEncoding="UCS-2LE")	# 맨 마지막 페이지 무시하고 불러오기 
+
+# 데이터 확인 및 데이터프레임 이름 변경
+  - 주요 함수 
+    - View(), head(), tail(), str(), dim(), names()
+    - rename() - 데이터프레임 변수명(열이름) 변경 (reshape 패키지 설치해야 함)
+  - names(data.raw)
+  - names(data.raw)[5:16]
+  - names(data.raw)[5:16] <- c("m10under","m10","m20","m25","m30","m35","m40","m45","m50","m55","m60","m65over",
+                               "f10under","f10","f20","f25","f30","f35","f40","f45","f50","f55","f60","f65over")
+
+  - names(data.raw)							   
+
+## 데이터 전처리
+# 남녀별 유동인구 합계 변수 추가하기 
+  - 주요 함수 
+    - mutate()
+  - data.use <- mutate(data.raw,
+                       m_total = m10under+m10+m20+m25+m30+m35+m40+m45+m50+m55+m60+m65over,
+					   f_total = f10under+f10+f20+f25+f30+f35+f40+f45+f50+f55+f60+f65over,
+					   mf_total = m_total + f_total)
+
+## 데이터 분석
+# 유동인구 상위 10개 지역은?
+  - 주요 함수 
+    - arrnage()
+  - data.arrange <- arrange(data.use, desc(mf_total))
+  - data.arrange10 <- head(data.arrange,10)
+  					   
+# 구역별 남성의 유동인구가 가장 많은 연령층은?
+  - 주요 함수
+    - max.col() - 각 행에서 최대 값의 열 위치 출력하기
+    - names()
+  - m_max_which <- max.col(data.use[5:16])+4
+  - names(data.use)[m_max_which]  
+
+# 구역별 여성의 유동인구가 가장 많은 연령층은?
+  - m_max_which <- max.col(data.use[17:28])+4
+  - names(data.use)[m_max_which]  
+
+# mutate 함수를 이용해 변수 추가 
+  - data.major.age = mutate(data.use, 
+                            major_m = names(data.use)[max.col(data.use[5:16])+4],
+                            major_f = names(data.use)[max.col(data.use[17:28])+4])							
+
+# 남녀별 유동인구가 가장 많은 연령대는?
+  - 주요 함수
+    - table() - 데이터의 빈도를 교차표로 보여주는 함수(지역별 남녀 유동인구가 최대인 연령별 빈도수)
+  - m_age_table <- table(data.major.age$major_m)
+  - f_age_table <- table(data.major.age$major_f)
+
+# 지역별 최대 유동인구 연령별 빈도수 그리기1 
+  - 주요 함수 
+    - barplot() - 막대그래프 그리기
+  - barplot(m_age_table, xlab="연령대", ylab="빈도 수", ylim=c(0,800), main="남성 유동인구 막대그래프")	
+  - barplot(f_age_table, xlab="연령대", ylab="빈도 수", ylim=c(0,800), main="여성 유동인구 막대그래프")
+
+# 지역별 최대 유동인구 연령별 빈도수 그리기2
+  - 주요 함수 
+    - rbind() - 행 기준으로 합칠 때 사용
+    - text() - 그래프에 문자 추가 
+      - text(x좌표, y좌표, labels=추가할 문자, pos=입력할 위치, ...)
+	    - text함수 내 pos 값에 따른 위치 - 1:아래, 2:왼쪽, 3:위쪽, 4:오른쪽
+  - age_table <- rbind(m_age_table, f_age_table) # 데이터 쌍이 달라서 에러 발생
+  
+  - colnames(age_table) <- c("20대","30대","40대","50대")
+  -  bar.text <- barplot(age_table, beside=T, legend=c("man","woman"),
+                         xlab = "연령대", ylab="빈도 수", ylim=c(0,800), main = "남성 유동인구 막대그래프)
+  - text(bar.text, age_table, labels=age_table, pos=3)						 
+  
+# 유동인구 최대 지역의 연령별 파이 차트 그리기
+  - 주요 함수
+    - t() - 행과 열 바꾸기(transpose)
+	- pie() - 파이차트 그리기 
+	- round() - 반올림
+	- paste() - 나열된 원소를 이어 붙이기 
+  - data.arrange10_t <- t(data.arrange10)
+  - head(data.arrange10_t, 10)
+  - data_m_1 <- data.arrange10_t[5:16, 1] # 가장 많은 유동인구 지역의 세대별 유동인구(남성)
+  - pie(data_m_1, main="세대별 유동인구)
+  - pct <- round(data_m_1/sum(data_m_1)*100)
+  - lbls <- paste(pct, "%", sep="")
+  - lbls  
+  - pie(data_m_1, labels=lbls, main="세대별 유동인구")
+	
   

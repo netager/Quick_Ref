@@ -1,0 +1,528 @@
+1. BigData 개념
+## Big Data 솔루션
+# 빅데이터의 추출과 분산기술
+  - Hadoop, Storm, Spark, kafka
+# 빅데이터의 수집과 저장 기술
+  - NoSQL, MongoDB, Casandra, HBase
+# 빅데이터의 분석 및 통계기술
+  - R, SAS, SPSS
+
+## Big Data Processing Flow
+  - BigData의 생성
+  - BigData의 수집과 저장 - FlumeD, Flume, Scribe, HDFS, NoSQL
+  - BigData의 분석처리 - MapReduce, Storm
+  - BigData의 통계/시각화 - R, SPSS
+
+## Big Data 의미
+  - Volume - 데이터 Size
+  - Vari - 정형+비정형 데이터/구조
+    - RDBMS : 문자, 숫자, 날자 -> NoSQL : 문자, 숫자, 날자 + 동영상, 사진, 좌표 등
+  - Valocity - 발생속도
+  
+
+2. NoSQL 개념
+  - No SQL - Not Only SQL
+  - Non-Relational Operational Database SQL  
+  
+## NoSQL의 시대적 요구
+  - Main(Host)중심 Paradigm(File System) -> Client/Server Paradigm(RDBMS) -> Cloud Computing Paradigm(NoSQL) 
+
+## NoSQL의 장점
+  1) 클라우드 컴퓨팅 환경에 적합하다
+     - Open Source이다.
+     - 하드웨어 확장에 유연한 대처가 가능하다. 
+     - 무엇보다도 RDBMS에 비해 저렴한 비용으로 분산처리와 병렬처리가 가능하다. 	 
+  2) 유연한 데이터 모델이다.
+     - 비정형 데이터 구조 설계로 설계 비용 감소
+     - 관계형 데이터베이스의 Relationship과 Join 구조를 Linking과 Embedded로 구현하여 성능이 빠르다.
+  3) Big Data 처리에 효과적이다.
+     - Memory Mappng 기능을 통해 Read/Write가 빠르다.
+     - 전형적인 OS와 Hardware에 구축할 수 있다.
+     - 기존 RDB와 동일하게 데이터 처리가 가능하다.
+
+## DBMS for NoSQL
+  - Cassandra, HBase, MongoDB, CouchDB, riak, redis
+  
+## NoSQL 제품군
+  1) Key-Value Database
+     - Amazon's Dynamo Paper
+	 - Data Model: Collection of K-V pairs
+	 - 제품유형 : Riak, Voldemort, Tokyo
+  2) BigTable Database 
+     - Google's Big Table paper
+     - Data Model: Column Families
+     - 제품유형 : Hbase, Casandra, Hypertable
+  3) Document Database 
+     - Lotus Notes
+     - Data Model: Collection of K-V collection
+     - 제품유형 : MongoDB, Cough DB
+  4) Graph Database 
+     - Euler & Graph Theory
+     - Data Model: nodes, rels, K-V on both
+	 - 제품유형 : AllegroGraph, Sones
+	 
+## DBMS Ranking - db-engines.com
+
+
+3. NoSQL 유형
+## CAP 이론
+  - 가용성 - 일관성 : Oracle, MySQL, SQL Server, Sybase
+  - 가용성 - 지속성 : Dynamo, Casandra, CouchDB, SimpleDB
+  - 일관성 - 지속성 : MongoDB, HBase, BerkeryDB
+
+# CAP
+  - 일관성(Consistency)- 동시에 많은 사용자들이 데이터를 참조했을때 동일한 시점에 동일한 데이터를 참조
+  - 가용성(Availability) - 많은 사용자들이 동시에 Read/Write해야함. 한쪽노드에 문제가 생겨도 다른 노드는 정상 운영
+  - 지속성(Partition Tolerent)- 수많은 데이터를 여러 서버에 분산 저장 
+
+## NoSQL & RDBMS
+# 그림 NoSQL_RDBS_비교.jpg
+
+## MongoDB EcoSystem Benefit
+# General Purpose, Document Database, Open Source, Low Cost
+
+## TCO(Total Cost of WonerShip
+# 획득(구입) 원가, 소유 원가, 후소유 원가 
+
+## TCO FrameWork
+# 선행 비용(UpFront Cost)
+  - 초기 개발자 비용(Application Coding 및 Data Store)
+  - 초기 관리자 비용(설치, 환경설정, Shard/Replication 등)
+  - Software Licenses
+  - Server Hardware
+  - Server Storage
+# 진행 비용(Ongoing Cost )
+  - 진행 개발자 비용(사용자 요구에 따라 변경 등)
+  - 진행 관리자 비용(Data 유지보수, Health Check, Backup & Recovery 등)
+  - Software Maintenance & Support
+  - Server Maintenance & Support
+  - Storage Maintenance & Support 
+  - 기타 개발 비용 
+
+## 사례
+# Disney Interactive Media Group  
+  - 다양한 Game, Media Data 관리 시스템에 적용
+  - MySQL 바이너리 데이터 저장 한계 및 성능 문제
+  - ReplicaSets & Auto Sharding 유연성과 확장성 활용  
+  
+# MTV
+  - Music Televison
+  - 비디오/오디오 Content Management System 에 적용
+  - MySQL을 NoSQL로 전환
+  - MTV의 계층적 데이터 구조에 적합한 데이터 모델 활용
+  - 쉬운 Query와 index를 이용한 빠른 검색 기능 활용
+
+# Forbes
+  - Business Media Company
+  - 원고 자동 수집 및 발행 시스템에 적용
+  - Oracle DB를 NoSQL로 전환
+  - 전형적인 Static Data 관리에서 Dynamic Data 관리로 전환하면서 발생하는 재 설계 및 구축 비용 절감 목적으로 활용
+
+# shutterfly
+  - 인터넷 기반 사진 정보 및 개인 출판 서비스 사이트
+  - Oracle DB를 NoSQL로 전환(20TB)
+  - 100만명 고객/60억개의 이미지/초당 10,000개 트랜잭션 처리에서 발생하는 구축/관리 비용 및 성능 문제가 이슈
+
+# foursquare
+  - 위치 기반 Social Network 사이트
+  - RDB 기반의 시스템 확장 비용 및 관리 문제가 이슈
+  - GeoSpatial Index 기능 활용
+  - ReplicaSets & Auto Sharding System 활용
+
+# The National Archives
+  - 미국 국가 기록원
+  - 컨텐츠 정보관리 시스템에 적용
+  - SQL Server에서 NoSQL로 전환(117GB)
+  - 쉽고 간편한 GridFs 기능 활용
+
+## 국내 적용 사례 - 2015년 기준
+# 많은 기업들이 적용은 했지만 발표는 안된 상황  
+  
+
+4. MongoDB EcoSystem & Hadoop EcoSystem
+## MongoDB EcoSystem
+  - 수집, 저장, 분산, 복제, 추출, 분석, 관리
+
+## Hadoop EcoSystem
+  - HDFS System - HDFS, MapReduce
+  - Hadoop Sub-system - HBase, Hive, Oozie, Zookeeper, Pig 등
+
+## HDFS(Hadoop Distributed File System)
+# 저 비용 하드웨어를 이용한 빅데이터의 효율적인 처리를 위한 분산 파일 시스템을 의미한다.
+# 아파치 너치(Apache Nutch) 웹 검색 엔진 프로젝트를 위한 하부 구조로 만들어 졌으며 
+  아파치 루씬(Apache Lucene) 프로젝트의 일 부분인 아파치 하둡(Apache Hadoop) 프로젝트에
+  의해 시작되었다.
+# 수평적 확장을 통한 시스템의 가용성을 극대화 시킬 수 있으며 이 기종 간의 하드웨어와
+  소프으웨어 플랫폼의 이식성이 뛰어나다.
+
+## Hadoop Architecture
+
+## HDFS Shell Command
+  - $ hadoop fs -copyFromLocal /a.txt
+
+## MapReduce
+# 구글에서 분산 컴퓨팅을 지원하기 위한 목적으로 제작하여 2004년 발표한 소프트웨어 프레임워크이다.
+  이 프레임워크은 페타 데이터 이상의 클러스터 환경에서 병렬처리하기 위해 개발 되었으며 MAP과
+  REDUCE 함수로 구성된다.
+# MAP 함수를 통해 Input 데이터(key, value)를 여러 개의 작은 Split-Peace로 분산 입력하고,
+  REDUCE 함수를 통해 중복 데이터를 제거한 후 사용자가 원하는 형태로 데이터를 집계한다.
+# 구글 MapReduce를 기반으로 Hadoop MapReduce가 설계되었으며 Hadoop HDFS를 통해 수집
+  저장된 빅데이터의 효과적인 분석 처리위한 프로그램밍 모델을 의미한다.
+
+## MongoDB & Hadoop & R 연동 Architecture
+
+
+5. MongoDB & Data 처리 1
+## MongoDB 주요 특징
+# Humongos라는 회사의 제품명 이었으며 현재 10gen으로 회사명이 변경
+# JSON Type의 데이터 저장 구조를 제공
+  - {ename:"홍길동"}
+# Sharding(분산)/Replica(복제) 기능을 제공
+# MapReduce(분산/병렬처리) 기능을 제공
+# CRUD(Create, Read, Update, Delete) 위주의 다중 트랜잭션 처리 가능 
+# Memory Mapping 기술을 기반으로 Big Data 처리에 탁월한 성능을 제공
+
+## 설치 환경 및 지원 드라이버
+ 
+
+6. MongoDB & Data 처리 2  
+
+## MongoDB Community Server 설치
+  - www.mongodb.com 
+  
+## MongoDB 기동 
+# mongod --dbpath c:\mongodb\test
+
+# MongoDB 접솝
+  - mongo
+
+## Terminology (용어)
+# Table - Collection
+# Row - BSON Document
+# Column - BSON Field
+# Primary Key - _ID Field 
+# RelationShip - Embedded & Linking 
+
+
+## JSON(Java Script Object Notation)
+# 예시 
+  - p = {eno:1101, fname:"Adam"}
+  - db.emp.save()
+
+## Collection 생성과 삭제
+# Collection 생성
+> db.createCollection("emp",{capped:false, size:8192});
+> show collections
+> db.emp.validate() - Collection의 현재 상태 및 정보 분석
+
+# Collection 이름 변경
+> db.emp.renameCollection("Employees")   
+
+# Collection 삭제
+> db.employees.drop()
+
+# 데이터의 입력
+> db.emp.insert({eno:1101, fname: 'JIMMY'});
+> db.emp.insert({eno:1102, fname: 'ADAM', lname:'KROLL'});
+> db.emp.insert({eno:1103, fname: 'SMITH', job:'CLERK'});
+
+# 데이터의 수정
+> db.emp.update({eno:1101}, {$set:{fname:'JOO'}});
+> db.emp.update({eno:1102}, {$set:{job:'CHIEF'}});
+> db.emp.update({eno:1103}, {$set:{lname:'STANFORD'}});
+
+# 데이터의 삭제
+> db.emp.remove({eno:1101});
+
+# 데이터의 조회
+> db.emp.find().sort({eno:-1});
+
+## SQL & Mongo Query 비교
+- SQL   : create table emp (empno number, ename number)
+- Mongo : db.createCollection('emp')
+
+- SQL   : insert into emp values(3, 5)
+- Mongo : db.emp.insert({empno:3, ename:5})
+
+- SQL   : select * from emp
+- Mongo : db.emp.find()
+
+- SQL   : select empno, ename from emp
+- Mongo : db.emp.find({}, {empno:1, ename:1})   # 1 : true
+
+- SQL   : select * from emp where empno=3
+- Mongo : db.emp.find({empno:3})
+
+- SQL   : select empno, ename from emp where empno=3
+- Mongo : db.emp.find({empno:3}, {empno:1, ename1})
+
+- SQL   : select * from emp where empno=3 order by ename 
+- Mongo : db.emp.find({empno:3}).sort({ename:1})
+
+- SQL   : select * from emp where empno > 3
+- Mongo : db.emp.find({empno:{$gt:3}})
+
+- SQL   : select * from emp where empno !=3
+- Mongo : db.emp.find({empno:{$ne:3}})
+
+- SQL   : select * from emp where ename like '%Joe%'
+- Mongo : db.emp.find({ename:/Joe/})
+
+- SQL   : select * from emp where ename like 'Joe%'
+- Mongo : db.emp.find({ename:^Joe/})
+
+- SQL   : select * from emp where empno > 1 and empno <= 4
+- Mongo : db.emp.find({empno:{%gt:1, %lte:4}})
+
+- SQL   : select * from emp order by ename desc
+- Mongo : db.emp.find().sort({empno:-1})
+
+- SQL   : select * from emp where empno=1 or empno=3
+- Mongo : db.emp.find({$or:[{empno:1}, {empno:3}]})
+
+- SQL   : select * from emp where rownum = 1
+- Mongo : db.emp.findOne()
+
+- SQL   : select empno from emp o, dept d where d.deptno = o.deptno and d.deptno=10
+- Mongo : o = db.emp.findOne({empno:1});
+          name = db.dept.fineOne(deptno:o.deptno})
+- SQL   : select distinct ename from emp
+- Mongo : db.emp.distinct('ename')
+
+- SQL   : select count(*) from emp 
+- Mongo : db.emp.count()
+ 
+- SQL   : select count(*) from emp where deptno > 10
+- Mongo : db.emp.find({deptno:{$gt:10}}).count()
+
+- SQL   : select count(sal) from emp 
+- Mongo : db.emp.find({sal:{'$exists':true}}).count()
+
+- SQL   : create index i_emp_ename on emp(ename)
+- Mongo : db.emp.ensureIndex({ename:1})
+
+- SQL   : create index i_emp_no on emp(deptno asc, ename desc)
+- Mongo : db.emp.ensureIndex({deptno:1, ename:-1})
+
+- SQL   : update emp set ename='test' where empno=1
+- Mongo : db.emp.update({empno:1}, {$set:{ename:'test'}})
+
+- SQL   : delete from emp where deptno=10
+- Mongo : db.emp.remove({deptno:10})
+
+
+7. 트랜잭션 처리 & 인덱스
+## Lock 정책
+# 읽기 일관성과 데이터 공유를 위해 V1.8까지 Global Lock을 제공하였으며 V3.0부터 
+  Document Lock을 제공한다.
+
+# Lock 문제로 인한 성능 지연 문제 해소를 위해 pageFaultException 기능을 추가로 제공한다.(V2.2)
+    
+# Lock 종류
+  - Global Lock
+  - Database Lock
+  - Collection Lock
+  - Page Lock  
+  - Document Lock
+
+## Two Task Rollback
+# NoSQL DB는 auto commit으로 처리. Rollback을 지원하지 않음
+  관계형 처럼 rollback하는 방법 있음. 
+  
+> db.accounts.save({name:'Jimm', balance:2500, pendingTransactions:[]})
+> db.accounts.save({name:'King', balance:1300, pendingTransactions:[]})
+  
+> db.transactions.save({source:'Jimm', destination:'King', value:100, state: 'initial'})
+
+> t = db.transactions.findOne({state:'initial'})
+> db.transactions.update({_id:t._id}, {$set:{state:'pending'}})
+
+> db.accounts.update({name:t.source, pendingTransactions:{$ne:t._id}},
+                     {$inc:{balance:-t.value}, $push:{pendingTransactions:t._id}})
+> db.accounts.update({name:t.destination, pendingTransactions:{$ne:t._id}},
+                    {$inc:{balance:t.value}, $push:{pendingTransactions:t._id}})
+
+> db.transactions.update({_id:t._id}, {$set:{state:'canceling'}})
+  
+> db.accounts.update({name:t.source, pendingTransactions:{$ne:t._id}},
+                     {$inc:{balance:t.value}, $push:{pendingTransactions:t._id}})
+> db.accounts.update({name:t.destination, pendingTransactions:{$ne:t._id}},
+                    {$inc:{balance:-t.value}, $push:{pendingTransactions:t._id}})
+
+> db.transactions.update({_id:t._id}, {$set:{state:'cancelled'}})  
+  
+## INDEX 종류
+# Non-Unique/Unique Index(Single Key Index, Compound Key Index)
+  - 하나 또는 하나 이상의 중복값을 가진 Field로 구성되는 Index 타입으로 가장 대표적인 Balance Tree Index  
+    구조로 생성된다
+    ex) db.things.ensureIndex({'city':1})
+        db.things.ensureIndex({deptno:1, loc:-1})
+
+# Unique Index 
+  - Index가 생성되는 Field가 유일한 속성 값을 가진 Index 타입이다.
+    ex) db.things.ensureIndex({fname:1, lname:1}, {unique:true})
+
+# Sparse Index 
+  - 하나 이상의 필드에 Null 값을 가진 데이터가 대부분이고 드물게 어떤 데이터를 값을 가지고 있는 경우에
+    생성할때 효율적이다.
+    ex) db.people.ensureIndex({title:1}, {sparse:true})
+        db.people.save({name:'Jim'})
+        db.people.save({name:'Sarah", title:'Princess'})
+        db.people.find(f).sort({title:1}) {name:'Sarah', title:'Princess'}
+
+# Background Index 
+  - 일반적으로 Index의 생성은 데이터베이스 전체의 성능 지연 현상을 유발시킬 수 있다.
+    V1.2.3부터 Background에서 Index를 생성할 수 있다.
+    ex) db.people.ensureIndex({idate:1}, {background:true})
+
+# Covered Index
+  - 여러 개의 Field로 생성된 Index를 검색할 때 Index 만의 검색으로도 조건을 만족하는 Document를 추출할 
+    수 있는 타입이다.
+    ex) db.users.ensureIndex({username:1, password:1, roles:1});
+        db.users.save({username:"joe', password:'pass', roles:2})
+        db.users.save({username:"liz', password:'pass2', roles:4})		
+        db.users.find({username:"joe'}, _id:0, roles:1})
+		  {'roles':2}
+        db.users.find({username:"joe'}, _id:0, roles:1}).explain()
+          {'cursor':'BtreeeCursor username_1_password_1_roles_1', 		
+		   , password:'pass2', roles:4})				
+
+# DropDups Index
+  - 동일한 값이 여러 개 저장되어 있는 필드에 DropDups Index를 생성하면 최초 입력된 Document만 남기고
+    나머지 Document는 제거된다.
+    ex) db.people.ensureIndex({idate:1}, {dropdups:true})
+
+# GeoSpatial Index	
+  - 좌표로 구성되는 2차원 구조를 하나의 Collection에 하나의 2D Index를 생성할 수 있다.
+    ex) for (var i=0; i<10; i++)
+	         db.square.insert({pos:[i%10, Math.floor(i/10)]})
+		db.square.createIndex({pos:'2d'})	 
+		db.square.ensureIndex({pos:'2d'})
+        db.square.find({pos:{$near:[5.5]}}).limit(5)
+
+## GeoMetry Index
+  - geoJSON은 직선 또는 곡선의 교차에 의하여 이루어지는 추상적인 구조나 다각형(Polygon)과 같은
+    기하학(geoMetry) 구조를 일컫는 말이다.  
+	ex) point, LineString, Multi LineString, Polygon 등
+	
+	
+8. Document DB 데이터 모델링
+## MongoDB Data Modeling 핵심
+# HOST 환경을 기반으로 했던 파일 시스템은 프로세스 중심의 데이터 구조 설계였다면 클라이언트/서버 환경의
+  관계형 DB는 트랜잭션의 효율적인 처리를 위한 Data 중심의 설계 기법을 지향하였다.
+  반면에 클라우드 컴퓨팅 환경의 NoSQL은 Data와 프로세스, 모두를 설계의 중심으로 둔다.
+  (Big Data의 수집 및 저장이 중심)
+
+# Rich Document Structure
+  - 관계형 DB는 정규화를 통해 데이터 중복을 제거하며 무결성을 보장하는  설계 기법을 지향하지만
+    NoSQL은 데이터의 중복을 허용하며 역정규화된 설계를 지향한다. (관계형 DB가 요구되었던 당시와
+	달리 저장장치의 비약적 발전과 저렴한 가격 요인도 설계에 중요한 요소임)
+	
+# 관계형 DB는 Entity간의 Relationship을 중심으로 데이터의 무결성을 보장하지만 불필요한
+  JOIN을 유발시킴으로써 코딩양을 증가시키고 검색 성능을 저하시키는 원인을 제공한다.
+  NoSQL은 중첩 데이터 구조를 설계할 수 있기 떄문에 불필요한 JOIN을 최소화 시킬 수 있다.
+
+# 관계형 DB는 Entity 간의 N:M 관계 구조를 설계할 수 없지만 NoSQL은 N:M 관계 구조를 설계할
+  수 있고 구축할 수 있다.
+  
+# Document DB는 기본적으로 schema가 없기 때문에 유연한 데이터 구조를 설계할 수 있다.
+
+# 기존의 업무 영역에서 처리할 수 없었던 비정형 데이터에 대한 저장과 관리가 가능하며 관계형 DB에
+  비해 빠른 쓰기와 읽기가 가능한 데이터 설계가 가능하다.
+
+## Schema 설계의 주요 특징
+# Embeeded(Nested) & Linking 구조  
+  - 객체 지향 Data 관계 유형과 관계형 Data 유형 모두를 설계할 수 있다.
+
+## MongoDB 데이터 저장(Embedded)
+  - 주문 공통 정보 
+  - 주문 상세 정보   
+  - > db.ord.insert({ord_id : '2012-09-012345', cust_name:"Woman&sports" , emp_name: "magee", 
+                     total: "601100", payment_type:"Credit", order_fille:"Y", 
+					 item_id : [ {item_id : "1", product_name:"Bunny" , item_price:"135", qty:"500", price:"67000"}, {item_id : '2', product_name:"PRO Ski", item_print:"380" , qty : '400', price:"152000"} ] })  
+
+## MongoDB 데이터 저장(Manual Link)
+  - 주문 공통 정보
+  - 주문 상세 정보 
+
+## Ancestor Reference (Mongo DB) 
+
+
+9. Data 분산처리
+## Sharding(Partition)
+# Collection -> Shard1, Shard2, Shard3
+
+# Sharding의 가장 큰 목적은 파티셔닝을 통한 데이터 분산 처리와 성능 향상을 우힌 Load Balancing이다.
+
+# 또한, 빅 데이터의 효율적 관리와 백업 및 복구 전략 수립을 위한 솔루션이기도 하다.
+
+## MongoDB Architecture(Multi Node)
+# Config Server
+
+# Shared - Mongod, Mongod, Mongod
+
+# Route Server(MongoS)
+
+# mongo
+
+## Chunk Migration - default Chunk 64Mb
+# MongoS는 각 Shard의 Balance에 불균형(8개 이상의 Chunk 개수)이 발생하면 Chunk의 Migration 작업을 수행한다.
+
+# Migration이 발생할 때 MongoS에 Lock이 발생한다.
+
+# 실제로는 Move가 아니라 데이터를 복사하고 소스 Chunk 데이터는 삭제된다.
+
+
+10. 데이터 복제
+## Master & Slave
+# Master Server, Slave-1 Server, Slave-2 Server
+** Master Server 장애시 사용자가 매뉴얼하게 Slave Server로 전환  
+
+## ReplicaSets 기능
+# Heartbeat : 매2초 마다 Secondary 서버 상태를 체크한다.
+
+# Secondary 서버가 Down 되더라도 복제만 중지될 뿐 Primary 서버에 대한 작업은 정상적이다.
+
+# Primary 서버가 다운되면 Secondary 서버 중 하나다 Primary 서버가 된다.
+
+# Oplog는 복제가 실패하는 경우를 위해 로그 정보를 저장해 준다.(기본크기 1GB)
+
+** Primary 서버는 R/W, Secondary Server 서버는 Read용으로 사용.
+
+## Primary 서버 선출 방법
+  - 전자 선출 방식에 의거해서 자동으로 선출 
+
+
+11. Hbase & 데이터 처리
+# BigTable 또는 컬럼 family Database 
+
+## HBase 주요 특징
+# 구글 파일 시스템을 기반으로 하는 구글 BigTable(데이터 저장기술)을 모델로 만들어 졌으며
+  2008년도 Hadoop의 서브 프로젝트로 편입되어 개발되었다.
+
+# Hadoop HDFS와 HDPS를 기반으로 개발되었으며 Zookeeper를 이용한 고 가용성과 확장성이 보장된다.
+  
+# 1000개 이상의 멀티 클러스터 노드를 확장할 수 있다.
+
+# KeyValue 중심의 데이터 저장기술로 구현되며 빅 데이터의 빠른 WRITE/READ에 적합하다.
+
+# StandAlone 모드, Psedo Distributed 모드, Full Distributed 모드로 운영할 수 있다. 
+
+## Terminology
+# Table - table
+# Cell - Row 
+# Column Qualifier - Column 
+# Data Cordinator = Cell + version
+# version
+# RowKey - Primary Key
+# Column Family - Column을 그룹화 : 주문상세 = 제품명 + 수량
+
+# 하나의 Table은 하나의 Column Family를 가져야 함.
+
+## 실습
+# $ hbase shell
+
+# create 'test', 'cf1','cf2'
+    
+ 
+
