@@ -720,6 +720,7 @@
   - 인터페이스에 선언된 모든 메서드는 public abstract로 추상 메서드 
   - 인터페이스에 선언된 모든 변수는 public static final 로 상수 
   - 컴파일시 컴파일러가 자동으로 붙여줌. 
+  - 인터페이스는 client code의 spec 이다.  
 
 ## 클래스에서 인터페이스 구현하기 
   - Calc 인터페이스를 Calculator 클래스에서 구현 
@@ -747,4 +748,197 @@
   - Client는 어떻게 구현되었는지 상관없이 interface의 정의만을 보고 사용할 수 있음 
   - 다양한 구현이 필요한 인터페이스를 설계하는 일은 매우 중요한 일임.  
 
+## 왜 인터페이스를 사용하는가?
+  - [UserInfoWeb] ---> uses ----> IUserInfoDao <··· implements ··· oracleDao
+                                               <··· implements ··· mysqlDao
+                                               <··· implements ··· mssqlDao
+  - UserInfoWeb 은 IUserInfoDao에 정의된 메소드 명세만 보고 Dao를 사용할 수 있고, Dao 클래스들은 
+    IUserInfoDao에 정의된 메소드를 구현할 책임이 있다.
+
+  - 설계를 할때 사용함.
   
+## JDBC 
+  - Connection, Statement는 interface로 작성되어 있음. 이름 각 DB 회사(oracle, mysql 등)에서 구현하여 
+    .jar 형태로 제공하고 있음.  
+  - 개발자는 interface를 참조하여 DB와 연결함. interface 구현은 DB회사.
+
+## 인터페이스의 요소 
+  - 상수 : 모든 변수는 상수로 변환 됨
+  - 추상 메서드 : 모든 메서드는 추상메서드로 구성 
+  - Java 8 부터 추가된 기능 
+    - 디폴트 메서드 : 기본 구현을 가지는 메서드, 구현 클래스에서 재정의 할 수 있음 
+    - 정적(static) 메서드 : 인스턴스 생성과 상관없이 인터페이스 타입으로 사용할 수 있는 메서드 
+    - private 메서드 : 인터페이스를 구현한 클래스에서 사용하거나 재정의 할 수 없음. 인터페이스 내부에서만 기능을 제공하기 위해 
+                   구현하는 메서드   
+
+## 디폴트 메서드 재정의 
+  - Calc 인터페이스에 디폴트 메서드 정의
+    - public interface Calc {
+		...
+		default void description() {
+			System.out.println("정수 계산기를 구현합니다.");
+		}
+	  } 
+  - CompleteCalc에서 재정의 하기 
+    public class CompleteCalc extends Calculator {
+		...
+		@Override 
+		publci void description() {
+		super.description();
+	}
+	※ 디폴트 메서드 description()을 CompleteCalc 클래스에 서 원하는 기능으로 재정의 
+
+## private 메서드 
+  - 인터페이스 내부에 private 혹은 private static으로 선언한 메서드 구현 
+  - private static은 정적 메서드에서 사용 가능
+  - private으로 선언한 메서드는 default 메서드에서 사용하고 private static로 선언한 메서드는 static 메서드에서 사용.
+  
+## 두 개의 인터페이스 구현하기 
+  - [Buy interface]  <··· implements ··· [Customer Class - 실제구현 클래스]
+    [Sell interface] <··· implements 
+
+## 두 인터페이스를 구현한 클래스 
+  - public class Customer implements Buy, Sell {
+		@Override 
+		public void sell() {
+			System.out.println("구매하기");
+		}
+		
+		@Override
+		public  void buy() {
+			System.out.println("판매하기");
+		}
+	}
+
+## 두 인터페이스의 디폴트 메서드가 중복되는 경우 
+  - 구현한 클래스에서 중복된 디폴트 메서드를 재정의 함.	
+  
+## 인터페이스 상속 
+  - 인터페이스 간에도 상속이 가능 
+  - 구현코드의 상속이 아니므로 형 상속(type inheritance)라고 함.
+  
+  - [X interface] <--- extends -- -- [MyInterface interface, myMethod()] <··· implements ··· [MyClass class]
+                                 |
+    [Y interface] <--- extends --
+	
+  - public interface MyInterface extends X, Y {
+		void myMethod();
+	}
+
+## 인터페이스 구현과 클래스 상속 함께 사용하기 
+  - [Shelf Class]     <--- extends ------ --- [BookShelf Class]
+                                         | 
+	[Queue interface] <··· implements ···
+	
+  - public class BookShelf extends Shelf implements Quedu {
+  
+		// 배열에 요소 추가
+		@Override 
+		public void enQueue(String title) {
+			shelf.add(title);
+		}
+		
+		// 맨 처음 요소를 배열에서 삭제하고 반환
+		@Override 
+		public String deQueue(String title) {
+			return shelf.remove(0);
+		}
+		
+		// 배열 요소 개수 변환 
+		@Override 
+		public int getSize() {
+			return getCount();
+		}
+	}
+  - 실제 프레임워크(스프링, 안드로이드)를 사용하면 클래스를 상속받고 여러 인터페이스를 구현하는 경우가 종종 있음
+  
+
+
+11. 기본 클래스  
+## java.lang 패키지 
+  - 프로그래밍시 import 하지 않아도 자동으로 import 됨 
+  - import java.lang.*; 문장이 추가됨.
+  - 많이 사용하는 기본 클래스들이 속한 패키지 
+  - String, Integer, System 등 
+
+## Object 클래스 
+  - 모든 클래스의 최상위 클래스 
+  - java.lang.Object 클래스 
+  - 모든 클래스는 Object 클래스에서 상속 받음
+  - 모든 클래스는 Object 클래스의 메서드를 사용할 수 있음 
+  - 모든 클래스는 Object 클래스의 메서드 중 일부는 재정의 할 수 있음(final로 선언된 메서드는 재정의 할 수 없음)
+  - 컴파일러가 extends Object를 추가함.
+
+## Object 클래스 메서드 
+  - String toString() - 객체를 문자열로 표현하여 반환함. 재정의하여 객체에 대한 설명이나 특정 멤버 변수 값을 반환 
+  - boolean equals(Object obj) - 두 인스턴스가 동일한지 여부를 반환함. 재정의하여 논리적으로 동일한 인스턴스임을
+                                 정의할 수 있음.
+  - int hashCode() - 객체의 해시 코드 값을 반환함.
+  - Object clone() - 객체를 복제하여 동일한 멤버 변수 값을 가진 새로운 인스턴스를 생성함.
+  - Class getClass() - 객체의 Class 클래스를 반환함. 
+  - void finalize() - 인스턴스가 힙 메모리에서 제거될 때 가비지 컬레터(GC)에 의해 호출되는 메서드임. 
+                    - 네트워크 연결 해제, 열려 있는 파일 스트림 해제 등을 구현함.
+  - void wait() - 멀티스레드 프로그램에서 사용하는 메서드 임. 스레드를 '기다리는 상태'(non runnable)로 만듬.
+  - void notify() - wait() 메서드에 의해 기다리고 있는 스레드(nonrunnable 상태를 실행 가능한 상태(runnable)로 가져 옴.
+  
+## toString() 메서드 
+  - Object 클래스의 메서드 
+  - 객체의 정보를 String으로 바꾸어서 사용할 때 많이 쓰임 
+  - String이나 Integer 클래스에는 이미 재정의 되어 있음
+  - String은 문자열 반환 
+  - Integer는 정수값 반환  
+
+
+## String과 Integer의 toString() 메서드 
+  - toString() 메서드가 재정의 되어 있음 
+  - String은 문자열 반환 
+  - Integer는 정수 값 반환 
+  - String str = new String("test");
+	System.out.println(str);  // test 출력
+	Integer i1 = new Integer(100);
+	System.out.println(i1);	  // 100 출력 
+
+## equals() 메서드 
+  - 두 인스턴스이 주소 값을 비교하여 true/false를 반환 
+  - 재정의 하여 두 인스턴스가 논리적으로 동일함의 여부를 반환 
+  - 같은 학번의 학생인 경우 여러 인스턴스의 주소값은 다르지만, 같은 학생으로 처리해야 학점이나 정보 산출 문제가 
+    생기지 않으므로 이런 경우 equals() 메서드를 재정의 함. 
+  - Student studentLee = new Student(100, "이상원");
+    Student studentLee2 = studentLee; // 주소 복사   
+
+## String과 Integer의 equals() 메서드 
+  - String은 같은 문자열의 경우 true를 반환   
+  - Integer는 정수 값이 같은 경우 true를 반환 
+  
+## hashCode() 메서드 
+  - hash : 정보를 저장, 검색하기 위해 사용 하는 자료 구조 
+  - 자료의 특정 값(키 값)에 대해 저장 위치를 반환해 주는 해쉬 함수를 사용함 
+    - index = hash(key)
+      - index - 저장위치, 주소 값
+      - hash() - 해시 함수 
+      - key - 객체 정보 	  
+  - 해시 함수는 어떤 정보인가에 따라 다르게 구현 됨 
+  - hashCode() 메서드는 인스턴스의 저장 주소를 반환함 
+  - 힙 메모리에 인스턴스가 저장되는 방식이 hash   
+  
+  - hashCode()의 반환 값 : 자바 가상 머신이 저장한 인스턴스의 주소값을 10진수로 나타냄 
+  - 서로 다른 메모리의 두 인스턴스가 같다면???
+    - 재정의 된 equals() 메서드의 값이 true 
+	- 동일한 hashCode() 반환값을 가져야 함.
+  - 논리적으로 동일함을 위해 equals() 메서드를 재정의 하였다면 hashCode() 메서드로 재정의 하여
+    동일한 값이 반환 되도록 함. 
+	※ equals() 메서드를 재정의 하였다면 hashCode()값도 동일하게 만들어야 함
+  - String 클래스 : 동일한 문자열 인스턴스에 대해 동일한 정수가 반환 됨 
+  - Integer 클래스 : 동일한 정수값의 인스턴스에 대해 같은 정수값이 반환 됨.
+  
+## clone() 메서드 
+  - 객체의 원본 복제하는데 사용하는 메서드 
+  - 원본을 유지해 놓고 복사본을 사용할 때 
+  - 기본 틀(prototype)을 두고 복잡한 생성과정을 반복하지 않고 복제 
+  - clone() 메서드를 사용하면 객체의 정보(멤버변수 값)가 같은 인스턴스가 또 생성되는 것이므로 객체 지향 
+    프로그램의 정보은닉, 객체 보호의 관점에서 위배될 수 있음.
+  - 객체의 clone() 메서드 사용을 허용한다는 의미로 cloneable 인터페이스를 명시해 줌
+    - class Circle implements Cloneable { // ※ 객체를 복제해도 된다는 의미로 Cloneable 인터페이스를 함께 선언 
+		Point point;
+		int radius;
+      }
