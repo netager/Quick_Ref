@@ -1059,3 +1059,48 @@
     - 다이아몬드 연산자 내부에서 자료형은 생략 가능 함.
   - 제네릭에서 자료형 추론(자바10 부터) 
     - ArrayList<String> list = new ArrayList<String>(); ---> var list = new ArrayList<String>();
+
+## 제네릭 클래스 사용하기 
+  - GenericPrinter<Powder> PowderPrinter = new GenericPrinter<Powder>();
+    powderPrintr.setMaterial(new Powder());
+	Powder powder = powderPrinter.getMatterial(); // 명시적 형 변환을 하지 않음
+	
+  - T 로 정의한 부분에 사용할 참조 자료형을 넣어서 클래스 생성
+  - getMaterial() 메서드가 호출 될 때 따라 강제 형변환을 하지 않아도 됨.
+  - GenericPrinter<Powder> - 제네릭 자료형(Generic type), 매개변수화된 자료형(parameterized type)
+    Powder - 대입된 자료형 
+
+## 제네릭에서 대입된 자료형을 명시하지 않는 경우 
+  - GenericPrinter<Powder>와 같이 사용할 자료형(Powder)를 명시해야 함 
+  - 자료형을 명시하지 않고 사용할 수 있음 이런 경우 지료형을 명시하라는 경고 표시가 나타남.
+  - 반환 형에 따라 강제 형 변화을 해야 함. 
+  
+## <T extends 클래스> 
+  - T가 사용될 클래스를 제한하기 위해 사용
+  - Material 에서 상속받지 않은 Water와 같은 클래스는 프린터 재료로 사용할 수 없음 
+  - Material에 정의된 메서드를 공유할 수 있음. 
+
+## 제네릭 메서드 활용하기 
+  - 메서드의 매개변수를 자료형 매개변수로 사용하는 경우 자료형 매개 변수가 하나 이상인 경우
+  - 제네릭 메서드의 일반 형식 
+    - public <자료형 매개변수> 반환형 메서드 이름<자료형 매개변수 ...) {} 
+	
+## 자효형 매개변수가 두 개인 경우 
+ - public class Point<T, V> {
+	T x;
+	V y;
+	
+	Point(T x, V y) {
+		this.x = x;
+		this.y = y;
+	}
+	
+	public T getX() {
+		return x;
+	}
+	
+	public V getY() {
+		return y;
+	}
+   }
+   
