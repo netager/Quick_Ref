@@ -1,1 +1,9 @@
-a
+
+## Collection 인터페이스 
+  - Collection 인터페이스에 선언된 주요 메서드 
+    - boolean add(E e) - Collection에 객체를 추가합니다.
+	- void clear() - Collection의 모든 객체를 제거합니다.
+	- Iterator<E> iterator - Collection을 순환할 반복자(iterator)를 반환합니다.
+	- boolean remove(Object o) - Collection 매개변수에 해당하는 인스턴스가 존재하면 제거합니다.
+	- int size() - Collection에 있는 요소의 개수를 반환합니다. 
+	

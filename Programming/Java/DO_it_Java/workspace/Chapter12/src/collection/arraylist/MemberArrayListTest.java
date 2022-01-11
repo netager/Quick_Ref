@@ -21,7 +21,6 @@ public class MemberArrayListTest {
 		memberArrayList.removeMember(memberKim.getMemberID());
 		memberArrayList.showAll();
 		
-
 	}
 
 }

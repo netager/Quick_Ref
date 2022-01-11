@@ -1,0 +1,11 @@
+package hiding;
+
+class BirthDayTest {
+	int day;
+	int month;
+	int year;
+}
+
+public class BirthDayTest{
+	
+}

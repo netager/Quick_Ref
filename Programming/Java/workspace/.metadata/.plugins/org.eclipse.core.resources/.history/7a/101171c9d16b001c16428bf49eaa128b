@@ -1,0 +1,30 @@
+package inheritance;
+
+public class VIPCustomer extends Customer {
+
+	private int agentID;
+    private double saleRatio;
+	
+	public VIPCustomer(int customerID, String customerName, int agentID) {
+		
+		super(customerID, customerName);
+		customerGrade = "VIP";
+		bonusRatio = 0.05;
+		saleRatio = 0.1;
+		this.agentID = agentID;
+		
+		System.out.println("VIPCustomer() »£√‚");
+	}
+	
+	public int calcPrice(int price) {
+		if (customerGrade == "SILVER") {
+			bonusPoint += price * bonusRatio;
+		}
+		return price;
+	}
+	
+	public int getAgentID() {
+		return agentID;
+	}
+	
+}

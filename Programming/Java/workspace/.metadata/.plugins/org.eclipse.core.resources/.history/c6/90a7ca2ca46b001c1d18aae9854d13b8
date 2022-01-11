@@ -1,0 +1,13 @@
+package test;
+
+import inheritance.Customer;
+
+public class CustomerTest1 {
+
+	public static void main(String[] args) {
+		
+		Customer customerLee = new Customer();
+		customerLee.
+	}
+
+}
