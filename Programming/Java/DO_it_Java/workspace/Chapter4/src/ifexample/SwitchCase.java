@@ -11,7 +11,7 @@ public class SwitchCase {
 					break;
 			case 2: medalColor ='S';
 					break;
-			case 4: medalColor ='B';
+			case 3: medalColor ='B';
 					break;
 			default: medalColor = 'A';
 		}

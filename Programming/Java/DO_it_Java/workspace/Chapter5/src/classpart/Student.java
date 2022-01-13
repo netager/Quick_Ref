@@ -6,15 +6,16 @@ public class Student {
 	int grade;
 	String address;
   
-	public void showStudentInfor() {
+	public void showStudentInfo() {
 		System.out.println(studentName + "," + address);
 	}
   
 	public String getStudentName() {
-		return student
+		return studentName;
 	}
 
-	public String setStudentName(String name) {
-		studentName = name;
+	public void setStudentName(String name) {
+		this.studentName = name;
 	}
+	
 }

@@ -6,6 +6,7 @@ public class OperationEx4 {
 		int num1 = 10;
 		System.out.println(num1 += 1);
 		System.out.println(num1 %= 10);
+		System.out.println("------------------------------------------");
 		num1 -= 1;
 		System.out.println(num1);
 		

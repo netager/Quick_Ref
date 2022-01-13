@@ -9,6 +9,7 @@ public class OperationEx {
 		int num2 = -num;
 		System.out.println(num);
 		System.out.println(num2);
+		System.out.println("---------------------------");
 		System.out.println(num);		
 		num = -num;
 		System.out.println(num);

@@ -7,7 +7,7 @@ public class StudentTest {
 		studentLee.studentName = "이순신";
 		studentLee.address = "서울시 서추구 서초동";
 		
-		studentLee.showStudentInfor();
+		studentLee.showStudentInfo();
 	}
 
 }
