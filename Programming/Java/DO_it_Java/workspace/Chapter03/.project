@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>Chapter06</name>
+<<<<<<< HEAD:Programming/Java/DO_it_Java/workspace/Chapter5/.project
+	<name>Chapter05</name>
+=======
+	<name>Chapter03</name>
+>>>>>>> 7c42f4ecdf07a9598ba889e799f0bed8387f67cf:Programming/Java/DO_it_Java/workspace/Chapter03/.project
 	<comment></comment>
 	<projects>
 	</projects>
