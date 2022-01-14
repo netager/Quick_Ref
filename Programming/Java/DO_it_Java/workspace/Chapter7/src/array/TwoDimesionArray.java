@@ -34,6 +34,21 @@ public class TwoDimesionArray {
 		}
 		
 		System.out.println(alphabets[0][1]);
+
+		
+		
+		
+		
+		int[][] intArr = {{1,2,3}, {4,5,6}};
+		
+		for (int i=0; i < intArr.length; i++) {
+			for (int j=0; j < intArr[i].length;j++) {
+				System.out.
+				println(i + " " + j + "int Arr: " 
+			            + intArr[i][j] + "intArr.length: "+intArr.length + " " + intArr[i].length);
+			}
+		}
+			
 		
 		
 	}

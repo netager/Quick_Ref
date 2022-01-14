@@ -18,8 +18,8 @@ public class BookArray {
 		for(int i=0; i<library.length;i++) {
 			library[i].showBookInfo();
 		}
-	
-		int[] arr = new int[5]; // int 4byte 5°³·Î 20byte
+		
+		library. 
 	}
 
 }
