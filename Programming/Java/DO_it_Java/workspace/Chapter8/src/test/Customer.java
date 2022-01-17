@@ -11,6 +11,8 @@ public class Customer {
 	public Customer() {
 		customerGrade = "SILVER";
 		bonusRatio = 0.01;
+		
+		System.out.println("Customer() 호출");
 	}
 
 //	public Customer(int customerID, String customerName) {
@@ -27,7 +29,7 @@ public class Customer {
 	}
 	
 	public String showCustomerInfo() {
-		return customerName + "님의 등급은 " + customerGrade + "이며, 보너스 포인트는 " + bonusRatio + "입니다.";
+		return customerName + "님의 등급은 " + customerGrade + "이며, 보너스 포인트는 " + bonusPoint + "입니다.";
  	}
 
 	public int getCustomerID() {
