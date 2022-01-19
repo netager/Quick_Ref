@@ -1,27 +1,30 @@
 package test;
 
 public class Customer {
+
 	
 	protected int customerID;
 	protected String customerName;
 	protected String customerGrade;
+	
 	int bonusPoint;
 	double bonusRatio;
 	
-	public Customer() {
+//	public Customer() {
+//		customerGrade = "SILVER";
+//		bonusRatio = 0.01;
+//		
+//		System.out.println("Customer() 호출");
+//	}
+
+	public Customer(int customerID, String customerName) {
+		this.customerID = customerID;
+		this.customerName = customerName;
 		customerGrade = "SILVER";
 		bonusRatio = 0.01;
 		
 		System.out.println("Customer() 호출");
 	}
-
-//	public Customer(int customerID, String customerName) {
-//		this.customerID = customerID;
-//		this.customerName = customerName;
-//		customerGrade = "SILVER";
-//		bonusRatio = 0.01;
-//		
-//	}
 	
 	public int calcPrice(int price) {
 		bonusPoint += price * bonusRatio;
@@ -57,5 +60,5 @@ public class Customer {
 	}
 	
 	
-
+	
 }
