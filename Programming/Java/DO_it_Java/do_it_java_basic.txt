@@ -1005,13 +1005,18 @@
 	※ 디폴트 메서드 description()을 CompleteCalc 클래스에 서 원하는 기능으로 재정의 
 
 ## private 메서드 
-  - 인터페이스 내부에 private 혹은 private static으로 선언한 메서드 구현 
-  - private static은 정적 메서드에서 사용 가능
-  - private으로 선언한 메서드는 default 메서드에서 사용하고 private static로 선언한 메서드는 static 메서드에서 사용.
+  - 인터페이스 내부에 private 또는 private static으로 선언하여 메서드 구현
+    - private 으로만 선언된 메서드는 인터페이스 내에서 default method에서만 사용 가능.
+    - private static 으로 선언된 메서드는 인터페이스 내에서 static method에서만 사용 가능. 	
+  - 인터페이스를 구현한 클래스에서 사용하거나 재정의할 수 없음. 인터페이스 내부에서만 기능을 제공하기
+    구현하는 메서드 
+  
   
 ## 두 개의 인터페이스 구현하기 
-  - [Buy interface]  <··· implements ··· [Customer Class - 실제구현 클래스]
-    [Sell interface] <··· implements 
+  - [Buy interface]  <··· implements ···  [Customer Class - 실제구현 클래스]
+    [Sell interface] <··· implements ···
+	
+  - 자바는 1개의 Class만 상속 받을 수 있다. 	
 
 ## 두 인터페이스를 구현한 클래스 
   - public class Customer implements Buy, Sell {
@@ -1041,12 +1046,13 @@
 		void myMethod();
 	}
 
-## 인터페이스 구현과 클래스 상속 함께 사용하기 
+## 인터페이스 구현과 클래스 상속 함께 사용하기 - 실제적으로 많이 사용. 프레임워크에서 많이 사용. 
+                                    - 프레임워크에서 구멍을 만들어 놓고 이를 메꾸는 방식으로 구현
   - [Shelf Class]     <--- extends ------ --- [BookShelf Class]
                                          | 
 	[Queue interface] <··· implements ···
 	
-  - public class BookShelf extends Shelf implements Quedu {
+  - public class BookShelf extends Shelf implements Queue {
   
 		// 배열에 요소 추가
 		@Override 
@@ -1069,11 +1075,12 @@
   - 실제 프레임워크(스프링, 안드로이드)를 사용하면 클래스를 상속받고 여러 인터페이스를 구현하는 경우가 종종 있음
   
 
+제3장 자바 JDK로 프로그래밍 날개 달기
 
 11. 기본 클래스  
 ## java.lang 패키지 
   - 프로그래밍시 import 하지 않아도 자동으로 import 됨 
-  - import java.lang.*; 문장이 추가됨.
+  - import java.lang.*; 문장이 컴파일시 자동으로 추가됨. 
   - 많이 사용하는 기본 클래스들이 속한 패키지 
   - String, Integer, System 등 
 
@@ -1099,6 +1106,8 @@
   
 ## toString() 메서드 
   - Object 클래스의 메서드 
+    - getClass().getName() + '@' + Integer.toHex String(hashCode())  ---> object.Book@16f65612
+	- 이것이 toString()의 원형 임.
   - 객체의 정보를 String으로 바꾸어서 사용할 때 많이 쓰임 
   - String이나 Integer 클래스에는 이미 재정의 되어 있음
   - String은 문자열 반환 
@@ -1119,10 +1128,11 @@
   - 재정의 하여 두 인스턴스가 논리적으로 동일함의 여부를 반환 
   - 같은 학번의 학생인 경우 여러 인스턴스의 주소값은 다르지만, 같은 학생으로 처리해야 학점이나 정보 산출 문제가 
     생기지 않으므로 이런 경우 equals() 메서드를 재정의 함. 
+	
   - Student studentLee = new Student(100, "이상원");
     Student studentLee2 = studentLee; // 주소 복사   
 
-## String과 Integer의 equals() 메서드 
+## String과 Integer의 equals() 메서드는 재정의 되어 있음.
   - String은 같은 문자열의 경우 true를 반환   
   - Integer는 정수 값이 같은 경우 true를 반환 
   
@@ -1169,8 +1179,8 @@
 	  - 상수 풀의 문자열을 참조하면 모든 문자열이 같은 주소를 가리킴 
 
 ## String 클래스로 문자열 연결 
-  - 한번 생성된 String 값(무자열)은 불변(immutable)
-  - 두 개의 문자열을 연결하면 새로운 인스턴스가 생성됨
+  - 한번 생성된 String 값(문자열)은 불변(immutable)
+  - 두 개의 문자열을 연결하면 새로운 인스턴스가 생성됨(새로운 메모리에 할당)
   - 문자열 연결을 계속하면 메모리에 garbage가 많이 생길 수 있음.
     - 이를 해결하기 위해 StringBuilder, StringBuffer 사용함.
    
@@ -1224,7 +1234,8 @@
       Class c = s.getClass(); // getClass() 메서드이 반환형은 Class 
   2. 클래스 파일 이름을 Class 변수에 직접 대입하기 
     - Class c = String.Class;
-  3. Class.forName("클래스 이름") 메서드 사용하기 
+	
+  3. Class.forName("클래스 이름") 메서드 사용하기 - 제일 중요함. 동적 로딩을 할 수 있는 메서드
     - Class c = Class.forName("java.lang.String");
 
 ## Class 클래스로 정보 가져오기 
@@ -1244,7 +1255,10 @@
   - 컴파일 타임에 체크할 수 없으므로 해당 문자열에 대한 클래스가 없는 경우 예외(ClassNotFoundException)이 발생할 수 있음.
     - String className = "classex.Person";
       Class pClass = Class.forName(className);
-	  
+  - 서비스가 3개의 DB를 서포트한다고 할때 컴파일 할대 2개의 DB library를 다 포함해서 컴파일 하지 않음. 3개를 다 묶어서 하는 것은
+    오버헤드. 실제로 실행할 때 필요한 정보를 받아서 동정 로딩할 수 있음.
+	- 실제로 수행할 때 필요한 라이브러리를 동적 로딩.
+    	  
 12. 컬렉션 프레임워크 
 ## 제네릭(Generic) 프로그래밍 
   - 변수의 선언이나 메서드의 매개변수를 하나의 참조 자료형이 아닌 여러 자료형을 변환 될 수 있도록 프로그래밍 하는 방식
@@ -1301,7 +1315,7 @@
   - 제네릭 메서드의 일반 형식 
     - public <자료형 매개변수> 반환형 메서드 이름<자료형 매개변수 ...) {} 
 	
-## 자효형 매개변수가 두 개인 경우 
+## 자료형 매개변수가 두 개인 경우 
  - public class Point<T, V> {
 	T x;
 	V y;
@@ -1311,7 +1325,7 @@
 		this.y = y;
 	}
 	
-	public T getX() {
+	public T getX() {             // 제네릭 메서드
 		return x;
 	}
 	
@@ -1326,13 +1340,16 @@
   - 논리적 구조와 물리적 구조가 동일함
   - 정의할때 고정된 크기를 정의하고 공간이 없는 경우 새로운 배열을 생성해 이동 시킨다.
   - JDK
-    - ArrayList 
+    - ArrayList  - Vector보다 많이 사용 함.
+	  - 알고리즘이 최적화 되어 있음
 	- Vector 
+	  - 동기화 지원(Thread 지원)
 
 ## Linked List  
   - [Data + Link] ---> [Data + Link] ---> [Data + Link]
     - [Data + Link] - 노드(Node) 
     - Link에 다음 노드의 주소를 저장하고 있음.
+	- Node의 끝은 Link가 Null을 가르킴
   - 논리적 구조와 물리적 구조가 다름
   - 필요할 때마다 메모리 할당을 받고 이전 Node에 주소를 지정
   - 배열의 단점을 보완 - 하나를 삭제하면 배열의 경우 뒤에 있는 요소의 이동이 발생하지만 링크드 리스트에서는 주소의 변경으로 가능 
@@ -1364,7 +1381,7 @@
   - JDK 
     - ArrayList 
     - Vector 
-    - Linked List 	
+    - LinkedList 	
 	
 ## Tree 
   - Binary Search Tree를 왜 쓰나요?
