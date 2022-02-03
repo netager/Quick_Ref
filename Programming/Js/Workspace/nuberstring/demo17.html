@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	var arr = ['a','b','c','d','e','f'];
+
+	function getRandomValueFromArray(arr) {
+		index = Math.floor(arr.length * Math.random());
+		return arr[index];
+	}
+
+	for (var i=0; i < 10; i++) {
+		document.write(getRandomValueFromArray(arr) + "<br>");	
+	}
+	document.write("---------------------------------------<br>");
+
+    Array.prototype.random = function() {
+		index = Math.floor(this.length * Math.random());
+		return this[index];
+	}
+	var arr = new Array('a','b','c','d','e','f');
+	for (var i=0; i < 10; i++) {
+		document.write(arr.random()+'<br>');
+	}
+
+</script>
+</body>
+</html>

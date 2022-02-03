@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	function cal(func, num) {
+		return func(num);
+	}
+
+	function incr(num) {
+		return num += 1;
+	}
+
+	function desc(num) {
+		return num -= 1;
+	}
+
+	console.log(cal(incr, 1));
+	console.log(cal(desc, 1));
+</script>
+</body>
+</html>
