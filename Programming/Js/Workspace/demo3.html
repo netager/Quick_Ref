@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	var person1 = {};
+
+	person1.name = 'egoing';
+	person1.introduce = function() {
+		return 'My name is ' + this.name;
+	}
+	document.write(person1.introduce() + '<br>');
+
+	var person = {
+		'name' : 'egoing',
+		'introduce' : function() { return 'My name is ' + this.name; }
+	}
+	document.write(person.introduce());
+
+</script>
+</body>
+</html>
