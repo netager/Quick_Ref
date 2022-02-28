@@ -57,4 +57,4 @@ for movie in movies:
     print("링크 : ", "https://play.google.com" + link)
     print("-" * 90)   
 
-#browser.quit()
+browser.quit()
