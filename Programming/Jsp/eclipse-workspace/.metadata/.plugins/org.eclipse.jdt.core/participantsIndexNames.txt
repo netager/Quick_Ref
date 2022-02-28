@@ -1,7 +1,0 @@
-INDEX VERSION 1.131
-C:\Users\JBB\eclipse-workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\427279569.index
-\Lecture Evaluation\src\main\java
-C:\Users\JBB\eclipse-workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1107309177.index
-\Hello World\src\main\java
-C:\Users\JBB\eclipse-workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1403570784.index
-\Hello\src\main\java
