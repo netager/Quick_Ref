@@ -1,3 +1,48 @@
+## 목차
+1. 빅데이터 이해하기
+1-1. 빅데이터 개념
+1-2. 빅데이터 목적
+1-3. 빅데이터 활용
+1-4. 빅데이터 프로젝트
+1-5. 빅데이터 기술의 변화
+1-6. 빅데이터 구현기술
+1-7. 빅데이터 보안
+
+2. 파일럿 프로젝트 환경 구성
+2-0. 시작하기 전에 
+2-1. 파일럿 프로젝트 도메인의 이해 
+2-2. 파일럿 아키텍처 이해 1 - 소프트 웨어
+2-2. 파일럿 아키텍처 이해 2 - 하드웨어
+2-3. 파일럿 PC 환경 구성 - 개발환경 
+2-4. VM 통합 환경 구성 
+2-5. 빅데이터 클러스터 구성 02 - 기본 SW(하둡, 주키퍼 등) 설치 
+2-5. 빅데이터 클러스터 구성 03 - DataNode 추가 및 환경설정
+2-5. 빅데이터 클러스터 구성 04 - Putty로 서버 환경 접속 
+2-5. 빅데이터 클러스터 구성 05 - 하둡과 주키퍼 명령 사용해 보기 
+2-6. 스마트카 로그 시뮬레이터 - 설치 및 실행
+2-7. 파일럿 환경 관리 - 시작과 종료 
+2-8. 빅데이터 실환경의 이해 
+2-9. 마치며
+
+3. 빅데이터 수집 
+3-1. 빅데이터 수집 개요 
+3-2. 수집에 활용할 기술 1 - 플럼
+3-2. 수집에 활용할 기술 2 - 카프카 
+3-3. 수집 파일럿 실행 1단계 - 수집 아키텍처 
+3-4. 수집 파일럿 실행 2단계 - 수집 환경 구성
+3-5. 수집 파일럿 실행 3단계 - 플럼 기능 구현
+3-6. 수집 파일럿 실행 4단계 - 카프카 기능 구현
+3-7. 수집 파일럿 실행 5단계 - 수집 기능 테스트
+
+
+4. 빅데이터 적재 1 - 대용량 파일
+4-1. 빅데이터 적재 개요
+4-2. 빅데이터 적재에 활용하는 기술 - 하둡&주키퍼
+
+
+
+
+
 # 최초 root / adminuser
 
 # 파일럿 환경의 로그 확인
@@ -115,7 +160,7 @@ $ hdfs dfsadmin -report  # 하둡 파일싯템의 기본 정보 및 통계를 �
 # HDFS 파일의 비정상 상태
 $ hdfs dfsadmin -safemode leave    # 안전모드 상태로 전환됐다면 강제로 안전모드를 해제
 $ hdfs fsck / -delete              # 손상된 파일을 강제로 삭제
-$hdfs fsck / -move                 # 손상된 파일을 /lost+found 디렉터리로 옮김
+$ hdfs fsck / -move                 # 손상된 파일을 /lost+found 디렉터리로 옮김
 
 
 ## 주키퍼(zookeeper) 명령어 사용
@@ -128,9 +173,10 @@ $ zookeeper-client     # 주키퍼 클라이언트 실행
 [zk: localhost:2181(CONNECTED) 0] delete /pilot-pjt         # Z노드 삭제
 
 ### 스마트카 로그 시뮬레이터 - 설치 및 실행
-# 1. 작업폴더 생성
+# 1. 작업폴더 생성 (root)
   - $ cd /home
   - $ mkdir /home/pilot-pjt
+  - $ mkdir /home/pilot-pjt/working
   - $ mkdir /home/pilot-pjt/working/car-batch-log
   - $ mkdir /home/pilot-pjt/working/driver-realtime-log
   - chmod 777 -R /home/pilot-pjt
@@ -147,6 +193,7 @@ $ zookeeper-client     # 주키퍼 클라이언트 실행
     - $ java -cp bigdata.smartcar.loggen-1.0.jar com.wikibook.bigdata.smartcar.loggen.DriverLogMain 20160101 3  
   - 배치 로그(Car Log)
     - $ java -cp bigdata.smartcar.loggen-1.0.jar com.wikibook.bigdata.smartcar.loggen.CarLogMain 20160101 3  
+
   
 ### 3.2 수집에 활용할 기술 : 플럼(flume)
 # 플럼 설치
@@ -173,7 +220,7 @@ $ zookeeper-client     # 주키퍼 클라이언트 실행
   - Data Retention Time : 7일 -> 10분
   
 # 카프카 토픽 생성
-  - $ kafka-topics --create --zookeeper server02.hadoop.com:2128 --replication-factor 1 --partitions 1 --topic SmartCar-Topic 
+  - $ kafka-topics --create --zookeeper server02.hadoop.com:2181 --replication-factor 1 --partitions 1 --topic SmartCar-Topic 
 
 # 카프카 Producer 사용
   - kafka-console-producer --broker-list server02.hadoop.com:9092 -topic SmartCar-Topic
@@ -205,7 +252,7 @@ $ zookeeper-client     # 주키퍼 클라이언트 실행
 
 3.6 수집 파일럿 실행 4단계 - 카프카 기능
 ## 카프카 Topci 생성 
-  - $ kafka-topics --create --zookeeper server02.hadoop.com:2128 --replication-factor 1 --partitions 1 --topic SmartCar-Topic 
+  - $ kafka-topics --create --zookeeper server02.hadoop.com:2181 --replication-factor 1 --partitions 1 --topic SmartCar-Topic 
   - replication-factor 옵션은 카프카를 다중 Broker로 만들고 전송한 데이터를 replication-factor 개수만큼 복제하게 되는데,
     파일럿 프로젝트에서는 단일 카프카 브로커이므로 복제 개수는 1개만 설정  
   - partitions 옵션은 해당 Topic에 데이터들이 partitions의 개수만큼 분리 저장하게 된다. 이 역시 다중 Broker에서 쓰기/읽기 성능 향상을 위해
@@ -239,6 +286,9 @@ $ zookeeper-client     # 주키퍼 클라이언트 실행
 #4. SpoolDir 경로로 옮김  
     - $ mv /home/pilot-pjt/working/SmartCar/SmartCarStatusInfo_20160101.txt /home/pilot-pjt-working/car-batch-log/
 
+#5. 카프카 Consumer 작동
+    - kafka-console-consumer --bootstrap-server server02.hadoop.com:9092 --topic SmartCar-Topic --partition 0
+
 ## 파일럿 환경의 로그 확인 
 # 빅데이터 시스템에서는 에코시스템들의 로그를 확인하는 것이 중요하다. 많은 소프트웨어가 설치되고 서로간의 의존성이 커서 로그를 통해 다양한 문제점을 확인
     하기 때문이다.
@@ -256,8 +306,11 @@ $ zookeeper-client     # 주키퍼 클라이언트 실행
   - $ hdfs fsck / -delete              # 손상된 파일을 강제로 삭제
   - $ hdfs fsck / -move                # 손상된 파일을 /lost+found 디렉터리로 옮김
 
+
+4. 빅데이터 적재 1 (대용량 파일)
 4.1 빅데이터 적재 개요
 4.2 빅데이터 적재에 활용하는 기술 - 하둡 & 주키퍼 
+# 하둡 소개
 4.3 적재 파일럿 실행 1단계 - 적재 아키텍처 
 4.4 적재 파일럿 실행 2단계 - 적재 환경 구성
 4.5 적재 파일럿 실행 3단계 - 적재 기능 구현
@@ -268,6 +321,7 @@ $ zookeeper-client     # 주키퍼 클라이언트 실행
    - FTP 클라이언트인 파일질라 실행해 Server02에 접속 
    - 업로드 경로: /opt/cloudera/parcels/CDH/lib/flume-ng/lib 
    - CH04/bigdata.smartcar.flume-1.0.jar 파일을 /opt/cloudera/parcels/CDH/lib/flume-ng/lib 경로에 업로드 
+
 
 ## 플럼의 Conf 파일 수정
 #1. CM홈 -> [Flume] -> [구성]을 선택해서 CH04/예제4.2/SmartCar_Agent.conf 파일을 열어 복사후 붙여 넣는다.
@@ -301,17 +355,28 @@ $ zookeeper-client     # 주키퍼 클라이언트 실행
     - $ ps -ef | grep smartcar.log 
     - $ kill -9 [pid]
 
-5.2 실시간 적재에 활용하는 기술 02 - Storm & Esper.pdf
-5.실시간 적재 파일럿 실행 1단계 - 아키텍처
-5.4 실시간 적재 파일럿 실행 2단계3 01 - 환경구성
 
-5.4 실시간 적재 파일럿 실행 2단계 02 - HBase 설치
+5. 빅데이터 적제 2 - 실시간 데이터
+
+5.0. 시작하기 전에
+
+5.1. 빅데이터 실시간 적재 개요
+
+5.2. 실시간 적재에 활용하는 기술 01 - HBase & Redis
+
+5.2. 실시간 적재에 활용하는 기술 02 - Storm & Esper.pdf
+
+5.3. 실시간 적재 파일럿 실행 1단계 - 아키텍처
+
+5.4. 실시간 적재 파일럿 실행 2단계 01 - 환경구성
+5.4. 실시간 적재 파일럿 실행 2단계 02 - HBase 설치
+
 ## HBase
 # HBase 설치
-  - Master : server01.hadoop.com  
+  - Master : server02.hadoop.com  
   - HBase REST Server : None
-  - HBase Thrift Server : server01.hadoop.com  
-  - RegionServer : server01.hadoop.com  
+  - HBase Thrift Server : server02.hadoop.com  
+  - RegionServer : server02.hadoop.com  
 
 
 # HBase 구성
@@ -324,7 +389,7 @@ $ hbase shell
 > put 'smartcar_test_table', 'row-key1', 'cf:model', 'Z0001'
 > put 'smartcar_test_table', 'row-key1', 'cf:no', 	'12345'
 > get 'smartcar_test_table', 'row-key1'
-
+ 
 > disable 'smart_test_table'
 > drop 'smart_test_table'
 > exit
@@ -360,6 +425,67 @@ $ hbase shell
 $ yum install -y gcc*
 $ yum install -y tcl
 
+-----------------------------------------------------------------------------------------------
+- [ CentOS 6 yum Repo 설정 Start ] -------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
+1. # cd /etc/yum.repos.d/
+   # mkdir old
+   # mv * old/.
+   # mv old/CentOS-Base.repo .
+3. # vi CentOS-Base.repo
+4. [base] [updates] [extras] ----아래 내용 복붙 ----
+5. # yum clean all
+6. # yum install -y gcc*
+7. # yum install -y tcl
+
+
+---아래 내용 복붙----
+[base]
+name=CentOS-$releasever - Base
+#mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=os&infra=$infra
+baseurl=http://vault.centos.org/centos/$releasever/os/$basearch/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
+
+#released updates
+[updates]
+name=CentOS-$releasever - Updates
+#mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=updates&infra=$infra
+baseurl=http://vault.centos.org/centos/$releasever/updates/$basearch/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
+
+#additional packages that may be useful
+[extras]
+name=CentOS-$releasever - Extras
+#mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=extras&infra=$infra
+baseurl=http://vault.centos.org/centos/$releasever/extras/$basearch/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
+
+#additional packages that extend functionality of existing packages
+[centosplus]
+name=CentOS-$releasever - Plus
+#mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=centosplus&infra=$infra
+baseurl=http://vault.centos.org/centos/$releasever/centosplus/$basearch/
+gpgcheck=1
+enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
+
+#contrib - packages by Centos Users
+[contrib]
+name=CentOS-$releasever - Contrib
+#mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=contrib&infra=$infra
+baseurl=http://vault.centos.org/centos/$releasever/contrib/$basearch/
+gpgcheck=1
+enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
+
+-----------------------------------------------------------------------------------------------
+- [ CentOS 6 yum Repo 설정 End ] ---------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
+ 
+
 $ cd /home/pilot-pjt
 $ wget http://download.redis.io/releases/redis-5.0.7.tar.gz
 $ tar -xvf redis-5.0.7.tar.gz
@@ -368,7 +494,7 @@ $ cd /home/pilot-pjt/redis-5.0.7
 $ make
 $ make install
 $ cd /home/pilot-pjt/redis-5.0.7/utils
-$ chmod 755 install_server.shell
+$ chmod 755 install_server.sh
 $ ./install_server.sh
 
 # Redis 설치 확인
@@ -390,10 +516,13 @@ $ redis-cli
 > del key:1
 > quit
 
+
+
 5.4 실시간 적재 파일럿 실행 2단계 04 - Storm 설치
+
 $ cd /home/pilot-pjt
 $ wget https://archive.apache.org/dist/storm/apache-storm-1.2.3/apache-storm-1.2.3.tar.gz
-$ tar -xvf apache-storm-1.2.3-tar.gz
+$ tar -xvf apache-storm-1.2.3.tar.gz
 $ ln -s apache-storm-1.2.3 storm
 
 # Storm 환경설정
@@ -433,6 +562,8 @@ $ ln -s /usr/java/jdk1.8.0_181-cloudera/bin/java /usr/bin/java
 
 # 자동 기동 스크립트 설정 (storm-nimbus, storm-supervisor, storm-ui)
 https://gist.github.com/yulrizka 에서 스크립트 다운로드후 /etc/rc.d/init.d 에 저장
+
+# CH05/예제5.1 경로에 있는 3개의 파일을 업로드
 
 $ chmod 755 /etc/rc.d/init.d/storm-nimbus
 $ chmod 755 /etc/rc.d/init.d/storm-supervisor
