@@ -1,0 +1,177 @@
+# Servlet/JSP 프로그래밍 - 뉴렉처 (www.newlecture.com)
+
+## 00. 이클립스 핫키
+	- 실행 : Ctrl + F11
+
+## 01. 학습안내
+ - 자바 웹 프로그램
+   - [ 서블릿 - JSP - JSP MVC ] - Spring MVC
+
+## 02. 웹서버 프로그램이란
+	- 일반 업무용 프로그램
+	- CS(클라이언트 / 서버) 프로그램 - 소켓, RPC - 데이터를 전달
+	- 웹(클라이언트 / 서버) 프로그램 - 문서를 전달
+      - http://www.newlecture.com/page
+	 
+## 03. 웹서버 프로그램 과 Servlet
+	- 웹 기반의 클라이언트/서버 프로그램
+	  - http://www.newlecture.com/member/list
+	  - 동정 처리 : WEB 서버 + WAS(Web Application Server)
+	
+	- 왜 웹 서버 응용 프로그램을 Servlet이라 명칭할까?
+	  - GET : list/reg/edit/del
+	  - Server Application Let
+
+## 04. 톰캣9 설치하기
+	- 톰켓 홈페이지에서 버전 9 다운로드
+	  - zip 형태와 installer 형태가 있음 - zip 으로 받고 사용자 홈에 설치 - bin/startup.bat 실행
+	  - installer 버전은 윈도의의 서비스에 등록되어 윈도우 부팅시 자동 기종 가능
+	  
+	- 톰켓 기동 : bin/startup.bat
+
+## 05. 톰캣 9 설치하기 # 2 of 3 - 웹문서 추가해 보기	
+	- nana.txt 파일 생성하여 http://localhost:8080/nana.txt 로 불러오기
+	
+## 06. 톰캣 9 설치하기 # 3 of 3 - Context 사이트 추가하기
+	- Context 사이트 개념
+		- http://IP(or hostname):Port/context/리소스들
+	    - localhost:80/admin/index
+		              /dealer/...
+					  /community/...
+					  /academy/...     --> /academy 를 별도의 서버(사이트)로 분리하지만 한개의 사이트 처럼 운영
+		- 물리적으로 2개의 사이트이지만 1개의 사이트 처럼 관리 : Context Name (/academy)
+		- 규모가 커지면 파일수가 많아지고 디렉토리도 많아짐
+	- Context 사이트 추가
+		- conf/server.xml 편집
+			- <context path="it" docBase="C:\Users\User\apache-tomcat-9.0.62\webapps\ITWeb" privileged="true" />
+		- 톰켓 서버 재시작
+		- http://localhost:8080/it/news.txt 로 접속
+			- 실제로 홈에 "it" 디렉터리가 없지만 있는 것 처럼 연결 됨
+
+## 07. 처음으로 서블릿 프로그램 만들어 보기
+	- Nana.java 만들어서 c:\jsp 폴더에 저장
+	- 컴파일 
+		- javac -cp C:\Users\User\apache-tomcat-9.0.62\lib\servlet-api.jar Nana.java
+
+## 08. 서블릿 객체 생성과 실행 방법
+	- 컴파일한 Nana.class 를 "C:\Users\User\apache-tomcat-9.0.62\webapps\ROOT\WEB-INF\classes"에 복사
+	- "C:\Users\User\apache-tomcat-9.0.62\webapps\ROOT\WEB-INF\web.xml" 파일 수정
+		-  	<servlet>
+				<servlet-name>na</servlet-name>
+				<servlet-class>Nana</servlet-class>
+			</servlet>
+  
+			<servlet-mapping>
+				<servlet-name>na</servlet-name>
+				<url-pattern>/hello</url-pattern>
+			</servlet-mapping>
+	- 톰캣 재기동
+
+## 09. 서블릿(Servlet) 문자열 출력
+	- c:\jap\Nana.java 수정
+	- java compile
+	- c:\jap\Nana.class WEB-INF\classes\ 폴더에 복사
+	- 톰캣 재시작
+	- localhost:8080/hello
+
+## 10. 웹 개발을 위한 이클립스 IDE 준비하기
+	- 서블릿 개발 및 배포 과정
+		- 코드수정 -> 컴파일 -> 배포 -> 톰캣 서버 재시작 -> 브라우저로 요청
+	- 이클립스를 사용하면 Ctrl + F11로 한번에 끝남
+	- 웹 개발을 위한 이클립스 : Eclipse for Enterprise Java Developers
+	- 이클립스 실행
+	  - workspace 지정 : c:\jsp\workspace
+	- 이클립스에 프로젝트 생성
+		- "File" -> "New" -> "Dynamic Web Project"
+			- Project name : JSPPrj
+			- Target runtime : Apache Tomcat 9.0
+				- Tomcat installation directory : C:\Users\User\apache-tomcat-9.0.62
+
+## 10. 보충강의 - JSP 프로젝트의 web.xml에서 빨간색 밑줄로 오류가 발생한다면
+	- src/main/webapp/WEB-INF/web.xml 파일에서 http -> https로 변경
+				
+## 11. 이클립스를 이용한 서블릿 프로그래밍
+
+## 12. 어노테이션을 이용한 URL 매핑
+	- Nana.java 소스 맨위에 @WebServlet("/hello")
+		- 어노네티션을 사용하려면 web.xml에서 설정 필요 (서블릿 3.0 이상)
+			- <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+				xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+				version="4.0"
+				metadata-complete="true">  
+		    - 위에 true 를 false로 변경해 주어야 함
+		- 원래는 web.xml 에서 설정해 주었음
+	- 여럿이서 웹프로그램을 개발하는 경우 web.xml을 수정하는 경우 번거롭지만 어노테이션을 사용하면 쉽게 설정 가능함
+	
+## 13. 서블릿 출력 형식을 지정해야 하는 이유
+	- 브라우저에 컨텐츠 형식을 알려주지 않은 경우 : 자의적인 해석 - 크롬의 경우 text로 해석
+
+## 14. 한글과 콘텐츠 형식 출력하기
+	- 한글이 깨지는 이유 두가지
+		- 서버에서 한글을 지원하지 않는 문자코드로 인코딩한 경우 - 
+			- 클라이언트(브라우저): ISO-8859-1    <-----------   웹서버: ISO-8859-1
+			- 톰캣은 기본 인코딩으로 ISO-8859-1 사용함
+		
+		- 서버에서는 UTF-8로 인코딩해서 보냈지만 브라우저가 다른 코드로 잘못 해석한 경우
+			- 클라이언트(브라우저): EUC-KR        <-----r------   웹서버: UTF-8
+	
+	- 한글 인코딩 처리
+		- response.setCharacterEncoding("UTF-8"); // 한글 인코딩 처리
+		- response.setContentType("text/html; charset=UTF-8"); // 브라우저에게 문자 인코딩 방식 알려줌
+
+## 15. GET 요청과 쿼리스트링
+	- GET 요청
+		- 무엇을 달라고 하는 요청에는 옵션이 있을 수 있다.
+			- http://localhost/hello                 --- GET ---> hello 문서 생성
+			- http://localhost/hello?cnt=3           --- GET ---> hello 문서 생성
+				- cnt=3 : query string(쿼리스트링)
+				
+## 16. 기본값 사용하기
+	- 전달되는 입력 값의 형태
+		- 쿼리스트링을 다음처럼 사용할 경우에 전달 되는 cnt 값은 ...
+			- http://.../hello?cnt=20    ---> getParameter("cnt") ---> "20"
+			- http://.../hello?cnt=3     ---> getParameter("cnt") ---> "3"
+			- http://.../hello?cnt=      ---> getParameter("cnt") ---> "" 
+			- http://.../hello?          ---> getParameter("cnt") ---> null
+			- http://.../hello           ---> getParameter("cnt") ---> null
+			
+## 17. 사용자 입력을 통한 GET 요청
+	- 반복횟수를 사용자로부터 입력 받으려면 입력폼을 준비해야 한다
+
+## 18. 입력할 내용이 많은 경우는 POST 요청
+	- POST 요청의 일반적인 요청 방식
+		- 요청과 제출, 두 단계로 나누어서 일을 처리하려고 할 때의 두 가지 요청
+			- 햄버거를 주문을 위한 주문서를 주세요 --- GET --->
+			- 이 내용대로 주세요
+				- 양파=빼고&고기=중간&치즈=반만&상추=... --- POST --->
+
+## 19. 한글 입력 문제
+	- 멀티 바이트 문자 전송문제 : 사용자로부터 값 입력 받아서 전송하기
+		- 입력: UTF-8  --- POST(URL Encoding, 한글 1자당 2Byte) ---> 웹서버
+		- 톰캣에서는 ISO-8859-1(1Byte로 문자 표현)로 문자 인코딩
+	- request.setCharacterEncoding("UTF-8");
+	- 톰캣 서버 설정에서 변경하는 방법(server.xml)
+		- <Connector port="8080"
+				     protocol="HTTP/1.1"
+					 connectionTimeout="20000"
+					 redirectPort="8443"
+					 URIEncoding="UTF-8" />
+		- 일반적으로 톰캣 server.xml을 변경하지 않음
+
+## 20. 서블릿 필터(Servlet Filter)
+	- 필터
+		- 웹서버 <-> WAS  --- request  --- [Filter] --> [ Servlet Container ]
+        -              <--- response --- [Filter] --  [ Servlet Container ]
+		
+## 21. 학습과제(사용자 입력을 통한 계산 요청)
+		
+		
+		
+		
+		
+		
+		
+		
+		          
