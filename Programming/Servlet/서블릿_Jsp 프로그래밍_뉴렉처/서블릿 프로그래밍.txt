@@ -75,6 +75,7 @@
 	- localhost:8080/hello
 
 ## 10. 웹 개발을 위한 이클립스 IDE 준비하기
+    - Eclipse IDE for Enterprise Java Developers 2020-06 바전까지 JAVA 8 지원함.
 	- 서블릿 개발 및 배포 과정
 		- 코드수정 -> 컴파일 -> 배포 -> 톰캣 서버 재시작 -> 브라우저로 요청
 	- 이클립스를 사용하면 Ctrl + F11로 한번에 끝남
@@ -91,6 +92,13 @@
 	- src/main/webapp/WEB-INF/web.xml 파일에서 http -> https로 변경
 				
 ## 11. 이클립스를 이용한 서블릿 프로그래밍
+  - 크롬이나 다른 브라우저로 바꾸기 
+	- [Window] - [Web Browser] - "Default system web browser" 선택
+	- 프로젝트명을 컨텍스트명으로 사용하지 않고 ROOT로 사용하는 방법
+		- [Project Explorer] - [해당 Project 오늘쪽 마우스 클릭] - [Properties] - 
+		  [Web Project Settings] - Context root : / 로 변경
+		- [Servers]에서 프로젝트 [Synchronized] 삭제후 Ctrl + F11 수행
+		
 
 ## 12. 어노테이션을 이용한 URL 매핑
 	- Nana.java 소스 맨위에 @WebServlet("/hello")
@@ -115,11 +123,14 @@
 			- 톰캣은 기본 인코딩으로 ISO-8859-1 사용함
 		
 		- 서버에서는 UTF-8로 인코딩해서 보냈지만 브라우저가 다른 코드로 잘못 해석한 경우
-			- 클라이언트(브라우저): EUC-KR        <-----r------   웹서버: UTF-8
+			- 클라이언트(브라우저): EUC-KR        <-----------   웹서버: UTF-8
 	
 	- 한글 인코딩 처리
 		- response.setCharacterEncoding("UTF-8"); // 한글 인코딩 처리
-		- response.setContentType("text/html; charset=UTF-8"); // 브라우저에게 문자 인코딩 방식 알려줌
+		
+		  // 브라우저에게 문자 인코딩 방식 알려줌
+		  // HTTP Response Header의 ContentType에 해당값 설정
+		- response.setContentType("text/html; charset=UTF-8"); 
 
 ## 15. GET 요청과 쿼리스트링
 	- GET 요청
@@ -139,6 +150,12 @@
 			
 ## 17. 사용자 입력을 통한 GET 요청
 	- 반복횟수를 사용자로부터 입력 받으려면 입력폼을 준비해야 한다
+	
+	- 이클립스에서 HTML 파일 생성시 charset="EUC-KR"로 나오는데 파일 생성시 "UTF-8"로 생성하는 방법
+		- [Window] - [Preferences] - [Web] - [HTML Files] - Encoding을 "UTF-8"로 변경
+		                                   - [CSS Files]  - Encoding을 "UTF-8"로 변경
+										   - [JSP Files]  - Encoding을 "UTF-8"로 변경
+										   
 
 ## 18. 입력할 내용이 많은 경우는 POST 요청
 	- POST 요청의 일반적인 요청 방식
@@ -164,11 +181,100 @@
 	- 필터
 		- 웹서버 <-> WAS  --- request  --- [Filter] --> [ Servlet Container ]
         -              <--- response --- [Filter] --  [ Servlet Container ]
+	- 톰캣 기동할때 와 요청이 있을때 마다 Filter 사용 됨. 
 		
 ## 21. 학습과제(사용자 입력을 통한 계산 요청)
+	- 계산할 값을 입력 하세요 
+		- x 와 y 값 입력후 "계산" 클릭하면 POST 로 올려서 [ 계산결과는 : xx ] 출력하기
+
+## 22. 과제풀이(사용자 입력을 통한 계산 요청)
+	  
+## 23. 여러개의 Submit 버튼 사용하기
+	- 두개의 입력을 받아 덧셈 과 뺄셈을 하는 것 - Submit 이 두개.
+		- <input type="submit" name="operator" value="덧셈" />
+		- <input type="submit" name="operator" value="뺄셈" />
+
+## 24. 입력 데이터 배열로 받기
+    - 클라이언트 처리
+		- 	<div>	
+				<input type="text" name="num" />  // 동일한 name으로 발송하면 배열로 발송됨
+				<input type="text" name="num" />
+				<input type="text" name="num" />
+				<input type="text" name="num" />
+			</div>
+
+			<div>
+		 		<input type="submit" value="덧셈" />
+			</div>
+
+	- 서버에서 배열로 받아 처리
+		- String[] num_ = request.getParameterValues("num"); // 배열로 받음
+		- for 문을 배열 데이터 조회
+	
+## 25. 상태 유지를 필요로 하는 경우와 구현의 어려움
+	- 상태 유지의 필요성
+		- 첫번째 입력값 입력 --> "+" 클릭 --> 두번째 입력값 입력 --> "계산" 클릭
+			
+	- 상태를 유지하는 방법 - 3가지
+		1. application
+		2. session
+		3. cookie
 		
+## 26. Application 객체와 그것을 사용한 상태 값 저장
+	- Application 저장소 : 서블릿 컨텍스트(Context)
+		- 선언하기	
+			ServletContext application = request.getServletContext(); // 서블릿 컨텍스트
+		    
+		- 가져오기
+			int x = (Integer)application.getAttribute("value");
+			String operator = (String)application.getAttribute("op");
+			
+		- 저장하기
+			application.setAttribute("value", v);
+			application.setAttribute("op", op);
+
+## 27. Session 객체로 상태값 저장하기(그리고 Application 객체와의 차이점)
+	- 차이점
+		- Application 객체는 Application 전역에서 사용 가능하고 Session은 세션 내에서 사용가능 하다는 차이점.
+		- 세션 : 현재 접속한 사용자 - 사용자별로 공간이 달라짐.
+	
+## 28. WAS가 현재사용자(Session)을 구분하는 방식
+	- 세션 ID와 사용자 저장소 구별
+		- WAS(Web Application Server) - application
+		                              - 
+    - SID 발급 과정									  
+		- 최초에는 SID 없음. but application 공간은 사용 가능
+		- WAS가 SID 발급하고 발급되면 session 저장공간 사용 가능
+		- 사용자는 SID를 가지고 다녀야 함 - Cookie: JSESSIONID=xxxxx - JSESSIONID가 Session ID 임.
+	- Session의 정리
+	- 세션 메소드
+		- void setAttributes(String name, Object value) - 지정된 이름으로 객체를 설정
+		- Object getAttribute(String name) - 지정한 이름의 객체를 반환
+		- void invalidate() - 세션에서 사용되는 객체들을 바로 해제
+		- void setMaxInactiveInterval(int interval) - 세션 타임아웃을 정소(초)로 설정
+		- boolean isNew() - 세션이 새로 생성되었는지를 확인
+		- Long getCreationTime() - 세션이 시작된 시간을 반환, 1970년 1월 1일을 시작으로 하는 밀리초
+		- long getLastAccessedTime() - 마지막 요청시간, 1970년 1월 1일을 시작으로 하는 밀리초
+ 		
+## 29. Cookie를 이용해 상태값 유지하기
+	- 상태 저장을 위한 값의 저장소의 특징
+		- 누구나 저장할 수 있는 공간 - application 저장소
+		- 개인 사물함 - 세션
+		- 가지고 다니는 경우 - Cookie - 브라우저가 가지고 다님.
+	
+	- 쿠키 저장하기
+		Cookie cookie = new Cookie("c", String.valueOf(result));
+		response.addCookie(cookie);
+	
+	- 쿠키 읽기
+	    Cookie[] cookies = request.getCookies();
+		String c_ = "";
 		
-		
+		if(cookies != null)
+			for(Cookie cookie : cookies)
+				if("c".equals(cooke.getName()))
+					_c = cookie.getValue();
+	
 		
 		
 		
