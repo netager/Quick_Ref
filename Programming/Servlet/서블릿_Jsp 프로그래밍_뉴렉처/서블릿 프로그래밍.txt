@@ -2,6 +2,9 @@
 
 ## 00. 이클립스 핫키
 	- 실행 : Ctrl + F11
+	- Ctrl + Shift + o : 사용 모듈 import
+	- Ctrl + Space : 자동 완성 
+	
 
 ## 01. 학습안내
  - 자바 웹 프로그램
@@ -275,9 +278,50 @@
 				if("c".equals(cooke.getName()))
 					_c = cookie.getValue();
 	
-		
-		
-		
+## 30. Cookie의 path 옵션
+	- 쿠키를 설정할때 URL 마다 설정할 수 있음
+		Cookie valueCookie = new Cookie("value", String.valueOf(v)); // 문자로만 저장 가능. v는 정수형. URL로 사용 가능한 문자만 사용
+		Cookie opCookie = new Cookie("op", op);
+			
+		//valueCookie.setPath("/"); // 모든 경로에서 해당 쿠키 사용
+		//opCookie.setPath("/");
+		//valueCookie.setPath("/add"); // /add 경로에서 해당 쿠키 사용
+		//opCookie.setPath("/add");
+		valueCookie.setPath("/calc2"); // /calc2  경로에서 해당 쿠키 사용
+		opCookie.setPath("/calc2");
+	
+## 31. Cookie의 maxAge 옵션
+	- 브라우저가 닫혀도 유효한가?
+		- maxAge를 설정하지 않으면 브라우저의 생존주기와 같음.
+	    - 브라우저가 살아 있으면 IN-MEMORY, 브라우저가 닫히면 IN-FILE로 저장 
+	- maxAge 옵션 설정	
+		- valueCookie.setMaxAge(24*60*60); // 앞으로 24*60*60초 까지 살아 있음. 만료시간(초), 24*60*60 = 1일
+
+## 32. Application/Session/Cookie 정리
+	- 상태 저장을 위한 값의 저장소의 특징
+		- application
+			- 사용범위 : 전역 범위에서 사용하는 저장 공간
+			- 생명주기 : WAS가 시작해서 종료할 때 까지
+			- 저장위치 : WAS 서버의 메모리 
+		- Session
+			- 사용범위 : 세션 범위에서 사용하는 저장 공간
+			- 생명주기 : 세션이 시작해서 종료할 때 까지
+			- 저장위치 : WAS 서버의 메모리 
+		- Cookie 
+			- 사용범위 : Web Browser별 지정한 path 범주 공간
+			- 생명주기 : Browser에 전달한 시간부터 만료시간까지
+			- 저장위치 : Web Browser의 메모리 또는 파일
+			
+## 33. 서버에서 페이지 전환해 주기(redirection)
+	- 페이지 전환
+		- response.sendRedirect("calc2.html");
+
+ 		
+## 34. 동적인 페이지(서버페이지)의 필요성 
+	- 정적인 html을 보내는 것이 아니라 동적인 html을 만들어서 보낼 필요가 있음
+		- 요청이 있을때 만들어 지는 문서 : 동적문서 : 서버에서 만들어지므로 서버 동적 문서 
+	
+	
 		
 		
 		          

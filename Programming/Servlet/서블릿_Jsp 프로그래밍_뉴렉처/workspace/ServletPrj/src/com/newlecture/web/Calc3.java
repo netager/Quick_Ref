@@ -14,8 +14,8 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class Calc
  */
-@WebServlet("/calc2")
-public class Calc2 extends HttpServlet {
+@WebServlet("/calc3")
+public class Calc3 extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ServletContext application = request.getServletContext(); // 서블릿 컨텍스트
