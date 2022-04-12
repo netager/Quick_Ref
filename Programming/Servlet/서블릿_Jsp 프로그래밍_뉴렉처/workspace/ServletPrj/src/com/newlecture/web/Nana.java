@@ -24,7 +24,7 @@ public class Nana extends HttpServlet  {
 		String cnt_ = req.getParameter("cnt");
 		
 		int cnt = 100;
-		if(cnt_ != null && !cnt_.contentEquals(""))
+		if(cnt_ != null && !cnt_.equals(""))
 			cnt = Integer.parseInt(cnt_);
 		
 		for(int i=0; i<cnt; i++)

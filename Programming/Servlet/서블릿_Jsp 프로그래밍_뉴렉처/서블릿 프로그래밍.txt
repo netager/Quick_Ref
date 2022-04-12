@@ -320,8 +320,228 @@
 ## 34. 동적인 페이지(서버페이지)의 필요성 
 	- 정적인 html을 보내는 것이 아니라 동적인 html을 만들어서 보낼 필요가 있음
 		- 요청이 있을때 만들어 지는 문서 : 동적문서 : 서버에서 만들어지므로 서버 동적 문서 
-	
-	
 		
+## 35. 처음이자 마지막으로 동적인 페이지 서블릿으로 직접 만들기
+	- 요청 Method에 따른 특화된 메소드들을 이용하기
+		- init() ---> service(...) ---> doGet(...)
+							       ---> doPost(...)
+
+## 36. 계산기 서블릿 완성하기
+	- 
+
+## 37. 쿠키 삭제하기
+	- 		if(operator != null && operator.equals("C"))
+			expCookie.setMaxAge(0);
+
+## 38. GET과 POST에 특화된 서비스 함수
+	- @Override
+		protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+			System.out.println("doPost 메소드가 호출되었습니다.");
+		}
+	
+	  @Override
+		protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+			System.out.println("doGet 메소드가 호출되었습니다.");
+		}
+
+## 39. 계산기 프로그램 하나의 서블릿으로 합치기
+	- GET:/calcpage ---> 문서 생성
+	  POST:/calc3   ---> 
+	
+## 40. JSP 시작하기 (Jasper를 이용한 서블릿 프로그래밍)
+	- HTML 출력이 많은 결과 페이지
+	- 서블릿 출력 코드에서 HTML을 출력하는 방법
+	- Jasper가 만들어주는 서블릿 출력 코드 
+		- 확장자만 jsp로 바꾸어 주면 됨.
+		- add.jsp 자체가 URL명이 됨.
+		- add.jsp ---> Jasper ---> [톰캣 서버 디렉토리]\work\Catalina\localhost\ROOT\org\apache\jsp\add_jsp.java
+			- [톰캣 서버 디렉토리] : C:\Users\USER\Quick_Ref\Programming\Servlet\서블릿_Jsp 프로그래밍_뉴렉처\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\
+						
+	- 코드 블록
+		<%   ...   %>
+
+## 41. JSP의 코드 블록
+	- y의 값은 : y
+		1) y의 값은 : <% out.print(y) %>
+		2) y의 값은 : <%= y %>
+	
+	- 일반적인 코드블럭은 _jspService() 내에 들어감
+	
+	- 클래스 멤버 메소드 정의 ~ class 내에 삽입
 		
-		          
+		<%!
+			public int sum(int a, int b) {
+				return a + b;
+			}
+		%>
+	
+	- 페이지 지시자 블럭(지시블럭)
+		<%@ page language="java" contentType="text/html; charset=UTF-8"
+			pageEncoding="UTF-8" %>
+		
+		- 서블릿에서 사용했던 방법 : jsp에서는 에러 발생 하므로 위의 지시블럭 사용함.
+			<%
+				response.setCharacterEncoding("UTF-8");
+				response.setContextType("text/html; charset=UTF-8");
+			%>
+	- jsp를 java 소스로 변경되면 
+		 - out.write("y의 값은 : "); // out.write() ~ 단순하게 문자만 출력
+		 - out.print(y);           // out.print() ~ 다양한 type(정수, 문자열 등) 출력 가능  
+## 42. JSP의 내장객체 간단히 알아보기
+	- <% int page=3 %> 
+		- page 변수 중복 에러 발생 - Jasper 에서 내부적으로 만든 변수 ~ 내장객체라 칭함.
+
+## 43. JSP로 만드는 Hello 서블릿 
+	- jsp 파일명은 소문자로 작성하는 것이 좋음 : URL에서 직접 call 되므로
+		
+## 44. 스파게티 코드를 만드는 JSP 
+	- 복잡하게 만들었을 때 코드를 스파게티 코드라고 함. 또는 실타래 코드라고도 함.
+    - 코드 블럭을 한 곳으로 모아 놓는것이 좋음.
+
+## 45. JSP MVC model 1
+	- 일반적인 JSP 프로그래머가 구현하는 방식의 코드 
+		/*--- 입력 코드 ----------*/
+		<%
+		String num_ = request.getparameter("n");
+		%>
+		/*--- 출력 코드 ----------*/
+		...
+		...
+		...
+		<%if(num % 2 != 0) { %> 
+			홀수입니다.
+		<%} else { %>
+			짝수입니다.
+		<%} %>
+		
+	- 위쪽에 입력코드 출력되는 곳에 출력코드 작성	- MVC model 1 방식 ~ 변수가 더 사용됨. 	
+		/*--- 입력 코드 ----------               */
+		/* 출력데이터 : Model                     */
+		/* 입력과 제어를 담당 : Controller [자바 코드] */
+		<%
+		String num_ = request.getparameter("n");
+		...
+		if(num % 2 != 0)
+			model="홀수";
+		else
+			model = "짝수"
+		%>
+
+		/*--- 출력 코드 ----------    */
+		/* [HTML 코드] 출력 담당 : View */
+		...
+		...
+		...
+		<%=model%> 입니다.
+	
+	- MVC (Model View Control)
+		- Model : 출력데이터 
+		- Controller : 자바코드, 입력과 제어를 담당
+		- View : HTML 코드, 출력담당 
+		
+## 46. JSP MVC model1을 model2 방식으로		
+	- model 1 : 컨트롤러와 뷰가 물리적으로 분리되지 않은 방식 - 페이지 하나에 MVC 구현 
+	- model 2 : 컨트롤러와 뷰를 분리 하는 방식 
+		- 컨트롤러를 미리 컴파일하기 때문에 속도가 빠름 
+	- Model 2 방식 종류
+		1. 사용자 ---> 톰캣 ---> Controller & Dispatcher(포워딩) ---> View(jsp)
+				- Controller - Dispatcher - View
+				
+		2. 사용자 ---> 톰캣 ---> Dispatcher(Servlet) ---> View(jsp(servlet))
+		                    Controller(일반 Class, POJO Class, 업무 Class) 
+			- 디스패처 서블릿이 POJO Class를 불러서 사용
+			- POJO 에서 디스패처 서블릿으로 <url-mapping> 제공
+			- 톰캣 모든 URL : web.xml
+	- redirect vs. forward
+		- redirect : 현재 진행된 작업과 상관없이 새로운 요청을 하게하는 기능 
+		- forward  : 현재 작업한 내용을 이어갈 수 있도록 뭔가를 공유하는 기능
+
+## 47. View를 위한 데이터 추출 표현식 EL(Expression Language)
+	- View 에서는 자바코드를 되도록 사용하지 않게하는 방식으로 가는 것이 MVC를 구현하는 가장 좋은 방법
+	- EL(Expression Language)
+		- 저장 객체에서 값을 추출해서 출력하는 표현식 
+			Controller                                View
+			-------------------------------           ---------------------------
+			request.setAttribute("cnt",30);  --->     request.getAttribute("cnt")
+			                          
+									                  View(EL 표기법)
+			-------------------------------           ---------------------------												  
+                                                      ${cnt}
+
+		- list type 전달												  
+			Controller                                View
+			-----------------------------------       --------------------------------------------
+			List list = new ArrayList(){"a","b"};
+			request.setAttribute("list", list);  ---> ((List)request.getAttriburte("list")).get(0)
+			                          
+									                  View(EL 표기법)
+			-----------------------------------       --------------------------------------------												  
+                                                      ${list[0]}
+
+		- Map type 전달												  
+			Controller                                View
+			-----------------------------------       --------------------------------------------
+			Map n = new HashMap("title","제목"};
+			request.setAttribute("n", n);        ---> ((Map)request.getAttriburte("n")).get("title")
+			                          
+									                  View(EL 표기법)
+			-----------------------------------       --------------------------------------------												  
+                                                      ${n.title}
+
+## 48. EL의 데이터 저장소 
+	- 저장소 종류 
+		- page 객체    - pageContext 객체를 통해서 구현. 
+		- request 객체 - forward를 통해서 구현 
+		- session 객체 
+		- application 객체 
+		
+	- 만일 4개의 저장소에 cnt 라는 변수를 사용하게 되면 어케 될까?
+		- 오류가 나지 않으므로 우선순위가 있다 : page -> request -> session -> spplication 
+		- page 와 request에 cnt가 있는 경우  request에 있는 cnt 사용 불가
+		- 이때 사용하는 메소드 
+			- pageScope
+			- requestScope
+			- sessionScope
+			- applicationScope
+		- ${sessionScope.cnt}
+			
+	- 다양한 EL 사용 방법 
+		${requestScope.result}<br >
+
+		${names[0]}<br >
+		${names[1]}<br >
+
+		${notice.id}<br >
+		${notice.title}<br >
+		
+		${result}<br >
+		
+		${param.n}<br>
+		${header.host}<br>
+		${header["host"]}<br>
+	
+	- <%=pageContext.getRequest().getMethod() %>를 EL로 표현 
+	    - get만 가능함. : ${pageContext.[get과 ()생략][소문자method, ()생략]} 로 사용 가능.
+		- ${pageContext.request.method}
+
+## 49. EL 연산자
+	
+	EL Expression       Result
+	------------------  ---------------- 
+	${1 > (4/2)} 	    false
+    ${4.0 >= 3}			true
+	${100.0 == 100}		true 
+	${(10*10) ne 100} 	false
+	${'a' < 'b'}		true
+	${'hip' gt 'hit'}	false 
+	${4 > 3}			true
+	${1.2E4 + 1.4}		12001.4
+	${3 div 4}			0.75
+	${10 mod 4}			2
+				
+	- < > <= >= 보다는 lt gt le ge 를 사용하는 것이 좋음.
+	- empty 연산자 - 널이거나 빈문자이면 true 
+		- ${empty param.n} 은 ${param.n == null || param.n == ''} 과 동일하게 해석
+
+## 50. 수업용 프로젝트 준비하기 
+		
