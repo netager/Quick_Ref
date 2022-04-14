@@ -853,10 +853,25 @@
         - 공지수정   : 관리자 
         - 공지삭제   : 관리자 
 	    - 공지일괄삭제 : 관리자 
-		- 공지목록조회 : 사용자, 관리자 - 처음 요청(getNoticeList())
-                         	  - 페이지 요청(getNoticeList(int page)),
-							  - 검색요청(getNoticeList(String field, String query, int page)
+		- 공지목록조회 : 사용자, 관리자 
+			- 처음 요청(getNoticeList())
+			- 페이지 요청(getNoticeList(int page)),
+			- 검색요청(getNoticeList(String field, String query, int page)
+			- getNoticeCount()
+			- getNoticeCount(String field, String query)
 		- 공지상세조회 : 사용자, 관리자 
+			- 페이지 요청(getNotice(id)) : 사전조건 - id를 넘겨 받는다.
+			- 다음 페이지 요청(getNextNotice(id))
+			- 이전 페이지 요청(getPrevNotice(id))
+
+## 71. 서비스 클래스 구현하기 
+	- NoticeService.java 
+	
+## 72. getNoticeList 메소드의 SQL 쿼리 작성하기 - 서비스 클래스 구현을 위한 SQL 코드 작성하기 
+
+## 73. getNextNotice 메소드의 SQL 쿼리 작성하기 
+
+			
 
 
 	
