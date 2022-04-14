@@ -596,4 +596,267 @@
 			}
 		--> 묶어 있는 데이터 사용 방법 : ${notice.id} // 내부적으로 getter를 이용해서 데이터 가져옴
 		                        ${notice.code} 등			
+
+## 57. 목록 페이지(list.jsp)도 MVC model2로 수정하기 
+	- MVC model2
+		- Controller(서블릿) 과 View(JSP)를 물리적으로 나누어서 작성
+		- Model(데이터) 공유는 request를 이용하여 forward 방식으로 Controller에서 View로 전송 
+			- request.setAttribute()
+			- request.getRequestDispatcher("/notice/list.jsp").forward(request,  response);
+		- View 에서 사용 데이터 사용 방법은 EL 표기법으로 사용가능
+            - ${n.id}
+		- View 에서 LIST형 처리시에는 다른 형태로 처리 
+			<%
+			List<Notice> list = (List<Notice>)request.getAttribute("list");
+			for(Notice n : list) {
+			pageContext.setAttribute("n", n);
+			%>
+					
+			<tr>
+				<td>${n.id}</td>
+			</tr>
+			<%}%>
+
+## 58. View 페이지 은닉하기 
+	- 은닉하기 
+		- /WEB-INF/view 폴더 생성 
+		- jsp 페이지 구성된 폴더를 view 폴더로 이동 : admin, member, notice, student
+
+## 59. View에서 흐름 제어를 위한 자바 코드 블록 제거하기
+	- LIST 처리시 반복처리를 위해 코드 블록 사용. 이러한 것을 태그를 이용한 제어구조로 변경
+
+					<%
+					List<Notice> list = (List<Notice>)request.getAttribute("list");
+					for(Notice n : list) {
+						pageContext.setAttribute("n", n);
+					%>
+					
+					<tr>
+						<td>${n.id}</td>
+						<td class="title indent text-align-left"><a href="detail?id=${n.id}">${n.title} </a></td>
+						<td>${n.writerId}</td>
+						<td>${n.regdate}</td>
+						<td>${n.hit}</td>
+					</tr>
+					<%} %>	
+	- 자바의 반복문을 이용한 제어구조에서 태그를 이용한 제어구조로 전환 
+		- <forEach> ... </forEach>
+	
+	- 제어 태그를 사용하기 위해서는 JSTL Library 다운로드가 필요.
+		- URL : https://mvnrepository.com/artifact/javax.servlet/jstl/1.2
+		- library : jstl-1.2.jar
+		- WEB-INF/lib 폴더에 해당 lib 이동
+		- 사용하고자 하는 jsp 파일에 설정
+			- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+            - 실제 사용 방법 		
+					<c:forEach var="n" items="${list}">
+					<tr>
+						<td>${n.id}</td>
+						<td class="title indent text-align-left"><a href="detail?id=${n.id}">${n.title} </a></td>
+						<td>${n.writerId}</td>
+						<td>${n.regdate}</td>
+						<td>${n.hit}</td>
+					</tr>
+					</c:forEach>
+
+## 60. Tag 라이브러리와 JSTL(JSP Standard Tag Library)
+	- 태그 라이브러이의 표준화
+		- JSTL은 5가지 범주의 태그 라이브러리를 제공 
+			- Core
+			- Formating
+			- Functions
+			- SQL
+			- XML
+		- SQL 및 XML 태그 라이브러리는 사용하지 않는게 좋음		
+	- JSTL Core 
+		- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+		- <c:out>
+	
+	- 가장 간단한 For 태그 라이브러리 만들기 위한 두 가지 코드 
+		- ForTag 클래스 생성 
+			- TagSupport 를 상속받아 doStartTag, doEndTag, doAfterBody 구현 
+			- 태그 Descriptor를 생성하여 WEB-INF/{파일명}.tld 저장 
+				- {파일명}.tld 파일 내용
+					<taglib>
+						<tlibversion>1.0</tlibversion>
+						<jspversion>1.1</jspversion>
+						..
+						<uri>http://www.newlecture.com/jsp/tags/control</uri>
+						...
+						<tag>
+							<name>for</name>
+							<tagclass>
+								com.newlecture.web.taglib.ForTag
+							</tagclass>
+						</tag>
+					</taglib>
+
+## 61. 중간 정리 
+	- 서블릿 -> 자바 웹 프로그램 
+	             - 웹 -> 입력/출력 - request : 입력설정, 입력값 읽기 
+				               - response : 출력 설정, 출력 스트림 -> 웹문서 출력 -> 문서 기반(jsp)의 코드 블록
+							                                           - 스파게티 -> MVC -> View에서 코드 블록이 꼭 필요한 경우 -> EL, JSTL
+
+## 62. [JSTL] forEach의 속성 사용하기
+	- JSTL Core
+		- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+		-<c:set>, <c:remove> <c:if> ....
+		
+    - <c:forEach> 
+		<c:forEach var="n" items="${list}" begin="1" end="3" varStatus="st">
+		/* request 객체의 "list" 을 "n"으로 저장 
+        /* begin="1", end="3" - 인덱스 개념으로 처리(0부터 시작), 1부터 3까지의 데이터 조회, 첫번째 데이터인 인덱스 0은 제외되었음.
+        /* varStatus="st"> : st를 이용하여 설정된 값 조회
+		/* <td>${st.current} ${st.index} ${st.count} ${st.first} ${st.last} ${st.begin} ${st.end} ${st.step}</td>
+		
+		<tr>
+			<td>${st.current} ${n.id}</td>
+			<td class="title indent text-align-left"><a href="detail?id=${n.id}">${n.title} </a></td>
+			<td>${n.writerId}</td>
+			<td>${n.regdate}</td>
+			<td>${n.hit}</td>
+		</tr>
+		</c:forEach>
+	
+## 63. [JSTL] forEach문으로 Pager 번호 만들기 
+	- pager 번호 생성하기 
+		- 번호를 만드는 매개 값 
+		  - ?p=3   --- 보이는 pager ---> 1 2 3 4 5
+	      - ?p=17  --- 보이는 pager ---> 16 17 18 19 20
+		  - ?p=19  --- 보이는 pager ---> 16 17 18 19 20	
+        - startNum을 알고 입력되는 p(페이지 번호) 를 알면 규칙을 만들 수 있다.
+		- p % 5 = 17 % 5 = 2 - 1 하면 시작번호를 구할 수 있음 
+			- page = 3  ---> 3 -  (3-1) % 5  ---> 1
+			- page = 21 ---> 21 - (21-1) % 5 ---> 21
+			- page = 14 ---> 14 - (14-1) % 5 ---> 11
 			
+			- startNum = page - (page-1) % 5;
+	
+	- Pager 만들기 코드 
+	
+		<c:set var="page" value="${(param.p == null)?1:param.p}" /> 
+		<c:set var="startNum" value="${page-(page-1)%5}" />
+	
+		<ul class="-list- center">
+	
+		<c:forEach var="i" begin="0" end="4"> <!-- start 와 end를 이용하여 5번 반복  -->
+		 
+		<li><a class="-text- orange bold" href="?p=${startNum+i}&t=&q=" >${startNum+i}</a></li>
+		</c:forEach>		
+		</ul>
+
+## 64. [JSTL] if 문으로 Pager 이전/다음 번호 만들기 - JSTL로 이전/다음 Pager 링크 만들기 
+	- 소스코드 작성 
+	
+			<c:set var="page" value="${(param.p == null)?1:param.p}" /> 
+			<c:set var="startNum" value="${page-(page-1)%5}" />
+			<c:set var="lastNum" value="23" />
+
+			<div>
+				<c:if test="${startNum>1}">
+					<a href="?p=${startNum-1}&t=&q=" class="btn btn-prev" >이전</a>
+				</c:if>
+				<c:if test="${startNum<=1 }">
+					<span class="btn btn-prev" onclick="alert('이전 페이지가 없습니다.');">이전</span>
+				</c:if>
+				
+			</div>
+			
+			<ul class="-list- center">
+
+				<c:forEach var="i" begin="0" end="4"> <!-- start 와 end를 이용하여 5번 반복  -->
+					<li><a class="-text- orange bold" href="?p=${startNum+i}&t=&q=" >${startNum+i}</a></li>
+				</c:forEach>		
+			</ul>
+			<div>
+					<c:if test="${startNum+5<lastNum}">
+						<a href="?p=${startNum+5}&t=&q=" class="btn btn-next">다음 </a>
+					</c:if>	
+					<c:if test="${startNum+5>=lastNum}">
+						<span class="btn btn-next" onclick="alert('다음 페이지가 없습니다.');">다음</span>
+					</c:if>		
+			</div>
+
+## 65. [JSTL] forTokens로 첨부파일 목록 출력하기 
+	- forTokens 를 사용하여 첨부파일 목록 처리 소스 
+		<tr>
+			<th>첨부파일</th>
+			<td colspan="3" style="text-align:left;text-indent:10px;">    
+			<c:forTokens var="fileName" items="${n.files}" delims="," varStatus="st">
+				<a href="${fileName}">${fileName}</a>
+				<c:if test="${! st.last}">
+				/
+				</c:if>
+				
+			</c:forTokens>	
+			</td>
+		</tr> 
+
+## 66. [JSTL] format 태그로 날짜 형식 변경하기 
+
+	- JSTL은 5가지 범주의 태그 라이브러리를 제공 
+		- Core
+		- Formating
+		- Functions
+		- SQL
+		- XML
+
+	- JSTL의 Formating을 이용한 날짜 형식 표현 
+		- <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+		- formatDate 와 parseDate 에 대해서 Study
+
+		- <td><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${n.regdate}"/></td>
+
+## 67. [JSTL] 숫자 출력 형식 지정하기 - JSTL:formatNumber 
+	- JSTL의 Formating을 이용한 숫자 형식 표현 
+		- <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+		
+		- <td><fmt:formatNumber value="${n.hit}"/></td>
+		- <td><fmt:formatNumber type="number" pattern="##,####" value="${n.hit}"/></td>
+		
+	- 상세 포맷은 인터넷 검색
+
+	
+## 68. [JSTL] EL에서 함수 이용하기 - JSTL:functions - 문자열 포맷 
+	- JSTL의 functions을 이용한 문자 형식 표현
+		- <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+	
+		- Emamples 
+		
+			<c:set var="style" value="" />
+										
+			<c:if test="${fn:endsWith(fileName, '.zip') }">
+				<c:set var="style" value="font-weight: bold; color:red;" />
+			</c:if>
+			
+			<a href="${fileName}" style="${style}">${fn:toUpperCase(fileName)}</a>
+			
+
+## 69. 기업형으로 레이어를 나누는 이유와 설명 - 코드 분리를 위한 사전 설명
+	- 정리 - 코드의 분리 : 종류  
+		- 서블릿(Controller) <-- model --> 업무 서비스(트랜잭션:계좌이체() 등) <-- Entity --> 데이터서비스(DAO) <---> DBMS
+		  ->  문서 출력(.jsp)
+
+		- 서블릿(Controller, 트랙잭션(이체 등)) <-- Entity --> 데이터서비스(DAO) <-----> DBMS
+		  ->  문서 출력(.jsp)
+
+		- 서블릿(Controller) <-- model --> 업무 서비스(트랜잭션:계좌이체() 등, DB직접 처리) <-----> DBMS
+		  ->  문서 출력(.jsp)
+				  
+## 70. 서비스 함수 찾아내기
+	- 업무 서비스 분리 하기 
+		- 서블릿(Controller) <-- model --> 업무 서비스(트랜잭션:계좌이체() 등, DB직접 처리) <-----> DBMS
+		  ->  문서 출력(.jsp)
+	- 공지 시스템
+		- 공지 등록  : 관리자
+		- 공지일괄공개 : 관리자
+        - 공지수정   : 관리자 
+        - 공지삭제   : 관리자 
+	    - 공지일괄삭제 : 관리자 
+		- 공지목록조회 : 사용자, 관리자 - 처음 요청(getNoticeList())
+                         	  - 페이지 요청(getNoticeList(int page)),
+							  - 검색요청(getNoticeList(String field, String query, int page)
+		- 공지상세조회 : 사용자, 관리자 
+
+
+	
