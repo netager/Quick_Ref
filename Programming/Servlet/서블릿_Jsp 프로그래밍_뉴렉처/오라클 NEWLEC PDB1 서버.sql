@@ -51,6 +51,18 @@ insert into notice values(2, 'JDBC2란 무엇인가?', 'newlec','aaa', SYSDATE, 
 insert into notice values(3, 'JDBC3란 무엇인가?', 'newlec','aaa', SYSDATE, 0, '');
 insert into notice values(4, 'JDBC4란 무엇인가?', 'newlec','aaa', SYSDATE, 10, '');
 
+insert into notice values(5, 'JDBC5란 무엇인가?', 'newlec','aaa', SYSDATE, 10, '');
+insert into notice values(6, 'JDBC6란 무엇인가?', 'newlec','aaa', SYSDATE, 10, '');
+insert into notice values(7, 'JDBC7란 무엇인가?', 'newlec','aaa', SYSDATE, 10, '');
+insert into notice values(8, 'JDBC8란 무엇인가?', 'newlec','aaa', SYSDATE, 10, '');
+insert into notice values(9, 'JDBC9란 무엇인가?', 'newlec','aaa', SYSDATE, 10, '');
+insert into notice values(10, 'JDBC10란 무엇인가?', 'newlec','aaa', SYSDATE, 10, '');
+
+insert into notice values(11, 'JDBC11란 무엇인가?', 'newlec','aaa', SYSDATE, 10, '');
+insert into notice values(12, 'JDBC12란 무엇인가?', 'newlec','aaa', SYSDATE, 10, '');
+insert into notice values(13, 'JDBC13란 무엇인가?', 'newlec','aaa', SYSDATE, 10, '');
+
+
 commit;
 
 drop table "COMMENT";
