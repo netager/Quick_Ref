@@ -27,9 +27,10 @@ public class NoticeService {
 
 		List<Notice> list = new ArrayList<>();
 		String sql = "SELECT * " + 
-				"  FROM (SELECT ROW_NUMBER() OVER (ORDER BY REGDATE DESC) NUM, " + 
-				"        NOTICE.* FROM NOTICE WHERE "+field+ " LIKE ? ORDER BY REGDATE )" + 
-				" WHERE NUM BETWEEN ? AND ?";
+		        "       FROM (SELECT ROWNUM NUM, N.* " +  
+				"               FROM (SELECT * FROM NOTICE " + 
+		        "                      WHERE " +field+ " LIKE ? ORDER BY REGDATE DESC) N )" + 
+				"      WHERE NUM BETWEEN ? AND ? ";
 		
 		// 1, 11, 21, 31 -> a1+(n-1)*10 : 등차수열
 		//              an = 1 + (page-1)*10
@@ -160,7 +161,7 @@ public class NoticeService {
 				String content = rs.getString("CONTENT");
 
 				notice = new Notice(
-						id,
+						nid,
 						title,
 						writerId,
 						regdate,

@@ -51,7 +51,6 @@ insert into notice values(2, 'JDBC2란 무엇인가?', 'newlec','aaa', SYSDATE, 
 insert into notice values(3, 'JDBC3란 무엇인가?', 'newlec','aaa', SYSDATE, 0, '');
 insert into notice values(4, 'JDBC4란 무엇인가?', 'newlec','aaa', SYSDATE, 10, '');
 
-<<<<<<< HEAD
 insert into notice values(5, 'JDBC5란 무엇인가?', 'newlec','aaa', SYSDATE, 10, '');
 insert into notice values(6, 'JDBC6란 무엇인가?', 'newlec','aaa', SYSDATE, 10, '');
 insert into notice values(7, 'JDBC7란 무엇인가?', 'newlec','aaa', SYSDATE, 10, '');
@@ -63,21 +62,8 @@ insert into notice values(11, 'JDBC11란 무엇인가?', 'newlec','aaa', SYSDATE
 insert into notice values(12, 'JDBC12란 무엇인가?', 'newlec','aaa', SYSDATE, 10, '');
 insert into notice values(13, 'JDBC13란 무엇인가?', 'newlec','aaa', SYSDATE, 10, '');
 
-
-=======
-insert into notice values(5, 'JDBC5란 무엇인가?', '이현철','bbb', SYSDATE, 0, '');
-insert into notice values(6, 'JDBC6란 무엇인가?', '김인수','kkk', SYSDATE, 10, '');
-
-insert into notice values(7, 'JDBC7란 무엇인가?', '이현철','bbb', SYSDATE, 0, '');
-insert into notice values(8, 'JDBC8란 무엇인가?', '김인수','kkk', SYSDATE, 10, '');
-
-insert into notice values(9, 'JDBC9란 무엇인가?', '이현철','bbb', SYSDATE, 0, '');
-
-insert into notice values(10, 'JDBC10란 무엇인가?', '김인수','kkk', SYSDATE, 10, '');
-insert into notice values(11, 'JDBC11란 무엇인가?', '이현철','bbb', SYSDATE, 0, '');
-insert into notice values(12, 'JDBC12란 무엇인가?', '김인수','kkk', SYSDATE, 10, '');
-insert into notice values(13, 'JSP1란 무엇인가?', '이현철','bbb', SYSDATE, 0, '');
 insert into notice values(14, 'JSP란 무엇인가?', '김인수','kkk', SYSDATE, 10, '');
+
 insert into notice values(15, 'JSP2란 무엇인가?', '이현철','bbb', SYSDATE, 0, '');
 insert into notice values(16, 'JSP3란 무엇인가?', '김인수','kkk', SYSDATE, 10, '');
 insert into notice values(17, 'JSP4란 무엇인가?', '이현철','bbb', SYSDATE, 0, '');
@@ -119,6 +105,7 @@ insert into notice values(49, 'JSPC49란 무엇인가?', '이현철','bbb', SYSD
 
 insert into notice values(50, 'JDBC50란 무엇인가?', '김인수','kkk', SYSDATE, 10, '');
 insert into notice values(51, 'JDBC51란 무엇인가?', '이현철','bbb', SYSDATE, 0, '');
+
 insert into notice values(52, 'JDBC52란 무엇인가?', '김인수','kkk', SYSDATE, 10, '');
 insert into notice values(53, 'JSPC53란 무엇인가?', '이현철','bbb', SYSDATE, 0, '');
 insert into notice values(54, 'JSPC54란 무엇인가?', '김인수','kkk', SYSDATE, 10, '');
@@ -128,8 +115,11 @@ insert into notice values(57, 'JSPC57란 무엇인가?', '이현철','bbb', SYSD
 insert into notice values(58, 'JSPC58란 무엇인가?', '김인수','kkk', SYSDATE, 10, '');
 insert into notice values(59, 'JSPC59란 무엇인가?', '이현철','bbb', SYSDATE, 0, '');
 
+insert into notice values(61, 'JSPC60란 무엇인가?', '김인수','kkk', SYSDATE, 10, '');
+insert into notice values(60, 'JSPC61란 무엇인가?', '이현철','bbb', SYSDATE, 0, '');
+
 select * from notice;
->>>>>>> 9a6672ff222a71645fca9e497f88ae5a105430c0
+
 commit;
 
 SELECT *  
