@@ -200,11 +200,7 @@
 						<!-- 
 						<td>${st.current} ${st.index} ${st.count} ${st.first} ${st.last} ${st.begin} ${st.end} ${st.step}</td>
 						 -->
-<<<<<<< HEAD
-						<td class="title indent text-align-left"><a href="detail?id=${n.id}">${n.title} </a><span>[3]</span></td>
-=======
-						<td class="title indent text-align-left"><a href="detail?id=${n.id}">${n.title} </a><span>[${n.cmtCount}]</span>apan></td>
->>>>>>> e0617dd6b7a624f06b556c1d6cfbcae0c0570a1e
+						<td class="title indent text-align-left"><a href="detail?id=${n.id}">${n.title} </a><span>[${n.cmtCount}]</span></td>
 						<td>${n.writerId}</td>
 						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${n.regdate}"/></td>
 						<td>${n.hit}</td>

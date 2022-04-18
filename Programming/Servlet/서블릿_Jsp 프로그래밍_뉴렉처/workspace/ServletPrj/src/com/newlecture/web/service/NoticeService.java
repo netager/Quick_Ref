@@ -28,10 +28,10 @@ public class NoticeService {
 
 		List<NoticeView> list = new ArrayList<>();
 
-//				String sql = "SELECT * " + 
+//				String sql = "SELECT id, title, writer_id, regdate, hit, files, CMT_COUNT " + 
 //				"  FROM (SELECT ROW_NUMBER() OVER (ORDER BY REGDATE DESC) NUM, " + 
-//				"        NOTICE.* FROM NOTICE WHERE "+field+ " LIKE ? ORDER BY REGDATE )" + 
-//				" WHERE NUM BETWEEN ? AND ?";
+//				"        NOTICE_view.* FROM NOTICE_view WHERE "+field+ " LIKE ? ORDER BY REGDATE ) " + 
+//				" WHERE NUM BETWEEN ? AND ? ";
 		
 		String sql = "select * " + 
 		        "       from (select rownum num, n.* " +
@@ -41,15 +41,6 @@ public class NoticeService {
 		        "                      order by regdate desc) n) " + 
 		        "     where num between ? and ? ";
 
-<<<<<<< HEAD
-		List<Notice> list = new ArrayList<>();
-		String sql = "SELECT * " + 
-		        "       FROM (SELECT ROWNUM NUM, N.* " +  
-				"               FROM (SELECT * FROM NOTICE " + 
-		        "                      WHERE " +field+ " LIKE ? ORDER BY REGDATE DESC) N )" + 
-				"      WHERE NUM BETWEEN ? AND ? ";
-=======
->>>>>>> e0617dd6b7a624f06b556c1d6cfbcae0c0570a1e
 		
 		// 1, 11, 21, 31 -> a1+(n-1)*10 : 등차수열
 		//              an = 1 + (page-1)*10
@@ -79,10 +70,8 @@ public class NoticeService {
 				Date regdate = rs.getDate("REGDATE");
 				String hit = rs.getString("HIT");
 				String files = rs.getString("FILES");
-//				String content = rs.getString("CONTENT");
-				int cmtCount = rs.getInt("CMT_COMMENT");
+				int cmtCount = rs.getInt("CMT_COUNT");
             
-			System.out.printf("[NoticeService] id : %d\n", id);	
 				NoticeView notice = new NoticeView(
 						id,
 						title,
@@ -90,7 +79,6 @@ public class NoticeService {
 						regdate,
 						hit,
 						files,
-//						content
 						cmtCount
 				);
 				
