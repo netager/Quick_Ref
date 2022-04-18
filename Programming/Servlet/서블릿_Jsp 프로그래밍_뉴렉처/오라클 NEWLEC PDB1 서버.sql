@@ -139,3 +139,6 @@ drop table member;
 select * from nls_database_parameters;    
 SELECT LENGTHb('ab') from dual;  
 SELECT LENGTHb('남성') from dual; -- 한글 1글자당 3Bytes 사용 
+
+
+
