@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.newlecture.web.entity.Notice;
+import com.newlecture.web.entity.NoticeView;
 import com.newlecture.web.service.NoticeService;
 
 
@@ -32,22 +33,21 @@ public class NoticeListController extends HttpServlet {
 		
 		int page = 1;
 		if(page_ != null && !page_.equals("")) {
-			System.out.println(page_);
+			System.out.printf("[NoticeListController] page_ : %s\n", page_);
 			page = Integer.parseInt(page_);
 		}
 		else {
-			System.out.printf("Else : %s", page_);
+			
+			System.out.printf("[NoticeListController] Else page_ : %s\n", page_);
 		}
 		
 		NoticeService service = new NoticeService();
-		List<Notice> list = service.getNoticeList(field, query, page);
+		List<NoticeView> list = service.getNoticeList(field, query, page);
 		
 		int count = service.getNoticeCount(field, query);
 		
 //		System.out.println(list);
-		System.out.println(count);
-		System.out.println(field);
-		System.out.println(query);
+		System.out.printf("count : %d, field : %s, query : %s\n", count, field, query);
 			
 		request.setAttribute("list", list);
 		request.setAttribute("count", count);

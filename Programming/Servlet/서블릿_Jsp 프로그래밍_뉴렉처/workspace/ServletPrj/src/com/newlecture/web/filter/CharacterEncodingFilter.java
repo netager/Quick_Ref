@@ -20,9 +20,9 @@ public class CharacterEncodingFilter implements Filter {
 		
 		request.setCharacterEncoding("UTF-8");
 		
-		System.out.println("before filter");
+		System.out.println("[CharacterEncodingFilter] Before Filter");
 		chain.doFilter(request, response);
-		System.out.println("after Hello filter");
+		System.out.println("[CharacterEncodingFilter] After Filter");
 	}
 
 }

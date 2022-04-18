@@ -10,33 +10,47 @@ import java.util.Date;
 import java.util.List;
 
 import com.newlecture.web.entity.Notice;
+import com.newlecture.web.entity.NoticeView;
 
 public class NoticeService {
-	public List<Notice> getNoticeList() {
+	public List<NoticeView> getNoticeList() {
 		
 		return getNoticeList("title", "", 1);
 	}
 
-	public List<Notice> getNoticeList(int page) {
+	public List<NoticeView> getNoticeList(int page) {
 		
 		return getNoticeList("title", "", page);
 	}
 
 // Edited by sclee 
-	public List<Notice> getNoticeList(String field /*TITLE, WRITER_ID */, String query /* A */, int page) {
+	public List<NoticeView> getNoticeList(String field /*TITLE, WRITER_ID */, String query /* A */, int page) {
 
-		List<Notice> list = new ArrayList<>();
-		String sql = "SELECT * " + 
-				"  FROM (SELECT ROW_NUMBER() OVER (ORDER BY REGDATE DESC) NUM, " + 
-				"        NOTICE.* FROM NOTICE WHERE "+field+ " LIKE ? ORDER BY REGDATE )" + 
-				" WHERE NUM BETWEEN ? AND ?";
+		List<NoticeView> list = new ArrayList<>();
+
+//				String sql = "SELECT * " + 
+//				"  FROM (SELECT ROW_NUMBER() OVER (ORDER BY REGDATE DESC) NUM, " + 
+//				"        NOTICE.* FROM NOTICE WHERE "+field+ " LIKE ? ORDER BY REGDATE )" + 
+//				" WHERE NUM BETWEEN ? AND ?";
+		
+		String sql = "select * " + 
+		        "       from (select rownum num, n.* " +
+		        "               from (select * " + 
+		        "                       from notice_view " +
+		        "                      where " +field+ " like ? " + 
+		        "                      order by regdate desc) n) " + 
+		        "     where num between ? and ? ";
+
 		
 		// 1, 11, 21, 31 -> a1+(n-1)*10 : 등차수열
 		//              an = 1 + (page-1)*10
         // 10, 20, 30 , 40 -> page*10
 		
 		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
-
+ 
+// Trace
+		System.out.printf("[NoticeService] sql : %s\n", sql);
+		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection con = DriverManager.getConnection(url, "newlec", "tnscjs1%");
@@ -56,16 +70,19 @@ public class NoticeService {
 				Date regdate = rs.getDate("REGDATE");
 				String hit = rs.getString("HIT");
 				String files = rs.getString("FILES");
-				String content = rs.getString("CONTENT");
-
-				Notice notice = new Notice(
+//				String content = rs.getString("CONTENT");
+				int cmtCount = rs.getInt("CMT_COMMENT");
+            
+			System.out.printf("[NoticeService] id : %d\n", id);	
+				NoticeView notice = new NoticeView(
 						id,
 						title,
 						writerId,
 						regdate,
 						hit,
 						files,
-						content
+//						content
+						cmtCount
 				);
 				
 				list.add(notice);
