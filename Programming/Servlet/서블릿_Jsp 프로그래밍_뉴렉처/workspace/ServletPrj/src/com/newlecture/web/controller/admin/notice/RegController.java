@@ -29,7 +29,7 @@ public class RegController extends HttpServlet {
 		String isOpen = request.getParameter("open");
 		
 		boolean pub = false;
-		if(isOpen) != null)
+		if(isOpen != null)
 			pub = true;
 		
 		Notice notice = new Notice();
