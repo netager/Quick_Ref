@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -13,6 +14,73 @@ import com.newlecture.web.entity.Notice;
 import com.newlecture.web.entity.NoticeView;
 
 public class NoticeService {
+	
+	
+	public int removeNoticeAll(int[] ids) {
+		
+		return 0;
+	}
+	
+	public int pubNoticeAll(int[] ids) {
+		
+		return 0;
+	}
+
+// Edited by sclee
+	
+	public int insertNotice(Notice notice) {
+		
+		int result = 0;
+		
+		String sql = "INSERT INTO NOTICE (TITLE, CONTENT, WRITER_ID, PUB) VALUES(?,?,?,?)"; 
+		
+		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
+
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, "newlec", "tnscjs1%");
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1,  notice.getTitle());
+			st.setString(2,  notice.getContent());
+			st.setString(3,  notice.getWriterId());
+			st.setBoolean(4,  notice.getPub());
+		
+			result = st.executeUpdate() ;  // executeUpdate() - Insert, Update, Delete 시 사용
+		
+			st.close();
+			con.close();
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		int rusult = 0;
+		
+		return result;
+
+	}
+	
+	public int deleteNotice(int id) {
+		
+		return 0;
+	}
+	
+	public int updateNotice(Notice notice) {
+		
+		return 0;
+		
+	}
+	
+	public List<Notice> getNoticeNewestList() {
+		
+		return null;
+		
+	}
+	
 	public List<NoticeView> getNoticeList() {
 		
 		return getNoticeList("title", "", 1);
@@ -71,6 +139,7 @@ public class NoticeService {
 				String hit = rs.getString("HIT");
 				String files = rs.getString("FILES");
 				int cmtCount = rs.getInt("CMT_COUNT");
+				boolean pub = rs.getBoolean("PUB");
             
 				NoticeView notice = new NoticeView(
 						id,
@@ -79,6 +148,7 @@ public class NoticeService {
 						regdate,
 						hit,
 						files,
+						pub,
 						cmtCount
 				);
 				
@@ -172,6 +242,7 @@ public class NoticeService {
 				String hit = rs.getString("HIT");
 				String files = rs.getString("FILES");
 				String content = rs.getString("CONTENT");
+				boolean pub = rs.getBoolean("PUB");
 
 				notice = new Notice(
 						nid,
@@ -180,7 +251,8 @@ public class NoticeService {
 						regdate,
 						hit,
 						files,
-						content
+						content,
+						pub
 						);
 				
 			}
@@ -232,6 +304,7 @@ public class NoticeService {
 				String hit = rs.getString("HIT");
 				String files = rs.getString("FILES");
 				String content = rs.getString("CONTENT");
+				boolean pub = rs.getBoolean("PUB");
 
 				notice = new Notice(
 						id,
@@ -240,7 +313,8 @@ public class NoticeService {
 						regdate,
 						hit,
 						files,
-						content
+						content,
+						pub
 						);
 				
 			}
@@ -291,6 +365,7 @@ public class NoticeService {
 				String hit = rs.getString("HIT");
 				String files = rs.getString("FILES");
 				String content = rs.getString("CONTENT");
+				boolean pub = rs.getBoolean("PUB");
 
 				notice = new Notice(
 						id,
@@ -299,7 +374,8 @@ public class NoticeService {
 						regdate,
 						hit,
 						files,
-						content
+						content,
+						pub
 						);
 				
 			}
@@ -318,6 +394,47 @@ public class NoticeService {
 		
 		return notice;
 
+	}
+	
+
+	public int deleteNoticeAll(int[] ids) {
+		
+		int result = 0;
+		
+		String params = "";
+		
+		for(int i=0; i<ids.length; i++) {
+			params += ids[i];
+			
+			if(i <= ids.length-1)
+				params += ",";
+		}
+		
+		String sql = "DELETE NOTICE	WHERE ID IN (" +params+")"; 
+		
+		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
+
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, "newlec", "tnscjs1%");
+			Statement st = con.createStatement();
+		
+			result = st.executeUpdate(sql) ;  // executeUpdate() - Insert, Update, Delete 시 사용
+		
+			st.close();
+			con.close();
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		int rusult = 0;
+		
+		return result;
 	}
 
 }

@@ -896,7 +896,34 @@
 ## 85. Index 페이지 추가하기 
 
 ## 86. Admin 페이지를 위한 서비스 목록 추가하기 
+	- 일괄공개 요청 : pubNoticeAll(ids)
+	- 일괄삭제 요청 : removeNoticeAll(ids)
+	- 공지등록 요청 : insertNotice(notice) 
+	- 공지삭제 요청 : deleteNotice(id)
+	- 공지수정 요청 : updateNotice(notice)
+	- 페이지 요청 : getNoticeNewestList()
+	
+## 87. admin/index 페이지 추가하기 
 
+## 88. admin/notice/list 페이지 추가하기
+
+## 89. 다중 선택 값 POST 하기 
+
+## 90. 다중 Submit 구분하기
+
+## 91. 일괄삭제 구현하기 
+
+## 92. 공지사항 등록을 위한 Controller/View 준비하기 
+
+## 93. pub 컬럼 추가에 대한 변경사항 처리
+
+
+
+
+
+ 
+
+	
 
 
 

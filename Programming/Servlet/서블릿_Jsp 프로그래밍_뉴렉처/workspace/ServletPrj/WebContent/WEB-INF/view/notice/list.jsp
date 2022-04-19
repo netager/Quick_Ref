@@ -184,15 +184,7 @@
 
 
 <%-- Edited by sclee --%>					
-					<%-- <%
-					List<Notice> list = (List<Notice>)request.getAttribute("list");
-					for(Notice n : list) {
-						pageContext.setAttribute("n", n);
-					%> --%>
 					
-					<%-- 
-					<c:forEach var="n" items="${list}" begin="1" end="3" step="2" varStatus="st">
-					--%>
 					<c:forEach var="n" items="${list}" varStatus="st">
 					<tr>
 
@@ -216,9 +208,9 @@
 
 <%-- Edited by sclee --%>
 			
-			<c:set var="page" value="${(param.p == null)?1:param.p}" /> 
-			<c:set var="startNum" value="${page-(page-1)%5}" />
-			<c:set var="lastNum" value="${fn:substringBefore(Math.ceil(count/10), '.')}" />
+	<c:set var="page" value="${(param.p == null)?1:param.p}" /> 
+	<c:set var="startNum" value="${page-(page-1)%5}" />
+	<c:set var="lastNum" value="${fn:substringBefore(Math.ceil(count/10), '.')}" />
 			
 			<div class="indexer margin-top align-right">
 				<h3 class="hidden">현재 페이지</h3>
