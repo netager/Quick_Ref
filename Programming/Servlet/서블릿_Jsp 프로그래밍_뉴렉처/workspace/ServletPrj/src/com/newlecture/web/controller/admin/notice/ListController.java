@@ -15,7 +15,7 @@ import com.newlecture.web.entity.NoticeView;
 import com.newlecture.web.service.NoticeService;
 
 
-@WebServlet("/admin/notice/list")
+@WebServlet("/admin/board/notice/list")
 public class ListController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
