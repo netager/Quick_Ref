@@ -180,9 +180,9 @@ public class NoticeService {
 		        "       from (select rownum num, n.* " +
 		        "               from (select * " + 
 		        "                       from notice_view " +
-		        "                      where " +field+ " like ? " + 
+		        "                      where pub = 1 and " +field+ " like ? " + 
 		        "                      order by regdate desc) n) " + 
-		        "     where pub = 1 and num between ? and ? ";
+		        "     where num between ? and ? ";
 
 		
 		// 1, 11, 21, 31 -> a1+(n-1)*10 : 등차수열
@@ -227,6 +227,7 @@ public class NoticeService {
 						cmtCount
 				);
 				
+				System.out.printf("[ NoticeService ] notice : %s\n", notice);
 				list.add(notice);
 			}
 
@@ -551,6 +552,47 @@ public class NoticeService {
 		int rusult = 0;
 		
 		return result;
+	}
+
+	public int deleteNoticeAll(String[] ids) {
+
+		int result = 0;
+		
+		
+		String params = "";
+		
+		for(int i=0; i<ids.length; i++) {
+			params += ids[i];
+			
+			if(i < ids.length-1)
+				params +=",";
+		}
+			
+		
+		String sql = "DELETE NOTICE WHERE ID IN ("+params+")";
+
+		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
+
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, "newlec", "tnscjs1%");
+			Statement st = con.createStatement();
+			
+			result = st.executeUpdate(sql);
+
+			st.close();
+			con.close();
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
+		
 	}
 
 	

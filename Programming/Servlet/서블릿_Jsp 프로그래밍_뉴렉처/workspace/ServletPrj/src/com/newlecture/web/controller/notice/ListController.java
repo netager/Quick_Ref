@@ -46,7 +46,7 @@ public class ListController extends HttpServlet {
 		
 		int count = service.getNoticePubCount(field, query);
 		
-//		System.out.println(list);
+		System.out.println(list);
 		System.out.printf("[ ListController ] count : %d, field : %s, query : %s\n", count, field, query);
 			
 		request.setAttribute("list", list);
