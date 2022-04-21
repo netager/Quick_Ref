@@ -921,7 +921,106 @@
 
 ## 95. 관리자 공지사항 자세한 페이지 추가 
 
-## 96. 파일 업로드를 위한 인코딩 방식 - multipart/form-data
+## 96. 파일 업로드를 위한 인코딩 방식 - multipart/form-data - client 처리 
+	- reg.jsp
+         <form method="post"  action="reg" enctype="multipart/form-data">
+
+## 97. 파일 업로드를 위한 서블릿 설정
+	- 파일 업로드를 위한 서블릿 설정 
+		1. web.xml 에 설정하기 
+			- 한번만 설정하면 됨
+		2. annotation으로 설정하기 
+			- 매 클래스마다 설정을 해야 함. 
+	- 강의에서는 어노테이션 사용.
+		@MultipartConfig(
+			//location="/tmp",
+			fileSizeThreshold=1024*1024,
+			maxFileSize=1024*1024*50,
+			maxRequestSize=1024*1024*50*5 
+		)
+
+## 98. 파일 저장을 위한 물리 경로 얻기
+	- 구현 코드 - [RegController.java]
+		Part filePart = request.getPart("file");
+		filePart.getInputStream();
+		
+		// 절대 경로를 사용해야 하기 때문에 이를 처리 하는 방법
+		String realPath = request.getServletContext().getRealPath("/upload");
+
+## 99. 단일 파일 업로드 
+	- 구현 코드 - [RegController.java]
+		Part filePart = request.getPart("file");
+		String fileName = filePart.getSubmittedFileName(); // file name
+		InputStream fis = filePart.getInputStream();
+		
+		// 절대 경로를 사용해야 하기 때문에 이를 처리 하는 방법
+		String realPath = request.getServletContext().getRealPath("/upload");
+		System.out.printf("[RegController] realPath : %s\n", realPath);
+		
+		// String filePath = realpath + fileName; // /upload 다음에 \(윈도우) 또는 /(리눅스) 처리 필요 
+		String filePath = realPath + File.separator + fileName;
+		FileOutputStream fos = new FileOutputStream(filePath);
+
+//		int a = fis.read(); // 1byte Read
+//		int b;
+		
+		byte[] buf = new byte[1024];
+		int size = 0;
+		while((size = fis.read(buf)) != -1)
+			fos.write(buf, 0, size);             // 1byte씩 읽고 쓰기를 하므로 시간이 많이 걸림.
+		fos.close();
+		fis.close();
+
+## 100. 다중파일 업로드 
+	- 구현 코드 - [reg.jsp]
+		<th>첨부파일</th>
+		<td colspan="3" class="text-align-left text-indent"><input type="file"
+				name="file" /> </td>
+		<td colspan="3" class="text-align-left text-indent"><input type="file"
+				name="file" /> </td>
+		
+	- 구현 코드 - [RegController.java]
+
+		Collection<Part> parts= request.getParts();
+		
+		for(Part p : parts) {
+			
+			if(!p.getName().contentEquals("file")) continue; // 파일이 아니면 pass
+		
+			Part filePart = p;
+			
+			String fileName = filePart.getSubmittedFileName(); // file name
+			InputStream fis = filePart.getInputStream();
+			
+			// 절대 경로를 사용해야 하기 때문에 이를 처리 하는 방법
+			String realPath = request.getServletContext().getRealPath("/upload");
+			System.out.printf("[RegController] realPath : %s\n", realPath);
+			
+			String filePath = realPath + File.separator + fileName;
+			FileOutputStream fos = new FileOutputStream(filePath);
+	
+			byte[] buf = new byte[1024];
+			int size = 0;
+			while((size = fis.read(buf)) != -1)
+				fos.write(buf, 0, size);             // 1byte씩 읽고 쓰기를 하므로 시간이 많이 걸림.
+			fos.close();
+			fis.close();
+				
+		}	
+
+	
+## 101. 업로드된 파일 사용하기 
+
+## 102. 파일 업로드 마무리 
+
+## 103. 공개 설정 이용하기 - 공개 상태 표시하기
+
+## 104. 공지사항 일괄 공개하기
+ 
+
+
+
+
 
 
 

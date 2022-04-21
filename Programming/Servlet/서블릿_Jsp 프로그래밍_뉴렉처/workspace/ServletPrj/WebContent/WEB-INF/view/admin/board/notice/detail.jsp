@@ -169,7 +169,7 @@
                                 <th>작성자</th>
                                 <td>${n.writerId}</td>
                                 <th>조회수</th>
-                                <td><fmt:formatNumber  value="${n.hit}"/>원</td>
+                                <td><fmt:formatNumber  value="${n.hit}"/></td>
 									
                             </tr>
                             <tr>
@@ -183,7 +183,7 @@
 											<c:set var="style" value="font-weight: bold; color:red;" />
 										</c:if>
 										
-										<a href="${fileName}" style="${style}">${fn:toUpperCase(fileName)}</a>
+										<a download href="/upload/${fileName}" style="${style}">${fn:toUpperCase(fileName)}</a>
 																												
 										<c:if test="${! st.last}">
 										/
@@ -192,6 +192,9 @@
 									</c:forTokens>	
 								</td>
                             </tr>
+							<tr class="content">
+								<td colspan="4">${n.content}</td>
+							</tr>								
                         </tbody>
                     </table>
                 </div>

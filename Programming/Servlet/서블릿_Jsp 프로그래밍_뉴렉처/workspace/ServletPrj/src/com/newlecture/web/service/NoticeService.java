@@ -32,7 +32,7 @@ public class NoticeService {
 		
 		int result = 0;
 		
-		String sql = "INSERT INTO NOTICE (TITLE, CONTENT, WRITER_ID, PUB) VALUES(?,?,?,?)"; 
+		String sql = "INSERT INTO NOTICE (TITLE, CONTENT, WRITER_ID, PUB, FILES) VALUES(?,?,?,?,?)"; 
 		
 		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
 
@@ -44,6 +44,7 @@ public class NoticeService {
 			st.setString(2,  notice.getContent());
 			st.setString(3,  notice.getWriterId());
 			st.setBoolean(4,  notice.getPub());
+			st.setString(5,  notice.getFiles());
 		
 			result = st.executeUpdate() ;  // executeUpdate() - Insert, Update, Delete 시 사용
 		
@@ -116,8 +117,8 @@ public class NoticeService {
 		
 		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
  
-// Trace
-		System.out.printf("[NoticeService] sql : %s\n", sql);
+ 
+//		System.out.printf("[NoticeService] sql : %s\n", sql);
 		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -170,6 +171,79 @@ public class NoticeService {
 		return list;
 	}
 	
+
+	public List<NoticeView> getNoticePubList(String field, String query, int page) {
+
+		List<NoticeView> list = new ArrayList<>();
+
+		String sql = "select * " + 
+		        "       from (select rownum num, n.* " +
+		        "               from (select * " + 
+		        "                       from notice_view " +
+		        "                      where " +field+ " like ? " + 
+		        "                      order by regdate desc) n) " + 
+		        "     where pub = 1 and num between ? and ? ";
+
+		
+		// 1, 11, 21, 31 -> a1+(n-1)*10 : 등차수열
+		//              an = 1 + (page-1)*10
+        // 10, 20, 30 , 40 -> page*10
+		
+		String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
+ 
+ 
+		System.out.printf("[NoticeService] sql : %s\n", sql);
+		
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url, "newlec", "tnscjs1%");
+			PreparedStatement st = con.prepareStatement(sql);
+			
+			st.setString(1,  "%"+query+"%");
+			st.setInt(2, 1 + (page-1)*10);
+			st.setInt(3, page*10);
+			
+			ResultSet rs = st.executeQuery();
+
+
+			while(rs.next()) {
+				int id = rs.getInt("ID");
+				String title = rs.getString("TITLE");
+				String writerId = rs.getString("WRITER_ID");
+				Date regdate = rs.getDate("REGDATE");
+				String hit = rs.getString("HIT");
+				String files = rs.getString("FILES");
+				int cmtCount = rs.getInt("CMT_COUNT");
+				boolean pub = rs.getBoolean("PUB");
+            
+				NoticeView notice = new NoticeView(
+						id,
+						title,
+						writerId,
+						regdate,
+						hit,
+						files,
+						pub,
+						cmtCount
+				);
+				
+				list.add(notice);
+			}
+
+			rs.close();
+			st.close();
+			con.close();
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return list;	
+	}
 
 	
 	public int getNoticeCount() {
