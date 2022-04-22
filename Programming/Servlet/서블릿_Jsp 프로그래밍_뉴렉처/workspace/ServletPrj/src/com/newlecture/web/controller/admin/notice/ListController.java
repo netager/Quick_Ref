@@ -54,9 +54,11 @@ public class ListController extends HttpServlet {
 //				if(ids[i])
 //			}
 //			
-//			service.pubNoticeList(opnIds);
-//			service.closeNoticeList(clsIds);
+			// Transaction 贸府
+			service.pubNoticeAll(oids, cids);
+			// service.closeNoticeList(clsIds);
 			break;
+			
 		case "老褒昏力":
 			for(String delId : delIds)
 				System.out.printf("del id : %s\n", delId);

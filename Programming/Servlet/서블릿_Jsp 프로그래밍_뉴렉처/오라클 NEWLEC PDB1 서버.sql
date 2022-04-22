@@ -34,6 +34,6 @@ select *
                      order by regdate desc) n)  
      where num between 1 and 10 ;
 
-
-SELECT id, title, writer_id, regdate, hit, files, CMT_COUNT   FROM (SELECT ROW_NUMBER() OVER (ORDER BY REGDATE DESC) NUM,         NOTICE_view.* FROM NOTICE_view WHERE title LIKE '%%' ORDER BY REGDATE )  WHERE NUM BETWEEN 1 AND 10; 
-java.sql.SQLException: 부적합한 열 이름
+select * from notice;
+delete from notice where id is null;
+commit;
