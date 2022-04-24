@@ -1,0 +1,187 @@
+## 1. Spring 소개와 학습 안내
+	- 스프링 프레임워크의 핵심 기능
+		- Dependency Injection - 모듈 결합을 
+		- Transaction Mangement
+	- 자바의 버전
+		- Java ME - 모바일
+		- Java SE 
+		- Java EE
+	- 기업형 응용 프로그램을 보조하기 위한 쉬운 프레임워크
+		- Java EE - 분산형, 기업형 응용 프로그램 개발을 위한 API
+				  - 결합력을 낮추는 DI, DB Transaction 처리, 로그 처리 ...
+		- Java SE - 일반적인 로컬 응용 프로그램 개발을 위한 API
+				  - 파일 I/O, 콘솔 I/O, 윈도우 I/O, 네트워크 I/O, Thread, ...
+		- 이전에 개발은 Java SE 와 EE 를 이용하여 개발 
+		- 현재는 Java SE 에 Spring을 올려 개발 -> EE 영역을 Spring로 대체 
+			- Java EE가 유료화 되면서 관심도가 낮아지고 자바 개발자들은 Spring으로 넘어감.
+		- 선택할 수 있음
+			- Java SE + Java EE + Spring 
+			- Java SE + Java EE 
+			- Java SE + Spring 
+		- 웹 개발 한다고 하면 
+			- MVC     <--- DI  <--- 느슨한 결합력과 인터페이스 
+			- 트랜잭션   <--- AOP 
+			- 인증과 권한 <--- Servlet Filter
+		
+## 2. 느슨한 결합력과 인터페이스 
+	- 코드 수정을 없애고 DI를 위한 설정
+		- 어떤 객체를 수정해야 한다면?
+			- 결합력이 높아서 영향도가 높음. 결합력을 낮추어서 수정을 용기하게 할 수 있는 방법?
+			- 객체 생성과 조립을 위한 외부 설정 : XML, Annotation
+			- Java interface 활용
+	
+## 3. DI(Dependency Injection)
+	- 스프링 프레임워크 코어 기능 : 종속 객체를 생성 조립해 주는 도구 
+		- DI(Dependency Injection) - 부품 조립
+			- Dependency 들을 조립하기 
+				- Composition has a : 일체형 has a 관계 : B는 A의 부품				
+					- 	class A {
+							private B b;
+							public A() {
+								b = new B();
+							}
+						}
+						
+				- Association has a : 조립형 has a 관계
+					-	class A {
+							private B b;
+							public A() {
+							}
+							
+							public void setB(B b) {
+								this.b = b;
+							}
+						}
+				- 부품을 갈아 끼우기 쉽게 느슨한 결합을 이용하는 것이 기업용 프로그램으로 적정함.
+				- Injection 방법 - 부품을 조립하는 기능
+					- Setter Injection
+						-	B b = new B();
+							A a = new A();
+							a.setB(b);
+							
+					- Construction Injection
+						- 	B b = new B();
+							A a = new A(b);
+				- Spring을 이용하면 부품 결합(Dependency Injection)을 쉽게 활용할 수 있다. Spring을 사용 이유.
+	
+			- IoC Container - 객체를 조립하는 데 필요한 Container.
+
+## 4. IoC 컨테이너 
+	- 주문서 : XML 파일, Annotation 
+	- 주문서에 맞게 부품을 구입하여 박스에 담는데 이 박스를 Container라 함.
+		- 무엇이 담여 있냐에 따라 어떤 컨테이너라고 함.
+	- 작은 부품을 만들고 큰 부품을 만들어서 결합, 더 큰 부품에 결합
+		- 일체형인 경우는 A를 만들고 B가 만들어지고 C가 만들어짐 
+		- 결합형은 역순으로 만들어짐 : Inversion of Control 그래서 Ioc(inversion of Control) Container
+
+## 5. Dependency를 직접 Injection 하기 	
+	- 스프링 없이 맨땅으로 처리해 보고 나중에 Spring을 이용하여 조립 
+	- 이클립스 spring 프로젝트로 구현함.
+	
+## 6. Spring DI를 위한 이클립스 플러그인 설치하기 
+	- 주문서를 작성하여 스프링에게 조립 요청
+	- 먼저 XML 파일로 주문서를 작성하고 자바 컨피그, 그후 스프링 부트로 작성할 예정 
+	- 설정파일 
+		- 설정 파일 네임스페이스 
+		- 맨땅에 설정파일 또는 주문서를 작성하기 어려우니 이클립스에 플러그인을 설치하여 작업.
+	
+	- 플러그인 설치
+		- 이클립스 - Help - Eclipse Marketplace 
+	
+	- 이클립스 높은 버전으로 재설치 : Eclipse EE - 2022-03 버전 
+
+## 7. Spring DI 지시서 작성하기(Spring Bean Configuration)
+	- 
+
+## 8. 스프링 IoC 컨테이너 사용하기(ApplicationContext 이용하기)
+	- Application Context
+		- ApplicationContext 생성하기 
+			- ApplicationContext context = new ClassPathXmlApplicationContext("config.xml");
+		- ApplicationContext 에서 지시서(config.xml)을 지정하는 방법
+			- ClassPathXmlApplicationContext     : Application ROOT로 부터 지정할 떄 사용
+			- FileSystemXmlApplicationContext    : 절대경로
+			- XmlWebApplicationContext           : 웹의 URL로 지정
+			- AnnotationConfigApplicationContext : Annotation을 이용
+	- 두개의 객체를 xml를 이용하여 결합하는 방법 - 
+		- Program.java
+			- 	ApplicationContext context = new ClassPathXmlApplicationContext("spring/di/setting.xml");
+			
+				ExamConsole console = (ExamConsole) context.getBean("console");
+		//		ExamConsole console = context.getBean(ExamConsole.class);
+				console.print();
+		- setting.xml
+			<!-- Dependency Injection -->
+		
+			<!-- Exam exam = new NewlecExam(); -->
+			<bean id="exam" class="spring.di.entity.NewlecExam" />
+			
+			<!-- ExamConsole console = new ddddddddddddddddddddddddddddddddddddddddGridExamConsole(); -->
+			<bean id="console" class="spring.di.ui.InlineExamConsole" >
+				<!-- console.setExam(exam); -->
+				<property name="exam" ref="exam" />
+			</bean>	
+			
+	 
+## 9. 값 형식 DI
+	- 값 형식의 속성에 값 설정하기
+		-	<bean id="exam" class="spring.di.entity.NewlecExam" />
+			<!--
+				exam.setKor(20);
+				exam.setEng(50);
+				exam.setMath(80);
+			-->
+				<property name="kor" value="20" />
+				<property name="eng" value="50" />
+				<property name="math" value="80" />
+			</bean>
+
+## 10. 생성자 DI 
+	- Dependency 객체 생성과 초기화 
+		- Emam 객체 constructor를 이용한 속성 값 설정 
+			-	<bean id="exam" class="spring.di.entity.NewlecExam">
+					<constructor-arg value="30"/>
+					<constructor-arg value="50"/>
+					<constructor-arg value="70"/>
+					<constructor-arg value="70"/>
+				</bean>
+			
+			-	<bean id="exam" class="spring.di.entity.NewlecExam">
+					<constructor-arg index="0" value="10"/>
+					<constructor-arg index="1" value="20"/>
+					<constructor-arg index="3" value="30"/>
+					<constructor-arg index="2" value="40"/>
+				</bean>
+			 
+			 -	<bean id="exam" class="spring.di.entity.NewlecExam">
+					<constructor-arg name="kor" value="10"/>
+					<constructor-arg name="eng" value="20"/>
+					<constructor-arg name="com" value="30"/>
+					<constructor-arg name="math" value="40"/>
+				</bean>
+	
+	- 생성자 호출의 모호한 매개변수
+		- 	class NewLecExam {
+				public NewlecExam(int kor, int eng, int math) {...}
+				
+				public NewlecExam(float kor, float eng, flaot math) {...}
+			}
+		
+		-	<bean id="exam" class="spring.di.entity.NewlecExam">
+				<constructor-arg name="kor" type="float" value="10"/>
+				<constructor-arg name="eng" type="float" value="20"/>
+				<constructor-arg name="com" type="float" value="30"/>
+				<constructor-arg name="math" type="float" value="40"/>
+			</bean>
+		
+	- 설정 파일 처리기 추가 
+		- 	<beans xmlns="http://www.springframework.org/schema/beans"
+					xmlns:p="http://www.springframework.org/schema/p"   <--- 설정 파일 처리기 추가         
+					xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+					xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+		- 속성 설정 방법
+			<bean id="exam" class="spring.di.entity.NewlecExam" p:kor="10" p:eng="20"
+				p:math="30">
+			</bean> 
+
+## 11. 콜렉션 생성과 DI
+	- 
