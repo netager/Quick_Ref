@@ -209,7 +209,92 @@
 
 
 ## 13. @Autowired의 동작방식 이해와 @Qualifier 사용하기
-	- 객체 생성과 Autowired					
+	- 어노테이션을 이용한 객체 선언	
+		- 기존 XML을 이용한 객체 결합  
+			- 	<bean id="exam" class="spring.di.entity.NewlecExam" p:kor="10" p:eng="10" />
+				<bean id="console" class="spring.di.ui.GridExamConsole" >
+					<property name="exam" ref="exam" />
+				</bean>	
+		- 어노테에션을 이용한 객체 결합
+			- InlineExamConsole.java
+				-	@Autowired 
+					private Exam exam;
+			- setting.xml 
+				-	<context:annotation-config />
+					<bean id="exam" class="spring.di.entity.NewlecExam" p:kor="10" p:eng="10" />
+					<bean id="console" class="spring.di.ui.GridExamConsole" />
+								
 		
 ## 14. @Autowired 의 위치와 required 옵션 
+	- 인잭션 방법 3가지 
+		1. setter 위 - setter 를 호출하면서 인잭션
+			public class InlineExamConsole implements ExamConsole {
+				private Exam exam;
 				
+				public void InlineConsole(Exam exam) {
+					this.exam = exam;
+				}
+	
+				@Autowired
+				public void setExam(Exam exam) {
+					this.exam = exam;
+				}	
+			}
+			
+		2. 처음 - 기본생성자를 호출하면서 인잭션
+			public class InlineExamConsole implements ExamConsole {
+				@Autowired
+				private Exam exam;
+				
+				public void InlineConsole(Exam exam) {
+					this.exam = exam;
+				}
+	
+				public void setExam(Exam exam) {
+					this.exam = exam;
+				}	
+			}
+		
+		3. 생성자 위
+			public class InlineExamConsole implements ExamConsole {
+				private Exam exam;
+
+				@Autowired				
+				public void InlineConsole(Exam exam) {
+					this.exam = exam;
+				}
+	
+				public void setExam(Exam exam) {
+					this.exam = exam;
+				}	
+			}
+	
+## 15. 어노테이션을 이용한 객체생성 
+	- 객체 생성과 @Component
+		- 1단계
+			- 	class InlineExamConsole {
+					@Autowired
+					public void setExam(Exam exam) {
+						this.exam = exam;
+					}
+				}
+				
+			- setting.xml 
+				-	<context:annotation-config />
+					<bean id="exam" class="spring.di.entity.NewlecExam" p:kor="10" p:eng="10" />
+					<bean id="console" class="spring.di.ui.GridExamConsole" />
+					</bean>				
+					
+		- 2단계
+			-
+				@Component	
+			 	class InlineExamConsole {
+					@Autowired
+					public void setExam(Exam exam) {
+						this.exam = exam;
+					}
+				}
+				
+			- setting.xml 
+				-	<context:component-scan base-package="spring.di.ui" />
+					<bean id="exam" class="spring.di.entity.NewlecExam" p:kor="10" p:eng="10" />
