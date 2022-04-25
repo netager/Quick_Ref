@@ -185,3 +185,31 @@
 
 ## 11. 콜렉션 생성과 DI
 	- 
+	
+## 12. 어노테이션을 이용할 때의 장점과 @Autowired를 이용한 DI 
+	- Annotation으롷 설정할 때의 장점
+		- XML로 설정할 때의 모듈 변경 방법 
+			- XML 파일을 변경하여 객체를 변경 - XML 변경하는 것도 싫다. 좀 더 휴율적인 방법은?
+	- DI 지원을 위한 스프링 어노테이션 
+		- @Autowired 어노테이션 
+			- 기존 XML을 이용한 객체 결합  
+				- 	<bean id="exam" class="spring.di.entity.NewlecExam" p:kor="10" p:eng="10" />
+					<bean id="console" class="spring.di.ui.GridExamConsole" >
+						<property name="exam" ref="exam" />
+					</bean>	
+			- 어노테에션을 이용한 객체 결합
+				- InlineExamConsole.java
+					-	@Autowired 
+						private Exam exam;
+				- setting.xml 
+					-	<context:annotation-config />
+						<bean id="exam" class="spring.di.entity.NewlecExam" p:kor="10" p:eng="10" />
+						<bean id="console" class="spring.di.ui.GridExamConsole" />
+						
+
+
+## 13. @Autowired의 동작방식 이해와 @Qualifier 사용하기
+	- 객체 생성과 Autowired					
+		
+## 14. @Autowired 의 위치와 required 옵션 
+				
