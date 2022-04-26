@@ -1,0 +1,70 @@
+## 1. AOP(Aspect Oriented Programming) 이란? - 관점지향프로그램
+	- AOP 이해하기 
+		- Aspect의 의미 - 사용자, 개발자, 운영자 관점의 프로그래밍
+			- 사용자가 바라보는 주 업무 로직 코드 (주 업무, 코어 업무)
+			- 개발자의 필요에 의해 만들어진 코드
+			- 운영자의 필요에 의해 만들어진 코드
+	- Concern 
+		- Primary(Core) Concern(주업무)과 Cross-cutting Concern(부수적인 코드) 
+			- 주 업무 : 사용자가 요구 한것
+			- 부수 코드 : 로그처리, 보안처리, 트랜잭션 처리
+		- 예전에는 소스코드를 가지고 있는 사람만이 부가 코드를 넣고 뺄 수 있었으나 AOP를 이용하면 쉽게 빼고 넣고 할 수 있음.
+	- AOP 구현 방식	
+		- 함수 호출 방식 
+			- main ---> Cross-cutting Concern ---> Core Concern 
+	- Spring를 이용하여 AOP를 구현할 수 있어 이를 활용하고자 함. 
+
+## 2. AOP 구현방식 이해하기
+	- 
+
+## 3. AOP 코드 구현하기 
+	- 
+				Exam proxy = (Exam) Proxy.newProxyInstance(NewlecExam.class.getClassLoader(), 
+				new Class[] {Exam.class}, 
+				new InvocationHandler() {
+					
+					@Override
+					public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+
+						long start = System.currentTimeMillis();
+
+						Object result = method.invoke(exam, args);
+						
+						long end = System.currentTimeMillis();
+						
+						String message = (end - start) + "ms 시간이 걸렸습니다(proxy).";
+						System.out.println(message);
+
+						return result;
+					}
+				}
+			);
+		
+		System.out.println("[Proxy] ----------------------------------------");
+		System.out.printf("total is %d\n", proxy.total());
+		System.out.printf("avg is %f\n", proxy.avg());
+		System.out.println("[Proxy End] ------------------------------------");
+
+		System.out.println("[Non Proxy] ------------------------------------");		
+		System.out.printf("total is %d\n", exam.total());
+		System.out.printf("avg is %f\n", exam.avg());		
+		System.out.println("[Non Proxy] ------------------------------------");
+
+	
+## 4. 스프링으로 AOP 구현해 보기 - AroundAdvice
+	- 프락시 클래스에 구현되는 Cross-cutting Concern 
+		- Before - 앞에
+		- After returnning - 뒤에
+		- After throwing - 뒤에 
+		- Around - 앞뒤로
+		
+		
+## 5. BeforeAdvice 구현하기 
+	- 
+
+## 6. After Returning / Throwing 어드바이스 구현하기 
+
+## 7. Point Cunt(Weaving, Join Point) 
+	- AOP 구현 방식 
+		- 포인트 컷(Pointcuts)과 조인 포인트(JoinPoint) 그리고 위빙(weabing)
+		
