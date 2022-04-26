@@ -1,0 +1,40 @@
+## 0. Spring Web 강의 소개 
+	- Spring MVC의 두가지 버전
+		- Tomcat
+			- Tomcat Configuration
+				-web.xml
+					- Spring Dispatcher 
+					- Mybatis
+					- Tiles
+		- Spring Web
+			- Spring Configuration
+				- Servlet   
+				- Service
+				- Security
+				- Mybatis
+				- Tiles
+				- ...
+		- Spring Boot
+			- 설정 등을 편하게 할 수 있도록 하는 부가적인 프레임워크
+			- Starter Configuration
+				- application.properties 또는 YAML
+
+## 1. Spring MVC란
+	- MVC model2 방식의 변화 : Dispatcher를 집중화 하기 전의 모델 
+	
+	- MVC model2 방식의 변화 : Dispatcher를 집중화 한 후의 모델 	
+		
+	- 모든 URL을 Dispatcher 가 처리 
+	
+
+## 2. 실습환경 준비하기 
+	- https://spring.io ---> Projects ---> Spring Tools 4 for Eclipse 다운로드
+		- spring-tool-suite-4-4.14.0.RELEASE-e4.23.0-win32.win32.x86_64.self-extracting.jar 의
+		  확장자를 .zip로 변경후 압출파일 내에 contents.zip를 꺼냄.
+		- contents.zip 내에 sts-4.14.0.RELEASE를 압축 해제 한다. 
+		- %HOME%\SpringWork 를 작업디렉터리로 만들어서 이곳에 톰캣과 sts-4.14.RELEASE 저장 
+		
+## 3. 메이븐을 이용한 기본 웹 프로젝트 생성하기 
+	- 
+
+## 4. Dispatcher Servlet 라이브러리 설정하기

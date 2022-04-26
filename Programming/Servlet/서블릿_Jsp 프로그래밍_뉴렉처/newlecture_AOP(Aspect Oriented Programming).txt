@@ -68,3 +68,6 @@
 	- AOP 구현 방식 
 		- 포인트 컷(Pointcuts)과 조인 포인트(JoinPoint) 그리고 위빙(weabing)
 		
+## 8. 간소화된 Advisor
+	- PointCut을 품은 Advisor 
+	
