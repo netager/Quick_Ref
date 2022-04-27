@@ -38,3 +38,27 @@
 	- 
 
 ## 4. Dispatcher Servlet 라이브러리 설정하기
+	- spring web mvc 
+
+## 5. Dispatcher-servlet.xml 파일
+	- 
+
+## 6. 스프링 컨트롤러 IndexController 작성하기 
+	- WEB-INF/dispatcher-servlet.xml 작성
+	- https://docs.spring.io/spring-framework/docs
+
+## 7. View 페이지를 위한 위치
+	- 
+
+## 8. View Resolver 사용하기
+	- 반복되는 View의 일부분
+
+## 9. HTML 파일 설정하기 
+
+## 10. 정적 파일 서비스하기 
+	- 정적인 리소스(이미지, html, js,css 등) Get 요청
+		- 
+
+## 11. 공지사항 컨트롤러 추가하기
+	- 
+
