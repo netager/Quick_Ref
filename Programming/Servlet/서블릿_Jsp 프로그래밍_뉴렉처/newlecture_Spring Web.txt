@@ -37,6 +37,7 @@
 ## 3. 메이븐을 이용한 기본 웹 프로젝트 생성하기 
 	- 
 
+<<<<<<< HEAD
 ## 4. Dispatcher Servlet 라이브러리 설정하기
 	- spring web mvc 
 
@@ -62,3 +63,13 @@
 ## 11. 공지사항 컨트롤러 추가하기
 	- 
 
+=======
+## 4. Dispatcher Servlet 라이브러리 설정하기 - Spring Dispatcher를 Front 컨트롤러로 설정하기 
+	- mnvrepository.com 에서 spring mvc 패키지 -> 텍스트 복사 -> porm.xml에 붙여넣기 
+
+
+## 5. Dispatcher-servlet.xml 파일
+	- 자바 서블릿을 대신해서 Spring 서블릿 라이브러리(Dispatcher 서블릿)를 이용하여 처리하고 URL은 xml 파일을 이용하여 정의 함.
+	
+	
+>>>>>>> 550d16283d3524b02aaf41a662781ce0529161ec
