@@ -12,25 +12,11 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>dispatcher</servlet-name>	
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-
-<<<<<<< HEAD
-<servlet>
-	<servlet-name>dispatcher</servlet-name>
-	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-</servlet>
-<servlet-mapping>
-	<servlet-name>dispatcher</servlet-name>
-	<url-pattern>/</url-pattern>
-</servlet-mapping>
 
   <display-name>Welcome to Tomcat</display-name>
   <description>
-=======
-	<display-name>Welcome to Tomcat</display-name>
-	<description>
->>>>>>> 550d16283d3524b02aaf41a662781ce0529161ec
      Welcome to Tomcat
   </description>
 

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-<<<<<<< HEAD
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.springframework.org/schema/beans
@@ -13,20 +12,12 @@
     <bean name="/notice/list" class="com.newlecture.web.controller.notice.ListController" />  
     <bean name="/notice/detail" class="com.newlecture.web.controller.notice.DetailController" />  
     
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+ 
+ 	    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
     	<property name="prefix" value="/WEB-INF/view/"></property>
     	<property name="suffix" value=".jsp"></property>
     </bean>
     
-    <mvc:resources location="static/" mapping="/**"></mvc:resources>
-=======
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans
-        https://www.springframework.org/schema/beans/spring-beans.xsd">
-
-    <bean id="/index" class="IndexController">  
-        <!-- collaborators and configuration for this bean go here -->
-    </bean>
->>>>>>> 550d16283d3524b02aaf41a662781ce0529161ec
+    <mvc:resources location="/static/" mapping="/**"></mvc:resources>
 
 </beans>
