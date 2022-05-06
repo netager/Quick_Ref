@@ -1,0 +1,118 @@
+## 01. 학습 안내 
+	- 프로그래밍과 프로그래밍 언어
+		- 동일한 프로그램이지만 방법을 달리 만들 수 있다.
+			- 자바 프로그래밍(절차적인) ---> 구조적인 ---> 객체지향
+	- 프로그래밍은 절차이다. 
+
+	- 프로그래밍은 절차이다. 그 절차에 구조가 생긴다. 
+	- 절차를 자르는 도구로써의 함수 
+		- 함수가 가지는 능력 2: 코드를 잘라낼 수 있다. 
+		
+		- 함수를 이용하면
+			- 코드의 직접 사용을 차단할 수 있다.
+			- 코드를 작게 나누어서 만들 수 있다.
+			- 코드를 집중화할 수 있다.
+			- 코드를 재사용할 수 있다. 
+			
+	- 자바에서 함수를 정의하는 방법
+		- 수학으로 함수를 정의하고 사용하는 방법 
+		- 자바로 함수를 정의하고 사용하는 방법 
+			- 	static int power(int x) { 
+					return (x+3)*(x+3) + x/3*(x-2);
+				}	
+				- 함수에는 무조건 static을 붙여준다.
+	- 반환 값이 없을 때
+		- 	static void power(int x) {
+				printf("%d ", (x+3)*(x+3) + x/3*(x-2));
+			}
+			
+## 02. 코드 구조화 Bottom Up 방식 연습 #1
+	- 
+
+## 03. 코드 구조화 Bottom Up 방식 연습 #2	
+	- 
+
+## 04. 매개변수를 이용한 함수 고립화 
+	- 
+
+## 05. 함수 이름 짓기
+	- 함수 이름 짓기 
+		- 숫자로 시작할 수 없다.
+		- 문자 사이에 빈 공백은 사용할 수 없다.
+		- 특수 문자(!@$%)는 사용할 수 없다.
+		
+	- 로토번호생성 ---> 생성로또번호 ---> getLotto() <기능, 재료> 
+		- 표기법 : 낙타(Camel)표기 사용
+		- 로또번호출력 ---> 출력로또번호 ---> printLotto()
+		
+## 06. Top Down 방식으로 구현하는 간단 예제
+	- 로또 프로그램 분석
+		- Lotto 관리 프로그램
+			1. Lotto 번호 자동 생성
+				1. Lotto 번호 자동 생성
+			2. Lotto 번호 수동 생성
+				
+## 07. 함수의 매개변수 
+	- 값에 대한 매개 변수 
+		- print(2, 3.0f, 'a');
+		
+		- 	static void print( ??? ) {
+		
+			}
+		- 	int x = 3;
+			float x = 3.5f
+			int [] x = new int[3];
+			char x = '3';
+			char [] x = new char[3];
+			
+		-	int[] lotto = new int[3];
+			print(3, 5.3f, lotto)
+			
+			void print(int a, float b, int[] lotto) {
+			
+			}
+			
+		-	char[][] names = new char[3][10];
+			double cnt = print(true, 4.0, names);
+			
+			double print(boolean a, double b, char[][] names) {
+				return 2.2;
+			}
+
+## 08. 데이터 구조화
+	- 데이터 구조화
+		- 	void drawEllipse(int x, int y, int w, int h, int color) {
+				// 생략
+			}
+			
+		- 	void drawEllipse(Ellipse ellipse) {
+		
+			}
+			
+		- 	void draw(Ellipse ellipse) {
+
+			}
+	- 오목 게임 데이터와 엔티티(Entity)
+
+## 09. 데이터 구조화 #2
+	- 
+
+## 10. 구조체 배열 
+	- 배열을 이용해 여러 개의 성적을 입력 받기 위한 구조체 배열 
+		- Exam exam = new Exam()      -> Exam 객체(exam)가 만들어짐
+		- Exam[] exams = new Exam[3]; -> Exam 형식의 3개짜리 배열이 만들어짐.
+			- exams[0].kor = 30;     ---> (x)
+			- exams[0] = new Exam(); ---> (o)
+	- 배열 사용에 대한 이해
+		- 클래스 배열은 객체 배열이 아니라 객체 잠조 배열이다.
+			- 	Exam[] exams = new Exam[3];   ---> 이름표 3개만 준비한 거다. 객체가 만들어진게 아님. 매주 중요.
+				exams[0] = new Exam();
+				exams[1] = new Exam();
+				exams[2] = new Exam();
+				
+				
+		
+		
+			
+		
+		

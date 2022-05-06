@@ -1,6 +1,5 @@
 package ex14.array;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Program {
