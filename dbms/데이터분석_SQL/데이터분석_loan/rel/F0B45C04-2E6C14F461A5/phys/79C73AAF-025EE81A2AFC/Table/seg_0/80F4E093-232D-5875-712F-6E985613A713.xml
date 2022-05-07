@@ -1,0 +1,103 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="TCOLL" directorySegmentName="seg_0" id="80F4E093-232D-5875-712F-6E985613A713">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<schemaObject>5E8A7517-E47D-20A0-127D-697F751370E2</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>7622DF43-0BAE-BB74-0D2C-08A11B440137</segment>
+<tableSpace>4C7DD62C-259B-FDE5-2A41-D88278BA6BD8</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<inMemory>NO</inMemory>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="COLLID" id="0511DFC9-D91F-C423-01B1-EF78F3023803">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="EVAL" id="0C365AA8-6AEC-E841-9002-D76DD8F2F185">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="SETNUM" id="1BC46676-7241-9F67-CF25-8F795DD0A2C8">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="EVAL_RATE" id="584363D0-3881-24D3-EB10-75AEB77D3695">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="COLL_TYP" id="E4D0A4D0-7F7C-6F89-887D-7637525AEEF8">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="EVAL_AMT" id="E953E55B-E398-0B8E-43EF-93A52DF7619C">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<columnExpression>&quot;EVAL&quot;*&quot;EVAL_RATE&quot;</columnExpression>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="TCOLL_EVALRATE_IX" id="1B1F40A1-3FF9-C712-74BA-51B97867146A">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:20 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<schemaObject>5E8A7517-E47D-20A0-127D-697F751370E2</schemaObject>
+<segment>9368AE6E-5E9D-1EAE-078D-4A11648724CF</segment>
+<tableSpace>4C7DD62C-259B-FDE5-2A41-D88278BA6BD8</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="TCOLL_COLLTYP_IX" id="236B0C35-BC31-A572-290B-CC857ED64C26">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:20 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<schemaObject>5E8A7517-E47D-20A0-127D-697F751370E2</schemaObject>
+<segment>9368AE6E-5E9D-1EAE-078D-4A11648724CF</segment>
+<tableSpace>4C7DD62C-259B-FDE5-2A41-D88278BA6BD8</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="TCOLL_EVALAMT_IX" id="50A65299-58C9-2D5B-D89D-9B631EA6238A">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:20 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<schemaObject>5E8A7517-E47D-20A0-127D-697F751370E2</schemaObject>
+<segment>9368AE6E-5E9D-1EAE-078D-4A11648724CF</segment>
+<tableSpace>4C7DD62C-259B-FDE5-2A41-D88278BA6BD8</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="TCOLL_PK_IX" id="CB6E544A-3604-22FA-01D9-7471E6A2B4B9">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:20 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<schemaObject>5E8A7517-E47D-20A0-127D-697F751370E2</schemaObject>
+<segment>9368AE6E-5E9D-1EAE-078D-4A11648724CF</segment>
+<tableSpace>4C7DD62C-259B-FDE5-2A41-D88278BA6BD8</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="TCOLL_EVAL_IX" id="DCEF23CA-40DF-59C9-32D3-D73D540FB059">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:20 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<schemaObject>5E8A7517-E47D-20A0-127D-697F751370E2</schemaObject>
+<segment>9368AE6E-5E9D-1EAE-078D-4A11648724CF</segment>
+<tableSpace>4C7DD62C-259B-FDE5-2A41-D88278BA6BD8</tableSpace>
+</IndexProxy>
+</indexProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="TCOLL_PK" id="3B525CA1-13F5-9F14-F8A5-70830ADC463F">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:25 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<segment>9368AE6E-5E9D-1EAE-078D-4A11648724CF</segment>
+<tableSpace>4C7DD62C-259B-FDE5-2A41-D88278BA6BD8</tableSpace>
+<existingIndex>CB6E544A-3604-22FA-01D9-7471E6A2B4B9</existingIndex>
+<indexSegment>9368AE6E-5E9D-1EAE-078D-4A11648724CF</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev12c>

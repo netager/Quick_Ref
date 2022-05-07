@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<LogicalDesign class="oracle.dbtools.crest.model.design.logical.LogicalDesign" name="Logical" id="9F3F3441-D02A-0AED-E88D-E926FDC48EB3" mainViewID="1E29CC52-70E9-C314-9070-6A912C97A057">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:03:38 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+</LogicalDesign>

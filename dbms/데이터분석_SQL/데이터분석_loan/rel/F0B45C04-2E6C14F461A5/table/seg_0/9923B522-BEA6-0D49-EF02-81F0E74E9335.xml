@@ -1,0 +1,200 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="9923B522-BEA6-0D49-EF02-81F0E74E9335" schemaObject="5E8A7517-E47D-20A0-127D-697F751370E2" name="TID">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>TID</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<commentInRDBMS><![CDATA[차주기본 정보]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="LNID" id="E77B7F57-6BC5-B90A-038D-98838A158A53">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>TID</sourceObjSchema>
+<sourceObjName>LNID</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<commentInRDBMS><![CDATA[차주 일련번호]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>5 BYTE</dataTypeSize>
+<ownDataTypeParameters>5 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ID_TYP" id="A9062364-C6E3-B14E-F8EF-891D3820B6DF">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>TID</sourceObjSchema>
+<sourceObjName>ID_TYP</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<commentInRDBMS><![CDATA[차주 타입 1:개인,2:법인]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1 BYTE</dataTypeSize>
+<ownDataTypeParameters>1 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>TID_IDTYP_NN</notNullConstraintName>
+</Column>
+<Column name="BTHDAY" id="30F184C0-9379-8206-BC0E-DFE62D416F71">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>TID</sourceObjSchema>
+<sourceObjName>BTHDAY</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<commentInRDBMS><![CDATA[생일, 설립일]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>TID_BTHDAY_NN</notNullConstraintName>
+</Column>
+<Column name="GENDER" id="D1006AC9-89AB-0A7C-E920-EB095E130CCA">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>TID</sourceObjSchema>
+<sourceObjName>GENDER</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<commentInRDBMS><![CDATA[성별]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1 BYTE</dataTypeSize>
+<ownDataTypeParameters>1 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SCORE" id="2EC93870-3C64-5115-F1CF-5632409E3BBA">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>TID</sourceObjSchema>
+<sourceObjName>SCORE</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<commentInRDBMS><![CDATA[개인:신용점수]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>4</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,4,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="GRADE" id="8105D03A-0882-46D4-E732-A0D165724D39">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>TID</sourceObjSchema>
+<sourceObjName>GRADE</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<commentInRDBMS><![CDATA[법인:신용등급]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4 BYTE</dataTypeSize>
+<ownDataTypeParameters>4 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="349BF356-1BF6-105F-AFAF-672C14565BE1" name="TID_LNID_PK">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>TID_LNID_PK</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:25 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E77B7F57-6BC5-B90A-038D-98838A158A53"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DDD47C8B-5C1C-49A0-652B-28105A011F90" schemaObject="5E8A7517-E47D-20A0-127D-697F751370E2" name="TID_BTHDAY_IX">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>TID_BTHDAY_IX</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:22 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="30F184C0-9379-8206-BC0E-DFE62D416F71"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1E9DC6BD-35ED-780D-5F74-D6FB8DECFE5F" schemaObject="5E8A7517-E47D-20A0-127D-697F751370E2" name="TID_GENDER_IX">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>TID_GENDER_IX</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:22 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D1006AC9-89AB-0A7C-E920-EB095E130CCA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="565E2A55-A86F-AD22-8FE5-82AB109D2E8C" schemaObject="5E8A7517-E47D-20A0-127D-697F751370E2" name="TID_GRADE_IX">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>TID_GRADE_IX</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:22 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8105D03A-0882-46D4-E732-A0D165724D39"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="27C930B0-92CD-D244-EBA9-E3216A43779D" schemaObject="5E8A7517-E47D-20A0-127D-697F751370E2" name="TID_ID_TYP_IX">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>TID_ID_TYP_IX</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:22 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A9062364-C6E3-B14E-F8EF-891D3820B6DF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F02B676D-5797-BF07-0707-0FEC9E6D5117" schemaObject="5E8A7517-E47D-20A0-127D-697F751370E2" name="TID_LNID_IX">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>TID_LNID_IX</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:22 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E77B7F57-6BC5-B90A-038D-98838A158A53"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7908FDA6-AEFF-2656-161C-150CAEB1C545" schemaObject="5E8A7517-E47D-20A0-127D-697F751370E2" name="TID_SCORE_IX">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>TID_SCORE_IX</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:22 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2EC93870-3C64-5115-F1CF-5632409E3BBA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

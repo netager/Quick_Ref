@@ -1,0 +1,145 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F59EA125-355A-113B-FF85-6236D68095D4" schemaObject="5E8A7517-E47D-20A0-127D-697F751370E2" name="TCOLL_ACCT">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>TCOLL_ACCT</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<commentInRDBMS><![CDATA[담보-대출계좌연결 정보]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="COLLID" id="5B531777-D90F-2079-6997-9DD748C50E1A">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>TCOLL_ACCT</sourceObjSchema>
+<sourceObjName>COLLID</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<commentInRDBMS><![CDATA[담보 일련번호]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>4 BYTE</dataTypeSize>
+<ownDataTypeParameters>4 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="CCD3CC35-16FC-58BD-7B12-477CB04469D9" referredColumn="0511DFC9-D91F-C423-01B1-EF78F3023803"/>
+</associations>
+</Column>
+<Column name="SETNUM" id="CCF56A55-7229-4D40-38B8-2D0A54833290">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>TCOLL_ACCT</sourceObjSchema>
+<sourceObjName>SETNUM</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<commentInRDBMS><![CDATA[담보 설정번호]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,6,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="CCD3CC35-16FC-58BD-7B12-477CB04469D9" referredColumn="1BC46676-7241-9F67-CF25-8F795DD0A2C8"/>
+</associations>
+</Column>
+<Column name="LNACT" id="856B849A-E738-B1AF-BA6C-A496E2529526">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>TCOLL_ACCT</sourceObjSchema>
+<sourceObjName>LNACT</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<commentInRDBMS><![CDATA[계좌번호]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>6 BYTE</dataTypeSize>
+<ownDataTypeParameters>6 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="5CFE8111-6C7B-20F3-FEF7-5D03531D8D3B" referredColumn="9E76C4DB-BB92-E3B4-0A41-EC3554293735"/>
+</associations>
+</Column>
+<Column name="LNACT_SEQ" id="AA192506-2DF1-DC51-F4A0-DB4D535E83E7">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>TCOLL_ACCT</sourceObjSchema>
+<sourceObjName>LNACT_SEQ</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<commentInRDBMS><![CDATA[계좌일련번호]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>2 BYTE</dataTypeSize>
+<ownDataTypeParameters>2 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="5CFE8111-6C7B-20F3-FEF7-5D03531D8D3B" referredColumn="889273D7-6AA6-17CE-31E5-027C90FA6033"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="401ED2D5-7325-9C78-DDA1-AA0A97FC0C68" name="TCOLLACCT_PK">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>TCOLLACCT_PK</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:25 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5B531777-D90F-2079-6997-9DD748C50E1A"/>
+<colUsage columnID="CCF56A55-7229-4D40-38B8-2D0A54833290"/>
+<colUsage columnID="856B849A-E738-B1AF-BA6C-A496E2529526"/>
+<colUsage columnID="AA192506-2DF1-DC51-F4A0-DB4D535E83E7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="96658A3B-D002-658A-7403-90C7FF4409C7" schemaObject="5E8A7517-E47D-20A0-127D-697F751370E2" name="TCOLLACCT_IX">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>TCOLLACCT_IX</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:22 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5B531777-D90F-2079-6997-9DD748C50E1A"/>
+<colUsage columnID="CCF56A55-7229-4D40-38B8-2D0A54833290"/>
+<colUsage columnID="856B849A-E738-B1AF-BA6C-A496E2529526"/>
+<colUsage columnID="AA192506-2DF1-DC51-F4A0-DB4D535E83E7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="757C9B8F-0515-0892-3841-0C0013D832F7" name="TCOLLACCT_ACCT_FK">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:28 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="856B849A-E738-B1AF-BA6C-A496E2529526"/>
+<colUsage columnID="AA192506-2DF1-DC51-F4A0-DB4D535E83E7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="AF851ADA-3B73-89AD-86D0-59631AF55633" name="TCOLLACCT_COLL_FK">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:28 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5B531777-D90F-2079-6997-9DD748C50E1A"/>
+<colUsage columnID="CCF56A55-7229-4D40-38B8-2D0A54833290"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

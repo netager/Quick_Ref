@@ -1,0 +1,272 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="TACCT" directorySegmentName="seg_0" id="32E83D8E-950A-2ED2-7C0C-A2026F575462">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<schemaObject>5E8A7517-E47D-20A0-127D-697F751370E2</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>7622DF43-0BAE-BB74-0D2C-08A11B440137</segment>
+<tableSpace>4C7DD62C-259B-FDE5-2A41-D88278BA6BD8</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<inMemory>NO</inMemory>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="DLQ_CNT" id="06CF9C8B-4BD4-FE3C-DA27-A7D08EF2E89B">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="INTER_DT" id="0B14DEF9-1389-0CE6-934B-5402E974F5E2">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="REPAY" id="0C8CC9A0-9750-9F07-3834-1A10D09B346A">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="LN_TERM" id="0DFCEFAA-8497-5C3E-6089-163AA663D169">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="BRANCH" id="2091DF4C-74B5-E562-D5F8-714D844DD012">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="REPAY_DT" id="2F0A7514-7033-E843-F121-F33FC5C5D275">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="RATE" id="310FE95F-3288-187C-FA29-217BBF640E22">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="LN_DT" id="495F8ACE-67B7-6679-A656-3C6A62649ACA">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ACCT_TYP" id="4C636F8E-9AD2-368E-DCBF-E250FDCEC547">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="PROD_CD" id="67409799-23C1-D22E-87EC-9C15676926DF">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="REPAY_TYP" id="6C065780-7BE1-9DAC-BD07-A532F97951C4">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="LNACT_SEQ" id="889273D7-6AA6-17CE-31E5-027C90FA6033">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="LN_AMT" id="9DF89537-F74F-FEC0-A21F-B393F7F06151">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="LNACT" id="9E76C4DB-BB92-E3B4-0A41-EC3554293735">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="LNID" id="AB6A5363-7A30-36C4-AF18-48451B29586B">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="BB_AMT" id="B6776612-E801-6AD8-9093-9D6C633EA465">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="LMT" id="D7B15669-B95C-ACAA-F0D2-4B6E7831505B">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="EXP_DT" id="F09F88A6-0DF6-22E3-026C-7DE9E7AA92F7">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="RATE_TYP" id="F299519F-3DF1-363F-D53B-9BD341433361">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="DLQ_DT" id="F2CACF31-CF6C-B7D3-13EC-4B2FDF429892">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="LMT_TYP" id="F4F98239-324B-2252-A96B-3CAEC9B16540">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="TACCT_PK_IX" id="018F1364-916D-7A44-777D-E410D6F666F4">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:20 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<schemaObject>5E8A7517-E47D-20A0-127D-697F751370E2</schemaObject>
+<segment>9368AE6E-5E9D-1EAE-078D-4A11648724CF</segment>
+<tableSpace>4C7DD62C-259B-FDE5-2A41-D88278BA6BD8</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="TACCT_LMTTYP_IX" id="1B82E804-A52D-EF20-49DD-EC50A9FB7AC0">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:20 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<schemaObject>5E8A7517-E47D-20A0-127D-697F751370E2</schemaObject>
+<segment>9368AE6E-5E9D-1EAE-078D-4A11648724CF</segment>
+<tableSpace>4C7DD62C-259B-FDE5-2A41-D88278BA6BD8</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="TACCT_REPAYTYP_IX" id="210C1B7D-4442-6397-2F92-4ADD2AEC5A51">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:20 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<schemaObject>5E8A7517-E47D-20A0-127D-697F751370E2</schemaObject>
+<segment>9368AE6E-5E9D-1EAE-078D-4A11648724CF</segment>
+<tableSpace>4C7DD62C-259B-FDE5-2A41-D88278BA6BD8</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="TACCT_LNDT_IX" id="303BD1D8-8643-A7C3-EF57-964BAE505608">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:20 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<schemaObject>5E8A7517-E47D-20A0-127D-697F751370E2</schemaObject>
+<segment>9368AE6E-5E9D-1EAE-078D-4A11648724CF</segment>
+<tableSpace>4C7DD62C-259B-FDE5-2A41-D88278BA6BD8</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="TACCT_DLQCNT_IX" id="3A50D90A-0D3F-009B-81BA-1A6E89AD6F28">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:20 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<schemaObject>5E8A7517-E47D-20A0-127D-697F751370E2</schemaObject>
+<segment>9368AE6E-5E9D-1EAE-078D-4A11648724CF</segment>
+<tableSpace>4C7DD62C-259B-FDE5-2A41-D88278BA6BD8</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="TACCT_PRODCD_IX" id="610B3A9B-7B89-CC62-2D6D-A971C53D0629">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:20 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<schemaObject>5E8A7517-E47D-20A0-127D-697F751370E2</schemaObject>
+<segment>9368AE6E-5E9D-1EAE-078D-4A11648724CF</segment>
+<tableSpace>4C7DD62C-259B-FDE5-2A41-D88278BA6BD8</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="TACCT_DLQDT_IX" id="62B4F93A-98AD-3FD2-AC71-E5A56D05CAB9">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:20 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<schemaObject>5E8A7517-E47D-20A0-127D-697F751370E2</schemaObject>
+<segment>9368AE6E-5E9D-1EAE-078D-4A11648724CF</segment>
+<tableSpace>4C7DD62C-259B-FDE5-2A41-D88278BA6BD8</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="TACCT_ACCTTYP_IX" id="63007C99-CE69-4D4B-D5F0-DE8D96EAC5AD">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:20 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<schemaObject>5E8A7517-E47D-20A0-127D-697F751370E2</schemaObject>
+<segment>9368AE6E-5E9D-1EAE-078D-4A11648724CF</segment>
+<tableSpace>4C7DD62C-259B-FDE5-2A41-D88278BA6BD8</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="TACCT_BRANCH_IX" id="9BDC6EEB-3427-D333-3A5A-F0F4B95EB78E">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:20 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<schemaObject>5E8A7517-E47D-20A0-127D-697F751370E2</schemaObject>
+<segment>9368AE6E-5E9D-1EAE-078D-4A11648724CF</segment>
+<tableSpace>4C7DD62C-259B-FDE5-2A41-D88278BA6BD8</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="TACCT_LNID_IX" id="A1642EB3-AAEA-F3EC-EB9E-0D70D0B3AAFA">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:20 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<schemaObject>5E8A7517-E47D-20A0-127D-697F751370E2</schemaObject>
+<segment>9368AE6E-5E9D-1EAE-078D-4A11648724CF</segment>
+<tableSpace>4C7DD62C-259B-FDE5-2A41-D88278BA6BD8</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="TACCT_RATETYP_IX" id="ABA6BB7A-8EA1-D344-8E7E-797E3B81EAF0">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:20 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<schemaObject>5E8A7517-E47D-20A0-127D-697F751370E2</schemaObject>
+<segment>9368AE6E-5E9D-1EAE-078D-4A11648724CF</segment>
+<tableSpace>4C7DD62C-259B-FDE5-2A41-D88278BA6BD8</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="TACCT_EXPDT_IX" id="B3BE5304-BC5B-43AD-8116-D8B01A907AFA">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:20 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<schemaObject>5E8A7517-E47D-20A0-127D-697F751370E2</schemaObject>
+<segment>9368AE6E-5E9D-1EAE-078D-4A11648724CF</segment>
+<tableSpace>4C7DD62C-259B-FDE5-2A41-D88278BA6BD8</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="TACCT_REPAY_IX" id="D21F9FFD-C7D6-A546-3D20-A403275786C0">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:20 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<schemaObject>5E8A7517-E47D-20A0-127D-697F751370E2</schemaObject>
+<segment>9368AE6E-5E9D-1EAE-078D-4A11648724CF</segment>
+<tableSpace>4C7DD62C-259B-FDE5-2A41-D88278BA6BD8</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="TACCT_LNTERM_IX" id="D2956A72-975A-BB41-25AB-F9A1C2717A67">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:20 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<schemaObject>5E8A7517-E47D-20A0-127D-697F751370E2</schemaObject>
+<segment>9368AE6E-5E9D-1EAE-078D-4A11648724CF</segment>
+<tableSpace>4C7DD62C-259B-FDE5-2A41-D88278BA6BD8</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="TACCT_INTERDT_IX" id="EB5AFD5F-12EE-2316-314D-134A603B405C">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:20 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<schemaObject>5E8A7517-E47D-20A0-127D-697F751370E2</schemaObject>
+<segment>9368AE6E-5E9D-1EAE-078D-4A11648724CF</segment>
+<tableSpace>4C7DD62C-259B-FDE5-2A41-D88278BA6BD8</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="TACCT_REPAYDT_IX" id="F09563B7-2125-3F81-AD10-C3AFEF025829">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:20 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<schemaObject>5E8A7517-E47D-20A0-127D-697F751370E2</schemaObject>
+<segment>9368AE6E-5E9D-1EAE-078D-4A11648724CF</segment>
+<tableSpace>4C7DD62C-259B-FDE5-2A41-D88278BA6BD8</tableSpace>
+</IndexProxy>
+</indexProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="TACCT_FK" id="3490ADDB-8B51-6BD6-01DD-D1170311D083">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:28 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="TACCT_PK" id="43818587-105D-2E42-2200-38CA4B7B0959">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:25 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<segment>9368AE6E-5E9D-1EAE-078D-4A11648724CF</segment>
+<tableSpace>4C7DD62C-259B-FDE5-2A41-D88278BA6BD8</tableSpace>
+<existingIndex>018F1364-916D-7A44-777D-E410D6F666F4</existingIndex>
+<indexSegment>9368AE6E-5E9D-1EAE-078D-4A11648724CF</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev12c>

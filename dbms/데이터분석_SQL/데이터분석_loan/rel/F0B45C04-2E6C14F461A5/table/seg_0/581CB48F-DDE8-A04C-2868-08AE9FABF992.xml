@@ -1,0 +1,110 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="581CB48F-DDE8-A04C-2868-08AE9FABF992" schemaObject="5E8A7517-E47D-20A0-127D-697F751370E2" name="TDLQ">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>TDLQ</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<commentInRDBMS><![CDATA[연체정보]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="LNACT" id="96E9215D-BA40-956E-3580-B47CA8406FA9">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>TDLQ</sourceObjSchema>
+<sourceObjName>LNACT</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<commentInRDBMS><![CDATA[계좌번호]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>6 BYTE</dataTypeSize>
+<ownDataTypeParameters>6 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="DCB54771-E4A6-890B-DFE4-2CA2262317CE" referredColumn="9E76C4DB-BB92-E3B4-0A41-EC3554293735"/>
+</associations>
+</Column>
+<Column name="LNACT_SEQ" id="6FE8346C-BFCA-AA17-1DA3-00C505D47664">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>TDLQ</sourceObjSchema>
+<sourceObjName>LNACT_SEQ</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<commentInRDBMS><![CDATA[계좌 일련번호]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>2 BYTE</dataTypeSize>
+<ownDataTypeParameters>2 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="DCB54771-E4A6-890B-DFE4-2CA2262317CE" referredColumn="889273D7-6AA6-17CE-31E5-027C90FA6033"/>
+</associations>
+</Column>
+<Column name="DLQ_DT" id="5B2F9FF4-9EB3-754C-051C-2E32A7F4957E">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>TDLQ</sourceObjSchema>
+<sourceObjName>DLQ_DT</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<commentInRDBMS><![CDATA[연체 기준 일자(연체 상태인 날짜)]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="0DFCE49D-60A4-5FED-570E-38D446896A49" name="TDLQ_PK">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>TDLQ_PK</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:25 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="96E9215D-BA40-956E-3580-B47CA8406FA9"/>
+<colUsage columnID="6FE8346C-BFCA-AA17-1DA3-00C505D47664"/>
+<colUsage columnID="5B2F9FF4-9EB3-754C-051C-2E32A7F4957E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="592E390B-D766-A064-BE06-ECB957E1CA37" schemaObject="5E8A7517-E47D-20A0-127D-697F751370E2" name="TDLQ_PK_IX">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>TDLQ_PK_IX</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:22 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="96E9215D-BA40-956E-3580-B47CA8406FA9"/>
+<colUsage columnID="6FE8346C-BFCA-AA17-1DA3-00C505D47664"/>
+<colUsage columnID="5B2F9FF4-9EB3-754C-051C-2E32A7F4957E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="71FED648-2AEE-FD44-C280-76D65B563BE8" name="TDLQ_FK">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:29 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="96E9215D-BA40-956E-3580-B47CA8406FA9"/>
+<colUsage columnID="6FE8346C-BFCA-AA17-1DA3-00C505D47664"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

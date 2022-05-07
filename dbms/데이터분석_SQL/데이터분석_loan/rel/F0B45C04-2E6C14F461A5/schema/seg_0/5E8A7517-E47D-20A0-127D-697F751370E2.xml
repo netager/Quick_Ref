@@ -1,0 +1,6 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SchemaObject class="oracle.dbtools.crest.model.design.relational.SchemaObject" name="JBB301" directorySegmentName="seg_0" id="5E8A7517-E47D-20A0-127D-697F751370E2">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</SchemaObject>

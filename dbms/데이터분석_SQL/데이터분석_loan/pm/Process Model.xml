@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<ProcessModel class="oracle.dbtools.crest.model.design.process.ProcessModel" name="Process Model" id="36A62BA4-E882-61CA-4A0B-D241148DF73E">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:03:39 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+</ProcessModel>

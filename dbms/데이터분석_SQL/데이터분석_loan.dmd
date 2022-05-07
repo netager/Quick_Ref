@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="데이터분석_loan" id="3D58CEE0-12D3-1471-1410-66FCA301595C" version="3.5">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:03:38 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>3D58CEE0-12D3-1471-1410-66FCA301595C</designId>
+</OSDM_Design>

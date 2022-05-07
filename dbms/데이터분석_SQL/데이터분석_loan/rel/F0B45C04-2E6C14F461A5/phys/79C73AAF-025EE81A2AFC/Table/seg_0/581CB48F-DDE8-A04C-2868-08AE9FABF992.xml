@@ -1,0 +1,62 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="TDLQ" directorySegmentName="seg_0" id="581CB48F-DDE8-A04C-2868-08AE9FABF992">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<schemaObject>5E8A7517-E47D-20A0-127D-697F751370E2</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>7622DF43-0BAE-BB74-0D2C-08A11B440137</segment>
+<tableSpace>4C7DD62C-259B-FDE5-2A41-D88278BA6BD8</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<inMemory>NO</inMemory>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="DLQ_DT" id="5B2F9FF4-9EB3-754C-051C-2E32A7F4957E">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="LNACT_SEQ" id="6FE8346C-BFCA-AA17-1DA3-00C505D47664">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="LNACT" id="96E9215D-BA40-956E-3580-B47CA8406FA9">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:18 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="TDLQ_PK_IX" id="592E390B-D766-A064-BE06-ECB957E1CA37">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:22 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<schemaObject>5E8A7517-E47D-20A0-127D-697F751370E2</schemaObject>
+<segment>9368AE6E-5E9D-1EAE-078D-4A11648724CF</segment>
+<tableSpace>4C7DD62C-259B-FDE5-2A41-D88278BA6BD8</tableSpace>
+</IndexProxy>
+</indexProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="TDLQ_FK" id="71FED648-2AEE-FD44-C280-76D65B563BE8">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:29 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="TDLQ_PK" id="0DFCE49D-60A4-5FED-570E-38D446896A49">
+<createdBy>User</createdBy>
+<createdTime>2022-05-07 08:08:25 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<segment>9368AE6E-5E9D-1EAE-078D-4A11648724CF</segment>
+<tableSpace>4C7DD62C-259B-FDE5-2A41-D88278BA6BD8</tableSpace>
+<existingIndex>592E390B-D766-A064-BE06-ECB957E1CA37</existingIndex>
+<indexSegment>9368AE6E-5E9D-1EAE-078D-4A11648724CF</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev12c>
