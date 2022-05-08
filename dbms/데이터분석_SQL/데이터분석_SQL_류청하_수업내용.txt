@@ -1,0 +1,46 @@
+## SQL Developer Hot Key
+	- 테이블 선택후 Shift + F4
+## SQL
+	- SQERY : SELECT 
+	- DML   : INSERT, UPDATE, DELETE
+	- TCL   : COMMIT, ROLLBACK
+	- DDL   : CREATE, DROP, ALTER, TRUNCATE
+	- DCL   : GRANT, REVOKE
+
+##
+	5 SELECT     : 검색 대상의 표현식 (컴럼 이름) 
+ 	1   FROM     : 검색 대상의 집합 (테이블 이름)
+	2 WHERE      : 행 제한을 위한 조건식
+	3 GROUP BY   : 
+	4 HAVING     :
+	6 ORDER BY   : 정렬
+	6 ORDER BY   : 정렬
+	
+	
+
+ㄴ딛ㅊㅅ 
+
+select branch, count(dlq_dt, sum(dlq_dt)
+  from tacct
+  where lm_typ is null
+  and dlq_dt is not null
+  order by branch;
+
+select branch, 
+       case when to_char(ln_dt, 'yyyymm') = '202201' then '2022년 1월'
+	        when to_char(ln_dt, 'yyyymm') = '202202' then '2022년 2월'
+		    when to_char(ln_dt, 'yyyymm') = '202203' then '2022년 3월'
+		end 
+	   
+  from tacct
+  
+ where lmt_typ is null
+   and to_char(ln_dt,"yyyymm") between '202201' and '202203';
+
+
+
+   
+  group by branch, 월별
+  order by branch;1
+  
+  count(case 문)

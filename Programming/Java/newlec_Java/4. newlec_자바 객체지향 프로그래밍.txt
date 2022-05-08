@@ -1,0 +1,141 @@
+## 01. 객체지향 프로그래밍의 시작 캡슐화
+	- 객체지향 프로그래밍(OOP-Object Oriented programming)
+		- OOP의 기본 컨셉은 프로그램 내에서 표현하고자 하는 실 세계(real world)의 일들을 객체를 사용해서
+		  모델링하고, 객체를 사용하지 않으면 불가능 혹은 무지 어려웠을 일들을 쉽게 처리하느 방법을 제공한다는 것
+		  입니다.
+	- 객체란? 클래스란?
+	- 프로그램이란 ... 절차가 전부이다.
+		- 프로그램 --- 방법1 --- 방법2 --->
+		- 절차적인 프로그래밍? + 구조적인 프로그램밍? + 어떤 문제가 있었으며 새로운 방식이 필요했을 것이다 + 객체지향 프로그래밍?
+	- 캡슐화
+		- 프로그래밍은 절차이다.
+	- 함수의 개체수가 많아지는 문제와 수납 방법의 모색 
+		- 어떻게 수납할 것인가?
+	- 기능에 따라서 분리할 것인가? - 수납 공간은 파일(클래스 파일)
+
+		- Input.java
+			- inputExam(0
+			- inputStudent()
+			- inputOmok()
+		- Sort.java
+			- sortExams()
+			- sortStudents()
+			- sortOmoks()
+		- draw.java
+			- drawOmok()
+			- drawBoard()
+			- drawOmoks()
+	- 데이터에 따라 분리할 것인가?
+		- Exam.java
+			- inputExam()
+			- sortExam()
+			- printExam()
+		- Student.java
+			- inputStudent()
+			- printStudent()
+			- searchStudent()
+		- Omok.java
+			- drawOmok()
+			- putOmok()
+			- drawOmoks() 
+	- 어떤 방식이 더 바람직한 것 같나요?
+		- 기능을 위주로 수납한 방식? 아니면 데이터를 위주로 수납한 방식?
+			- 데이터를 기준으로 묶어주어야 바람직 함.
+			- 구조화된 데이터를 사용하는 함수 모듈의 독립성을 침해하는 문제를 해결 할 수 있기 때문에
+				- 함수 모듈의 독립성??
+				- 함수는 외부의 수정에 절대 영향을 받아서는 안된다.
+	- 코드 파일 관리방법
+		- 	class Ellipse {
+				int x, y, w, h;
+				int color;
+			}
+			
+			void draw(Ellipse ellipse) {
+				printf("....", ellipse.x);
+				ellipse.x + ellipse.y 
+			}
+				-> 구조화된 데이터 Ellipse의 x가 변경되면 draw()에서 영향을 받는다.
+				    (ellipse.x 가 변경되면 draw()에서 영향 받음)
+					
+		- 해결 방법
+			1. 변수명을 바꾸지 않는다.
+			2. 변수를 바꾸었으면 사용 되는 모든 코드를 찾아서 같이 변경.
+			
+			-> 둘다 좋지는 않다.
+			3. 가장 좋은 해결방법
+				- 변수를 사용하는 모든 함수를 함께 모아 놓는다.
+				-	class Ellipse {
+						int x, y, w, h;
+						int color;
+						
+						void draw(Ellipse ellipse) {
+							printf("....", ellipse.x);
+							ellipse.x + ellipse.y 
+						}
+					}
+				- 캡슐화를 하면 데이터 구조에 따른 코드의 수정범위를 캡슐 범위로 한정할 수 있다. 
+	- 캡슐화 정리 : 데이터 구조와 함수를 하나의 영역에 함께 정의하는 것 
+	
+## 02. 함수들을 캡슐화 하기 - 성적관리 프로그램 캡슐화 하기 
+	- 캡슐화 : 데이터 구조와 함수를 하나의 영역에 함께 모아 놓는 작업
+	
+## 03. 인스턴스(Instance) 메소드 
+	- 객체와 함수의 관계
+		- 	void main(){ // list를 이용한 처리 - 구조적 처리 - 함수적 처리
+				list = new ExamList();
+				ExamList.inputList(list);
+				ExamList.printList(list);
+				ExamList.saveList(list);
+			
+		-  	void main() { // 인스턴스 함수
+				list = new ExamList(); // list를 이용한. 입력() - list야 입력해
+				list.inputList();      // list를 이용한. 출력() - list야 출력해
+				list.printList();      // list를 이용한. 저장() - list야 저장해
+				list.saveList();
+			}
+		
+## 04. 인스턴스(Instance) 메소드 구현하기 
+	- 객체지향적인 함수 호출 방식으로의 변화하기 
+		- 기존의 함수의 인스턴스 전달
+			-	public static void main(String[] args) {
+					ExamList list = new ExamList();
+					ExamList.inputList(list);
+				}
+				
+				class ExamList {  
+					public static void inputList(ExamList list) { // static 메서드
+						list.exams[list.current] = new Exam();
+					}
+		- 새로운 함수의 인스턴스 전달		
+			- 	public static void main(String[] args) {
+					ExamList list = new ExamList();
+					list.inputList();
+				
+				class ExamList {  
+					public void inputList() { // 인스턴스 메서드
+						this.exams[this.current] = new Exam();
+				}
+				
+		- static method Vs. instance method 
+			- static method
+				- 매개변수를 통한 처리 함수(메서드)
+			- instance method 
+				- 객체를 생성해서 호출하는 메서드
+				
+## 05. 캡슐의 은닉성과 접근 지정자 
+	- 캡슐을 깨뜨리는 행위란?
+		- 
+			
+	- 캡슐을 깨지 못하게 하는 도구 : 접근 제어 지시자
+		----------------------------------------------
+		접근지시자     | 동일 클래스 | 파생 클래스 | 외부 클래스
+		----------------------------------------------
+		private    |    O    |     X    |    X  
+		----------------------------------------------
+		protected  |    O    |     O    |    X 
+		----------------------------------------------
+		public     |    O    |     X    |    O
+		----------------------------------------------
+	
+## 06. 생성자(Constructor)		
+	- 
