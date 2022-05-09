@@ -1,13 +1,20 @@
-package part3.ex2.메소드;
+package part3.ex4.UI코드분리하기;
 
 import java.util.Scanner;
 
-public class ExamList {
-	private Exam[] exams;
-	private int current;
+public class ExamConsole {
+	
+	// Composition Has A - 일체형
+	// private ExamList list = new ExamList();
+	private ExamList list;
+	
+	public ExamConsole() {
+		list = new ExamList();
+	}
+	
 	
 	public void printList() {
-		printList(current);
+		printList(list.size());
 	}
 	
 	public void printList(int size) {
@@ -16,18 +23,18 @@ public class ExamList {
 		System.out.println("└───────────────────────────────────┘");
 		System.out.println();
 
-		// int size = list.current;
-		Exam[] exams = this.exams;
+//		Exam[] exams = this.exams;
 		
 		for(int i=0; i<size; i++) {
-			Exam exam = exams[i];
+			Exam exam = list.get(i);
 		
-			int kor = exam.kor;
-			int eng = exam.eng;
-			int math = exam.math;
+			// int kor = exam.kor;
+			int kor = exam.getKor();			
+			int eng = exam.getEng();
+			int math = exam.getMath();
 			
-			int total = exam.kor + exam.eng + exam.math;
-			float avg = total / 3.0f;
+			int total = exam.total();  // int total = exam.kor + exam.eng + exam.math;
+			float avg = exam.avg();    // float avg = total / 3.0f;
 			
 			
 			System.out.printf("국어 : %3d\n", kor);
@@ -39,6 +46,7 @@ public class ExamList {
 			System.out.println("──────────────────────────");
 		}
 	}
+
 
 	public void inputList() {
 		Scanner scan = new Scanner(System.in);
@@ -71,38 +79,17 @@ public class ExamList {
 			math = scan.nextInt();
 			
 			if(math<0 || math>100)
-				System.out.printf("성적범위(0~100)을 벗어났습니다.(%d)\n",math);
+				System.out.printf("성적범위(s0~100)을 벗어났습니다.(%d)\n",math);
 		} while(math<0 || math>100);
 
-		Exam exam = new Exam();
-		exam.kor = kor;
-		exam.eng = eng;
-		exam.math = math;
-		
-		Exam[] exams = this.exams;
-		int size = current;
+		Exam exam = new Exam(kor, eng, math);
 
-		// 가변 배열 만들기 
-		if(exams.length == size) {
-			// 1. 크기가 5개 정도 더 큰 새로운 배열 생성 
-			Exam[] temp = new Exam[exams.length + 5];
-			// 2. 값을 이주시키기 
-			for(int i=0; i<size; i++)
-				temp[i] = exams[i];
-			// 3. list.exams개 새로 만든 temp 배열을 참조하도록 한다.
-			exams = temp;
-		} 
+		/*-- add ---------------------------------------------- */
 		
-		exams[current] = exam;
-		current++;
-		
+		list.add(exam);
 	}
+	
+	
 
-
-	public ExamList() {
-		exams = new Exam[3];
-		current = 0;
-		
-	}
 
 }

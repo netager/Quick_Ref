@@ -1,4 +1,4 @@
-package part3.ex2.메소드;
+package part3.ex4.UI코드분리하기;
 
 import java.util.Scanner;
 
@@ -6,7 +6,7 @@ public class Program {
 	
 	public static void main(String[] args) {
 
-		ExamList list = new ExamList();
+		ExamConsole list = new ExamConsole();
 		
 		int menu;
 		boolean keepLoop = true;
