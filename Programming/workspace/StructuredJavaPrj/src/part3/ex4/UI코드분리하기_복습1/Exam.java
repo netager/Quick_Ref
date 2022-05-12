@@ -1,4 +1,4 @@
-package part3.ex3.Getters와Setters_복습1;
+package part3.ex4.UI코드분리하기_복습1;
 
 public class Exam {
 	
@@ -38,6 +38,14 @@ public class Exam {
 	
 	public void setMath(int math) {
 		this.math = math;
+	}
+
+	public int total() {
+		return kor + eng + math;
+	}
+
+	public float avg() {
+		return total() / 3.0f;
 	}
 		
 }

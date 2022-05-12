@@ -1,6 +1,6 @@
-package part3.ex3.Getters와Setters_복습1;
+package part3.ex5.추상화_복습1;
 
-public class Exam {
+public abstract class Exam {
 	
 	private int kor;
 	private int eng;
@@ -39,5 +39,13 @@ public class Exam {
 	public void setMath(int math) {
 		this.math = math;
 	}
+
+	public abstract int total();
+	
+	protected int onTotal() {
+		return kor + eng + math; 
+	}
+
+	public abstract float avg();
 		
 }
