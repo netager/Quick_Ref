@@ -3,15 +3,15 @@ package part3.ex5.추상화_복습1;
 import java.util.Scanner;
 
 
-public class ExamConsole {
+public abstract class ExamConsole {
 	
 	private ExamList list = new ExamList();
 	
-	public void printList() {
-		printList(list.size());
+	public void print() {
+		print(list.size());
 	}
 	
-	public void printList(int size) {
+	public void print(int size) {
 		System.out.println("┌───────────────────────────────────┐");
 		System.out.println("│          성적출력                    │");
 		System.out.println("└───────────────────────────────────┘");
@@ -36,6 +36,8 @@ public class ExamConsole {
 			System.out.printf("국어 : %3d\n", kor);
 			System.out.printf("영어 : %3d\n", eng);
 			System.out.printf("수학 : %3d\n", math);
+			
+			onPrint(exam);
 	
 			System.out.printf("총점  : %3d\n", total);
 			System.out.printf("평균  : %6.2f\n", avg);
@@ -43,7 +45,8 @@ public class ExamConsole {
 		}
 	}
 
-	public void inputList() {
+
+	public void input() {
 		Scanner scan = new Scanner(System.in);
 	
 		System.out.println("┌───────────────────────────────────┐");
@@ -77,14 +80,23 @@ public class ExamConsole {
 				System.out.printf("성적범위(0~100)을 벗어났습니다.(%d)\n",math);
 		} while(math<0 || math>100);
 
-		Exam exam = new Exam(kor, eng, math);
+//		Exam exam = new Exam(kor, eng, math);
+		Exam exam = makeExam();
+		exam.setKor(kor);
+		exam.setEng(eng);
+		exam.setMath(math);
 		
-		
+		onInput(exam);		
 		/*-- add ----------------------------------------- */
 		
 		list.add(exam);
 		
 	}
 
+	protected abstract void onPrint(Exam exam);
+	
+	protected abstract void onInput(Exam exam);
+
+	protected abstract Exam makeExam();
 
 }

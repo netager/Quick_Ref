@@ -4,11 +4,10 @@ public class Program {
 
 	public static void main(String[] args) {
 		
-		NewlecExam exam = new NewlecExam(1,1,1,1);
+		ExamConsole console = new NewlecExamConsole();
 		
-		System.out.println(exam.total());
-		System.out.println(exam.avg());
-
+		console.input();
+		console.print();
 	}
 
 }

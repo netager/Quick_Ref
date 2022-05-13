@@ -7,7 +7,6 @@ public class GameFrame extends Frame {
 		// TODO Auto-generated method stub
 		super.paint(g);
 		
-		g.drawRect(MAXIMIZED_BOTH, ABORT, WIDTH, HEIGHT);
 		g.drawRect(100, 200, 200, 100);
 	}
 }
