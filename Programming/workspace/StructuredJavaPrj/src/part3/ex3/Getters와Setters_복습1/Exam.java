@@ -14,7 +14,10 @@ public class Exam {
 		this.kor = kor;
 		this.eng = eng;
 		this.math = math;
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 5cfa87d906f0f669a44e55408cc6ff4b92468afa
 	}
 
 	public int getKor() {

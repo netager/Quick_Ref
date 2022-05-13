@@ -21,7 +21,20 @@ public class ExamList {
 		return this.exams[i];
 	}
 
+<<<<<<< HEAD
 	public void add(Exam exam) {
+=======
+		do {
+			System.out.printf("수학:");
+			math = scan.nextInt();
+			
+			if(math<0 || math>100)
+				System.out.printf("성적범위(0~100)을 벗어났습니다.(%d)\n",math);
+		} while(math<0 || math>100);
+
+		Exam exam = new Exam(kor, eng, math);
+		
+>>>>>>> 5cfa87d906f0f669a44e55408cc6ff4b92468afa
 		Exam[] exams = this.exams;
 		int size = current;
 
