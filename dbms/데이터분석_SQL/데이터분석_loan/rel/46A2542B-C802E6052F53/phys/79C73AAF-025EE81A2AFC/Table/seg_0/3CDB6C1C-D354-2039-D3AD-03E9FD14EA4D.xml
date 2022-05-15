@@ -1,0 +1,95 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="TREPAY" directorySegmentName="seg_0" id="3CDB6C1C-D354-2039-D3AD-03E9FD14EA4D">
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:24 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<schemaObject>D66FAF66-ED1A-36D5-DB6E-92AEF7F4C550</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>8E4EDA38-01E0-4A0F-8995-F59F28BB4897</segment>
+<tableSpace>9108F16A-0C25-7834-82E9-A8EE5EC96D69</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<inMemory>NO</inMemory>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="LNACT_SEQ" id="1D56A60B-4BC6-EC2B-F587-93D7C00D160E">
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="LN_MON_AMT" id="3879DC6D-76C7-EF4B-530B-52E4D63540CC">
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="SEQ" id="44A03855-FD10-CD16-0943-BBB9F1B47E33">
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="INT_MON_AMT" id="45E0F443-893A-4300-EE17-DF4920FE425A">
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="LNACT" id="53888EA8-7B1E-B347-2CBB-8E03D661E655">
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="SUM_MON_AMT" id="7F8B5440-1003-A780-3BD2-FBB3ECE57874">
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="LN_BB_AMT" id="86F15580-EE7D-7866-AC72-354E30C2CD5C">
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="PAY_DT" id="8D803099-705E-607B-F468-55171BCA7249">
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="TREPAY_PAYDT_IX" id="D83B5B3E-2DE3-993C-A99B-1B4C2956F2A6">
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:27 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<schemaObject>D66FAF66-ED1A-36D5-DB6E-92AEF7F4C550</schemaObject>
+<segment>55B717C4-A033-A0C7-108B-00BC442E0DBF</segment>
+<tableSpace>9108F16A-0C25-7834-82E9-A8EE5EC96D69</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="TREPAY_PK_IX" id="E01EA492-E80E-6BCE-DD29-CB24B35D9DA6">
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:27 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<schemaObject>D66FAF66-ED1A-36D5-DB6E-92AEF7F4C550</schemaObject>
+<segment>55B717C4-A033-A0C7-108B-00BC442E0DBF</segment>
+<tableSpace>9108F16A-0C25-7834-82E9-A8EE5EC96D69</tableSpace>
+</IndexProxy>
+</indexProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="TREPAY_FK" id="03C09CCD-5AE8-8971-FC69-049CC140EB0A">
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:33 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="TREPAY_PK" id="F780AA4A-ADC5-AA18-8279-6811D39E5F10">
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:29 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<segment>55B717C4-A033-A0C7-108B-00BC442E0DBF</segment>
+<tableSpace>9108F16A-0C25-7834-82E9-A8EE5EC96D69</tableSpace>
+<existingIndex>E01EA492-E80E-6BCE-DD29-CB24B35D9DA6</existingIndex>
+<indexSegment>55B717C4-A033-A0C7-108B-00BC442E0DBF</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev12c>

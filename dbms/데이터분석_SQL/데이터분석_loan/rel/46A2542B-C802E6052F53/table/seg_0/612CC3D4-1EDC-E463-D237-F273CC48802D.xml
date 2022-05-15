@@ -1,0 +1,169 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="612CC3D4-1EDC-E463-D237-F273CC48802D" schemaObject="D66FAF66-ED1A-36D5-DB6E-92AEF7F4C550" name="ORDER_CANCEL">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>ORDER_CANCEL</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:24 UTC</createdTime>
+<commentInRDBMS><![CDATA[주문 취소 정보]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ORDER_ID" id="DFA4DB1E-3CE2-6D00-A4FD-E6A19D8042D5">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>ORDER_CANCEL</sourceObjSchema>
+<sourceObjName>ORDER_ID</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<commentInRDBMS><![CDATA[주문 id]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>12</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,12,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A2B5075B-A8EA-FCB7-344B-93091FB8837D" referredColumn="9335CBA7-2E4D-FCC7-EAB5-675DDBCA5BF0"/>
+</associations>
+</Column>
+<Column name="PROD_ID" id="34B684CE-C67C-8188-38A3-5000BE530B62">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>ORDER_CANCEL</sourceObjSchema>
+<sourceObjName>PROD_ID</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<commentInRDBMS><![CDATA[상품 id]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,6,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A2B5075B-A8EA-FCB7-344B-93091FB8837D" referredColumn="4553AC71-216B-52AD-8072-8C9A1CBEB814"/>
+</associations>
+</Column>
+<Column name="CANCEL_DATE" id="6057F452-78E4-306D-3263-CD4A90A04F78">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>ORDER_CANCEL</sourceObjSchema>
+<sourceObjName>CANCEL_DATE</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<commentInRDBMS><![CDATA[취소 일자]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="REASON_CODE" id="67B61273-EDC7-51E0-9D7F-9E63305ABCDF">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>ORDER_CANCEL</sourceObjSchema>
+<sourceObjName>REASON_CODE</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<commentInRDBMS><![CDATA[취소 사유]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,2,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CANCEL_STATUS" id="F6BB55CC-57A3-4B27-E0D0-B629700C0540">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>ORDER_CANCEL</sourceObjSchema>
+<sourceObjName>CANCEL_STATUS</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<commentInRDBMS><![CDATA[취소 상태]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,2,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="EA0D72DA-C0EA-507E-11EE-E92C85FA980B" name="ORDCANCEL_PK">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>ORDCANCEL_PK</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:29 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DFA4DB1E-3CE2-6D00-A4FD-E6A19D8042D5"/>
+<colUsage columnID="34B684CE-C67C-8188-38A3-5000BE530B62"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="AAA71319-F6A2-9B7E-8324-49CBC459175C" schemaObject="D66FAF66-ED1A-36D5-DB6E-92AEF7F4C550" name="ORDCANEL_ORDID_IDX">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>ORDCANEL_ORDID_IDX</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:26 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DFA4DB1E-3CE2-6D00-A4FD-E6A19D8042D5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="89A4952A-0382-7D18-D1BC-4D469AC5A5A6" schemaObject="D66FAF66-ED1A-36D5-DB6E-92AEF7F4C550" name="ORDCANEL_PRODID_IDX">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>ORDCANEL_PRODID_IDX</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:26 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="34B684CE-C67C-8188-38A3-5000BE530B62"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="723DDC22-4791-9A02-0DD1-8AD5C081D603" schemaObject="D66FAF66-ED1A-36D5-DB6E-92AEF7F4C550" name="ORDERCANCEL_PK">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>ORDERCANCEL_PK</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:26 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DFA4DB1E-3CE2-6D00-A4FD-E6A19D8042D5"/>
+<colUsage columnID="34B684CE-C67C-8188-38A3-5000BE530B62"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B9DAAE55-EFDD-315C-D1EF-C9398B17421E" name="ORDERCANCEL_FK">
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:33 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DFA4DB1E-3CE2-6D00-A4FD-E6A19D8042D5"/>
+<colUsage columnID="34B684CE-C67C-8188-38A3-5000BE530B62"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="A71A1F68-A806-DB1D-4704-F1B0C2B47004" containerWithKeyObject="37F87D7D-8EB4-FB1A-F0CC-AE25C0260F4F" localFKIndex="AD058623-CD91-442D-11D0-39E2BC6786EB" name="EMP_DEPT_FK">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>EMP_DEPT_FK</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:33 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<referredTableLongName>JBB301.DEPARTMENTS</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>71B9BB1A-D0EB-182A-DB3F-EB27DE2BD8C7</referredTableID>
+<keyObject>07AC4CAB-0B1B-8761-FBC8-1CB2A5549BF9</keyObject>
+<referredKeyID>07AC4CAB-0B1B-8761-FBC8-1CB2A5549BF9</referredKeyID>
+<mandatory>false</mandatory>
+<refColNames>DEPARTMENT_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

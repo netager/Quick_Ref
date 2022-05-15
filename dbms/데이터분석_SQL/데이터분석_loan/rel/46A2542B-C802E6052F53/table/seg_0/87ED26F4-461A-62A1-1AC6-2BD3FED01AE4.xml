@@ -1,0 +1,177 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="87ED26F4-461A-62A1-1AC6-2BD3FED01AE4" schemaObject="D66FAF66-ED1A-36D5-DB6E-92AEF7F4C550" name="PRODS">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>PRODS</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:24 UTC</createdTime>
+<commentInRDBMS><![CDATA[상품 정보]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="PROD_ID" id="7236DBA1-7828-CD75-02D9-81B06E5E8855">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>PRODS</sourceObjSchema>
+<sourceObjName>PROD_ID</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<commentInRDBMS><![CDATA[상품 id]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,6,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PROD_NAME" id="2BF9175F-C776-C293-9BA2-54691587C131">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>PRODS</sourceObjSchema>
+<sourceObjName>PROD_NAME</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<commentInRDBMS><![CDATA[이름]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>125 BYTE</dataTypeSize>
+<ownDataTypeParameters>125 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CATEGORY_ID" id="6729747C-C501-2ED9-0747-18BA61231BC1">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>PRODS</sourceObjSchema>
+<sourceObjName>CATEGORY_ID</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<commentInRDBMS><![CDATA[카테고리 id]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,2,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="WARRANTY" id="B6877CAB-2B8D-8AE4-634B-8342B2FBFAD5">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>PRODS</sourceObjSchema>
+<sourceObjName>WARRANTY</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<commentInRDBMS><![CDATA[보증기간]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT048</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,2,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SUPPLIER_ID" id="62F11F19-627E-3098-4A92-60B96A0788F0">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>PRODS</sourceObjSchema>
+<sourceObjName>SUPPLIER_ID</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<commentInRDBMS><![CDATA[공급자 id]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,6,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PROD_STATUS" id="D5C6E36F-1009-BDE8-3687-6D43DDAF269B">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>PRODS</sourceObjSchema>
+<sourceObjName>PROD_STATUS</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<commentInRDBMS><![CDATA[상품 상태]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 BYTE</dataTypeSize>
+<ownDataTypeParameters>20 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LIST_PRICE" id="B2D8C331-5D46-FC3D-FF0A-1434519F13C3">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>PRODS</sourceObjSchema>
+<sourceObjName>LIST_PRICE</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<commentInRDBMS><![CDATA[정가]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>8</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,8,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MIN_PRICE" id="6F361D86-746F-277F-A01B-9038B490F893">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>PRODS</sourceObjSchema>
+<sourceObjName>MIN_PRICE</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<commentInRDBMS><![CDATA[원가]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>8</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,8,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="138341E8-9E6E-AB6D-B59A-DCB1FDBF3AB3" name="PRODS_PK">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>PRODS_PK</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:29 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7236DBA1-7828-CD75-02D9-81B06E5E8855"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="51DB351D-EB13-E390-C231-AF432642F8B1" schemaObject="D66FAF66-ED1A-36D5-DB6E-92AEF7F4C550" name="PRODS_PK">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>PRODS_PK</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:26 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7236DBA1-7828-CD75-02D9-81B06E5E8855"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

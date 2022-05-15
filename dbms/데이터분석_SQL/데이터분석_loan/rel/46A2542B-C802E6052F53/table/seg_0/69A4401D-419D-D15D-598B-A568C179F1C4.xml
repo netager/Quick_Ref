@@ -1,0 +1,214 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="69A4401D-419D-D15D-598B-A568C179F1C4" schemaObject="D66FAF66-ED1A-36D5-DB6E-92AEF7F4C550" name="JOB_HISTORY">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>JOB_HISTORY</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:24 UTC</createdTime>
+<commentInRDBMS><![CDATA[업무 변경 이력 정보]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="EMPLOYEE_ID" id="CCBA4A36-D9FD-1E84-742E-8C375DDF1F09">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JOB_HISTORY</sourceObjSchema>
+<sourceObjName>EMPLOYEE_ID</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<commentInRDBMS><![CDATA[사원 번호]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,6,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>JHIST_EMPID_NN</notNullConstraintName>
+<associations>
+<colAssociation fkAssociation="7B1070AE-DD8A-874F-E8A2-45E73D32627B" referredColumn="E3A7270C-C642-3746-6895-158B4B7C3787"/>
+</associations>
+</Column>
+<Column name="START_DATE" id="9F2895D5-284E-B3F3-BAA5-4167A5B06900">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JOB_HISTORY</sourceObjSchema>
+<sourceObjName>START_DATE</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<commentInRDBMS><![CDATA[시작 일자]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>JHIST_SDATE_NN</notNullConstraintName>
+</Column>
+<Column name="END_DATE" id="022A8AE3-E5D7-E745-93C5-8F82EABBE59E">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JOB_HISTORY</sourceObjSchema>
+<sourceObjName>END_DATE</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<commentInRDBMS><![CDATA[종료 일자]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>JHIST_EDATE_NN</notNullConstraintName>
+</Column>
+<Column name="JOB_ID" id="B2B664AD-80AD-2255-2DDE-12B8436A2E16">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JOB_HISTORY</sourceObjSchema>
+<sourceObjName>JOB_ID</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<commentInRDBMS><![CDATA[업무 id]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10 BYTE</dataTypeSize>
+<ownDataTypeParameters>10 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>JHIST_JOB_NN</notNullConstraintName>
+<associations>
+<colAssociation fkAssociation="6BB9E35B-0A46-EA5B-12D6-92C33E25A673" referredColumn="0B2AADA9-A6B8-58E3-1F40-1399F74EF744"/>
+</associations>
+</Column>
+<Column name="DEPARTMENT_ID" id="33E5AED1-F5A9-7857-AEAA-0FFB374D27BB">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JOB_HISTORY</sourceObjSchema>
+<sourceObjName>DEPARTMENT_ID</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<commentInRDBMS><![CDATA[부서 id]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>4</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,4,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="49B4E77C-F8F4-0EE2-3957-F82A25B63C31" referredColumn="13A3510D-A8E4-2FDD-9B6A-7B4AA73ECB21"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="1AA308A7-EB11-8D85-3A3A-97842389DEE8" name="JHIST_PK">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>JHIST_PK</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:29 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CCBA4A36-D9FD-1E84-742E-8C375DDF1F09"/>
+<colUsage columnID="9F2895D5-284E-B3F3-BAA5-4167A5B06900"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="72232BA0-75EB-DD1E-3346-6E691DD450F5" schemaObject="D66FAF66-ED1A-36D5-DB6E-92AEF7F4C550" name="JHIST_DEPTID_IDX">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>JHIST_DEPTID_IDX</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:26 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="33E5AED1-F5A9-7857-AEAA-0FFB374D27BB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="226AC36C-1A33-4C18-C774-080488B0F8BE" schemaObject="D66FAF66-ED1A-36D5-DB6E-92AEF7F4C550" name="JHIST_EMPID_IDX">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>JHIST_EMPID_IDX</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:26 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CCBA4A36-D9FD-1E84-742E-8C375DDF1F09"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B0B9B0FF-C471-9D2B-36E2-532ED0B997E0" schemaObject="D66FAF66-ED1A-36D5-DB6E-92AEF7F4C550" name="JHIST_EMPID_SDATE_IDX">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>JHIST_EMPID_SDATE_IDX</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:26 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CCBA4A36-D9FD-1E84-742E-8C375DDF1F09"/>
+<colUsage columnID="9F2895D5-284E-B3F3-BAA5-4167A5B06900"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6A9D969F-FCC8-5782-827C-F638CFD2CABB" schemaObject="D66FAF66-ED1A-36D5-DB6E-92AEF7F4C550" name="JHIST_JOBID_IDX">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>JHIST_JOBID_IDX</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:26 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B2B664AD-80AD-2255-2DDE-12B8436A2E16"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7ABB74AE-9DC2-9645-A3A9-D92491CE4BC7" name="JHIST_DEPT_FK">
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:33 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="33E5AED1-F5A9-7857-AEAA-0FFB374D27BB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A1E32766-06BE-6415-A493-30A691A0FFA2" name="JHIST_EMP_FK">
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:33 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CCBA4A36-D9FD-1E84-742E-8C375DDF1F09"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="AB314EEA-18EF-DCE9-F6FD-FC9604C9575F" name="JHIST_JOB_FK">
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:33 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B2B664AD-80AD-2255-2DDE-12B8436A2E16"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+<tableCheckConstraints itemClass="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint">
+<tableCheckConstraint name="JHIST_CK" directorySegmentName="seg_0" id="A5BFCF0E-8172-A492-7068-3AB4EA3393AF">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>JHIST_CK</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:33 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<rule><![CDATA[end_date > start_date]]></rule>
+</tableCheckConstraint>
+</tableCheckConstraints>
+</Table>

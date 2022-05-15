@@ -1,0 +1,89 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="9EF9043A-C622-CB0D-D8A0-468128A8ED6D" schemaObject="D66FAF66-ED1A-36D5-DB6E-92AEF7F4C550" name="JOB_GRADES">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>JOB_GRADES</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:24 UTC</createdTime>
+<commentInRDBMS><![CDATA[급여 등급 정보]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="GRADE_LEVEL" id="02D6CF84-77AB-D90A-5DFB-146A1FC58DBE">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JOB_GRADES</sourceObjSchema>
+<sourceObjName>GRADE_LEVEL</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<commentInRDBMS><![CDATA[등급]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>3 BYTE</dataTypeSize>
+<ownDataTypeParameters>3 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LOWEST_SAL" id="9E4CE786-A499-A5CA-1893-D257412EDE77">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JOB_GRADES</sourceObjSchema>
+<sourceObjName>LOWEST_SAL</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<commentInRDBMS><![CDATA[하한값]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="HIGHEST_SAL" id="3EA65A6C-6F12-2E84-3053-5D7C98EB61EF">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JOB_GRADES</sourceObjSchema>
+<sourceObjName>HIGHEST_SAL</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<commentInRDBMS><![CDATA[상한값]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="6FEBF085-0459-84F8-167D-C930B3A46EE0" name="JOBGRD_PK">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>JOBGRD_PK</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:29 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="02D6CF84-77AB-D90A-5DFB-146A1FC58DBE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="45BC692B-95F6-FD64-D228-22F39D312790" schemaObject="D66FAF66-ED1A-36D5-DB6E-92AEF7F4C550" name="JOBGRD_IDX">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>JOBGRD_IDX</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:26 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="02D6CF84-77AB-D90A-5DFB-146A1FC58DBE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

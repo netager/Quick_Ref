@@ -1,0 +1,70 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="COUNTRIES" directorySegmentName="seg_0" id="D913D9B9-D7CB-C602-ACD5-111643A668E3">
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:24 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<schemaObject>D66FAF66-ED1A-36D5-DB6E-92AEF7F4C550</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>8E4EDA38-01E0-4A0F-8995-F59F28BB4897</segment>
+<tableSpace>9108F16A-0C25-7834-82E9-A8EE5EC96D69</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<inMemory>NO</inMemory>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="REGION_ID" id="A75097DA-CBAB-AB77-5BD6-85000B1243DF">
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:24 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="COUNTRY_NAME" id="B42B2FB0-9AD9-0AA2-0670-1509D24188C9">
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:24 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="COUNTRY_ID" id="EEA81B51-BF8B-7D79-4EE8-0BFCEF8737AF">
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:24 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="COUNTRIES_ID_IDX" id="05968CA7-D69F-7BD1-3BAA-F5FFDE96EF2C">
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:26 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<schemaObject>D66FAF66-ED1A-36D5-DB6E-92AEF7F4C550</schemaObject>
+<segment>55B717C4-A033-A0C7-108B-00BC442E0DBF</segment>
+<tableSpace>9108F16A-0C25-7834-82E9-A8EE5EC96D69</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="CTY_REGID_IDX" id="9EA12BDB-327B-3C8B-5FB8-EC881A1A2F71">
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:26 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<schemaObject>D66FAF66-ED1A-36D5-DB6E-92AEF7F4C550</schemaObject>
+<segment>55B717C4-A033-A0C7-108B-00BC442E0DBF</segment>
+<tableSpace>9108F16A-0C25-7834-82E9-A8EE5EC96D69</tableSpace>
+</IndexProxy>
+</indexProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="COUNTRIES_FK" id="5675286C-1B3C-9EF4-980C-8031EBE930F1">
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:33 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="COUNTRIES_PK" id="9473E211-9674-7B80-073E-FDD7E94E7267">
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:29 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<segment>55B717C4-A033-A0C7-108B-00BC442E0DBF</segment>
+<tableSpace>9108F16A-0C25-7834-82E9-A8EE5EC96D69</tableSpace>
+<existingIndex>05968CA7-D69F-7BD1-3BAA-F5FFDE96EF2C</existingIndex>
+<indexSegment>55B717C4-A033-A0C7-108B-00BC442E0DBF</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev12c>

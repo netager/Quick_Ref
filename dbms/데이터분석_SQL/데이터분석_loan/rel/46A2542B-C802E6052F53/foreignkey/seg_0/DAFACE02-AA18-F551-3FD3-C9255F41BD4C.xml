@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="DAFACE02-AA18-F551-3FD3-C9255F41BD4C" containerWithKeyObject="BDE0DC85-96F6-0D63-E7CF-1808F6EAA46D" localFKIndex="9EE08842-A693-AFCF-56CA-EBADE769FBCA" name="LOCATIONS_FK">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>LOCATIONS_FK</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:33 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<referredTableLongName>JBB301.COUNTRIES</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>D913D9B9-D7CB-C602-ACD5-111643A668E3</referredTableID>
+<keyObject>9473E211-9674-7B80-073E-FDD7E94E7267</keyObject>
+<referredKeyID>9473E211-9674-7B80-073E-FDD7E94E7267</referredKeyID>
+<mandatory>false</mandatory>
+<refColNames>COUNTRY_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

@@ -1,0 +1,60 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="JOBS" directorySegmentName="seg_0" id="90521A0C-377D-813F-D92E-20B2C72D6651">
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:24 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<schemaObject>D66FAF66-ED1A-36D5-DB6E-92AEF7F4C550</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>8E4EDA38-01E0-4A0F-8995-F59F28BB4897</segment>
+<tableSpace>9108F16A-0C25-7834-82E9-A8EE5EC96D69</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<inMemory>NO</inMemory>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="JOB_ID" id="0B2AADA9-A6B8-58E3-1F40-1399F74EF744">
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="MAX_SALARY" id="111FA919-9D99-54D5-863C-AE993D44772F">
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="JOB_TITLE" id="9A45AB1F-AF3A-732F-4CF8-BAA156128CBF">
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="MIN_SALARY" id="EC8ED5D8-A32D-4153-122D-08E1E71753C1">
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="JOBS_ID_IDX" id="1B4DFCFC-BF69-2E90-6848-648895CD7B83">
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:26 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<schemaObject>D66FAF66-ED1A-36D5-DB6E-92AEF7F4C550</schemaObject>
+<segment>55B717C4-A033-A0C7-108B-00BC442E0DBF</segment>
+<tableSpace>9108F16A-0C25-7834-82E9-A8EE5EC96D69</tableSpace>
+</IndexProxy>
+</indexProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="JOB_ID_PK" id="49C33BBC-20E2-EF0A-3BAA-722C46338809">
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:29 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<segment>55B717C4-A033-A0C7-108B-00BC442E0DBF</segment>
+<tableSpace>9108F16A-0C25-7834-82E9-A8EE5EC96D69</tableSpace>
+<existingIndex>1B4DFCFC-BF69-2E90-6848-648895CD7B83</existingIndex>
+<indexSegment>55B717C4-A033-A0C7-108B-00BC442E0DBF</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev12c>

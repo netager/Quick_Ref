@@ -1,0 +1,197 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="FF620AA5-6607-988C-4A3A-4D827616251F" schemaObject="D66FAF66-ED1A-36D5-DB6E-92AEF7F4C550" name="TREPAY_PLAN">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>TREPAY_PLAN</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:24 UTC</createdTime>
+<commentInRDBMS><![CDATA[상환계획 정보]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="LNACT" id="2CCBF42B-9E08-3737-F34B-3871D7994407">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>TREPAY_PLAN</sourceObjSchema>
+<sourceObjName>LNACT</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<commentInRDBMS><![CDATA[계좌번호]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>6 BYTE</dataTypeSize>
+<ownDataTypeParameters>6 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="AA8E082A-18FF-C56D-71C8-3435A5F92139" referredColumn="5086D81E-F9FE-8439-E8AF-AE51645893B2"/>
+</associations>
+</Column>
+<Column name="LNACT_SEQ" id="3FBA35DE-8C90-1EA8-7B89-FED721D66AD5">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>TREPAY_PLAN</sourceObjSchema>
+<sourceObjName>LNACT_SEQ</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<commentInRDBMS><![CDATA[계좌 일련번호]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>2 BYTE</dataTypeSize>
+<ownDataTypeParameters>2 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="AA8E082A-18FF-C56D-71C8-3435A5F92139" referredColumn="EBEC7B53-F9DE-5E27-A02E-8CA01EB60071"/>
+</associations>
+</Column>
+<Column name="SEQ" id="9E968E2B-EE13-DDEE-69C3-EB9BEE9D7982">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>TREPAY_PLAN</sourceObjSchema>
+<sourceObjName>SEQ</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<commentInRDBMS><![CDATA[납입 순번]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PAY_DT" id="C0BC5387-E652-5CC4-A662-427327345F96">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>TREPAY_PLAN</sourceObjSchema>
+<sourceObjName>PAY_DT</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<commentInRDBMS><![CDATA[납입 일자]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LN_MON_AMT" id="4ADFDBD5-8540-ED33-0456-59C5DCBB4C6C">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>TREPAY_PLAN</sourceObjSchema>
+<sourceObjName>LN_MON_AMT</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<commentInRDBMS><![CDATA[납입 원금]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>TPLAN_LNAMT_NN</notNullConstraintName>
+</Column>
+<Column name="INT_MON_AMT" id="150DD613-AB7F-01CA-0419-BA4B12E4E5A0">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>TREPAY_PLAN</sourceObjSchema>
+<sourceObjName>INT_MON_AMT</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<commentInRDBMS><![CDATA[대출 이자]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>TPLAN_INTAMT_NN</notNullConstraintName>
+</Column>
+<Column name="SUM_MON_AMT" id="8BCDFDB5-AB38-0CBA-3F5E-044F0EF9FD83">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>TREPAY_PLAN</sourceObjSchema>
+<sourceObjName>SUM_MON_AMT</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<commentInRDBMS><![CDATA[월 상환금(납입 원금+대출 이자)]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>TPLAN_SUMAMT_NN</notNullConstraintName>
+</Column>
+<Column name="LN_BB_AMT" id="80E3D8E0-6757-C4DB-0B2B-C11BE0FD6D5A">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>TREPAY_PLAN</sourceObjSchema>
+<sourceObjName>LN_BB_AMT</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<commentInRDBMS><![CDATA[대출 잔금(대출 원금 - 납입원금 합계)]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>TPLAN_LNBB_NN</notNullConstraintName>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="A4342AAE-3526-0D35-27B7-877B7B70C995" name="TREPAY_PLAN_PK">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>TREPAY_PLAN_PK</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:29 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2CCBF42B-9E08-3737-F34B-3871D7994407"/>
+<colUsage columnID="3FBA35DE-8C90-1EA8-7B89-FED721D66AD5"/>
+<colUsage columnID="9E968E2B-EE13-DDEE-69C3-EB9BEE9D7982"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4D16CAF5-27FF-4C78-D99F-7AFC8229D3DD" schemaObject="D66FAF66-ED1A-36D5-DB6E-92AEF7F4C550" name="TPLAN_PAYDT_IX">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>TPLAN_PAYDT_IX</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:27 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C0BC5387-E652-5CC4-A662-427327345F96"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8CA48C68-B2CC-4834-235D-2ACF105E5ED7" schemaObject="D66FAF66-ED1A-36D5-DB6E-92AEF7F4C550" name="TPLAN_PK_IX">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>TPLAN_PK_IX</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:27 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2CCBF42B-9E08-3737-F34B-3871D7994407"/>
+<colUsage columnID="3FBA35DE-8C90-1EA8-7B89-FED721D66AD5"/>
+<colUsage columnID="9E968E2B-EE13-DDEE-69C3-EB9BEE9D7982"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4398E6E5-F7CA-A154-5A3B-D1C3ED361AE2" name="TREPAY_PLAN_FK">
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:33 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2CCBF42B-9E08-3737-F34B-3871D7994407"/>
+<colUsage columnID="3FBA35DE-8C90-1EA8-7B89-FED721D66AD5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

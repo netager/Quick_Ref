@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="A2B5075B-A8EA-FCB7-344B-93091FB8837D" containerWithKeyObject="612CC3D4-1EDC-E463-D237-F273CC48802D" localFKIndex="B9DAAE55-EFDD-315C-D1EF-C9398B17421E" name="ORDERCANCEL_FK">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>ORDERCANCEL_FK</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:33 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<referredTableLongName>JBB301.ORDER_ITEMS</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>452ABC26-D42B-B461-35B8-EDCDA8B14C29</referredTableID>
+<keyObject>1B40922C-3302-4FD3-E095-99B7A2EA2B54</keyObject>
+<referredKeyID>1B40922C-3302-4FD3-E095-99B7A2EA2B54</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>ORDER_ID,PROD_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

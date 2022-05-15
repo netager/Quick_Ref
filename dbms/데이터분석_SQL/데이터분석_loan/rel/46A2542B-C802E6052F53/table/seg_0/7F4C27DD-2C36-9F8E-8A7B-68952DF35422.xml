@@ -1,0 +1,241 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="7F4C27DD-2C36-9F8E-8A7B-68952DF35422" schemaObject="D66FAF66-ED1A-36D5-DB6E-92AEF7F4C550" name="TCREDIT">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>TCREDIT</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:24 UTC</createdTime>
+<commentInRDBMS><![CDATA[법인 신용등급 평가 정보]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="LNID" id="B9EB8717-4D48-AB33-9FF4-792672FABACC">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>TCREDIT</sourceObjSchema>
+<sourceObjName>LNID</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<commentInRDBMS><![CDATA[차주 일련번호:TID.LNID]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>5 BYTE</dataTypeSize>
+<ownDataTypeParameters>5 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="9F6C4F00-9884-2B54-BF54-691D136A2631" referredColumn="4458A0F2-EC12-BA0D-55BA-8FDAB6496665"/>
+</associations>
+</Column>
+<Column name="ACODE" id="9EDBDE60-2C50-078E-F9BD-1357BE1A2A03">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>TCREDIT</sourceObjSchema>
+<sourceObjName>ACODE</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<commentInRDBMS><![CDATA[신용평가사 코드:TAGENCY.ACODE]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>2 BYTE</dataTypeSize>
+<ownDataTypeParameters>2 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F8F4613F-B914-9577-AC69-F49B622F7A5F" referredColumn="A03FF1AF-C654-8128-ECD4-068013B15ADC"/>
+</associations>
+</Column>
+<Column name="START_DT" id="F733A25D-D5BA-1AC9-8E55-BF0744CC284B">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>TCREDIT</sourceObjSchema>
+<sourceObjName>START_DT</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<commentInRDBMS><![CDATA[신용평가 일자]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>TCREDIT_STARTDT_NN</notNullConstraintName>
+</Column>
+<Column name="END_DT" id="683BCB78-A93D-5186-DCF0-C4E11C2B5529">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>TCREDIT</sourceObjSchema>
+<sourceObjName>END_DT</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<commentInRDBMS><![CDATA[신용평가 만료일]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>TCREDIT_ENDDT_NN</notNullConstraintName>
+</Column>
+<Column name="CODE" id="287BF950-1DB1-A08F-316C-550DAEDED34F">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>TCREDIT</sourceObjSchema>
+<sourceObjName>CODE</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<commentInRDBMS><![CDATA[평가 코드:TCODE.CODE]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>2 BYTE</dataTypeSize>
+<ownDataTypeParameters>2 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>TCREDIT_CODE_NN</notNullConstraintName>
+<associations>
+<colAssociation fkAssociation="C7BCDAF5-3BA3-98C0-D13F-C2FB1A6448F7" referredColumn="ED507F83-87EE-F325-C22C-C754F25FDA70"/>
+</associations>
+</Column>
+<Column name="GRADE" id="B61BDBB6-84B4-E30D-87FF-8C8B9A9B74B1">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>TCREDIT</sourceObjSchema>
+<sourceObjName>GRADE</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:25 UTC</createdTime>
+<commentInRDBMS><![CDATA[평가 등급명:TCODE.GRADE]]></commentInRDBMS>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4 BYTE</dataTypeSize>
+<ownDataTypeParameters>4 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="936457C9-02DB-C8AA-554F-D079F7F4DC56" name="TCREDIT_PK">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>TCREDIT_PK</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:29 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B9EB8717-4D48-AB33-9FF4-792672FABACC"/>
+<colUsage columnID="9EDBDE60-2C50-078E-F9BD-1357BE1A2A03"/>
+<colUsage columnID="F733A25D-D5BA-1AC9-8E55-BF0744CC284B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="68EA046C-1197-2EFA-6E72-72854B6A29FD" schemaObject="D66FAF66-ED1A-36D5-DB6E-92AEF7F4C550" name="TCREDIT_ACODE_IX">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>TCREDIT_ACODE_IX</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:27 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9EDBDE60-2C50-078E-F9BD-1357BE1A2A03"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8748B0DC-64F8-9771-1AA7-E29B252078FA" schemaObject="D66FAF66-ED1A-36D5-DB6E-92AEF7F4C550" name="TCREDIT_CODE_IX">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>TCREDIT_CODE_IX</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:27 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="287BF950-1DB1-A08F-316C-550DAEDED34F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7135F4EA-10C2-3F14-05F0-E0A9F086CE60" schemaObject="D66FAF66-ED1A-36D5-DB6E-92AEF7F4C550" name="TCREDIT_ENDDT_IX">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>TCREDIT_ENDDT_IX</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:27 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="683BCB78-A93D-5186-DCF0-C4E11C2B5529"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="00E231FC-A940-8BD3-9908-8D3D662F5838" schemaObject="D66FAF66-ED1A-36D5-DB6E-92AEF7F4C550" name="TCREDIT_GRADE_IX">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>TCREDIT_GRADE_IX</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:27 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B61BDBB6-84B4-E30D-87FF-8C8B9A9B74B1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="AA93C3E6-89E9-05ED-A714-548459952EA5" schemaObject="D66FAF66-ED1A-36D5-DB6E-92AEF7F4C550" name="TCREDIT_PK_IX">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>TCREDIT_PK_IX</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:27 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B9EB8717-4D48-AB33-9FF4-792672FABACC"/>
+<colUsage columnID="9EDBDE60-2C50-078E-F9BD-1357BE1A2A03"/>
+<colUsage columnID="F733A25D-D5BA-1AC9-8E55-BF0744CC284B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B7A491AC-CEDE-27A6-373B-FCEA521C6279" schemaObject="D66FAF66-ED1A-36D5-DB6E-92AEF7F4C550" name="TCREDIT_STARTDT_IX">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>TCREDIT_STARTDT_IX</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:27 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F733A25D-D5BA-1AC9-8E55-BF0744CC284B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6D26A262-837B-B4B5-A87F-AC64DF0A528A" name="TCREDIT_ACODE_FK">
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:33 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9EDBDE60-2C50-078E-F9BD-1357BE1A2A03"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0C5D870E-EBAB-4859-B284-A5829F9E567F" name="TCREDIT_CODE_FK">
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:33 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="287BF950-1DB1-A08F-316C-550DAEDED34F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="EB3F3CF6-5E42-444E-7B2A-A4161A148BA4" name="TCREDIT_LNID_FK">
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:33 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B9EB8717-4D48-AB33-9FF4-792672FABACC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
