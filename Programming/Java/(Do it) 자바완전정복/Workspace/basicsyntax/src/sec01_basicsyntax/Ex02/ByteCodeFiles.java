@@ -1,17 +1,19 @@
 package sec01_basicsyntax.Ex02;
 
-class A {
+class A { // A.class
 	
 }
 
-class B {
+class B { // B.class
 	
 }
 
-class C {
-	class D
+class C { // C.class
+	class D { // C$D.class
+		
+	}
 }
 
-public class ByteCodeFiles {
+public class ByteCodeFiles { // ByteCodeFiles.class
 
 }
