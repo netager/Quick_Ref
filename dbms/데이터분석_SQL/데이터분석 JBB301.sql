@@ -115,4 +115,246 @@ select *
     on a.lnact = b.lnact
    and a.lnact_seq = b.lnact_seq;    
 
+## join
+select * 
+  from tid;
 
+select * 
+  from tacct;
+  
+select * 
+  from tid a
+  join tacct b
+    on a.lnid = b.lnid;
+
+select * from emp, dept
+order by 1;
+
+select * from emp
+ where empno = 7369;
+select count(*) from dept;
+ 
+select count(*) from emp;
+
+select * 
+  from emp
+  join dept
+    on emp.deptno = dept.deptno;
+
+select * from emp, dept
+ order by 1;
+
+
+desc tid;
+
+select a.*, b.* 
+  from tid a
+  join tacct b
+    on a.lnid = b.lnid
+ where b.lmt_typ is null
+ order by b.lnact, b.lnact_seq;
+ 
+select b.lnact, b.lnact_seq, b.pay_dt, b.ln_mon_amt, b.int_mon_amt, b.sum_mon_amt, b.ln_bb_amt, a.*
+  from tacct a
+  join trepay b
+    on a.lnact = b.lnact
+   and a.lnact_seq = b.lnact_seq;
+
+select e.employee_id, e.last_name, e.department_id, d.department_id
+  from tid a
+  join tacct b
+    on a.lnid = b.lnid
+  join trepay c
+    on b.lnact = c.lnact
+   and b.lnact_seq = c.lnact_seq;
+   
+select count(*)
+  from tacct a
+  join trepay b
+    on a.lnact = b.lnact
+   and a.lnact_seq = b.lnact_seq;  
+ 
+-- Equeal Join
+select e.employee_id, e.last_name, e.department_id, d.department_id, d.department_name
+  from employees e
+ inner join departments d
+    on e.department_id = d.department_id;   
+
+select e.employee_id, e.last_name, e.department_id, d.department_id, d.department_name
+  from employees e, departments d
+ where e.department_id = d.department_id;   
+
+-- Left Join
+select e.employee_id, e.last_name, e.department_id, d.department_id, d.department_name
+  from employees e
+  left join departments d
+    on e.department_id = d.department_id;   
+
+select e.employee_id, e.last_name, e.department_id, d.department_id, d.department_name
+  from employees e, departments d
+ where e.department_id = d.department_id(+);
+
+-- Right Join    
+select e.department_id, d.department_id
+  from employees e
+  right join departments d
+    on e.department_id = d.department_id;
+
+select e.employee_id, e.last_name, e.department_id, d.department_id, d.department_name
+  from employees e, departments d
+ where e.department_id(+) = d.department_id;
+
+-- Full Outer Join - Ansi SQL만 지원함.    
+select e.employee_id, e.last_name, e.department_id, d.department_id, d.department_name
+  from employees e
+  full outer join departments d
+    on e.department_id = d.department_id; 
+
+-- Oracle Full Outer Join 은 에러 - 지원하지 않음
+select e.employee_id, e.last_name, e.department_id, d.department_id, d.department_name
+  from employees e, departments d
+ where e.department_id(+) = d.department_id(+);
+
+-- Cross Join
+select * 
+  from emp
+ cross join dept;
+
+select *
+  from emp, dept;
+  
+  
+Quiz 1.
+select a.lnid, a.bthday, a.score, b.lnact, b.lnact_seq, b.ln_dt, b.ln_amt, b.repay_typ, b.rate
+  from tid a
+  join tacct b
+    on a.lnid = b.lnid
+ where a.id_typ = '1'
+   and b.repay is null
+   and b.lmt_typ is null
+ order by b.ln_amt desc, b.lnid;
+
+Quiz 2. 
+
+select t.lnid, ta.aname, t.start_dt, t.end_dt, t.grade, tc.grade_desc
+  from tcredit t
+  join tagency ta
+    on t.acode = ta.acode
+  join tcode tc
+    on t.code = tc.code
+ where t.end_dt >= sysdate
+ order by t.lnid, t.code;
+
+
+-- 교재 - page 81
+select * from orders
+ where order_id = 2390;
+ 
+select * from order_items
+ order by order_id;
+ where order_id = '2390';
+
+select * 
+  from orders, order_items
+order by 1, 8;
+ 
+
+select * from job_grades;
+
+select count(*) from orders;
+select count(*) from order_items;
+
+select 11 * 70 from dual;
+select * from tcode;
+select * from tcredit;
+
+
+-- Subquery
+SELECT salary 
+  FROM employees
+ WHERE employee_id = 107 ;
+
+select * from employees
+ where salary > (SELECT salary 
+  FROM employees
+ WHERE employee_id = 107) ;
+ 
+select * 
+  from employees e
+  join employees s
+    on e.salary > s.salary
+ where s.employee_id = 107;
+
+SELECT salary 
+  FROM employees
+ WHERE employee_id = 107;
+ 
+ select end_dt from tcredit
+  where end_dt > sysdate;
+  
+  
+  select sysdate from tcredit;
+
+ order by empno;
+
+select count(*) from emp;
+select count(*) from dept;
+select * from employees;
+select * from departments;
+
+select sum(salary)
+  from employees
+ group by department_id;
+ 
+ select * from emp
+  where sal > 2000;
+
+select * from emp e
+ where e.sal > 2000;
+ 
+select * from emp e
+ where emp.sal > 2000;
+
+select last_name, salary, department_id 
+  from employees e
+ where e.salary > 20000;
+
+select employee_id, last_name, hire_date, salary
+  from employees
+   where job_id = 'IT PGOG';
+   
+select * from tid;
+select * from tcode;
+
+select a.lnid, a.bthday, a.grade, b.grade_desc
+  from tid a
+  join tcode b
+    on a.grade = b.grade
+ where b.grade_desc in ('신용상태 양호','신용상태 적절')
+   and a.bthday >= '2011/01/01'
+ order by bthday;
+
+select * 
+  from tcredit
+ where acode = '04';
+select  
+ 
+select * from tacct
+ where tacct.lmt_typ is null;
+
+select * from tcode; 
+ 
+select t.lnact, t.lnact_seq, t.acct_typ, tc.lnid, ln_dt, ln_term, exp_dt, ln_amt
+  from tacct t
+  join tcredit tc
+    on t.lnid = tc.lnid
+  join tcode tco
+    on tc.code = tco.code
+ where t.lmt_typ is null
+   and tc.acode = '04'
+   and tco.grade_desc in ('신용상태 우수')
+   and tc.end_dt >= sysdate
+ order by t.lnact, t.lnact_seq;
+   
+
+ 

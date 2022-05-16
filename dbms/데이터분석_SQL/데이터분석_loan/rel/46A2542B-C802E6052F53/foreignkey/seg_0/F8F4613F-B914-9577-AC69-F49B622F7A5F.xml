@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="F8F4613F-B914-9577-AC69-F49B622F7A5F" containerWithKeyObject="7F4C27DD-2C36-9F8E-8A7B-68952DF35422" localFKIndex="6D26A262-837B-B4B5-A87F-AC64DF0A528A" name="TCREDIT_ACODE_FK">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>TCREDIT_ACODE_FK</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:33 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<referredTableLongName>JBB301.TAGENCY</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>94FFA482-C2B6-BCAF-A790-3987335D9194</referredTableID>
+<keyObject>DFFFF771-9137-FADD-DD16-A3DF0786F3DD</keyObject>
+<referredKeyID>DFFFF771-9137-FADD-DD16-A3DF0786F3DD</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>ACODE</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="257256BF-415B-9793-48DC-63DAC2DD58DD" containerWithKeyObject="1DFD4059-1E2F-D50B-9731-3AF1309C5B37" localFKIndex="F64341BF-CFE0-A12F-F91B-20046D15C31D" name="ORDERS_CUSTID_FK">
+<sourceConnName>%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D+JBB301</sourceConnName>
+<sourceObjSchema>JBB301</sourceObjSchema>
+<sourceObjName>ORDERS_CUSTID_FK</sourceObjName>
+<createdBy>User</createdBy>
+<createdTime>2022-05-14 03:04:33 UTC</createdTime>
+<ownerDesignName>데이터분석_loan</ownerDesignName>
+<referredTableLongName>JBB301.CUSTS</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>1180550A-328D-7607-EE5A-80ECF8AA95F6</referredTableID>
+<keyObject>A764B977-40DA-1E89-311C-B28B4B041465</keyObject>
+<referredKeyID>A764B977-40DA-1E89-311C-B28B4B041465</referredKeyID>
+<mandatory>false</mandatory>
+<refColNames>CUST_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>
