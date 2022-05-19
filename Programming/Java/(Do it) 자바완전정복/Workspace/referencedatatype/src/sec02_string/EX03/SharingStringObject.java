@@ -19,4 +19,3 @@ public class SharingStringObject {
 	}
 
 }
-e
