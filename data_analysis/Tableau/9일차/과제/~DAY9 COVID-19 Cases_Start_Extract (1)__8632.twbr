@@ -1,0 +1,1843 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20211.21.0420.1112                               -->
+<workbook source-build='2021.1.1 (20211.21.0420.1112)' source-platform='win' version='18.1' xml:base='https://public.tableau.com' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <AutoCreateAndUpdateDSDPhoneLayouts />
+    <IntuitiveSorting />
+    <IntuitiveSorting_SP2 />
+    <MapAttribution2 />
+    <MapboxVectorBuiltInAndUserStyles />
+    <MapboxVectorStylesAndLayers />
+    <_.fcp.MarkAnimation.true...MarkAnimation />
+    <_.fcp.ObjectModelEncapsulateLegacy.true...ObjectModelEncapsulateLegacy />
+    <_.fcp.ObjectModelExtractV2.true...ObjectModelExtractV2 />
+    <_.fcp.ObjectModelTableType.true...ObjectModelTableType />
+    <_.fcp.ParameterDefaultValues.true...ParameterDefaultValues />
+    <_.fcp.SchemaViewerObjectModel.true...SchemaViewerObjectModel />
+    <_.fcp.SetMembershipControl.true...SetMembershipControl />
+    <SheetIdentifierTracking />
+    <SortTagCleanup />
+    <WindowsPersistSimpleIdentifiers />
+    <ZoneBackgroundTransparency />
+  </document-format-change-manifest>
+  <repository-location derived-from='https://public.tableau.com/workbooks/COVID-19Cases_15840488375320?rev=7.2' id='COVID-19Cases_15840488375320' path='/workbooks' revision='7.2' />
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <style>
+    <style-rule element='all'>
+      <format attr='font-family' value='맑은 고딕' />
+    </style-rule>
+    <_.fcp.MarkAnimation.true...style-rule element='animation'>
+      <format attr='animation-on' value='ao-on' />
+      <format attr='animation-duration' value='0.30000001192092896' />
+    </_.fcp.MarkAnimation.true...style-rule>
+  </style>
+  <datasources>
+    <datasource hasconnection='false' inline='true' name='Parameters' version='18.1'>
+      <aliases enabled='yes' />
+      <column _.fcp.ParameterDefaultValues.true...default-value-field='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[Calculation_1618621879475482643]' caption='Start Date' datatype='date' default-format='*YYYY-MM-DD' name='[End Date (copy)_2450169330152513536]' param-domain-type='any' role='measure' type='quantitative' value='#2019-12-31#'>
+        <calculation class='tableau' formula='#2019-12-31#' />
+      </column>
+      <column _.fcp.ParameterDefaultValues.true...default-value-field='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[Min Date (copy)_1618621879475580949]' caption='End Date' datatype='date' default-format='*YYYY-MM-DD' name='[Parameter 1]' param-domain-type='any' role='measure' type='quantitative' value='#2020-07-10#'>
+        <calculation class='tableau' formula='#2020-07-10#' />
+      </column>
+      <column alias='Total Cases' caption='Select Metric' datatype='integer' name='[Parameter 4]' param-domain-type='list' role='measure' type='quantitative' value='1'>
+        <calculation class='tableau' formula='1' />
+        <aliases>
+          <alias key='1' value='Total Cases' />
+          <alias key='2' value='New Cases' />
+        </aliases>
+        <members>
+          <member alias='Total Cases' value='1' />
+          <member alias='New Cases' value='2' />
+        </members>
+      </column>
+    </datasource>
+    <datasource caption='COVID-19 Confirmed+ (COVID-19 부분)' inline='true' name='federated.03lzw1r0eyi5qq1468yry09jgwp3' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='COVID-19 부분' name='google-sheets.105mj9f0is77uo1dlbjre0iqbiw7'>
+            <connection REDIRECT_URI='urn:ietf:wg:oauth:2.0:oob' SCOPE='email profile https://www.googleapis.com/auth/drive.readonly' class='google-sheets' cleaning='no' compat='no' dataRefreshTime='' filename='COVID-19 부분' googleSheetId='1CbBZ6g97GO14g2VfWQzY4GCYXzhgM5JqtO9uPn6z1IM' interpretationMode='8' mimeType='application/vnd.google-apps.spreadsheet' server='' server-oauth='' username='jaeha.woo@gmail.com' validate='no' />
+          </named-connection>
+        </named-connections>
+        <_.fcp.ObjectModelEncapsulateLegacy.false...relation all='true' name='COVID-19 Confirmed+' type='union'>
+          <columns header='yes'>
+            <column datatype='string' name='Case Type' />
+            <column datatype='string' name='Country Region' />
+            <column datatype='date' name='Date' />
+            <column datatype='integer' name='Cases' />
+            <column datatype='integer' name='Difference' />
+            <column datatype='string' name='Sheet' />
+            <column datatype='string' name='Table Name' />
+          </columns>
+          <relation connection='google-sheets.105mj9f0is77uo1dlbjre0iqbiw7' name='COVID-19 Confirmed' table='[&apos;COVID-19 Confirmed$&apos;]' type='table'>
+            <columns gridOrigin='A1:E3454:no:A1:E3454:0' header='yes' outcome='2'>
+              <column datatype='string' name='Case Type' ordinal='0' />
+              <column datatype='string' name='Country Region' ordinal='1' />
+              <column datatype='date' name='Date' ordinal='2' />
+              <column datatype='integer' name='Cases' ordinal='3' />
+              <column datatype='integer' name='Difference' ordinal='4' />
+            </columns>
+          </relation>
+          <relation connection='google-sheets.105mj9f0is77uo1dlbjre0iqbiw7' name='COVID-19 Deaths' table='[&apos;COVID-19 Deaths$&apos;]' type='table'>
+            <columns gridOrigin='A1:E3454:no:A1:E3454:0' header='yes' outcome='2'>
+              <column datatype='string' name='Case Type' ordinal='0' />
+              <column datatype='string' name='Country Region' ordinal='1' />
+              <column datatype='date' name='Date' ordinal='2' />
+              <column datatype='integer' name='Cases' ordinal='3' />
+              <column datatype='integer' name='Difference' ordinal='4' />
+            </columns>
+          </relation>
+        </_.fcp.ObjectModelEncapsulateLegacy.false...relation>
+        <_.fcp.ObjectModelEncapsulateLegacy.true...relation all='true' name='COVID-19 Confirmed+' type='union'>
+          <columns header='yes'>
+            <column datatype='string' name='Case Type' />
+            <column datatype='string' name='Country Region' />
+            <column datatype='date' name='Date' />
+            <column datatype='integer' name='Cases' />
+            <column datatype='integer' name='Difference' />
+            <column datatype='string' name='Sheet' />
+            <column datatype='string' name='Table Name' />
+          </columns>
+          <relation connection='google-sheets.105mj9f0is77uo1dlbjre0iqbiw7' name='COVID-19 Confirmed' table='[&apos;COVID-19 Confirmed$&apos;]' type='table'>
+            <columns gridOrigin='A1:E3454:no:A1:E3454:0' header='yes' outcome='2'>
+              <column datatype='string' name='Case Type' ordinal='0' />
+              <column datatype='string' name='Country Region' ordinal='1' />
+              <column datatype='date' name='Date' ordinal='2' />
+              <column datatype='integer' name='Cases' ordinal='3' />
+              <column datatype='integer' name='Difference' ordinal='4' />
+            </columns>
+          </relation>
+          <relation connection='google-sheets.105mj9f0is77uo1dlbjre0iqbiw7' name='COVID-19 Deaths' table='[&apos;COVID-19 Deaths$&apos;]' type='table'>
+            <columns gridOrigin='A1:E3454:no:A1:E3454:0' header='yes' outcome='2'>
+              <column datatype='string' name='Case Type' ordinal='0' />
+              <column datatype='string' name='Country Region' ordinal='1' />
+              <column datatype='date' name='Date' ordinal='2' />
+              <column datatype='integer' name='Cases' ordinal='3' />
+              <column datatype='integer' name='Difference' ordinal='4' />
+            </columns>
+          </relation>
+        </_.fcp.ObjectModelEncapsulateLegacy.true...relation>
+        <refresh increment-key='' incremental-updates='false' />
+        <metadata-records>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[COVID-19 Confirmed+]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Migrated Data]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Case Type</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Case Type]</local-name>
+            <parent-name>[COVID-19 Confirmed+]</parent-name>
+            <remote-alias>Case Type</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LKO_RKR_S2' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Migrated Data]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Country Region</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Country Region]</local-name>
+            <parent-name>[COVID-19 Confirmed+]</parent-name>
+            <remote-alias>Country Region</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LKO_RKR_S2' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Migrated Data]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Date</remote-name>
+            <remote-type>7</remote-type>
+            <local-name>[Date]</local-name>
+            <parent-name>[COVID-19 Confirmed+]</parent-name>
+            <remote-alias>Date</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Migrated Data]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Cases</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Cases]</local-name>
+            <parent-name>[COVID-19 Confirmed+]</parent-name>
+            <remote-alias>Cases</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Migrated Data]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Difference</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Difference]</local-name>
+            <parent-name>[COVID-19 Confirmed+]</parent-name>
+            <remote-alias>Difference</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Migrated Data]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Sheet</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Sheet]</local-name>
+            <parent-name>[COVID-19 Confirmed+]</parent-name>
+            <remote-alias>Sheet</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LKO_RKR_S2' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Migrated Data]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Table Name</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Table Name]</local-name>
+            <parent-name>[COVID-19 Confirmed+]</parent-name>
+            <remote-alias>Table Name</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LKO_RKR_S2' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Migrated Data]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='Min Date' datatype='date' name='[Calculation_1618621879475482643]' role='dimension' type='ordinal'>
+        <calculation class='tableau' formula='{Min([Date])}' />
+      </column>
+      <column caption='Date is Max' datatype='boolean' name='[Calculation_2088825828284801025]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='[Min Date (copy)_1618621879475580949] = [Date]' />
+      </column>
+      <column caption='Metric Switcher' datatype='integer' name='[Calculation_4005388948910161920]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='IF [Parameters].[Parameter 4]=1 THEN [Cases]&#13;&#10;ELSE [Difference] END' />
+      </column>
+      <column caption='Country Color' datatype='string' name='[Calculation_607423042856611840]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='if [관심국가] then [Country Region] else &apos;기타&apos; end' />
+      </column>
+      <column caption='New Cases (Deaths)' datatype='integer' name='[Calculation_7114561558973538305]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='IF [Case Type] = &apos;Deaths&apos; THEN [Difference] END' />
+      </column>
+      <column caption='CFR' datatype='real' default-format='p0.00%' name='[Calculation_7114561558974038019]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='SUM([Calculation_7114561558973538305])/SUM([New Cases (Deaths)(복사본)_7114561558973747202])' />
+      </column>
+      <column caption='Case Type Notes' datatype='string' name='[Calculation_790663237447700480]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='CASE [Case Type]&#13;&#10;&#13;&#10;&#13;&#10;WHEN &apos;Active&apos; THEN &apos;Computed from displayed&apos;&#13;&#10;WHEN &apos;Confirmed&apos; THEN &apos;* Includes presumptive positive cases.&apos;&#13;&#10;WHEN &apos;Deaths&apos; THEN &apos;&apos;&#13;&#10;WHEN &apos;Recovered&apos; THEN &apos;&apos;&#13;&#10;END' />
+        <desc>
+          <formatted-text>
+            <run>Clarifying definitions to use in visualization</run>
+          </formatted-text>
+        </desc>
+      </column>
+      <column datatype='string' name='[Case Type]' role='dimension' type='nominal' />
+      <column caption='Total Cases' datatype='integer' name='[Cases]' role='measure' type='quantitative' />
+      <column datatype='string' name='[Country Region]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal' />
+      <column datatype='date' name='[Date]' role='dimension' type='ordinal' />
+      <column caption='New Cases' datatype='integer' name='[Difference]' role='measure' type='quantitative' />
+      <column caption='Last Date' datatype='date' name='[Last Date Cases (copy)_1618621879473090577]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='IF  LAST() = 0 THEN MAX([Date]) END'>
+          <table-calc ordering-type='Rows' />
+        </calculation>
+      </column>
+      <column caption='Max Date' datatype='date' name='[Min Date (copy)_1618621879475580949]' role='dimension' type='ordinal'>
+        <calculation class='tableau' formula='{MAX([Date])}' />
+      </column>
+      <column caption='Total Cases (Confirmed)' datatype='integer' name='[New Cases (Confirmed)(복사본)_7114561558976126980]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='IF [Case Type] = &apos;Confirmed&apos; THEN [Cases] END' />
+      </column>
+      <column caption='New Cases (Confirmed)' datatype='integer' name='[New Cases (Deaths)(복사본)_7114561558973747202]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='IF [Case Type] = &apos;Confirmed&apos; THEN [Difference] END' />
+      </column>
+      <column caption='Total Cases (Deaths)' datatype='integer' name='[New Cases (Deaths)(복사본)_7114561558976204805]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='IF [Case Type] = &apos;Deaths&apos; THEN [Cases] END' />
+      </column>
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column caption='Select Metric Header Short' datatype='string' name='[Select Metric Header (copy)_2450169330360369163]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='IF [Parameters].[Parameter 4] = 1 THEN &quot;Total Cases&quot;&#10;ELSE &quot;New Cases&quot;&#10;END' />
+      </column>
+      <column datatype='string' hidden='true' name='[Sheet]' role='dimension' type='nominal' />
+      <column datatype='string' hidden='true' name='[Table Name]' role='dimension' type='nominal' />
+      <_.fcp.ObjectModelTableType.true...column caption='마이그레이션된 데이터' datatype='table' name='[__tableau_internal_object_id__].[Migrated Data]' role='measure' type='quantitative' />
+      <column-instance column='[Difference]' derivation='Sum' name='[cum:sum:Difference:qk]' pivot='key' type='quantitative'>
+        <table-calc aggregation='Sum' ordering-type='Rows' type='CumTotal' />
+      </column-instance>
+      <column-instance column='[Cases]' derivation='Max' name='[max:Cases:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[New Cases (Deaths)(복사본)_7114561558976204805]' derivation='Max' name='[max:New Cases (Deaths)(복사본)_7114561558976204805:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Calculation_607423042856611840]' derivation='None' name='[none:Calculation_607423042856611840:nk]' pivot='key' type='nominal' />
+      <column-instance column='[Case Type]' derivation='None' name='[none:Case Type:nk]' pivot='key' type='nominal' />
+      <column-instance column='[Country Region]' derivation='None' name='[none:Country Region:nk]' pivot='key' type='nominal' />
+      <column-instance column='[Cases]' derivation='Max' name='[pcto:max:Cases:qk:2]' pivot='key' type='quantitative'>
+        <table-calc ordering-field='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[Country Region]' ordering-type='Field' type='PctTotal' />
+      </column-instance>
+      <column-instance column='[Cases]' derivation='Max' name='[pcto:max:Cases:qk:3]' pivot='key' type='quantitative'>
+        <table-calc ordering-type='Columns' type='PctTotal' />
+      </column-instance>
+      <column-instance column='[Cases]' derivation='Max' name='[pcto:max:Cases:qk:4]' pivot='key' type='quantitative'>
+        <table-calc ordering-field='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Country Region:nk]' ordering-type='Field' type='PctTotal' />
+      </column-instance>
+      <column-instance column='[Cases]' derivation='Max' name='[pcto:max:Cases:qk:5]' pivot='key' type='quantitative'>
+        <table-calc ordering-type='CellInPane' type='PctTotal' />
+      </column-instance>
+      <column-instance column='[Cases]' derivation='Max' name='[pcto:max:Cases:qk:6]' pivot='key' type='quantitative'>
+        <table-calc ordering-type='Field' type='PctTotal'>
+          <order field='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[Case Type]' />
+          <order field='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Country Region:nk]' />
+        </table-calc>
+      </column-instance>
+      <column-instance column='[Cases]' derivation='Max' name='[pcto:max:Cases:qk:7]' pivot='key' type='quantitative'>
+        <table-calc level-address='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[Case Type]' ordering-type='Field' type='PctTotal'>
+          <order field='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[Case Type]' />
+          <order field='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Country Region:nk]' />
+        </table-calc>
+      </column-instance>
+      <column-instance column='[Cases]' derivation='Max' name='[pcto:max:Cases:qk:8]' pivot='key' type='quantitative'>
+        <table-calc level-address='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Country Region:nk]' ordering-type='Field' type='PctTotal'>
+          <order field='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[Case Type]' />
+          <order field='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Country Region:nk]' />
+        </table-calc>
+      </column-instance>
+      <column-instance column='[Cases]' derivation='Max' name='[pcto:max:Cases:qk]' pivot='key' type='quantitative'>
+        <table-calc ordering-type='Rows' type='PctTotal' />
+      </column-instance>
+      <column-instance column='[Cases]' derivation='Sum' name='[pcto:sum:Cases:qk]' pivot='key' type='quantitative'>
+        <table-calc ordering-field='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Country Region:nk]' ordering-type='Field' type='PctTotal' />
+      </column-instance>
+      <column-instance column='[Difference]' derivation='Sum' name='[pcto:sum:Difference:qk:2]' pivot='key' type='quantitative'>
+        <table-calc ordering-field='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[Country Region]' ordering-type='Field' type='PctTotal' />
+      </column-instance>
+      <column-instance column='[Difference]' derivation='Sum' name='[pcto:sum:Difference:qk]' pivot='key' type='quantitative'>
+        <table-calc ordering-type='Rows' type='PctTotal' />
+      </column-instance>
+      <column-instance column='[Difference]' derivation='Sum' name='[rank:sum:Difference:qk:3]' pivot='key' type='quantitative'>
+        <table-calc ordering-field='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[Country Region]' ordering-type='Field' rank-options='Competition,Descending' type='Rank' />
+      </column-instance>
+      <column-instance column='[Difference]' derivation='Sum' name='[rank:sum:Difference:qk]' pivot='key' type='quantitative'>
+        <table-calc ordering-type='Rows' rank-options='Competition,Descending' type='Rank' />
+      </column-instance>
+      <column-instance column='[Calculation_4005388948910161920]' derivation='Sum' name='[sum:Calculation_4005388948910161920:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Calculation_7114561558973538305]' derivation='Sum' name='[sum:Calculation_7114561558973538305:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Cases]' derivation='Sum' name='[sum:Cases:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Difference]' derivation='Sum' name='[sum:Difference:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[New Cases (Deaths)(복사본)_7114561558973747202]' derivation='Sum' name='[sum:New Cases (Deaths)(복사본)_7114561558973747202:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[New Cases (Deaths)(복사본)_7114561558976204805]' derivation='Sum' name='[sum:New Cases (Deaths)(복사본)_7114561558976204805:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Date]' derivation='Day-Trunc' name='[tdy:Date:ok]' pivot='key' type='ordinal' />
+      <column-instance column='[Date]' derivation='Day-Trunc' name='[tdy:Date:qk]' pivot='key' type='quantitative' />
+      <group caption='Action (Admin2,Country Region,Province State)' hidden='true' name='[Action (Admin2,Country Region,Province State)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[Admin2]' />
+          <groupfilter function='level-members' level='[Country Region]' />
+          <groupfilter function='level-members' level='[Province_State]' />
+        </groupfilter>
+      </group>
+      <group caption='Action (Admin2,Location Detail,If Province Empty Country,Province_State Label (not US),Province_State Label (US),Admin2 Label (US),Case Type,Country Region,Lat,Long,Max Date,Province State,Select Metric Header Short)' hidden='true' name='[Action (Admin2,Location Detail,If Province Empty Country,Province_State Label (not US),Province_State Label (US),Admin2 Label (US),Case Type,Country Region,Lat,Long,Max Date,Province State,Select Metric Header Short)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[Admin2]' />
+          <groupfilter function='level-members' level='[Calculation_1618621879672332322]' />
+          <groupfilter function='level-members' level='[Calculation_2024086591417085952]' />
+          <groupfilter function='level-members' level='[Calculation_3354829912456929280]' />
+          <groupfilter function='level-members' level='[Calculation_3354829912457134081]' />
+          <groupfilter function='level-members' level='[Calculation_3354829912457326595]' />
+          <groupfilter function='level-members' level='[Case Type]' />
+          <groupfilter function='level-members' level='[Country Region]' />
+          <groupfilter function='level-members' level='[none:Lat:ok]' />
+          <groupfilter function='level-members' level='[none:Long:ok]' />
+          <groupfilter function='level-members' level='[Min Date (copy)_1618621879475580949]' />
+          <groupfilter function='level-members' level='[Province_State]' />
+          <groupfilter function='level-members' level='[Select Metric Header (copy)_2450169330360369163]' />
+        </groupfilter>
+      </group>
+      <group caption='Action (Admin2,Location Detail,Province_State Label (not US),Province_State Label (US),Admin2 Label (US),Case Type,Country Region,Lat,Long,Max Date,Province State,Select Metric Header Short)' hidden='true' name='[Action (Admin2,Location Detail,Province_State Label (not US),Province_State Label (US),Admin2 Label (US),Case Type,Country Region,Lat,Long,Max Date,Province State,Select Metric Header Short)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[Admin2]' />
+          <groupfilter function='level-members' level='[Calculation_1618621879672332322]' />
+          <groupfilter function='level-members' level='[Calculation_3354829912456929280]' />
+          <groupfilter function='level-members' level='[Calculation_3354829912457134081]' />
+          <groupfilter function='level-members' level='[Calculation_3354829912457326595]' />
+          <groupfilter function='level-members' level='[Case Type]' />
+          <groupfilter function='level-members' level='[Country Region]' />
+          <groupfilter function='level-members' level='[none:Lat:ok]' />
+          <groupfilter function='level-members' level='[none:Long:ok]' />
+          <groupfilter function='level-members' level='[Min Date (copy)_1618621879475580949]' />
+          <groupfilter function='level-members' level='[Province_State]' />
+          <groupfilter function='level-members' level='[Select Metric Header (copy)_2450169330360369163]' />
+        </groupfilter>
+      </group>
+      <group caption='Action (Case Type 2,Case Type Notes,Case Type,DAY(Date),Select Metric Header Short)' hidden='true' name='[Action (Case Type 2,Case Type Notes,Case Type,DAY(Date),Select Metric Header Short)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[Calculation_4005388948919242756]' />
+          <groupfilter function='level-members' level='[Calculation_790663237447700480]' />
+          <groupfilter function='level-members' level='[Case Type]' />
+          <groupfilter function='level-members' level='[tdy:Date:ok]' />
+          <groupfilter function='level-members' level='[Select Metric Header (copy)_2450169330360369163]' />
+        </groupfilter>
+      </group>
+      <group caption='작업(Case Type,Country Region)' hidden='true' name='[Action (Case Type,Country Region)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[Case Type]' />
+          <groupfilter function='level-members' level='[Country Region]' />
+        </groupfilter>
+      </group>
+      <group caption='Action (Country Region)' hidden='true' name='[Action (Country Region)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[Country Region]' />
+        </groupfilter>
+      </group>
+      <group caption='Action (Country/Region)' hidden='true' name='[Action (Country/Region)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[Country/Region]' />
+        </groupfilter>
+      </group>
+      <group caption='Action (Country/Region,DAY(Date),Province/State)' hidden='true' name='[Action (Country/Region,DAY(Date),Province/State)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[Country/Region]' />
+          <groupfilter function='level-members' level='[tdy:Date:ok]' />
+          <groupfilter function='level-members' level='[Province/State]' />
+        </groupfilter>
+      </group>
+      <group caption='Action (Country/Region,Province/State)' hidden='true' name='[Action (Country/Region,Province/State)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[Country/Region]' />
+          <groupfilter function='level-members' level='[Province/State]' />
+        </groupfilter>
+      </group>
+      <group caption='Action (DAY(Date))' hidden='true' name='[Action (DAY(Date))]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[tdy:Date:ok]' />
+        </groupfilter>
+      </group>
+      <group caption='Action (DAY(Date1))' hidden='true' name='[Action (DAY(Date1))]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[tdy:Date:ok]' />
+        </groupfilter>
+      </group>
+      <group caption='Action (If Province Empty then Country)' hidden='true' name='[Action (If Province Empty then Country)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[Calculation_1618621879672332322]' />
+        </groupfilter>
+      </group>
+      <group caption='Action (Lat,Long)' hidden='true' name='[Action (Lat,Long)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[none:Lat:ok]' />
+          <groupfilter function='level-members' level='[none:Long:ok]' />
+        </groupfilter>
+      </group>
+      <group caption='Action (Location Detail)' hidden='true' name='[Action (Location Detail)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[Calculation_1618621879672332322]' />
+        </groupfilter>
+      </group>
+      <group caption='Action (Province/State)' hidden='true' name='[Action (Province/State)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[Province/State]' />
+        </groupfilter>
+      </group>
+      <group caption='Action (State Drilldown)' hidden='true' name='[Action (State Drilldown)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[Calculation_1618621879654604831]' />
+        </groupfilter>
+      </group>
+      <group caption='Action (State Drilldown,Country/Region)' hidden='true' name='[Action (State Drilldown,Country/Region)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[Calculation_1618621879654604831]' />
+          <groupfilter function='level-members' level='[Country/Region]' />
+        </groupfilter>
+      </group>
+      <group caption='작업(일(Date))' hidden='true' name='[Action (일(Date))]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[tdy:Date:ok]' />
+        </groupfilter>
+      </group>
+      <group caption='Country Region 집합' name='[Country Region 집합]' name-style='unqualified' user:ui-builder='filter-group'>
+        <groupfilter function='level-members' level='[none:Country Region:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+      </group>
+      <group hidden='true' name='[Exclusions (Case Type,Country/Region,Lat,Long,Province/State)]' name-style='unqualified' user:auto-column='exclude'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[none:Case Type:nk]' />
+          <groupfilter function='level-members' level='[none:Country/Region:nk]' />
+          <groupfilter function='level-members' level='[none:Lat:qk]' />
+          <groupfilter function='level-members' level='[none:Long:qk]' />
+          <groupfilter function='level-members' level='[none:Province/State:nk]' />
+        </groupfilter>
+      </group>
+      <group hidden='true' name='[Exclusions (Case Type,DAY(Date))]' name-style='unqualified' user:auto-column='exclude'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[none:Case Type:nk]' />
+          <groupfilter function='level-members' level='[tdy:Date:qk]' />
+        </groupfilter>
+      </group>
+      <group caption='Tooltip (&quot; &quot;,Case Type,DAY(Date))' hidden='true' name='[Tooltip (&quot; &quot;,Case Type,DAY(Date))]' name-style='unqualified' user:auto-column='sheet_link' user:ui-vit-column='true'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[Calculation_1618621879649271838]' />
+          <groupfilter function='level-members' level='[Case Type]' />
+          <groupfilter function='level-members' level='[tdy:Date:ok]' />
+        </groupfilter>
+      </group>
+      <group caption='Tooltip (Admin2,Country Region,Province State)' hidden='true' name='[Tooltip (Admin2,Country Region,Province State)]' name-style='unqualified' user:auto-column='sheet_link' user:ui-vit-column='true'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[Admin2]' />
+          <groupfilter function='level-members' level='[Country Region]' />
+          <groupfilter function='level-members' level='[Province_State]' />
+        </groupfilter>
+      </group>
+      <group caption='Tooltip (Admin2,If Province Empty Country)' hidden='true' name='[Tooltip (Admin2,If Province Empty Country)]' name-style='unqualified' user:auto-column='sheet_link' user:ui-vit-column='true'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[Admin2]' />
+          <groupfilter function='level-members' level='[Calculation_2024086591417085952]' />
+        </groupfilter>
+      </group>
+      <group caption='Tooltip (Admin2,Province State)' hidden='true' name='[Tooltip (Admin2,Province State)]' name-style='unqualified' user:auto-column='sheet_link' user:ui-vit-column='true'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[Admin2]' />
+          <groupfilter function='level-members' level='[Province_State]' />
+        </groupfilter>
+      </group>
+      <group caption='Tooltip (Case Type,Country/Region,Lat,Long,Province/State)' hidden='true' name='[Tooltip (Case Type,Country/Region,Lat,Long,Province/State)]' name-style='unqualified' user:auto-column='sheet_link' user:ui-vit-column='true'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[Case Type]' />
+          <groupfilter function='level-members' level='[Country/Region]' />
+          <groupfilter function='level-members' level='[none:Lat:ok]' />
+          <groupfilter function='level-members' level='[none:Long:ok]' />
+          <groupfilter function='level-members' level='[Province/State]' />
+        </groupfilter>
+      </group>
+      <group caption='Tooltip (DAY(Date))' hidden='true' name='[Tooltip (DAY(Date))]' name-style='unqualified' user:auto-column='sheet_link' user:ui-vit-column='true'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[tdy:Date:ok]' />
+        </groupfilter>
+      </group>
+      <group caption='Tooltip (DAY(Date1))' hidden='true' name='[Tooltip (DAY(Date1))]' name-style='unqualified' user:auto-column='sheet_link' user:ui-vit-column='true'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[tdy:Date:ok]' />
+        </groupfilter>
+      </group>
+      <group caption='Tooltip (If Province Empty then &quot;&quot;)' hidden='true' name='[Tooltip (If Province Empty then &quot;&quot;)]' name-style='unqualified' user:auto-column='sheet_link' user:ui-vit-column='true'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[If Province Empty then Country (copy)_2450169330326126596]' />
+        </groupfilter>
+      </group>
+      <group caption='Tooltip (If Province Empty then Country)' hidden='true' name='[Tooltip (If Province Empty then Country)]' name-style='unqualified' user:auto-column='sheet_link' user:ui-vit-column='true'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[Calculation_1618621879672332322]' />
+        </groupfilter>
+      </group>
+      <group caption='Tooltip (If Province Empty then Country,Case Type,Country/Region,Lat,Long,Province/State)' hidden='true' name='[Tooltip (If Province Empty then Country,Case Type,Country/Region,Lat,Long,Province/State)]' name-style='unqualified' user:auto-column='sheet_link' user:ui-vit-column='true'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[Calculation_1618621879672332322]' />
+          <groupfilter function='level-members' level='[Case Type]' />
+          <groupfilter function='level-members' level='[Country/Region]' />
+          <groupfilter function='level-members' level='[none:Lat:ok]' />
+          <groupfilter function='level-members' level='[none:Long:ok]' />
+          <groupfilter function='level-members' level='[Province/State]' />
+        </groupfilter>
+      </group>
+      <group caption='Tooltip (Location Detail)' hidden='true' name='[Tooltip (Location Detail)]' name-style='unqualified' user:auto-column='sheet_link' user:ui-vit-column='true'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[Calculation_1618621879672332322]' />
+        </groupfilter>
+      </group>
+      <group caption='Tooltip (Province/State)' hidden='true' name='[Tooltip (Province/State)]' name-style='unqualified' user:auto-column='sheet_link' user:ui-vit-column='true'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[Province/State]' />
+        </groupfilter>
+      </group>
+      <group caption='Tooltip (Select Metric Header Short,DAY(Date))' hidden='true' name='[Tooltip (Select Metric Header Short,DAY(Date))]' name-style='unqualified' user:auto-column='sheet_link' user:ui-vit-column='true'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[Select Metric Header (copy)_2450169330360369163]' />
+          <groupfilter function='level-members' level='[tdy:Date:ok]' />
+        </groupfilter>
+      </group>
+      <group caption='도구 설명(일(Date))' hidden='true' name='[Tooltip (일(Date))]' name-style='unqualified' user:auto-column='sheet_link' user:ui-vit-column='true'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[tdy:Date:ok]' />
+        </groupfilter>
+      </group>
+      <group caption='관심국가' name='[관심국가]' name-style='unqualified' user:ui-builder='filter-group'>
+        <groupfilter function='union' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+          <groupfilter function='member' level='[Country Region]' member='&quot;Brazil&quot;' />
+          <groupfilter function='member' level='[Country Region]' member='&quot;China&quot;' />
+          <groupfilter function='member' level='[Country Region]' member='&quot;India&quot;' />
+          <groupfilter function='member' level='[Country Region]' member='&quot;Korea, South&quot;' />
+          <groupfilter function='member' level='[Country Region]' member='&quot;Russia&quot;' />
+          <groupfilter function='member' level='[Country Region]' member='&quot;US&quot;' />
+        </groupfilter>
+      </group>
+      <extract _.fcp.ObjectModelExtractV2.true...object-id='Migrated Data' count='-1' enabled='true' units='records'>
+        <connection access_mode='readonly' authentication='auth-none' author-locale='ko_KR' class='hyper' dbname='Data/DAY9 COVID-19 Cases_Start.twb개 파일/federated.hyper' default-settings='yes' schema='Extract' sslmode='' tablename='Extract' update-time='07/13/2020 04:51:57 PM' username='tableau_internal_user'>
+          <_.fcp.ObjectModelEncapsulateLegacy.false...relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <_.fcp.ObjectModelEncapsulateLegacy.true...relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <refresh increment-key='' incremental-updates='false'>
+            <refresh-event add-from-file-path='COVID-19 Confirmed+ (COVID-19 부분)' increment-value='%null%' refresh-type='create' rows-inserted='6906' timestamp-start='2020-07-13 16:51:57.465' />
+          </refresh>
+          <metadata-records>
+            <metadata-record class='column'>
+              <remote-name>Case Type</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[Case Type]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Case Type</remote-alias>
+              <ordinal>0</ordinal>
+              <family>COVID-19 Confirmed+</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>2</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LKO_RKR' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Migrated Data]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Country Region</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[Country Region]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Country Region</remote-alias>
+              <ordinal>1</ordinal>
+              <family>COVID-19 Confirmed+</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>18</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LKO_RKR' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Migrated Data]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Date</remote-name>
+              <remote-type>133</remote-type>
+              <local-name>[Date]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Date</remote-alias>
+              <ordinal>2</ordinal>
+              <family>COVID-19 Confirmed+</family>
+              <local-type>date</local-type>
+              <aggregation>Year</aggregation>
+              <approx-count>197</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Migrated Data]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Cases</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[Cases]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Cases</remote-alias>
+              <ordinal>3</ordinal>
+              <family>COVID-19 Confirmed+</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>2083</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Migrated Data]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Difference</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[Difference]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Difference</remote-alias>
+              <ordinal>4</ordinal>
+              <family>COVID-19 Confirmed+</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>1064</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Migrated Data]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+          </metadata-records>
+        </connection>
+      </extract>
+      <layout _.fcp.SchemaViewerObjectModel.false...dim-percentage='0.5' _.fcp.SchemaViewerObjectModel.false...measure-percentage='0.4' dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[:Measure Names]' type='palette'>
+            <map to='#333333'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_1618621879477075994:qk:11]&quot;</bucket>
+            </map>
+            <map to='#333333'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_1618621879477075994:qk:12]&quot;</bucket>
+            </map>
+            <map to='#333333'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_1618621879477075994:qk:4]&quot;</bucket>
+            </map>
+            <map to='#333333'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_1618621879477075994:qk:7]&quot;</bucket>
+            </map>
+            <map to='#333333'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_1618621879477075994:qk:8]&quot;</bucket>
+            </map>
+            <map to='#333333'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_1618621879477075994:qk:9]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[cum:sum:Difference:qk]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[diff:sum:Cases:qk]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[max:Cases:qk]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[max:New Cases (Deaths)(복사본)_7114561558976204805:qk]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[pcto:max:Cases:qk:2]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[pcto:max:Cases:qk:3]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[pcto:max:Cases:qk:4]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[pcto:max:Cases:qk:5]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[pcto:max:Cases:qk:6]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[pcto:max:Cases:qk:7]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[pcto:max:Cases:qk:8]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[pcto:max:Cases:qk]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[pcto:sum:Cases:qk]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[pcto:sum:Difference:qk:2]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[pcto:sum:Difference:qk]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[rank:sum:Difference:qk:3]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[rank:sum:Difference:qk]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[sum:Calculation_388998442891235329:qk]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[sum:Calculation_4005388948910161920:qk]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[sum:Calculation_7114561558973538305:qk]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[sum:Cases:qk]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[sum:Difference:qk]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[sum:New Cases (Deaths)(복사본)_7114561558973747202:qk]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[sum:New Cases (Deaths)(복사본)_7114561558976204805:qk]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_1618621878999072779:qk]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_2088825828300890117:qk:3]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_2088825828300890117:qk]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_2277836275482927106:qk]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_2450169330330750982:qk]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_388998442891235329:qk]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948921643013:qk:10]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948921643013:qk:11]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948921643013:qk:12]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948921643013:qk:13]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948921643013:qk:14]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948921643013:qk:15]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948921643013:qk:16]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948921643013:qk:17]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948921643013:qk:18]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948921643013:qk:19]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948921643013:qk:2]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948921643013:qk:20]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948921643013:qk:21]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948921643013:qk:23]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948921643013:qk:25]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948921643013:qk:26]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948921643013:qk:27]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948921643013:qk:28]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948921643013:qk:29]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948921643013:qk:3]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948921643013:qk:30]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948921643013:qk:31]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948921643013:qk:32]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948921643013:qk:33]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948921643013:qk:34]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948921643013:qk:35]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948921643013:qk:36]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948921643013:qk:37]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948921643013:qk:38]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948921643013:qk:39]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948921643013:qk:4]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948921643013:qk:40]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948921643013:qk:41]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948921643013:qk:42]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948921643013:qk:5]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948921643013:qk:6]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948921643013:qk:7]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948921643013:qk:8]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948921643013:qk:9]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948921643013:qk]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation1:qk]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:LOG(SUM([Cases]])) (copy)_4005388948910346241:qk]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Select Metric (copy)_2277836275478081536:qk:2]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Select Metric (copy)_2277836275478081536:qk:3]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Select Metric (copy)_2277836275478081536:qk:5]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Select Metric (copy)_2277836275478081536:qk:7]&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Select Metric (copy)_2277836275478081536:qk]&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_1618621879476289560:qk]&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_4005388948915769347:qk]&quot;</bucket>
+            </map>
+            <map to='#ffffff'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_1618621879477075994:qk:1]&quot;</bucket>
+            </map>
+            <map to='#ffffff'>
+              <bucket>&quot;[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_1618621879477075994:qk:3]&quot;</bucket>
+            </map>
+          </encoding>
+          <encoding attr='color' field='[none:Case Type:nk]' type='palette'>
+            <map to='#006ddb'>
+              <bucket>&quot;Confirmed&quot;</bucket>
+            </map>
+            <map to='#009292'>
+              <bucket>&quot;Recovered&quot;</bucket>
+            </map>
+            <map to='#490092'>
+              <bucket>&quot;Deaths&quot;</bucket>
+            </map>
+            <map to='#6db6ff'>
+              <bucket>&quot;Active&quot;</bucket>
+            </map>
+          </encoding>
+          <encoding attr='color' field='[none:Country Region:nk]' type='palette'>
+            <map to='#499894'>
+              <bucket>&quot;Singapore&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;China&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;Italy&quot;</bucket>
+            </map>
+            <map to='#79706e'>
+              <bucket>&quot;Belgium&quot;</bucket>
+            </map>
+            <map to='#86bcb6'>
+              <bucket>&quot;Turkey&quot;</bucket>
+            </map>
+            <map to='#8cd17d'>
+              <bucket>&quot;Japan&quot;</bucket>
+            </map>
+            <map to='#a0cbe8'>
+              <bucket>&quot;France&quot;</bucket>
+            </map>
+            <map to='#b07aa1'>
+              <bucket>&quot;Peru&quot;</bucket>
+            </map>
+            <map to='#b6992d'>
+              <bucket>&quot;Korea, South&quot;</bucket>
+            </map>
+            <map to='#bab0ac'>
+              <bucket>&quot;Brazil&quot;</bucket>
+            </map>
+            <map to='#d37295'>
+              <bucket>&quot;India&quot;</bucket>
+            </map>
+            <map to='#d4a6c8'>
+              <bucket>&quot;Switzerland&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;United Kingdom&quot;</bucket>
+            </map>
+            <map to='#f1ce63'>
+              <bucket>&quot;Russia&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;Germany&quot;</bucket>
+            </map>
+            <map to='#fabfd2'>
+              <bucket>&quot;Netherlands&quot;</bucket>
+            </map>
+            <map to='#ff9d9a'>
+              <bucket>&quot;US&quot;</bucket>
+            </map>
+            <map to='#ffbe7d'>
+              <bucket>&quot;Iran&quot;</bucket>
+            </map>
+          </encoding>
+          <encoding attr='color' field='[none:Calculation_607423042856611840:nk]' type='palette'>
+            <map to='#4e79a7'>
+              <bucket>&quot;Brazil&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;Russia&quot;</bucket>
+            </map>
+            <map to='#76b7b2'>
+              <bucket>&quot;Korea, South&quot;</bucket>
+            </map>
+            <map to='#bab0ac'>
+              <bucket>&quot;기타&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;India&quot;</bucket>
+            </map>
+            <map to='#edc948'>
+              <bucket>&quot;US&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;China&quot;</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;대한민국&quot;' />
+      </semantic-values>
+      <datasource-dependencies datasource='Parameters'>
+        <column alias='Total Cases' caption='Select Metric' datatype='integer' name='[Parameter 4]' param-domain-type='list' role='measure' type='quantitative' value='1'>
+          <calculation class='tableau' formula='1' />
+          <aliases>
+            <alias key='1' value='Total Cases' />
+            <alias key='2' value='New Cases' />
+          </aliases>
+        </column>
+      </datasource-dependencies>
+      <_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
+        <objects>
+          <object caption='마이그레이션된 데이터' id='Migrated Data'>
+            <properties context=''>
+              <relation all='true' name='COVID-19 Confirmed+' type='union'>
+                <columns header='yes'>
+                  <column datatype='string' name='Case Type' />
+                  <column datatype='string' name='Country Region' />
+                  <column datatype='date' name='Date' />
+                  <column datatype='integer' name='Cases' />
+                  <column datatype='integer' name='Difference' />
+                  <column datatype='string' name='Sheet' />
+                  <column datatype='string' name='Table Name' />
+                </columns>
+                <relation connection='google-sheets.105mj9f0is77uo1dlbjre0iqbiw7' name='COVID-19 Confirmed' table='[&apos;COVID-19 Confirmed$&apos;]' type='table'>
+                  <columns gridOrigin='A1:E3454:no:A1:E3454:0' header='yes' outcome='2'>
+                    <column datatype='string' name='Case Type' ordinal='0' />
+                    <column datatype='string' name='Country Region' ordinal='1' />
+                    <column datatype='date' name='Date' ordinal='2' />
+                    <column datatype='integer' name='Cases' ordinal='3' />
+                    <column datatype='integer' name='Difference' ordinal='4' />
+                  </columns>
+                </relation>
+                <relation connection='google-sheets.105mj9f0is77uo1dlbjre0iqbiw7' name='COVID-19 Deaths' table='[&apos;COVID-19 Deaths$&apos;]' type='table'>
+                  <columns gridOrigin='A1:E3454:no:A1:E3454:0' header='yes' outcome='2'>
+                    <column datatype='string' name='Case Type' ordinal='0' />
+                    <column datatype='string' name='Country Region' ordinal='1' />
+                    <column datatype='date' name='Date' ordinal='2' />
+                    <column datatype='integer' name='Cases' ordinal='3' />
+                    <column datatype='integer' name='Difference' ordinal='4' />
+                  </columns>
+                </relation>
+              </relation>
+            </properties>
+            <properties context='extract'>
+              <relation name='Extract' table='[Extract].[Extract]' type='table' />
+            </properties>
+          </object>
+        </objects>
+      </_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
+    </datasource>
+  </datasources>
+  <mapsources>
+    <mapsource name='Tableau' />
+    <mapsource inline='true' name='Sat' source-platform='win' version='18.1'>
+      <connection api-key='pk.eyJ1IjoiZGF0YWJsaWNrIiwiYSI6IjM5anE0eTQifQ.XfwI7Wcu7EFKoKiTQldy5Q' class='CustomMapbox' description='' full-url='' inline='true' offline='' port='443' server='https://api.mapbox.com' url='styles/v1' url-format='/styles/v1/datablick/{L}/tiles/{Z}/{X}/{Y}{D}?access_token=pk.eyJ1IjoiZGF0YWJsaWNrIiwiYSI6IjM5anE0eTQifQ.XfwI7Wcu7EFKoKiTQldy5Q' username='datablick' wait-tile-color='#dddddd' />
+      <languages />
+      <layers>
+        <layer display-name='DsatSatIBM' name='ck2dnmlb80c0s1crxb6jduy76' show-ui='true' type='features' />
+      </layers>
+      <properties />
+      <map-styles>
+        <map-style display-name='Sat' name='mapbox://styles/datablick/ck2dnmlb80c0s1crxb6jduy76' wait-tile-color='#dddddd'>
+          <map-layer-style name='DsatSatIBM' request-string='ck2dnmlb80c0s1crxb6jduy76' />
+        </map-style>
+      </map-styles>
+      <mapsource-defaults version='18.1'>
+        <style>
+          <style-rule element='map'>
+            <format attr='map-style' value='mapbox://styles/datablick/ck2dnmlb80c0s1crxb6jduy76' />
+            <format attr='washout' value='0' />
+          </style-rule>
+        </style>
+      </mapsource-defaults>
+      <map-attribution copyright-string='© %1 Mapbox' copyright-url='https://mapbox.com/about/maps' short-copyright-string='© Mapbox' />
+      <map-attribution2 copyright-string='© OpenStreetMap' copyright-url='https://mapbox.com/about/maps' short-copyright-string='© OSM' />
+    </mapsource>
+  </mapsources>
+  <actions>
+    <action caption='하이라이트1' name='[Action1_82712DD07F8540F79B9F26836B289E8C]'>
+      <activation auto-clear='true' type='on-select' />
+      <source dashboard='COBID-19 주요 국가 현황' type='sheet' />
+      <command command='tsc:brush'>
+        <param name='field-captions' value='Country Region' />
+        <param name='target' value='COBID-19 주요 국가 현황' />
+      </command>
+    </action>
+  </actions>
+  <worksheets>
+    <worksheet name='국가별 발생 건수'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='COVID-19 Confirmed+ (COVID-19 부분)' name='federated.03lzw1r0eyi5qq1468yry09jgwp3' />
+          </datasources>
+          <datasource-dependencies datasource='federated.03lzw1r0eyi5qq1468yry09jgwp3'>
+            <column datatype='string' name='[Case Type]' role='dimension' type='nominal' />
+            <column caption='Total Cases' datatype='integer' name='[Cases]' role='measure' type='quantitative' />
+            <column datatype='string' name='[Country Region]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal' />
+            <column caption='New Cases' datatype='integer' name='[Difference]' role='measure' type='quantitative' />
+            <column-instance column='[Cases]' derivation='Max' name='[max:Cases:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Case Type]' derivation='None' name='[none:Case Type:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Country Region]' derivation='None' name='[none:Country Region:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Difference]' derivation='Sum' name='[sum:Difference:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <manual-sort column='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Case Type:nk]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;Confirmed&quot;</bucket>
+              <bucket>&quot;Deaths&quot;</bucket>
+            </dictionary>
+          </manual-sort>
+          <shelf-sorts>
+            <shelf-sort-v2 dimension-to-sort='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Country Region:nk]' direction='DESC' is-on-innermost-dimension='true' measure-to-sort-by='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[max:Cases:qk]' shelf='rows' />
+          </shelf-sorts>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='border-color' value='#b0b0b0' />
+            <format attr='border-width' value='1' />
+            <format attr='hnaxis' value='false' />
+            <encoding attr='space' class='0' field='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[sum:Difference:qk]' field-type='quantitative' range-type='independent' scope='cols' type='space' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='text-align' field='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Case Type:nk]' value='auto' />
+            <format attr='vertical-align' field='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Case Type:nk]' value='bottom' />
+            <format attr='vertical-align' field='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Country Region:nk]' value='bottom' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='off' />
+            </view>
+            <mark class='Bar' />
+            <encodings>
+              <text column='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[sum:Difference:qk]' />
+            </encodings>
+            <customized-tooltip>
+              <formatted-text>
+                <run bold='true'><![CDATA[<[federated.03lzw1r0eyi5qq1468yry09jgwp3].[sum:Difference:qk]> <[federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Case Type:nk]> in <[federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Country Region:nk]>]]></run>
+                <run>Æ&#10;</run>
+              </formatted-text>
+            </customized-tooltip>
+            <style>
+              <style-rule element='cell'>
+                <format attr='text-align' value='left' />
+              </style-rule>
+              <style-rule element='mark'>
+                <format attr='mark-markers-mode' value='all' />
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='false' />
+                <format attr='mark-labels-mode' value='highlight' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Country Region:nk]</rows>
+        <cols>([federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Case Type:nk] * [federated.03lzw1r0eyi5qq1468yry09jgwp3].[sum:Difference:qk])</cols>
+      </table>
+      <simple-id uuid='{E7B2CB0B-6727-4DA8-B2CA-28441731EC39}' />
+    </worksheet>
+    <worksheet name='사망자 순위'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='COVID-19 Confirmed+ (COVID-19 부분)' name='federated.03lzw1r0eyi5qq1468yry09jgwp3' />
+          </datasources>
+          <datasource-dependencies datasource='federated.03lzw1r0eyi5qq1468yry09jgwp3'>
+            <column datatype='string' name='[Case Type]' role='dimension' type='nominal' />
+            <column datatype='string' name='[Country Region]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal' />
+            <column caption='New Cases' datatype='integer' name='[Difference]' role='measure' type='quantitative' />
+            <column-instance column='[Case Type]' derivation='None' name='[none:Case Type:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Country Region]' derivation='None' name='[none:Country Region:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Difference]' derivation='Sum' name='[rank:sum:Difference:qk:3]' pivot='key' type='quantitative'>
+              <table-calc ordering-field='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[Country Region]' ordering-type='Field' rank-options='Competition,Descending' type='Rank' />
+            </column-instance>
+            <column-instance column='[Difference]' derivation='Sum' name='[sum:Difference:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[Action (Country Region)]'>
+            <groupfilter function='level-members' level='[Country Region]' user:ui-action-filter='[Action3]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='categorical' column='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Case Type:nk]'>
+            <groupfilter function='member' level='[none:Case Type:nk]' member='&quot;Deaths&quot;' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <computed-sort column='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Country Region:nk]' direction='DESC' using='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[sum:Difference:qk]' />
+          <slices>
+            <column>[federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Case Type:nk]</column>
+            <column>[federated.03lzw1r0eyi5qq1468yry09jgwp3].[Action (Country Region)]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+            <encodings>
+              <color column='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Country Region:nk]' />
+              <text column='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[rank:sum:Difference:qk:3]' />
+              <text column='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Country Region:nk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-markers-mode' value='all' />
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.03lzw1r0eyi5qq1468yry09jgwp3].[sum:Difference:qk]</rows>
+        <cols />
+      </table>
+      <simple-id uuid='{476715C3-B476-4FBC-94B4-868157FC1115}' />
+    </worksheet>
+    <worksheet name='시트 6'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='COVID-19 Confirmed+ (COVID-19 부분)' name='federated.03lzw1r0eyi5qq1468yry09jgwp3' />
+          </datasources>
+          <datasource-dependencies datasource='federated.03lzw1r0eyi5qq1468yry09jgwp3'>
+            <column datatype='string' name='[Case Type]' role='dimension' type='nominal' />
+            <column datatype='string' name='[Country Region]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal' />
+            <column-instance column='[Case Type]' derivation='Count' name='[cnt:Case Type:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Country Region]' derivation='None' name='[none:Country Region:nk]' pivot='key' type='nominal' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <text column='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[cnt:Case Type:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Country Region:nk]</rows>
+        <cols />
+      </table>
+      <simple-id uuid='{46A4F21F-9816-4153-AB14-284106C0FEF3}' />
+    </worksheet>
+    <worksheet name='일자별 확진자 및 사망자 수'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='COVID-19 Confirmed+ (COVID-19 부분)' name='federated.03lzw1r0eyi5qq1468yry09jgwp3' />
+            <datasource caption='매개 변수' name='Parameters' />
+          </datasources>
+          <datasource-dependencies datasource='Parameters'>
+            <column alias='Total Cases' caption='Select Metric' datatype='integer' name='[Parameter 4]' param-domain-type='list' role='measure' type='quantitative' value='1'>
+              <calculation class='tableau' formula='1' />
+              <aliases>
+                <alias key='1' value='Total Cases' />
+                <alias key='2' value='New Cases' />
+              </aliases>
+            </column>
+          </datasource-dependencies>
+          <datasource-dependencies datasource='federated.03lzw1r0eyi5qq1468yry09jgwp3'>
+            <column caption='Metric Switcher' datatype='integer' name='[Calculation_4005388948910161920]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='IF [Parameters].[Parameter 4]=1 THEN [Cases]&#13;&#10;ELSE [Difference] END' />
+            </column>
+            <column caption='Country Color' datatype='string' name='[Calculation_607423042856611840]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='if [관심국가] then [Country Region] else &apos;기타&apos; end' />
+            </column>
+            <column datatype='string' name='[Case Type]' role='dimension' type='nominal' />
+            <column caption='Total Cases' datatype='integer' name='[Cases]' role='measure' type='quantitative' />
+            <column datatype='string' name='[Country Region]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal' />
+            <column datatype='date' name='[Date]' role='dimension' type='ordinal' />
+            <column caption='New Cases' datatype='integer' name='[Difference]' role='measure' type='quantitative' />
+            <column-instance column='[Date]' derivation='Max' name='[max:Date:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_607423042856611840]' derivation='None' name='[none:Calculation_607423042856611840:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Case Type]' derivation='None' name='[none:Case Type:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Country Region]' derivation='None' name='[none:Country Region:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Date]' derivation='None' name='[none:Date:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_4005388948910161920]' derivation='Sum' name='[sum:Calculation_4005388948910161920:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' field='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[sum:Calculation_4005388948910161920:qk]' field-type='quantitative' range-type='independent' scale='log' scope='rows' type='space' />
+            <format attr='title' class='0' field='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[sum:Calculation_4005388948910161920:qk]' scope='rows' value='' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Line' />
+            <mark-sizing mark-sizing-setting='marks-scaling-off' />
+            <encodings>
+              <color column='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Calculation_607423042856611840:nk]' />
+              <lod column='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Country Region:nk]' />
+            </encodings>
+            <label-data column='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[max:Date:qk]' />
+            <customized-tooltip>
+              <formatted-text>
+                <run bold='true' fontsize='12'><![CDATA[<[federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Country Region:nk]>]]></run>
+                <run>Æ&#10;</run>
+                <run bold='true'><![CDATA[<[federated.03lzw1r0eyi5qq1468yry09jgwp3].[sum:Calculation_4005388948910161920:qk]> <[federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Case Type:nk]>]]></run>
+                <run>Æ&#10;</run>
+                <run bold='true'><![CDATA[on <[federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Date:qk]>]]></run>
+              </formatted-text>
+            </customized-tooltip>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='size' value='0.11994475126266479' />
+                <format attr='mark-labels-mode' value='most-recent' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Case Type:nk] * [federated.03lzw1r0eyi5qq1468yry09jgwp3].[sum:Calculation_4005388948910161920:qk])</rows>
+        <cols>[federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Date:qk]</cols>
+      </table>
+      <simple-id uuid='{75141AB8-9618-4213-858D-04AE28882FD4}' />
+    </worksheet>
+    <worksheet name='지역별 분포'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='COVID-19 Confirmed+ (COVID-19 부분)' name='federated.03lzw1r0eyi5qq1468yry09jgwp3' />
+          </datasources>
+          <mapsources>
+            <mapsource name='Tableau' />
+          </mapsources>
+          <datasource-dependencies datasource='federated.03lzw1r0eyi5qq1468yry09jgwp3'>
+            <column caption='New Cases (Deaths)' datatype='integer' name='[Calculation_7114561558973538305]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='IF [Case Type] = &apos;Deaths&apos; THEN [Difference] END' />
+            </column>
+            <column caption='CFR' datatype='real' default-format='p0.00%' name='[Calculation_7114561558974038019]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='SUM([Calculation_7114561558973538305])/SUM([New Cases (Deaths)(복사본)_7114561558973747202])' />
+            </column>
+            <column datatype='string' name='[Case Type]' role='dimension' type='nominal' />
+            <column datatype='string' name='[Country Region]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal' />
+            <column caption='New Cases' datatype='integer' name='[Difference]' role='measure' type='quantitative' />
+            <column caption='New Cases (Confirmed)' datatype='integer' name='[New Cases (Deaths)(복사본)_7114561558973747202]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='IF [Case Type] = &apos;Confirmed&apos; THEN [Difference] END' />
+            </column>
+            <column-instance column='[Country Region]' derivation='None' name='[none:Country Region:nk]' pivot='key' type='nominal' />
+            <column-instance column='[New Cases (Deaths)(복사본)_7114561558973747202]' derivation='Sum' name='[sum:New Cases (Deaths)(복사본)_7114561558973747202:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_7114561558974038019]' derivation='User' name='[usr:Calculation_7114561558974038019:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' field='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[Longitude (generated)]' field-type='quantitative' max='27894937.063139707' min='-34092185.39232067' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
+            <encoding attr='space' class='0' field='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[Latitude (generated)]' field-type='quantitative' max='16066098.01138673' min='-5278523.5070190588' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
+          </style-rule>
+          <style-rule element='mark'>
+            <encoding attr='color' field='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_7114561558974038019:qk]' palette='red_blue_diverging_10_0' reverse='true' type='interpolated' />
+          </style-rule>
+          <style-rule element='map'>
+            <format attr='washout' value='0.0' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <mark-sizing mark-sizing-setting='marks-scaling-off' />
+            <encodings>
+              <color column='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_7114561558974038019:qk]' />
+              <size column='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[sum:New Cases (Deaths)(복사본)_7114561558973747202:qk]' />
+              <text column='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Country Region:nk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='size' value='1.9670165777206421' />
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-transparency' value='180' />
+                <format attr='has-stroke' value='true' />
+                <format attr='stroke-color' value='#ffffff' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.03lzw1r0eyi5qq1468yry09jgwp3].[Latitude (generated)]</rows>
+        <cols>[federated.03lzw1r0eyi5qq1468yry09jgwp3].[Longitude (generated)]</cols>
+      </table>
+      <simple-id uuid='{F693B85E-F220-4E08-99E4-F26305F18251}' />
+    </worksheet>
+    <worksheet name='확진자 순위'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='COVID-19 Confirmed+ (COVID-19 부분)' name='federated.03lzw1r0eyi5qq1468yry09jgwp3' />
+          </datasources>
+          <datasource-dependencies datasource='federated.03lzw1r0eyi5qq1468yry09jgwp3'>
+            <column datatype='string' name='[Case Type]' role='dimension' type='nominal' />
+            <column datatype='string' name='[Country Region]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal' />
+            <column caption='New Cases' datatype='integer' name='[Difference]' role='measure' type='quantitative' />
+            <column-instance column='[Case Type]' derivation='None' name='[none:Case Type:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Country Region]' derivation='None' name='[none:Country Region:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Difference]' derivation='Sum' name='[rank:sum:Difference:qk:3]' pivot='key' type='quantitative'>
+              <table-calc ordering-field='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[Country Region]' ordering-type='Field' rank-options='Competition,Descending' type='Rank' />
+            </column-instance>
+            <column-instance column='[Difference]' derivation='Sum' name='[sum:Difference:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[Action (Country Region)]'>
+            <groupfilter function='level-members' level='[Country Region]' user:ui-action-filter='[Action2]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='categorical' column='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Case Type:nk]'>
+            <groupfilter function='level-members' level='[none:Case Type:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <computed-sort column='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Country Region:nk]' direction='DESC' using='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[sum:Difference:qk]' />
+          <slices>
+            <column>[federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Case Type:nk]</column>
+            <column>[federated.03lzw1r0eyi5qq1468yry09jgwp3].[Action (Country Region)]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+            <encodings>
+              <color column='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Country Region:nk]' />
+              <text column='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[rank:sum:Difference:qk:3]' />
+              <text column='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Country Region:nk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-markers-mode' value='all' />
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.03lzw1r0eyi5qq1468yry09jgwp3].[sum:Difference:qk]</rows>
+        <cols />
+      </table>
+      <simple-id uuid='{91C4F73E-3BEE-40C5-A5F9-22814358DA20}' />
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard name='COBID-19 주요 국가 현황'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run fontalignment='1'>&lt;</run>
+            <run fontalignment='1'>Sheet Name</run>
+            <run fontalignment='1'>&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <style>
+        <style-rule element='dash-title'>
+          <format attr='background-color' value='#c0c0c0' />
+        </style-rule>
+      </style>
+      <size maxheight='768' maxwidth='1366' minheight='768' minwidth='1366' preset-index='0' sizing-mode='fixed' />
+      <datasources>
+        <datasource caption='매개 변수' name='Parameters' />
+      </datasources>
+      <datasource-dependencies datasource='Parameters'>
+        <column alias='Total Cases' caption='Select Metric' datatype='integer' name='[Parameter 4]' param-domain-type='list' role='measure' type='quantitative' value='1'>
+          <calculation class='tableau' formula='1' />
+          <aliases>
+            <alias key='1' value='Total Cases' />
+            <alias key='2' value='New Cases' />
+          </aliases>
+          <members>
+            <member alias='Total Cases' value='1' />
+            <member alias='New Cases' value='2' />
+          </members>
+        </column>
+      </datasource-dependencies>
+      <zones>
+        <zone _.fcp.SetMembershipControl.false...type='layout-basic' _.fcp.SetMembershipControl.true...type-v2='layout-basic' h='100000' id='4' w='100000' x='0' y='0'>
+          <zone _.fcp.SetMembershipControl.false...type='layout-flow' _.fcp.SetMembershipControl.true...type-v2='layout-flow' h='92708' id='13' param='vert' w='74451' x='24963' y='6250'>
+            <zone _.fcp.SetMembershipControl.false...type='layout-flow' _.fcp.SetMembershipControl.true...type-v2='layout-flow' h='92708' id='8' param='horz' w='74451' x='24963' y='6250'>
+              <zone _.fcp.SetMembershipControl.false...type='layout-basic' _.fcp.SetMembershipControl.true...type-v2='layout-basic' h='92708' id='6' w='62738' x='24963' y='6250'>
+                <zone h='46355' id='5' name='일자별 확진자 및 사망자 수' w='62738' x='24963' y='52603'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='margin-left' value='20' />
+                  </zone-style>
+                </zone>
+                <zone h='46353' id='82' name='지역별 분포' w='62738' x='24963' y='6250'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+              </zone>
+              <zone _.fcp.SetMembershipControl.false...type='layout-flow' _.fcp.SetMembershipControl.true...type-v2='layout-flow' fixed-size='160' h='92708' id='7' is-fixed='true' param='vert' w='11713' x='87701' y='6250'>
+                <zone _.fcp.SetMembershipControl.false...type='color' _.fcp.SetMembershipControl.true...type-v2='color' h='3125' id='9' name='일자별 확진자 및 사망자 수' pane-specification-id='1' param='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Country Region:nk]' w='11713' x='87701' y='6250'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+                <zone _.fcp.SetMembershipControl.false...type='size' _.fcp.SetMembershipControl.true...type-v2='size' h='14193' id='83' name='지역별 분포' pane-specification-id='0' param='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[sum:New Cases (Deaths)(복사본)_7114561558973747202:qk]' w='11713' x='87701' y='9375'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+                <zone _.fcp.SetMembershipControl.false...type='color' _.fcp.SetMembershipControl.true...type-v2='color' h='9245' id='84' name='지역별 분포' pane-specification-id='0' param='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_7114561558974038019:qk]' w='11713' x='87701' y='23568'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+                <zone _.fcp.SetMembershipControl.false...type='paramctrl' _.fcp.SetMembershipControl.true...type-v2='paramctrl' h='7162' id='85' mode='compact' param='[Parameters].[Parameter 4]' w='11713' x='87701' y='32813'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+              </zone>
+            </zone>
+          </zone>
+          <zone h='92708' id='81' name='국가별 발생 건수' w='24377' x='586' y='6250'>
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='none' />
+              <format attr='border-width' value='0' />
+              <format attr='margin' value='4' />
+            </zone-style>
+          </zone>
+          <zone _.fcp.SetMembershipControl.false...type='title' _.fcp.SetMembershipControl.true...type-v2='title' h='5208' id='14' w='98828' x='586' y='1042'>
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='none' />
+              <format attr='border-width' value='0' />
+              <format attr='margin' value='4' />
+            </zone-style>
+          </zone>
+          <zone-style>
+            <format attr='border-color' value='#000000' />
+            <format attr='border-style' value='none' />
+            <format attr='border-width' value='0' />
+            <format attr='margin' value='8' />
+          </zone-style>
+        </zone>
+      </zones>
+      <devicelayouts>
+        <devicelayout auto-generated='true' name='Phone'>
+          <size maxheight='1350' minheight='1350' sizing-mode='vscroll' />
+          <zones>
+            <zone _.fcp.SetMembershipControl.false...type='layout-basic' _.fcp.SetMembershipControl.true...type-v2='layout-basic' h='100000' id='80' w='100000' x='0' y='0'>
+              <zone _.fcp.SetMembershipControl.false...type='layout-flow' _.fcp.SetMembershipControl.true...type-v2='layout-flow' h='97916' id='79' param='vert' w='98828' x='586' y='1042'>
+                <zone _.fcp.SetMembershipControl.false...type='title' _.fcp.SetMembershipControl.true...type-v2='title' h='5469' id='14' w='98828' x='586' y='1042'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='57031' id='5' is-fixed='true' name='일자별 확진자 및 사망자 수' w='54392' x='33309' y='41927'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone _.fcp.SetMembershipControl.false...type='color' _.fcp.SetMembershipControl.true...type-v2='color' h='50261' id='9' name='일자별 확진자 및 사망자 수' pane-specification-id='1' param='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Country Region:nk]' w='11713' x='87701' y='6511'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+              </zone>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='8' />
+              </zone-style>
+            </zone>
+          </zones>
+        </devicelayout>
+      </devicelayouts>
+      <simple-id uuid='{C6340DE2-424D-4F64-8236-C9AF1FD87A38}' />
+    </dashboard>
+  </dashboards>
+  <windows source-height='30'>
+    <window class='dashboard' maximized='true' name='COBID-19 주요 국가 현황' tab-color='#4f779a'>
+      <viewpoints>
+        <viewpoint name='국가별 발생 건수'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='일자별 확진자 및 사망자 수'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='지역별 분포'>
+          <zoom type='entire-view' />
+        </viewpoint>
+      </viewpoints>
+      <active id='81' />
+      <simple-id uuid='{7445FAEB-0A10-444A-A62E-9A3C4D5F5CB7}' />
+    </window>
+    <window class='worksheet' name='확진자 순위' tab-color='#4f779a'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='30'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card param='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Case Type:nk]' type='filter' />
+            <card pane-specification-id='2' param='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Country Region:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{CBE35D45-F969-4C8F-8DB2-D23ABC96306A}' />
+    </window>
+    <window class='worksheet' name='사망자 순위' tab-color='#4f779a'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='30'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card param='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Case Type:nk]' type='filter' />
+            <card pane-specification-id='2' param='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Country Region:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{5091B10C-1227-49E0-BA41-37BC7FD2817E}' />
+    </window>
+    <window class='worksheet' name='일자별 확진자 및 사망자 수' tab-color='#4f779a'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='29'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card mode='compact' param='[Parameters].[Parameter 4]' type='parameter' />
+            <card pane-specification-id='2' param='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[none:Calculation_607423042856611840:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <zoom type='entire-view' />
+      </viewpoint>
+      <simple-id uuid='{F59474D2-CAB0-481C-90B2-680BDD3B80DA}' />
+    </window>
+    <window class='worksheet' name='지역별 분포' tab-color='#4f779a'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='30'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='0' param='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[sum:New Cases (Deaths)(복사본)_7114561558973747202:qk]' type='size' />
+            <card pane-specification-id='0' param='[federated.03lzw1r0eyi5qq1468yry09jgwp3].[usr:Calculation_7114561558974038019:qk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <default-map-tool-selection tool='1' />
+      </viewpoint>
+      <simple-id uuid='{4FE78EB8-678A-443E-BF8A-1F75EE0F48A4}' />
+    </window>
+    <window class='worksheet' name='국가별 발생 건수'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='30'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <zoom type='entire-view' />
+      </viewpoint>
+      <simple-id uuid='{988E6D4F-90E6-4619-BEA2-F2C015D84714}' />
+    </window>
+    <window class='worksheet' name='시트 6'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='30'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{ACA107CD-1BA9-440D-9FD1-3A1B8E24280D}' />
+    </window>
+  </windows>
+</workbook>
