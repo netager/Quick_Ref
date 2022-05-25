@@ -1,0 +1,227 @@
+## Bash 쉘스크립트 개발 시작하기
+
+# yum : Redhat 계열 패키지 관리
+
+$ yum -h : 설명을 출력
+$ yum list [프로그램명] : 설치할 수 있는 프로그램의 버전을 출력
+$ yum install [프로그램명] : 프로그램 설치
+$ yum search [프로그램명] :프로그램 검색ㅍㅡㄹㅗㄱㅡㄹㅐㅁㅍㅡㄹㅇㄹㅇㄹㅇㄹㅇㄹㅇㅇㄹㅇㄹㅇㄹㅇㅇㅡㅇㅡㅇㅡㅇㅡㅇㅡㅇㄹㅡㅇㄹㄹ
+$ yum update
+$ yum update [프로그램명]
+$ yum upgrade
+$ yum remove  [프로그램명] 
+
+
+
+## awk
+
+# print
+$ echo "Hello World" | awk '{ print $0 }'
+Hello World
+
+$ echo "Hello World" | awk '{ print $1 }'
+Hello
+
+$ echo "Hello World" | awk '{ print $2 }'
+World
+
+$ echo "Hello,World" | awk -F "," '{ print $2 }'
+World
+
+# sub
+$ echo "i have a water." | awk -F " " '{ sub("a", "b", $4); print $4 }'
+wbter.
+
+# gsub
+$ echo "i have a water." | awk -F " " '{ gsub("a", "b"); print $1" "$2" "$3" "$4 }'
+i hbve b wbter.
+
+# index
+$ echo "i have a water." | awk -F " " '{ print index($4, "a") }'
+2
+
+# length
+$ echo "i have a water." | awk -F " " '{ print length($4) }'
+6
+
+# substr
+$ echo "1234567890" | awk -F " " '{ print substr($1, 3, 2) }'
+34
+
+# split
+$ echo "A/B/C/D/E/F/G" | awk -F " " '{ print split($1, array, "/");print array[1];print array[3]; }'
+7
+A
+C
+
+# printf
+$ echo | awk '{ printf("%.1f + %.2f = %.3f\n", 40.1, 20.2, 40.1 + 20.2); }'
+40.1 + 20.20 = 60.300
+
+# system
+# system으로 추가 명령어 실행 
+$ echo "Hello World" | awk '{ system("echo "$1) }'
+Hello
+
+
+# 합계(sum) 계산하기
+# 합계는 지정한 인덱스의 값을 모두 더하여 구할 수 있습니다.
+
+$ cat sample.txt | awk '{sum+=$2} END {print sum}' 
+10
+
+# 문자열 자르기
+# 문자열을 자를때는 내장함수 substr을 이용합니다.
+
+$ echo "1234567890" | awk -F " " '{ print substr($1, 3, 2) }'
+34
+
+
+# 파라미터 전달
+# awk에 파라미터를 전달 할 때는 v 옵션을 이용합니다. v 옵션과 함께 이름=값 형태로 전달하고 내장함수에서 사용하면 됩니다.
+
+root="/webroot"  
+$ echo | awk -v r=$root '{ print "shell root value - " r}'
+shell root value - /webroot
+
+
+## date
+일자 출력 포맷 지정
+# 년월일 형태 
+$ date +%Y%m%d
+20190212
+
+# %를 지원하지 않는 환경(ex: crontab)에서는 특수기호로 입력 
+$ date +\%Y\%m\%d
+20190212
+
+# 년월일 시간 출력 
+$ date +"%Y%m%d %H:%M:%S"
+20190212 08:46:53
+
+# 주차 계산 
+$ date +%W
+06
+일자 변경
+# 1일 전 
+$ date +%Y-%m-%d -d '1 days ago'
+2019-02-11
+
+# 1일 후 
+$ date +%Y-%m-%d -d '+1days'
+2019-02-13
+
+# 20190101 일자 지정후 1일 추가 
+$ date +%Y-%m-%d -d '20190101 +1days'
+2019-01-02
+
+## xxd
+# 파일의 헥사 덤프를 확인하는 명령어입니다. 파일을 16진수 또는 2진수 형태로 확인할 수 있습니다.
+# a.txt 파일 내용 확인. AB가 입력되어 있음 
+$ cat a.txt 
+AB
+
+# A의 아스키코드는 65, 65는 16진법으로 41
+# B의 아스키코드는 66, 66는 16진법으로 42
+# 줄바꿈 특수코드 Line Feed의 아스키코드는 10, 10은 16진법으로 0A
+$ xxd a.txt 
+00000000: 4142 0a          
+
+# -b 옵션은 2진수로 표현함 
+$ xxd -b a.txt 
+00000000: 01000001 01000010 00001010                             AB.
+
+
+## curl
+
+# 파일 다운로드 
+$ curl -O http://apache.mirror.cdnetworks.com/oozie/4.3.1/oozie-4.3.1.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 2374k  100 2374k    0     0  23.4M      0 --:--:-- --:--:-- --:--:-- 37.4M
+
+# 파일 이름을 지정하여 다운로드 
+$ curl -o oozie.tar.gz http://apache.mirror.cdnetworks.com/oozie/4.3.1/oozie-4.3.1.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 2374k  100 2374k    0     0  35.6M      0 --:--:-- --:--:-- --:--:-- 38.6M
+
+# s 옵션을 이용하면 전송 속도와 같은 부가 정보가 나타나지 않음
+$ curl -so oozie.tar.gz http://apache.mirror.cdnetworks.com/oozie/4.3.1/oozie-4.3.1.tar.gz
+
+# i 옵션으로 헤더 정보 확인 
+$ curl -i http://127.0.0.1/latest/dynamic/instance-identity/document
+HTTP/1.0 200 OK
+Content-Type: text/plain
+Accept-Ranges: bytes
+ETag: "3177614890"
+Last-Modified: Wed, 18 Sep 2019 04:09:27 GMT
+Content-Length: 505
+Connection: close
+Date: Wed, 18 Sep 2019 04:13:18 GMT
+Server: EC2ws
+
+
+# H 옵션으로 헤더 전달 
+$ curl -H "Content-Type: application/json" http://127.0.0.1/latest/dynamic/instance-identity/document
+
+# GET 방식 파라미터 전달 
+$ curl -G http://127.0.0.1/latest/dynamic/instance-identity/document?a=b
+
+# POST 방식 파라미터 전달
+$ curl http://127.0.0.1/latest/dynamic/instance-identity/document -d a=b
+$ curl http://127.0.0.1/latest/dynamic/instance-identity/document -d "a=b&c=d"
+
+# 메소드 변경
+$ curl -X "DELETE" http://127.0.0.1/latest/dynamic/instance-identity/document
+
+# POST 형식 데이터 전달 
+$ curl -X POST -d "{\"key\":\"val\"}" http://127.0.0.1
+
+
+# Kerberos 인증 사용
+# Kerberos 인증을 curl 명령으로 사용하는 경우에는 --negotiate옵션을 이용합니다.
+
+# --negotiate 옵션을 사용하기 전에 kinit으로 Kerberos 인증을 해야 함 
+# -u: 옵션은 커버로스 인증을 사용 
+curl --negotiate -u: -sS -L -X GET -k https://name-node.com:8090
+
+
+## lynx
+# 텍스트 기반의 웹브라우저
+
+$ lynx http://www.naver.com
+=: 하이퍼링크에서 누르면 현재 링크의 URL을 확인할 수 있음
+
+
+## scp
+# SSH통신을 기반으로 파일을 전송합니다. SCP는 Secure Copy의 약자입니다.
+
+Remote to Local
+# 원격 파일 복사 
+$ scp user@127.0.0.1:/reomote/file/path /local/file/path
+# 원격 디렉토리 복사 
+$ scp -r user@127.0.0.1:/reomote/directory/path /local/directory/path
+Local to Remote
+# 로컬 파일 복사 
+$ scp /local/file/path user@127.0.0.1:/reomote/file/path
+# 로컬 디렉토리 복사 
+$ scp -r /local/directory/path user@127.0.0.1:/reomote/directory/path
+Remote to Remote
+$ scp user@127.0.0.1:/reomote/file/path user@127.0.0.2:/reomote/file/path
+
+
+## 리다이렉션 
+
+# sample.sh의 표준 출력을 보이지 않도록 리다이렉션 
+$ sample.sh > /dev/null
+
+# sample.sh의 표준 출력, 에러를 보이지 않도록 리다이렉션 
+$ sample.sh > /dev/null 2>&1
+
+
+## 환경변수
+$ env : 전역 변수 설정 및 조회
+$ set : 사용자 환경 변수 설정 및 조회
+$ export : 사용자 환경 변수를 전역 변수로 설정
+

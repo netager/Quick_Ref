@@ -1,5 +1,6 @@
 package sec03_throwsexception.EX01;
 
+<<<<<<< HEAD
 //#1. 하위메서드에 직접 예외를 처리하는 경우
 class A {
 	
@@ -32,6 +33,15 @@ class B {
 	}
 }
 
+=======
+//#1. 하위메서드에 직접 예외를 처리하는 방법
+class A {
+	
+	void bcd() {
+		Thread.sleep(1000));
+	}
+}
+>>>>>>> 1e91c2a2ccb799eff5f976ad0ef559033ef89fef
 public class ThrowsException_1 {
 
 }

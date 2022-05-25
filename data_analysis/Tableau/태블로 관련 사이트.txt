@@ -1,0 +1,29 @@
+무료 교육 동영상(Starter-kit)
+  - www.tableau.com/ko-kr/learn/starter-kits
+
+라이브 온라인 교육 및 녹화본(on demand)
+  - www.tableau.com/ko-kr/learn/live-training-resources
+
+실시간 웨비나 및 녹화본(on demand)
+: 구글에서 'Tableau 웹 세미나 시리즈' 검색
+  - www.tableau.com/ko-kr/learn/series/webinars
+  
+태블로 퍼블릭
+  - public.tableau.com
+
+한국 태블로 사용자 모임 페이스북 그룹
+  - www.facebook.com/groups/KoreaTUG
+  
+  
+  
+## 코호트 분석
+
+# 재구매 고객 패턴 파악하기
+
+# First Purchase: {FIXED [Customer ID]:MIN([Order Date])}
+
+# Repeated Purchase: IIF([Order Date] > [First Purchase], [Order Date], NULL)
+
+# Second Purchase: {FIXED [Customer ID]:MIN([Repeated Purchase])}
+
+# Quarters to Repeated Purchase: DATEDIFF('quater',[First Purchase], [Second Purchase])
