@@ -5,7 +5,7 @@ package sec03_threadproperties.EX02;
 class MyThread extends Thread {
 	@Override
 	public void run() {
-		for (long i=0; i<1000000000)
+		for(long i=0; i<1000000000L; i++) {}
 	}
 }
 public class ThreadProperties_2 {
