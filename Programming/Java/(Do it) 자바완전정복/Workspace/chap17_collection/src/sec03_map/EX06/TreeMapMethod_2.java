@@ -12,6 +12,11 @@ class MyClass {
 		this.data1 = data1;
 		this.data2 = data2;
 	}
+	
+	@Override
+	public String toString() {
+		return "data1="+data1+"을 가지고 있는 클래스";
+	}
 }
 
 class MyComparableClass implements Comparable<MyComparableClass> {
@@ -30,6 +35,11 @@ class MyComparableClass implements Comparable<MyComparableClass> {
 		else return 1;
 		
 	}
+	
+	@Override
+	public String toString() {
+		return "data1="+data1+"을 가지고 있는 클래스";
+	}
 }
 
 class MyComparableClass1 implements Comparable<MyComparableClass1> {
@@ -47,6 +57,11 @@ class MyComparableClass1 implements Comparable<MyComparableClass1> {
 		else if (data1 == o.data1) return 0;
 		else return -1;
 		
+	}
+	
+	@Override
+	public String toString() {
+		return "data1="+data1+"을 가지고 있는 클래스";
 	}
 }
 
@@ -95,12 +110,11 @@ public class TreeMapMethod_2 {
 		
 		treeMap5.put(myComparableClass11, "가나다");
 		treeMap5.put(myComparableClass12, "나다라");
-		for(MyComparableClass1 mcc : treeSet5) {
-			System.out.println(mcc.data1);
-		}
-
+		System.out.println(treeMap5.toString()); 	//hashCode=나다라, hashCode=가나다
+		
+		
 		//#5. MyClass 객체 크기 비교 - TreeSet<MyClass> treeSet6 = new TreeSet<MyClass>(비교기준 제공);
-		TreeSet<MyClass> treeSet6 = new TreeSet<MyClass>(new Comparator<MyClass>() {
+		TreeMap<MyClass, String> treeMap6 = new TreeMap<MyClass, String>(new Comparator<MyClass>() {
 			@Override
 			public int compare(MyClass o1, MyClass o2) {
 				if (o1.data1<o2.data1) return -1;
@@ -113,12 +127,9 @@ public class TreeMapMethod_2 {
 		MyClass myClass1 = new MyClass(2, 5);
 		MyClass myClass2 = new MyClass(3, 3);
 		
-		treeSet6.add(myClass1);
-		treeSet6.add(myClass2);
-		for(MyClass mcc : treeSet6) {
-			System.out.println(mcc.data1);
-		}
-		
+		treeMap6.put(myClass1, "가나다");
+		treeMap6.put(myClass2, "나다라");
+		System.out.println(treeMap6.toString());
 		
 
 	}
