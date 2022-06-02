@@ -3,16 +3,19 @@ package eclipseshortkey.rename;
 import java.util.ArrayList;
 
 public class EclipseShortKey_Rename {
-	String str = "안녕하세요";
-
-    int aa;
-	ArrayList a = new ArrayList();
+	public static void main(String[] args) {
+		
 	
-	Number n;
-	sysout
+		String str = "안녕하세요";
 	
-	System.out.println("--------------");
-	
-	int bbb;
+	    int aa;
+		ArrayList a = new ArrayList();
+		
+		Number n;
+		
+		System.out.println("--------------");
+		
+		int bbb;
+	}
 	
 }

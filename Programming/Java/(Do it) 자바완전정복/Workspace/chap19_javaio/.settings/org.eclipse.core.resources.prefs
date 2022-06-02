@@ -1,2 +1,3 @@
 eclipse.preferences.version=1
 encoding//src/sec01_fileandcharset/files/ms949=MS949
+encoding//src/sec05_readerwriter/files/InputStreamReader.txt=MS949
