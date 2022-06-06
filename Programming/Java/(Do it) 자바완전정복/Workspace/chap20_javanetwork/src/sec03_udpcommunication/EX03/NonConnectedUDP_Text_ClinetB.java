@@ -1,0 +1,43 @@
+package sec03_udpcommunication.EX03;
+
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetSocketAddress;
+import java.net.SocketException;
+
+public class NonConnectedUDP_Text_ClinetB {
+	public static void main(String[] args) {
+
+		System.out.println("<<Clinet B - Text");
+
+		//#1. DatagramSocket 객체 생성 (binding)
+		DatagramSocket ds = null;
+		try {
+			ds = new DatagramSocket(20000);
+		} catch (SocketException e) {e.printStackTrace();}
+
+		//#2. 데이터그램 패킷 수신
+		byte[] receivedData = new byte[65508];
+		DatagramPacket receivedPacket = new DatagramPacket(receivedData, receivedData.length);
+		
+		try {
+			ds.receive(receivedPacket);
+		} catch (IOException e) {e.printStackTrace();}
+		System.out.println("수신데이터 : "+new String(receivedPacket.getData(), receivedPacket.getOffset(), receivedPacket.getLength()));
+
+		
+		//#3. 전송데이터 생성 + DatagramPacket 생성
+		byte[] sendData = "반갑습니다".getBytes();
+//		DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, new InetSocketAddress("localhost", 10000));
+		DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, receivedPacket.getSocketAddress());
+		
+		//#4. 데이터그램 패킷 전송
+		System.out.println("송신 데이터 :"+ new String(sendPacket.getData(), sendPacket.getOffset(), sendPacket.getLength()).trim());
+		try {
+			ds.send(sendPacket);
+		} catch (IOException e) {e.printStackTrace();}
+		
+	}
+
+}
