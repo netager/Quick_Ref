@@ -37,9 +37,6 @@ public class SwitchControlStatement {
 		}
 		System.out.println("--------------------------------");
 
-
-		
-
 	}
 
 }

@@ -11,7 +11,7 @@ import java.net.InetSocketAddress;
 import java.net.SocketException;
 
 public class ConnectedUDP_File_ClientA {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		
 		System.out.println("<<<ClientA>> - File");
 		
@@ -56,6 +56,9 @@ public class ConnectedUDP_File_ClientA {
 			while((len=bis.read(filedata)) != -1) {
 				sendPacket = new DatagramPacket(filedata, len);
 				ds.send(sendPacket);
+				Thread.sleep(1);
+				System.out.println("Sleep ........................");
+				
 			}
 		} catch (IOException e1) {e1.printStackTrace();}
 

@@ -53,9 +53,12 @@ public class ConnectedUDP_File_ClientB {
 		try {
 			ds.receive(receivedPacket);
 			if (new String(receivedPacket.getData(), receivedPacket.getOffset(), receivedPacket.getLength()).equals(startSign)) {
+				System.out.println("while loop before");
 				while(true) {
-//					sumSize += receivedPacket.getLength();
-//					System.out.println("파일 용량 합계 : "+sumSize+ "   받은 용량 :" + receivedPacket.getLength());
+					ds.receive(receivedPacket);
+					sumSize += receivedPacket.getLength();
+					System.out.println("파일 용량 합계 : "+sumSize+ "   받은 용량 :" + receivedPacket.getLength());
+//					System.out.println(new String(receivedPacket.getData(), receivedPacket.getOffset(), receivedPacket.getLength()));
 					if (new String(receivedPacket.getData(), receivedPacket.getOffset(), receivedPacket.getLength()).equals(endSign))
 						break;
 					bos.write(receivedPacket.getData(), receivedPacket.getOffset(), receivedPacket.getLength());

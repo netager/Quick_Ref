@@ -16,7 +16,7 @@ class B extends A {
 	B() {
 		this(3);
 		System.out.println("B 생성자1");
-	}
+	} 
 
 	B(int a) {
 		System.out.println("B 생성자2");
@@ -30,6 +30,7 @@ public class SuperMethod_3 {
 		A aa1 = new A();	// A 생성자2
 							// A 생성자1
 		System.out.println("-----------------------");
+		
 		A aa2 = new A(3);	// A 생성자2
 		System.out.println("-----------------------");
 		
@@ -43,15 +44,13 @@ public class SuperMethod_3 {
 							// A 생성자1
 							// B 생성자2
 		System.out.println("-----------------------");
-		
-		
-		System.out.println(bb1.toString());
+
 		System.out.println("-----------------------");
-		System.out.println(bb2.toString());
+		A ab = new B();	    // A 생성자2
+							// A 생성자1
+							// B 생성자2
+							// B 생성자1
 		System.out.println("-----------------------");
-		System.out.println(bb1.equals(bb2));
-		System.out.println("-----------------------");
-				
-		
+
 	}
 }

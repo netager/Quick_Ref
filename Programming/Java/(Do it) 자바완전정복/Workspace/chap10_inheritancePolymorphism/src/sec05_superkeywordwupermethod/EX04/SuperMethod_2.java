@@ -36,6 +36,7 @@ public class SuperMethod_2 {
 							// B 생성자2
 		System.out.println("-----------------------");
 		
+		A ab = new B();
 		
 	}
 }
