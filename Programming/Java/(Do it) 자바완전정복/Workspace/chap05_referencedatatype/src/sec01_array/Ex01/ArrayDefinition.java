@@ -4,17 +4,20 @@ public class ArrayDefinition {
 
 	public static void main(String[] args) {
 		
-		//#1. ¹è¿­ÀÇ ¼±¾ð ¹æ¹ý #1
+		//#1. ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ #1
 		int[] array1 = new int[3];
 		int[] array2;
 		array2 = new int[3];
 		
-		//#2. ¹è¿­ÀÇ ¼±¾ð ¹æ¹ý #2
+		System.out.println(array2[0]);
+		System.out.println(array2[1]);
+		
+		//#2. ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ #2
 		int array3[] = new int[3];
 		int array4[];
 		array4 = new int[3];
 		
-		//#3. ´Ù¾çÇÑ ¹è¿­ ¼±¾ð (±âº»ÀÚ·áÇü ¹è¿­, ÂüÁ¶ÀÚ·áÇü ¹è¿­)
+		//#3. ï¿½Ù¾ï¿½ï¿½ï¿½ ï¿½è¿­ ï¿½ï¿½ï¿½ï¿½ (ï¿½âº»ï¿½Ú·ï¿½ï¿½ï¿½ ï¿½è¿­, ï¿½ï¿½ï¿½ï¿½ï¿½Ú·ï¿½ï¿½ï¿½ ï¿½è¿­)
 		boolean[] array5 = new boolean[3];
 		int[] array6 = new int[5];
 		double[] array7 = new double[7];
