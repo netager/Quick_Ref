@@ -46,7 +46,11 @@ class HTMLTableFormatter(TableFormatter):
         print('<tr>', end='')
         for r in rowdata:
             print(f'<th>{r}</th>', end='')
-        print('</tr>')            
+        print('</tr>') 
+
+
+class FormatError(Exception):
+    pass           
 
 
 def create_formatter(fmt):
@@ -57,6 +61,15 @@ def create_formatter(fmt):
     elif fmt == 'html':
         formatter = HTMLTableFormatter()
     else:
-        raise RuntimeError(f'Unknown format {fmt}')
-    
+        raise FormatError(f'Unknown table format {fmt}')
     return formatter
+
+
+def print_table(objects, columns, formatter):
+    '''
+    Make a nicely formatted table from a list of objects and attribute names.
+    '''
+    formatter.headings(columns)
+    for obj in objects:
+        rowdata = [ str(getattr(obj, name)) for name in columns ]
+        formatter.row(rowdata)
