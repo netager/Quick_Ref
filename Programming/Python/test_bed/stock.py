@@ -1,6 +1,14 @@
+# stock.py
+
+import typedproperty
+
 class Stock:
-    __slots__ = ('name', '_shares', 'price')
-                 
+    __slots__ = ('_name', '_shares', '_price')
+    
+    name = typedproperty.String('name')
+    shares = typedproperty.Integer('shares')
+    price = typedproperty.Float('price')
+                     
     def __init__(self, name, shares, price):
         self.name = name
         self.shares = shares
@@ -19,15 +27,3 @@ class Stock:
     def sell(self, shares):
         self.shares -= shares
         return self.shares  
-    
-
-    @property
-    def shares(self):
-        return self._shares
-
-
-    @shares.setter
-    def shares(self, value):
-        if not isinstance(value, int):
-            raise TypeError('Expected int')
-        self._shares = value    

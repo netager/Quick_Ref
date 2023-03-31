@@ -19,7 +19,8 @@ class Portfolio:
     
     @property
     def total_cost(self):
-        return sum([ s.cost for s in self._holdings])
+        # return sum([ s.cost for s in self._holdings ])    # 리스트 컴프리핸션
+        return sum(s.cost for s in self._holdings)          # 제너레이터 표현식 
     
     def tabulate_shares(self):
         total_shares = Counter()

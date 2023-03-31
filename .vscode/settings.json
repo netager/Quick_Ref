@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./Programming/Python/test_bed"
+    ]
+}
