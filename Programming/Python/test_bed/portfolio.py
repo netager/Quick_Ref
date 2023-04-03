@@ -1,9 +1,11 @@
 # portfolio.py
+
 from collections import Counter
+import stock
 
 class Portfolio:
-    def __init__(self, holdings):
-        self._holdings = holdings
+    def __init__(self):
+        self._holdings = []
     
     def __iter__(self):
         return self._holdings.__iter__()
@@ -27,3 +29,8 @@ class Portfolio:
         for s in self._holdings:
             total_shares[s.name] += s.shares
         return total_shares
+
+    def append(self, holding):
+        if not isinstance(holding, stock.Stock):
+            raise TypeError('Expected a Stock instance')
+        self.holdings.append(holding)
