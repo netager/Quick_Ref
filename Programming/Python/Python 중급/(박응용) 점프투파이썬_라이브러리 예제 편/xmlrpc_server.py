@@ -13,7 +13,7 @@ def get_wikidocs(page):
         return 'Not Found'
 
 
-with SimpleXMLRPCServer(('localhost', 8000)) as server:
+with SimpleXMLRPCServer(('192.168.200.1', 8000)) as server:
     server.register_introspection_functions()
     server.register_function(get_wikidocs, 'wikidocs')
     server.serve_forever()
