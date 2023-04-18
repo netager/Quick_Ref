@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // var nums = new Array();
+        // var nums1 = new Array();
+        // nums1[3] = 56;
+        // console.log(nums1);
+
+        // nums.push(3);
+        // nums.push(12);
+        // nums.push(56);
+
+        // var n2 = nums[2];
+        // console.log(n2);
+
+        // console.log(nums);
+
+        // var n1 = nums.pop();
+        // console.log("n1:"+n1 + ", " + nums);
+        // console.log(nums);
+        
+        // var nums2 = new Array(5);
+        // nums2[3] = 4;
+
+        // var num3 = new Array(5, 10, 21);
+        // console.log(num3);
+
+        // var nums4 = new Array(5, 10, 21, "hello")
+        // alert(typeof nums[3]);
+
+        // var nums5 = new Array(5,10,21, "hello", new Array(2,3,4));
+        // alert(nums5[4][1]);
+
+        // var nums6 = new Array(5,10,21,"hello");
+        // console.log("nums6: " + nums6);
+        // nums6.splice(1)
+        // console.log("nums6: " + nums6);
+
+        // var nums6 = new Array(5,10,21,"hello");
+        // console.log("nums6: " + nums6);
+        // nums6.splice(1, 1)
+        // console.log("nums6: " + nums6);
+
+        // var nums6 = new Array(5,10,21,"hello");
+        // console.log("nums6: " + nums6);
+        // nums6.splice(1, 2, "hoho")
+        // console.log("nums6: " + nums6);
+
+        // var nums6 = new Array(5,10,21,"hello");
+        // console.log("nums6: " + nums6);
+        // nums6.splice(2, 0, "hoho");
+        // console.log("nums6: " + nums6);
+
+        // var exam = new Object();
+        // exam.kor = 30;
+        // exam.eng = 70;
+        // exam.math = 80;
+
+        // alert(exam.kor + exam.eng);
+        // console.log(exam.kor + exam.eng);
+
+        // exam.Kor = 20;
+        // alert(exam.kor + exam.eng);
+        
+        // var exam = {"kor":30, "eng":70, "math":80};
+        // console.log(exam.kor + exam.eng)
+
+        // var ar = [3,4,5,6,exam,[7,8,9]]
+        // console.log(ar[4].math)
+
+        // var notice = {"id":1, "title":"hello"};
+        // console.log(notice.title);
+
+        // var notice = '{"id":1, "title":"hello"}';
+        // console.log(notice.title);
+
+        // var data = '[ \
+        //                 {"co":0.6,"so2":0.0001}, \
+        //                 {"co":0.4,"so2":0.234} \
+        //             ]';
+        // eval("var ar = " + data + ";");
+        // console.log(ar[0].co);
+
+        // var data = JSON.parse('{"id":1, "title":"aaa"}');
+        // console.log(data.id);
+        
+        // var data2 = [{id:2, title:"bbb"},{id:3, title:"ccc"}];
+        // var json = JSON.stringify(data2);
+        // console.log(json);
+
+        // var x = 3;
+        // var y = 3;
+        // var z = new Number(3);
+
+        // document.write(x == y);
+        // document.write(x === y);
+
+        // document.write(x == z + "\n");
+        // document.write(x === z);
+        // document.write(3+4);
+        // document.write(3+4*2);
+        // document.write(3.5+4.6);
+        // document.write(3+4.5);
+        // document.write("3"+"4");
+        // document.write(3+"4");
+        // document.write(3.5+"4");
+        // document.write(3.5 - "2");
+
+// 제어구조
+
+        // var ar = ["철수", "영희", "맹구", "동천"];
+        // for (var i=0; i<ar.length; i++)
+        //     document.write(ar[i]+"<br />");
+        
+        // for(var i in ar)
+        //     document.write(ar[i]+"<br />");
+        
+        // var ob = {id:1, title:"hello", writeId:"newlec"};
+        // for(var i in ob)
+        //     document.write(ob[i]+"<br />");
+        
+        
+        // for(i in ob)
+        //     document.write(i);
+
+
+// 함수
+        var add = new Function("x, y", "return x+y");
+        document.write(add(3, 4));
+
+        var add = function(x, y) {  //가장 많이 사용하는 방법
+            return x + y;
+        };
+        document.write(add(5,4));
+
+        function add(x, y) {
+            return x + y;
+        }
+        document.write(add(6,5));
+
+        
+        
+
+
+        
+
+
+        
+
+
+    </script>
+</body>
+</html>
