@@ -1,3 +1,33 @@
+// Ex6-마우스 이벤트 객체: 박스 옮기기-마우스 좌표
+window.addEventListener("load", function() {
+    var section = document.querySelector("#section6");
+
+    var container = section.querySelector(".container");
+    var box = section.querySelector(".box");
+
+    container.onclick = function(e) {
+        console.log("(x,y):"+e.x+","+e.y);
+        console.log("client (x,y):"+e.clientX+","+e.clientY);
+        console.log("page (x,y):"+e.pageX+","+e.pageY);
+        console.log("offset (x,y):"+e.offsetX+","+e.offsetY);
+
+        box.style.position = "absolute";
+        box.style.left = e.x+"px"; //px 필요
+        box.style.top = e.y+"px";
+    };
+
+    // fileTriggerButton.onclick = function() {
+    //     var event = new MouseEvent("click", {
+    //         'view':window,
+    //         'bubbles': true,
+    //         'cancelable': true
+    //     })
+    //     fileButton.dispatchEvent(event);
+    // };
+
+}); 
+
+
 // Ex5-Trigger
 window.addEventListener("load", function() {
     var section = document.querySelector("#section5");
