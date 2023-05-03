@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<!-- onclick 예제 -->
+    <input type="button" value="클릭" onclick="alert('안녕하세요!');" /><br />
+    <span onclick="alert('hello');">스팬입니다.</span><br />
+
+
+<!-- 복합적 사용 예제 -->
+    <script>
+        function printResult() {
+            var x = prompt("x 값을 입력하세요", 0);
+            var y = prompt("y 값을 입력하세요", 0);
+
+            x = parseInt(x);
+            y = parseInt(y);
+
+            alert(x+y);
+        }
+    </script>
+
+    <input type="button" value="두 수를 입력받아 출력" onclick="printResult();" /><br />
+    <span onclick="alert('hello');">스팬입니다.</span>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <script>
+        function printResult() {
+            var x = prompt("x 값을 입력하세요", 0);
+            var y = prompt("y 값을 입력하세요", 0);
+
+            x = parseInt(x);
+            y = parseInt(y);
+
+            btnPrint.value = x + y;
+            span1.innerText = x + y;
+            btnPrint.type="text";
+        }
+        
+        function printResult2() {
+            var a = prompt("a 값을 입력하세요", 0);
+            var b = prompt("b 값을 입력하세요", 0);
+            btnPrint.value = a + b;
+
+            a = parseInt(a);
+            b = parseInt(b);
+
+            btnPrint2.value = a + b;
+        }
+        // btnPrint2.onclick = printResult2; // 에러 발생
+    </script>
+
+    <input type="button" value="두 수를 입력받아 출력" onclick="printResult();" id="btnPrint" /><br />
+    <span id="span1" onclick="alert('hello');">스팬입니다.</span><br />
+    
+    <input type="button" value="두 수를 입력받아 출력" id="btnPrint2" /><br />
+
+</body>
+</html>

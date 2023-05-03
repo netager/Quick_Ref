@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var exam = new Object();
+        // exam.kor = 30;
+        // exam.eng = 70;
+        // exam.math = 80;
+
+        var exam = {"kor":30, "eng":70, "math":80};
+        console.log(exam.kor + exam.eng);
+
+        var ar = [3,4,5,6,exam,[7,8,9]];
+        console.log(ar[5][1])
+        console.log(ar[4].math)
+
+        var notice = {"id":1, "title":"hello"};
+        console.log(notice.title);
+
+        // 외부 사이트에서 JSON 파일을 받은 경우 처리
+        var notice = '{"id":1, "title":"hello"}'; // 문자열로 받게 됨.
+        console.log(notice);
+
+    </script>
+    
+</body>
+</html>

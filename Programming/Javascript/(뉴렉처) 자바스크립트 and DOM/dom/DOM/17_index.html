@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function f1() {
+            var a = 1;  // 지역변수
+            return function f2() {     // Closure
+                return a;
+            }
+        }
+        var f = f1();   // 함수를 리턴받음
+                        // 자원을 반환하지 못함
+                        // f1의 생명은 지속됨
+                        // f1은 생명은 f 변수가 다른 값으로 할당될 때
+        var a = f();
+        alert(a);
+
+    </script>
+</body>
+</html>

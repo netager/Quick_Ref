@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        var data = {"n id":1, title:"aaa"};
+        console.log(data["n id"]);
+
+        // JSON.parse는 엄격한 javascript 문법을 요구
+        // Object 객체의 키값에 쌍따옴표("") 요구
+        // var data = '{id:1, title:"aaa"}'; // 에러 발생
+
+        var data = '{"id":1, "title":"aaa"}';
+        var data1 = JSON.parse(data);
+
+        console.log(data1.title);    
+
+
+        var data2 = {id:2, title:"bbb"};
+        var json = JSON.stringify(data2);
+        console.log(json);
+
+    </script>
+    
+</body>
+</html>

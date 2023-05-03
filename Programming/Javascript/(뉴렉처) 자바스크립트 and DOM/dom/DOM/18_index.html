@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // window.alert()
+        var x = 3;
+        var y = 0;
+        window.alert(x+y);  // window 생략 가능
+
+        var a, b;
+        // 입력된 값은 String로 받음
+        // 입력값에 abc를 입력하면 Nan(Not a number) 반환
+        // 입력값에 12px 입력하면 12 반환 - 중요한 기능
+        a = prompt("a 값을 입력하세요", 0);
+        b = prompt("b 값을 입력하세요", 0);
+
+        a = parseInt(a);
+        b = parseInt(b);
+        
+        alert(a+b);
+
+        // confirm 
+        var answer = confirm("정말로 삭제하시겠습니까?");
+        if(answer)
+            alert("삭제 되었습니다.");
+
+    </script>
+</body>
+</html>

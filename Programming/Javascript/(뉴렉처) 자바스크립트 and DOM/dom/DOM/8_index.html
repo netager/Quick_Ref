@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var exam = new Object();
+        exam.kor = 30;
+        exam.eng = 70;
+        exam.math = 80;
+
+        console.log(exam.kor + exam.eng);
+
+        exam.Kor = 20;      // 대소문자 구분함
+                            // 사전에 정의되지 않은 변수가 사용됨으로 실수할 소지가 많음
+        console.log(exam.kor + exam.eng);
+
+        exam.kor = 20;      // 
+        console.log(exam.kor + exam.eng);
+
+    </script>
+    
+</body>
+</html>

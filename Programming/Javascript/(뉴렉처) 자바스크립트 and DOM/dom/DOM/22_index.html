@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        
+        window.onload = function() {
+            var btnPrint = document.getElementById("btn-print");
+
+            btnPrint.onclick = function() {
+                var x = prompt("x 값을 입력하세요", 0);
+                var y = prompt("y 값을 입력하세요", 0);
+                btnPrint.value = x + y;
+
+                x = parseInt(x);
+                y = parseInt(y);
+
+                btnPrint.value = x + y;
+            };
+        };    
+
+</script>
+</head>
+<body>
+    
+    <input type="button" value="두 수를 입력받아 출력" id="btn-print" /><br />
+    <span id="span" onclick="alert('hello');">스팬입니다.</span><br />
+
+</body>
+</html>
