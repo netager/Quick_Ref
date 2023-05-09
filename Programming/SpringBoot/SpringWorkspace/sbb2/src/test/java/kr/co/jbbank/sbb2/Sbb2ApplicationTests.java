@@ -1,9 +1,8 @@
-package kr.co.jbbank.sbb1;
+package kr.co.jbbank.sbb2;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,9 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import jakarta.transaction.Transactional;
-import kr.co.jbbank.sbb1.answer.Answer;
-import kr.co.jbbank.sbb1.question.Question;
-import kr.co.jbbank.sbb1.question.QuestionRepository;
+import kr.co.jbbank.sbb2.answer.Answer;
+import kr.co.jbbank.sbb2.question.Question;
+import kr.co.jbbank.sbb2.question.QuestionRepository;
 
 @SpringBootTest
 class Sbb1ApplicationTests {

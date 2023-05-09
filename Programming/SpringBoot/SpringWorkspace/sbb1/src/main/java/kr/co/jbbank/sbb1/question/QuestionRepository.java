@@ -1,4 +1,4 @@
-package kr.co.jbbank.sbb1;
+package kr.co.jbbank.sbb1.question;
 
 import java.util.List;
 
