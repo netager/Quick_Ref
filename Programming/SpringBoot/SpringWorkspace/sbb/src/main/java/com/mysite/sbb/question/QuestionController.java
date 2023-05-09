@@ -16,7 +16,9 @@ import com.mysite.sbb.answer.AnswerForm;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RequestMapping("/question")
 @RequiredArgsConstructor
 @Controller
