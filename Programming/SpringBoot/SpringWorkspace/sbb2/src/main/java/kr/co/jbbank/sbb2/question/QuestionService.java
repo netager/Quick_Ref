@@ -18,15 +18,15 @@ public class QuestionService {
         return this.questionRepository.findAll();
     }
 
+
     public Question getQuestion(Integer id) {
         Optional<Question> question = this.questionRepository.findById(id);
-        if(question.isPresent()) {
+        if (question.isPresent()) {
             return question.get();
         }
         else {
-            throw new DataNotFoundException("question not found");
+            throw new DataNotFoundException("question not");
         }
-
     }
 
 }

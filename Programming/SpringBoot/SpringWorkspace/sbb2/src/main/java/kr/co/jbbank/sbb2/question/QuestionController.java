@@ -6,9 +6,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.RequiredArgsConstructor;
 
+@RequestMapping("/question")
 @RequiredArgsConstructor
 @Controller
 public class QuestionController { 
@@ -23,9 +25,10 @@ public class QuestionController {
     }
 
     
-    @GetMapping("/question/detail/{id}")
+    @GetMapping("/detail/{id}")
     public String detail(Model model, @PathVariable("id") Integer id) {
-        return "question_detail";
+        Question question = this.questionService.getQuestion(id);
+        model.addAttribute("question", question);
+        return "question_detai";     // resources/templates/question_list.html 연계
     }
-
 }
