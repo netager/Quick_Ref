@@ -29,6 +29,6 @@ public class QuestionController {
     public String detail(Model model, @PathVariable("id") Integer id) {
         Question question = this.questionService.getQuestion(id);
         model.addAttribute("question", question);
-        return "question_detai";     // resources/templates/question_list.html 연계
+        return "question_detail";     // resources/templates/question_list.html 연계
     }
 }
