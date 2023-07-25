@@ -278,7 +278,14 @@
 	- else if 문의 문제점 
 		- 분기점이 많으면 프로그램이 길어짐. 마지막 조건문은 앞을 다 확인한후 나중에 비교됨.
 	- switch문을 이용한 선택흐름
-		- 
+		- switch(menu)
+          	  case 1:
+                        break;
+                  case 2:
+                        break;
+                  case 3:
+			break;
+
 	- 중첩된 제어구조 벗어나기
 		- break 라벨;
 
