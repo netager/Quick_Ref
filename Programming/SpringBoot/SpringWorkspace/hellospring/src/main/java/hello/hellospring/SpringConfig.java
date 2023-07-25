@@ -63,7 +63,7 @@ public class SpringConfig {
 
 
     /**
-     * 순수 Jdbc를 이용한 DB 핸들링
+     * Jdbc Template를 이용한 DB 핸들링
      */
     // @Bean
     // public MemberRepository memberRepository() {
