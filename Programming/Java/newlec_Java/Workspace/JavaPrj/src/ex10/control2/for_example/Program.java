@@ -1,0 +1,19 @@
+package ex10.control2.for_example;
+
+public class Program {
+    public static void main(String[] args) {
+    	
+    	// 1 ~ 10 까지 누적 합
+    	int total1 = 0;
+    	int total2 = 0;
+    	
+    	for(int i=0; i<5; i++) {
+    		total1 += 3+i;
+    	}
+    	
+    	total2 = 5*(3+7)/2;
+    	
+    	System.out.printf("Total is %d\n", total1);
+    	System.out.printf("Total is %d\n", total2);
+    }
+}

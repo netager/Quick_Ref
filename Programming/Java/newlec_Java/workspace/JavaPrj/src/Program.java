@@ -15,5 +15,4 @@ public class Program {
         System.out.printf("total is %d\n", total);
         System.out.printf("avg is %.2f\n", avg);
     }
-    
 }
