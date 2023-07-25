@@ -62,23 +62,23 @@
 	- WORA를 지원하기 위한 자바 프로그래밍 방법
 		- 자바코드 ---> 번역기(어셈블코드) ---> 번역기(기계(이진)코드
 		- 1단계(형태소 분석) -> 2단계(구문분석) -> 3단계(의미분석) -> 4단계(중간코드) -> 5단계(최적화) -> 6단계(물리코드)
-		  ------- 컴파일러 사용 -----------------------------------> ---- 인터프리터 사용 ------------>
+		  ------- 컴파일러 사용 -------------------------------------------------> ---- 인터프리터 사용 ------------>
 	
-		- 자바코드 -> 번역기 -> 바이트코드(중간코드, 가상CPU 코드, 수도코드) -> 번역기 -> 어셈블코드 -> 번역기 -> 기계(이진)코드
-		  <-------- JDK(Java Development Kit) ---> <---- JRE(Java Runtime Environment) ------->
+		- 자바코드 -> <번역기(컴파일러)> -> 바이트코드(중간코드, 가상CPU 코드, 수도코드) -> <번역기(인터프리터:JIT)> -> 어셈블코드 -> <번역기> -> 기계(이진)코드
+		  <-------- JDK(Java Development Kit) ---> <---- JRE(Java Runtime Environment) ------------------------------------------------------------------>
 
 ## 9. 값의 종류와 표현방법 
 	- 정수값 - int, long -  26, 0x1a, 032, 0b11010
-	- 실수값 - flaot, double - 123.4d, 1.234e2, 1.234e2f, 1.234e2d
+	- 실수값 - float, double - 123.4d, 1.234e2, 1.234e2f, 1.234e2d
 	- 문자값
 		- 'A'. '\u0065'
 	- 진리값 - true, false
 
 ## 10. 값의 진법 변환
 
-## 11. 값의 형식명칭과 형식변환
+## 11. 값의 형식명칭과 형식변환 - 묵시적 vs. 명시적
 	- 값의 종류와 형식명칭
-		- 정수 형식과 변환
+		- 정수 형식과 변환 : default : int(4byte)
 			- byte   : 1byte - 26
 			- short  : 2byte - 26
 			- int    : 4byte - 26
@@ -88,16 +88,18 @@
 			- byte x = 30;
 				- 묵시적으로 변경하지 않음 - 컴파일시 형식이 맞지 않다고 오류
 				- 개발자가 byte x = (byte)30; - 개발자가 명시적으로 형식 
-		- 실수 형식 
+		- 실수 형식 - default : double(8byte)
 			- 26.5 = 2.65e1
+                        - float  : 4byte - 123.4f
+                        - double : 8byte - 123.4d
 			- float x = 3.5;   ---> float x = (float)3.5;
 			- double x = 3.5f;
 		
 		- 문자형식
-			- char 
+			- char - 2byte 
 		
 		- 부울형식
-			- boolean 
+			- boolean - bit - 0 : false, 1 : true
 
 ## 12. 정수 값의 크기와 범위 
 	- 
@@ -107,9 +109,15 @@
 
 ## 14. 자바 변수 선언
 	- 선언이란? 모든 키워드는 선언하고 사용해야만 한다.
+		- 변수       : int kor
+		- 함수        : void add(int x, int y);
+		- 참조변수  : Animal 순심이;
+
 	- 변수란? - 값을 저장하기 위한 공간
-	- 변수 명명 규칙
-		- 
+             - 변수를 선언하는 방법
+		- 변수 명명 규칙 - 구글링
+		- 여러 변수를 한번에 선언하기 : int kor1, kor2, kor3;
+         
 
 ## 15. 출력 스트림 객체와 API 
 	- 입/출력 장치를 위한 인터페이스의 필요성 
@@ -162,18 +170,21 @@
 			- string : %s
 			- float : %f 
 			- character : %c
-			- d - 정수(10진수) - %5d
-			- x - 정수(16진주) - %x
-			- o - 정수(8진수)  - %o
-			- f - 실수        - %7.2f
+			- d - 정수(10진수)  - %5d
+			- x - 정수(16진주)  - %x
+			- o - 정수(8진수)   - %o
+			- f - 실수          - %7.2f
 			- e - 지수형 실수   - %e
-			- c - 문자        - %c
-			- s - 문자열       - %10s
+			- c - 문자          - %c
+			- s - 문자열        - %10s
 
 ## 20. 형식지정자 옵션 
 	- 고정길이 출력하기 
 		- 형식 지정자 옵션을 이용한 출력 
 			- %(Begin Format Specifier) 1$(Argument Index) +0(Flags) 20(Width) .10(Precision) f(Conversion)
+
+		- System.out.printf("%2$d %3$d %1$d\n",1,2,3);
+		- System.out.printf("%1$d %1$d %1$d\n",3);
 			
 	- 실수의 연산
 		- total / 3   ---> 정수를 정수로 나누면 소수점은 짤리고 정수 부분만 나옴
@@ -183,12 +194,12 @@
 		- avg = (float)(total / 3.0); ---> 명시적으로 계산결과를 float형으로 형변환하고 이를 float형인 avg로 저장 
 		- avg = total / 3.0f; ---> 정수를 float형으로 나누는 결과가 되면 묵시적으로 total 정수는 float형으로 형변환
 
-## 21. 콘솔 입력미래에셋증권 연금자산관리센터 바로가기
+## 21. 콘솔 입력
 	- InputStream과 객체 생성 
 		- System.in
 			- int code = System.in.read() - 1byte에 해당하는 코드값을 입력 
-			- System.out.println(code);
-			- System.out.write(code);
+			- System.out.println(code);   - 코드값 출력
+			- System.out.write(code);     - 문자로 해석한 값 출력
 			- System.out.flush();
 			
 	- 문자열 형태로 read
@@ -200,16 +211,56 @@
 			- next() - 단어 별로 read
 			- nextInt()
 			- nextFloat()
-			- nextDouble(0
+			- nextDouble()
+		- System.out.print("국어1: ");
+	    	  kor1 = scan.nextInt();
+                
 			
 ## 22. 산술 연산자(Operators)
-	- 
+ 	- 연산자
+		- = : 대입연산자
+        	- + : 덧셈
+        	- - : 뺄셈
+                - * : 곱셈
+        	- / : 나눗셈
+        	- % : 나머지 연산자
+	- 연산자 우선순위
+ 	- 연산자와 자료형
+		- 10/3
+		- 10/3.0
+		- total / 3.0f       //묵시적 형변환
+                          - (float)(total/3.0) // 명시적 형변환
+	- 나머지 연산자
+             - 단항 연산자
+    		- +  : 양수 연산자
+		- -  : 음수 연산자
+		- ++ : 긍가 연산자
+		- -- : 감소 연산자
+		- !  : 부정 연산자
+	- 단항 연산자의 전위와 후위
+		- class PrePostDemo {
+			public static void main(String[] args) {
+				int i = 3;
+				i++;
+				System.out.println(i); // prints 4
+                             
+                                ++i;
+				System.out.println(i); // prints 5				
+
+				System.out.println(++i); // prints 6				
+
+				System.out.println(i++); // prints 6
+
+				System.out.println(i); // prints 7								
+       
 ## 23. 비교/관계 연산자
 	- 비교 연산자
 		- ==, !=, >, >=, <, <=
 	- 논리 연산자 
-		- &&(and), ||(or)
-			- 
+		- &&(and) : 교집합 연산자
+			- (value == 1) && (value2 == 2)
+                          - ||(or)  : 합집합 연산자
+			- (value1 == 1) || (value2 == 2)
 ## 24. 비트 연산자
 	- 비트 논리 연산자
 		- & : 비트 교집합 연산자
@@ -235,7 +286,12 @@
 				
 	
 ## 25. 복합 대입 연산자와 연산자 우선순위
-	- +=, -=, *=, /=, %=, &=, |=, >>=, <<=
+             - 복합 대입 연산자
+		- +=, -=, *=, /=, %=, 
+        	- &=  : 비트 AND 후에 대입 
+               	- |=  : 비트 OR 후에 대입
+                - >>= : 오른쪽 쉬프트 후에 대입 
+		- <<= : 왼뽁 쉬프트 후에 대입
 	- 기타 연산자
 		- 3항 연산자
 			- value3 = (3 < 1) ? value1 : value2
@@ -260,8 +316,8 @@
 	- 
 
 ## 28. 제어구조 do while 문
-	- do 
-	  while();
+	- do {
+	  } while();
 
 ## 29. 제어구조 for 문
 	- 
