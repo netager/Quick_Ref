@@ -16,10 +16,16 @@
 
 ## 05. 코드 연습 기초 #4 오목판 출력하기
 	- 다음 코드를 10번 반복하세요
-		- for(int x=1; x<=10; x++)
-			System.out.printf("%c", '┼');
+		- for(int x=1; x<=10; x++) {
+			for(int y=1; y<=10; y++)
+				if(x == 4 && y == 3)
+					System.out.printf("%c ", '○');
+				else
+					System.out.printf("%c ", '┼');
 			
-		  System.out.println();	
+				
+			System.out.println();
+		}
 
 ## 06. 코드 연습 기초 #5 오목판에 오목 출력하기
 
