@@ -24,7 +24,7 @@ public class ListProgram {
 	        	break;
 	        
 	        case 2:
-	        	printList(list);
+	        	printList(list, 2);
 		        break;
 		        
 	        case 3: 
@@ -46,7 +46,7 @@ public class ListProgram {
         Scanner scan = new Scanner(System.in);
         
         System.out.println("┌────────────────────┐");
-        System.out.println("│                메인 메뉴               │");
+        System.out.println("│        메인 메뉴               │");
         System.out.println("└────────────────────┘");
         System.out.println("\t1. 성적입력");
         System.out.println("\t2. 성적출력");
@@ -62,7 +62,7 @@ public class ListProgram {
         Scanner scan = new Scanner(System.in);
 
         System.out.println("┌────────────────────┐");
-        System.out.println("│                성적 입력               │");
+        System.out.println("│        성적 입력               │");
         System.out.println("└────────────────────┘");
         System.out.println();
 
@@ -103,9 +103,15 @@ public class ListProgram {
     	exam.eng = eng;
     	exam.math = math;
     	
-    	if(list.exams.length == list.current) {
-    		ExamList temp
-    		list.exams
+    	Exam[] exams = list.exams;
+    	int size = list.current;
+    	if(exams.length == list.current) {
+    		Exam[] temp = new Exam[list.current + 5];
+    		
+    		for(int i=0; i<size; i++ )
+    			temp[i] = exams[i];
+    		
+    		list.exams = temp;
     	}
     	
     	list.exams[list.current] = exam;
@@ -115,13 +121,17 @@ public class ListProgram {
 	}
 	
 	static void printList(ExamList list) {
+		printList(list, list.current);
+    }
+	
+	static void printList(ExamList list, int size) {
     	
 	    System.out.println("┌────────────────────┐");
-	    System.out.println("│                성적 출력               │");
+	    System.out.println("│        성적 출력               │");
 	    System.out.println("└────────────────────┘");
 	    System.out.println();
 	    
-	    int size = list.current;
+//	    int size = list.current;
 	    Exam[] exams = list.exams;
 	    
 	    for (int i=0; i<size; i++) {
