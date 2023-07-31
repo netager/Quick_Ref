@@ -1,0 +1,33 @@
+package ex16.star;
+
+import java.util.Scanner;
+
+public class Program {
+    public static void main(String[] args) {
+
+    	// 10개씩 10번 '☆' Print
+    	for(int j=0; j<10; j++) {
+    		for(int i=0; i<10; i++)
+    			System.out.printf("%c", '☆');
+    		
+    		System.out.println();
+    	}
+    	
+    	// 1개부터 1개씩 증가하면서 10번 '☆' Print
+    	for(int j=0; j<10; j++) {
+    		for(int i=0; i<j+1; i++) {
+    			System.out.printf("%c", '☆');
+    		}
+    		System.out.println();
+    	}
+
+    	// 10개부터 1개씩 감소하면서 10번 '☆'  Print
+    	for(int j=0; j<10; j++) {
+    		for(int i=0; i<10-j; i++) {
+    			System.out.printf("%c", '☆');
+    		}
+    		System.out.println();
+    	}
+
+    } // main
+} // class

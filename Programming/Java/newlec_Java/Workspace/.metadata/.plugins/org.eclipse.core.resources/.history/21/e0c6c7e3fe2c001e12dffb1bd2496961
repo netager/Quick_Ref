@@ -1,0 +1,64 @@
+package part2.ex3.데이터구조화;
+
+public class Test {
+	public static void main(String[] args) {
+		
+		ExamList list = new ExamList();
+		
+		list.exams = new Exam[3];
+		list.current = 0;
+		
+		inputList(list);
+		
+		printList(list);
+		
+	}
+	
+	static void inputList(ExamList list) {
+		
+		Exam exam = new Exam();
+		int kor, eng, math;
+		
+		for(int i=0; i<2; i++) {
+			if (i <1) {
+				kor = 50;
+		        eng = 50;
+		        math = 50;
+			}
+			else {
+				kor = 60;
+				eng = 60;
+				math = 60;
+			}
+				
+			exam.kor = kor;
+			exam.eng = eng;
+			exam.math = math;
+			
+			list.exams[list.current] = exam;
+			list.current++;
+		}
+	}
+	
+	
+	static void printList(ExamList list) {
+		
+		Exam exam = new Exam();
+		int kor, eng, math;
+
+		for(int i=0; i<list.current; i++) {
+			exam = list.exams[i];
+			
+			kor = exam.kor;
+			eng = exam.eng;
+			math = exam.math;
+			
+			System.out.printf("kor : %d ", kor);
+			System.out.printf("eng : %d ", eng);
+			System.out.printf("math : %d ", math);
+			System.out.println();
+		}
+		
+	}
+
+}

@@ -1,0 +1,14 @@
+package ex9.control2.for_example;
+
+public class Program {
+    public static void main(String[] args) {
+    	
+    	// 1 ~ 10 까지 누적 합
+    	int total = 0;
+    	
+    	for(int i=0; i<7; i++) {
+    		total += i+3;
+    	}
+    	System.out.printf("Total is %d\n", total);
+    }
+}
