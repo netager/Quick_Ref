@@ -1,0 +1,47 @@
+package part2.ex2.탑다운예제;
+
+public class Program {
+	
+	public static void main(String[] args) {
+		
+		int[][]lottos = null;
+		
+		int menu = inputMenu();
+		boolean running = true;
+		
+		do {
+			switch(menu) {
+			case 1:
+				// create / get
+				lottos = createLottosAuto();
+				break;
+				
+			case 2:
+				lottos = createLottosManual();
+				break;
+				
+			case 3:
+				printLottos(lottos);
+				break;
+				
+			case 4:
+				break;
+			}
+		} while(running);
+		
+	}
+	
+	static int inputMenu() {
+		
+	}
+	
+	static int[][] createLottosAuto() {
+		
+		
+	}
+	
+	static int[][] createLottosManual() {
+		
+	}
+
+}
