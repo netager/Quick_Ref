@@ -1,12 +1,12 @@
 package ex10.compositepattern;
 
 abstract public class Component {
-	
+
+	private String name;
+
 	public Component(String name) {
 		this.name = name;
 	}
-
-	private String name;
 
 	public String getName() {
 		return name;

@@ -2,6 +2,11 @@ package ex10.compositepattern;
 
 public class File extends Component {
 
+	public File(String name) {
+		super(name);
+
+	}
+
 	private Object data;
 
 	public Object getData() {
