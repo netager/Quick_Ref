@@ -1,4 +1,4 @@
-package ex7.builder;
+package ex7.builder1;
 
 public class LgGramBlueprint extends BluePrint {
 

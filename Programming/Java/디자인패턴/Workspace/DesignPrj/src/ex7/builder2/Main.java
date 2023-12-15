@@ -1,4 +1,4 @@
-package ex7.builder;
+package ex7.builder2;
 
 public class Main {
 
@@ -9,6 +9,7 @@ public class Main {
 		factory.setBlueprint(new LgGramBlueprint());
 		
 		factory.make();
+		
 		
 		Computer computer = factory.getComputer();
 		
