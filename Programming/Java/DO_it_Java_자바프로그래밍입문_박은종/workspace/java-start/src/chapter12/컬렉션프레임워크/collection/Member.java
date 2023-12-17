@@ -1,9 +1,15 @@
 package chapter12.컬렉션프레임워크.collection;
 
+import java.util.Comparator;
+
 public class Member implements Comparable<Member> {
 
 	private int memberId;
 	private String memberName;
+	
+	public Member() {
+		
+	}
 	
 	public  Member(int memberId, String memberName) {
 		this.memberId = memberId;
@@ -59,8 +65,8 @@ public class Member implements Comparable<Member> {
 	@Override
 	public int compareTo(Member member) {
 
-		boolean keyId = false;
-		boolean ascending = false;
+		boolean keyId = true;
+		boolean ascending = true;
 		
 		if (keyId) {
 			if(ascending) {
@@ -82,7 +88,5 @@ public class Member implements Comparable<Member> {
 			}
 		}
 	}
-	
-	
 		
 }

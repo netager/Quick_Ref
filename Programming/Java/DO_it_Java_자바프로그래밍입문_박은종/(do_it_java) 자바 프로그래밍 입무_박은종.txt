@@ -1498,27 +1498,49 @@
   - 내부적으로 이진 검색 트리(binary search tree)로 구현되어 있음 
   - 이진 검색 트리에 자료가 저장될 때 비교하여 저장될 위치를 정함 
   - 객체 비교를 위해 Comparable이나 Comparator 인터페이스를 구현 해야 함.
-  
 
-13. 내부 클래스 요약 
-  - 인스턴스 내부 클래스
+## Map 인터페이스
+  - key-value pair 의 객체를 관리하는데 필요한 메서드가 정의됨
+  - key는 중복될 수 없음
+  - 검색을 위한 자료 구조
+  - key를 이용하여 값을 값을 저장하거나 검색, 삭제할 때 사용하면 편리함
+  - 내부적으로 hash 방식으로 구현 됨
+       - index = hash(key)  // index는 저장 위치
+  - key가 되는 객체는 객체의 유일성함의 여부를 알기 위해 equals()와 hashCode() 메서드를 재정의 함
+
+## HashMap 클래스
+  - Map 인터페이스를 구현한 클래스 중 가장 일반적으로 사용하는 클래스
+  - HashTable 클래스는 자바2부터 제공된 클래스로 Vector 처럼 동기화를 제공함
+  - 여러 메서드를 활용하여 pair 자료를 쉽고 빠르게 관리할 수 있음
+
+## TreeMap 클래스
+  - key 객체를 정렬하여 key-value를 pair로 관리하는 클래스
+  - key에 사용되는 클래스에 Comparable, Comparator 인터페이스를 구현
+  - java에 많은 클래스들은 이미 Comparable이 구현되어 있음
+  - 구현 된 클래스를 key로 사용하는 경우는 구현할 필요가 없음
+
+
+13. 내부 클래스(inner class) 요약 
+  - 인스턴스 내부 클래스(instance inner class)
     - 구현 위치 - 외부 클래스 멤버 변수와 동일 
 	- 사용할 수 있는 외부 클래스 변수 - 외부 인스턴스 변수, 외부 전역변수
 	- 생성 방법 - 외부 클래스를 먼저 만든 후 내부 클래스 생성 
-  - 정적 내부 클래스
+
+  - 정적 내부 클래스(static inner class)
     - 구현 위치 - 외부 클래스 멤버 변수와 동일 
 	- 사용할 수 있는 외부 클래스 변수 - 외부 전역변수
 	- 생성 방법 - 외부 클래스와 무관하게 생성
-  - 지역 내부 클래스 
+
+  - 지역 내부 클래스(local inner class) 
     - 구현 위치 - 메서드 내부에 구현 
 	- 사용할 수 있는 외부 클래스 변수 - 외부 인스턴스 변수, 외부 전역 변수
 	- 생성 방법 - 메서드 호출할 때 생성 
-  - 익명 내부 클래스 
+
+  - 익명 내부 클래스 (annonymous inner class)
     - 구현 위치 - 메서드 내부에 구현, 변수에 대입하여 직접 구현  
 	- 사용할 수 있는 외부 클래스 변수 - 외부 인스턴스 변수, 외부 전역 변수
 	- 생성 방법 - 메서드 호출할 때 생성되거나, 인터페이스 타입 변수에 대입할 때 new 예약어를 사용하여 생성 
 	
-
 
 ## 람다식(lambda expression)
   - 자바에서 함수형 프로그래밍(functional programming)을 구현하는 방식 
@@ -1528,9 +1550,9 @@
   - 함수형 프로그래밍   
     - 순수 함수(pure function)를 구현하고 호출함으로써 외부 자료에 부수적인 영향을 주지 않고 
 	  매개 변수만을 사용하도록 만든 함수.
-	- 함수를 기반으로 구현 
-	- 입력 받은 자료를 기반으로 수행되고 외부에 영향을 미치지 않으므로 병렬처리 등에 가능
-	- 안정적인 확장성 있는 프로그래밍 방식 
+    - 함수를 기반으로 구현 
+    - 입력 받은 자료를 기반으로 수행되고 외부에 영향을 미치지 않으므로 병렬처리 등에 가능
+    - 안정적인 확장성 있는 프로그래밍 방식 
 	
 ## 람다식 구현하기
   - 익명 함수 만들기 
@@ -1611,10 +1633,10 @@
       lambdaStr.showString("hello lambda_1");	
 	  
 
-## 스트림(stream)
+## 스트림(stream) - 배열(Array)이나 컬렉션(Collections) 자료형에서 많이 사용
   - 자료의 대상과 관계없이 동일한 연산을 수행 
     - 배열, 컬렉션을 대상으로 동일한 연산을 수행 함. 
-    - 일관성 있는 연산으로 차료의 처리를 쉽고 간단하게 함. 
+    - 일관성 있는 연산으로 자료의 처리를 쉽고 간단하게 함. 
   - 한 번 생성하고 사용한 스트림은 재사용 할 수 없음.
     - 자료에 대한 스트림을 생성하여 연산을 수행하면 스트림은 소모됨.
     - 다른 연산을 위해서는 새로운 스트림을 생성함.
@@ -1622,9 +1644,35 @@
     - 자료에 대한 스트림을 생성하면 별도의 메모리 공간을 사용하므로 기존 자료를 변경하지 않음. 
   - 스트림 연산은 중간 연산과 최종 연산으로 구분 됨
     - 스트림에 대한 중간 연산은 여러 개 적용될 수 있지만 최종 연산은 마지막에 한 번만 적용됨.
-    - 최종연산이 호출되어야 중간연산의 결과가 모두 적용됨. 이름 "지연 연산" 이라 함.
+    - 최종연산이 호출되어야 중간연산의 결과가 모두 적용됨. 이를 "지연 연산(Lazy Evaluation)" 이라 함.
+
+  - 배열이나 Collections 자료형의 전체 요소값의 합, 또는 Max 등을 구할때 사용. 원본 데이터는 변경하지 않음
 
 
+## reduce() 연산
+   - 정의된 연산이 아닌 프로그램머가 직접 지정하는 연산을 적용
+   - 최종 연산으로 스트림의 요소를 소모하며 연산 수행
+   - 배열의 모든 요소의 합을 구하는 reduce() 연산
+      - Arrays.stream(arr).reduce(0, (a, b) -> a + b)); 
+      - 0 : 초깃값
+      - (a, b) : 전달되는 요소
+      - a + b   : 각 요소가 수행해야 하는 기능
+   - 두 번째 요소로 전달되는 람다식에 따라 다양한 기능을 수행
+
+
+## reduce() 연산 예제
+   - 배열에 여러 문자열이 있을 때 길이가 가장 긴 문자열 찾기
+      import java.util.Arrays;
+    import java.util.function.BinaryOperator;
+    
+    class CompareString implements BinaryOperator<String> {
+	@Override
+	public String apply(String s1, String s2) {
+		if(s.getBytes().length >= s2.getBytes().length) return s1;
+	}
+    }
+
+                       
 ## 스트림 연산 - 중간 연산 
   - 중간 연산 - filter(), map()
     - 조건에 맞는 요소를 추출(filter()) 하거나 요소를 변환 함(map())
@@ -1640,11 +1688,12 @@
 14. 예외 처리 
   - 오류란 무엇인가요?
     - 컴파일 오류(compile error) - 프로그램 코드 작성 중 발생하는 문법적 오류 
-	- 실행 오류(runtime error) - 시행 중인 프로그램이 의도 하지 않은 동작을 하거나(bug) 프로그램이 중지되는 오류 
+    - 실행 오류(runtime error) - 실행 중인 프로그램이 의도 하지 않은 동작을 하거나(bug) 프로그램이 중지되는 오류 
 	
-	- 실행 오류시 비정상 종료는 서비스 운영에 치명적 
-	- 오류가 발생할 수 있는 경우에 로그(log)를 남겨 추후 이를 분석할여 원인을 찾아야 함
-	- 자바는 예외 처리를 통하여 프로그램의 비정상 종료를 막고 log를 남길 수 있음
+    - 실행 오류시 비정상 종료는 서비스 운영에 치명적 
+    - 오류가 발생할 수 있는 경우에 로그(log)를 남겨 추후 이를 분석할여 원인을 찾아야 함
+    - 자바는 예외 처리를 통하여 프로그램의 비정상 종료를 막고 log를 남길 수 있음
+
 
 ## 오류와 예외 클래스 
   - 시스템 오류(error) - 가상 머신에서 발생, 프로그래머가 처리 할 수 없음
@@ -1653,7 +1702,9 @@
     - 읽어 들이려는 파일이 존재하지 않는 경우, 네트웍 연결이 끊어진 경우 
 	
   - Throwable <---------- Error
-                  ㄴ------ Exception  
+                  │
+                   ㄴ------ Exception  
+
 
 ## 예외 클래스의 종류 
   - 모든 예외 클래스의 최상위 클래스는 Exception 
@@ -1693,7 +1744,7 @@
 ## 스트림이란?
   - 네트웍에서 자료의 흐름이 물과 같다는 의미에서 유래 
   - 다양한 입출력 장치에 독립적으로 일관성 있는 입출력을 제공하는 방식 
-  - 입출력이 구현되는 곳 : 파일 디스크, 키보드, 마우스, 메모리 네트웍 등 
+  - 입출력이 구현되는 곳 : 파일 디스크, 키보드, 마우스, 메모리, 네트웍 등 
   
 ## 스트림의 구분 
   - 대상 기준 
@@ -1767,7 +1818,7 @@
   - 이클립스와는 연동되지 않음
   - command창에서 입력 함 
   - 메서드 
-    - String readLine()       - 문자열을 읽습니다.
+    - String readLine()           - 문자열을 읽습니다.
 	- char[] readPassword()   - 사용자에게 문자열을 보여 주지 않고 읽습니다.
 	- Reader reader()         - Reader 클래스를 반환합니다.  
 	- PrintWriter writer()    - PrintWriter 클래스를 반환합니다.
@@ -1777,15 +1828,42 @@
   - 추상 메서드를 포함한 추상 클래스로 하위 클래스가 구현하여 사용 
   - 주요 하위 클래스 
     - FileInputStream - 파일에서 바이트 단위로 자료를 읽습니다. 
-	- ByteArrayInputStream - Byte 배열 메모리에서 바이트 단위로 자료를 읽습니다. 
-	- FilterInputStream - 기반 스트림에서 자료를 읽을 때 추가 기능을 제공하는 보조 스트림의 상위 클래스 임.
+    - ByteArrayInputStream - Byte 배열 메모리에서 바이트 단위로 자료를 읽습니다. 
+    - FilterInputStream - 기반 스트림에서 자료를 읽을 때 추가 기능을 제공하는 보조 스트림의 상위 클래스 임.
   - 메서드 
     - int read() 
     - int read(byte b[])
     - int read(byte b[], int off, int len)
     - void close()	
 
-	
+## 바이트 단위 스트림 - OutputStream
+  - 바이트 단위 출력용 최상위 스트림
+  - 추상 메서드를 포함한 추상 클래스로 하위 클래스가 구현하여 사용
+  - 주요 하위 클래스
+     - FileOutputStream - 바이트 단위로 파일에 자료를 씁니다.
+     - ByteArrayOutputStream - Byte 배열에 바이트 단위로 자료를 씁니다.
+     - FilterOutputStream - 기반 스트림에서 자료를 쓸 때 추가 기능을 제공하는 보조 스트림의 상위 클래스입니다.
+   - 메서드
+     - void write(int b) - 한 바이트를 출력합니다.
+     - void write(byte[] b) - b[] 배열에 있는 자료를 출력합니다.
+     - void write(byte b[], int off, int len) - b[] 배열에 있는 자료의 off 위치부터 len 개수만큼 자료를 출력합니다.
+     - void flush() - 출력을 위해 잠시 자료가 머무르는 출력 버퍼를 강제로 비워 자료를 출력합니다.
+     - void close() - 출력 스트림과 연결된 대상 리소스를 닫습니다. 출력 버퍼가 비워집니다.(예: FileOutputStream인 경우 파일 닫음)
+
+## 문자 단위 스트림 - Reader
+   - 문자 단위 스 트림 - Reader
+   - 하위 클래스에서 상속 받아 구현 함
+      - FileReader - 파일에서 문자 단위로 읽는 스트림 클래스입니다.
+      - InputStreamReader - 바이트 단위로 읽은 자료를 문자로 변환해 주는 보조 스트림 클래스입니다.
+      - BufferedReader - 문자로 읽을 때 배열을 제공하여 한꺼번에 읽을 수 있는 기능을 제공해 주는 보조 스트림입니다.
+
+   - 주요 메서드
+      - int read() - 파일로부터 한 문자를 읽습니다. 읽은 값을 반환합니다.
+      - int read(char[] buf) - 파일로부터 buf 배열에 문자를 읽습니다.
+      - int read(char[] buf, int off, int len)  - 파일로부터 buf 배열의 off  위치에서부터 len 개수만큼 문자를 읽습니다.
+      - void close() - 스트림과 연결된 파일 리소스를 닫습니다.
+
+
 ## 보조 스트림	
   - 실제 읽고 쓰는 스트림이 아닌 보조적인 기능을 추가하는 스트림 
   - 데코레이터 패턴 
@@ -1795,5 +1873,58 @@
     - public FileterOutputStream(OutputStream out) 
   - 기반 스트림[바이트 단위 파일 입력 스트림] + 보조 스트림[문자로 변환 기능 추가] + 보조 스트림[버퍼링 기능 추가]
 
-  
+
+## InputStreamReader와 OutputStreamWriter
+  - 바이트 단위로 읽거나 쓰는 자료를 문자로 변환해 주는 보조 스트림
+  - FileInputStream(바이트스트림)으로 읽은 자료를 문자로 변환하는 예
+
+## Buffered 스트림
+  - 내부적으로 8192 바이트 배열을 가지고 읽거나 쓰기 기능을 제공하여 속도가 빨라짐
+    - BufferedInputStream - 바이트 단위로 읽는 스트림에 버퍼링 기능을 제공합니다.
+    - BufferedOutputStream - 바이트 단위로 출력하는 스트림에 버퍼링 기능을 제공합니다.
+    - BufferedReader - 문자 단위로 읽는 스트림에 버퍼링 기능을 제공합니다.
+    - BufferedWriter - 문자 단위로 출력하는 스트림에 버퍼링 기능을 제공합니다.
+
+
+## DataInputStream 과 DataOutputStream
+  - 자료가 메모리에 저장된 0, 1 상태 그대로 읽거나 쓰는 스트림
+  - 읽는 메서드
+    - byte readByte() - 1바이트를 읽어 반환합니다.
+    - boolean readBoolean() - 읽은 자료가 0이 아니면 true를, 0이면 false를 반환합니다.
+    - char readChar()
+    - short readShort()
+    - int readInt()
+    - long readLong(0
+    - float readFloat()
+    - double readDouble()
+    - String readUTF()
+
+## 직렬화(serialization) - Object자체를 읽고 쓸 수 있는 방법
+  - 인스턴스의 상태를 그대로 저장하거나(serialization) 다시 복원하는(deserialization) 방식
+  - 파일에 쓰거나 네트웍으로 전송
+  - ObjectInputStream과 ObjectOutputStream 사용
+    - ObjectInputStream(InputStream in) - InputStram을 생성자의 매개변수로 받아 ObjectInputStream을 생성합니다.
+    - ObjectOutputStream(OutputStream out) - OutputStram을 생성자의 매개변수로 받아 ObjectOutputStream을 생성합니다.
+
+## Serializable 인터페이스
+  - 직렬화는 인스턴스 내용이 외부로 유출되는 것이므로 프로그래머가 직렬화 의도를 표시해야 함
+  - 구현코드가 없는 marker interface
+    - class Person implements Serializable {
+	...
+	String name;
+	String title;
+	...
+          }
+
+## 그 외 입출력 클래스
+  - File 클래스
+    - 파일개념을 추상화한 클래스
+    - 입출력 기능은 없고 파일의 속성, 경로, 이름 등을 알 수 있음
+  - RandomAccessFile 클래스
+    - 입출력 클래스 중 유일하게 파일 입출력을 동시에 할 수 있는 클래스
+    - 파일 포인터가 있어서 읽고 쓰는 위치의  이동이 가능함
+    - 다양한 자료형에 대한 메서드가 제공됨
+
+
+
 	
