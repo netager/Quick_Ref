@@ -1,0 +1,292 @@
+# Design Pattern in Java
+- source : https://bitbucket.org/garampark/java-design-pattern/src/master/
+- UML : Unified Modeling Language
+
+<img src="./images/patterns.webp" width="600px" height="1200px" title="GoF Design Patterns"></img>   
+
+
+## 1강. Strategy Pattern - 전략 바꾸기
+<img src="./images/strategy_pattern.png" width="600px" height="300px" title="Stragegy Pattern"></img>   
+
+### 인터페이스
+- 기능에 대한 선언과 구현 분리
+- 기능을 사용할 수 있는 통로
+
+
+### 델리게이트 - 위임하다, 떠넘기다
+
+### 스트레티지 패턴
+- 여러 알고리즘을 하나의 추상적인 접근점(interface)을 만들어 접근점에서 서로 교환 가능하도록 하는 패턴
+
+### 요구 사항
+- 신작 게임에서 캐릭터와 무기를 구현해 보세요.
+  - 무기는 두가지 종류가 있습니다.
+      - 칼, 검
+
+### 유지 보수 요청
+- 무기 중에 도끼를 추가해 주세요.	
+
+
+## 2강. Adapter pattern - 연관성 없는 두 객체 묶어 사용하기
+<img src="./images/adapter_pattern.png" width="600px" height="300px" title="Adapter Pattern"></img>   
+
+### 사전적 의미의 Adapter 란?
+- 기계, 기구 등을 다목적으로 사용하기 위한 부가기구
+
+### 요구 사항
+- 두 수에 대한 다음 연산을 수행하는 객체를 만들어 주세요
+    - 수의 두 배의 수를 반환 : twiceOf(Float):Float
+    - 수의 반(1/2)의 수를 반환 : halfOf(Float):Float
+- 구현 객체 이름은 'Adapter'로 해주세요
+  - Math 클래스에서 두 배와 절반을 구하는 함수는 이미 구현되어 있습니다.
+
+### 더 공부해 봅시다
+- 알고리즘 변경을 원합니다.
+    - Math 클래스에 새롭게 두 배를 구할 수 있는 함수가 추가되었습니다. 
+         새로 구현된 알고리즘을 이용하도록 프로그램을 수정하세요
+   - 절반을 구하는 기능에서 로그를 찍는 기능을 추가해 주시기 바랍니다.
+
+
+## 3강. Template Method - 공통적인 프로세스를 묶어주기
+
+### 학습 목표
+- 일정한 프로세스를 가진 요구사항을 템플릿 메서드 패턴을 이용하여 구현할 수 있다.
+
+### 사전적 의미의 Template 란?
+- 모양 자, 어떤 색깔
+
+### Template Method Pattern
+<img src="./images/template_method_pattern.png" width="600px" height="300px" title="Template Method Pattern"></img>   
+
+- 알고리즘의 구조를 메소드에 정의하고 하위 클래스에서 알고리즘 구조의 변경없이 알고리즘을 재정의 하는 패턴
+
+- 구현하려는 알고리즘이 일정한 절차가 있다 
+- 구현하려는 알고리즘이 변경 가능성이 있다
+
+- 알고리즘을 여러 단계로 나눈다
+- 나눠진 알고리즘의 단계를 메소드로 선언한다
+- 알고리즘을 수행할 템플릿 메소드를 만든다
+- 하위 클래스에서 나눠진 메소드를 구현한다
+
+### 요구 사항
+- 신작 게임의 접속을 구현해 주세요
+    - requestConnection(String str):String
+- 유저가 게임 접속시 다음을 고려하여야 합니다.
+   - 보안과정 : 보안 관련 부분을 처리합니다.
+      - doSecurity(String string):String
+   - 인증과정 : user name과 password가 일치하는지 확인합니다
+      - authentication(String id, String password):boolean
+   - 권한 과정 : 접속자가 유료 회원인지 무료회원인지 게임 마스터 인지 확인합니다.
+      - authorization(String userName):int
+   - 접속과정 : 접속자에게 커넥션 정보를 넘겨줍니다
+      - connection(String info):String
+
+### 추가 요구 사항
+- 보안 부분이 정부 정책에 의해서 강화되었습니다. 강화된 방식으로 코드를 변경해야 합니다.
+- 여가부에서 밤 10시 이후에 접속이 제한 되도록 합니다.
+
+
+## 4강. Factory Method Pattern - 생성의 템플릿 메소드 패턴
+<img src="./images/Factory_Method_Pattern.png" width="600px" height="300px" title="Factory Method Pattern"></img>   
+
+### 학습목표
+- 팩토리 메소드 패턴에서 템플릿 메소드 패턴의 사용됨을 안다
+- 팩토리 메소드 패턴에서의 구조와 구현의 분리를 이해하고 구조와 구현의 분리의 장점을 안다
+
+### 요구 사항
+- 게임 아이템과 아이템 생성을 구현해주세요
+    - 아이템을 생성하기 전에 데이터베이스에서 아이템 정보를 요청합니다.
+    - 아이템을 생성 후 아이템 복제 등의 불법을 방지하기 위해 데이터베이스에 아이템 생성 정보를 남깁니다.
+- 아이템을 생성하는 주체를 ItemCreator로 이름 짓습니다.
+- 아이템은 item 이라는 interface로 다룰 수 있도록 합니다.
+    - item은 use 함수를 기본 함수로 갖고 있습니다.
+- 현재 아이템의 종류는 체력 회복 물약, 마력 회복 물약이 있습니다.
+
+## 5강. Singleton Pattern - 하나의 인스턴스만 있도록 하기
+<img src="./images/Singleton_Pattern.png" width="600px" height="300px" title="Singleton Pattern"></img>   
+
+### 객체란?
+- 객체 : 속성과 기능을 갖춘것
+- 클래스 : 속성과 기능을 정의한 것
+- 인스턴스 : 속성과 기능을 가진 것 중 실제 하는 것
+
+### 학습 목표
+- 싱글톤 패턴을 통해서 하나의 인스턴스만 생성하도록 구현할 수 있다.
+
+###  사전적 의미 Singleton란?
+- 외동이, 한개의 것, (카드)(달리 낼 패가 없는) 한장(패)
+
+### 요구 사항
+- 개발 중인 시스템에서 스피커에 접근할 수 있는 클래스를 만들어 주세요.
+
+### 추가 요구사항
+- 인스턴스를 호출할 때 로그를 찍어주는 소스를 추가
+
+
+## 6강. Prototype Pattern - 생산 비용을 줄이기
+<img src="./images/Prototype_Pattern.png" width="600px" height="300px" title="Prototype Pattern"></img>   
+
+### 학습 목표
+- 프로토타입 패턴을 통해서 복잡한 인스턴스를 복사할 수 있다
+
+### 사전적 의미의 prototype 란?
+- 원형; 본, 표준, 모범
+- (어떤 것의) 옛날의 유사물
+- 원형(archetype)
+
+### Prototype Pattern
+- 생산 비용이 높은 인스턴스를 복사하여 쉽게 생성할 수 있도록하는 패턴
+
+### 인스턴스 생산 비용이 높은 경우
+- 종류가 너무 많아서 클래스로 정리되지 않는 경우
+- 클래스로부터 인스턴스 생성이 어려운 경우
+
+### 요구 사항
+- 일러스트레이터와 같은 그림 그리기 툴을 개발중입니다. 어떤 모양(Shape)을 그릴 수 있도록 하고 복사 붙여넣기 기능을 구현해 주세요.
+
+### 추가 요구사항
+- 복사 후 붙여넣기를 하면 두 도형이 겹치는데 안겹치도록 살짝 옆으로 이동하게 해주세요.
+
+
+## 7-1강. Builder Pattern - 복잡한 단계가 있는 인스턴스 생성과정 단순화
+<img src="./images/Builder_Pattern.png" width="600px" height="300px" title="Builder Pattern"></img>   
+
+### 학습 목표
+- 복잡한 단계가 필요한 인스턴스 생성을 빌더 패턴을 통해서 구현할 수 있다.
+
+### 사전적 의미의 Builder 란?
+- 건축업자, 시공자, 건조자 
+- (새 국가 등의) 건설자
+
+### Builder Pattern
+- 복잡한 단계를 거쳐야 생성되는 객체의 구현을 서브 클래스에게 넘겨주는 패턴
+
+
+## 7-2강. Builder Pattern - 많은 멤버 변수를 가진 객체 생성과정
+
+### 학습 목표
+- 많은 변수를 가진 객체의 생성을 가독성 높도록 코딩할 수 있다.
+
+### Build Pattern
+- 많은 인자를 가진 객체 생성을 다른 객체의 도움으로 생성하는 패턴
+
+
+## 8강. Abstract Factory Pattern - 객체 생성의 가상화
+<img src="./images/Abstract_Factory_Pattern.webp" width="600px" height="300px" title="Abstract Factory Pattern"></img>   
+
+### 학습 목표
+- 관련 있는 객체의 생성을 가상화 할 수 있다.
+
+### 키워드
+- 생성 부분의 가상화/관련있는 객체
+
+
+## 9강. Bridge Pattern - 기능 계층과 구현 계층의 분리
+<img src="./images/Bridge_Pattern.png" width="600px" height="300px" title="Bridge Pattern"></img>   
+
+
+### 학습 목표
+- 브릿지 패턴에 대해서 이해
+- 어댑터 패턴과 브릿지 패턴을 연결하여 이해 
+
+### 키워드
+- 기능 부분과 구현 부분 분리 
+
+### 다른 강의1
+- 동물과 사냥법(https://lktprogrammer.tistory.com/35)
+<img src="./images/Bridge_Pattern1.png" width="600px" height="300px" title="Bridge Pattern1"></img>   
+
+### 다른 강의2
+- 도형 그리기(https://a292run.tistory.com/entry/008-Design-Patterns-Bridge-Pattern)
+<img src="./images/Bridge_Pattern2.jpg" width="600px" height="300px" title="Bridge Pattern2"></img>   
+
+
+## 10강. Composite Pattern - 컨테이너와 내용물을 같게 다루기
+
+### 학습 목표
+- 컴퍼짓 패턴을 통해서 트리 구조 구현 
+
+### 키워드
+- 컨테이너/내용물/동일시
+
+
+## 11강. Decorator - 동적으로 책임 추가
+
+### 학습 목표
+- 동적으로 책임 추가가 필요할 때 데코레이터 패턴을 사용할 수 있다.
+
+### 키워드
+-동적, 책임추가
+
+
+### 예제 - 커피 제조 방법
+- 에스프레소 : 커피의 기본
+
+- 아메리카노 : 에스프레소 + 물
+- 카페라떼 : 에스프레소 + 스팀밀크
+
+- 헤이즐넛 : 아메리카노 + 헤이즐넛 시럽
+
+- 카페모카 : 카페라테 + 초코릿
+- 카라멜 마끼아또 : 카페라떼 + 카라멜 시럽
+
+
+## 12강. Visitor - 객체에서 처리 분리하기
+
+### 방문자 패턴을 이용하여 객체에서 처리를 분리해서 사용할 수 있다.
+
+### 키워드
+- 객체, 처리, 분리
+ 
+
+## 13강. Chain of Responsibility - 책임 사슬
+
+### 학습 목표
+- 다양한 처리 방식을 유연하게 연결할 수 있다.
+
+### 키워드
+- 유연한 처리, 동적
+
+### 예제
+- 사칙 연산을 하는 프로그램
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
