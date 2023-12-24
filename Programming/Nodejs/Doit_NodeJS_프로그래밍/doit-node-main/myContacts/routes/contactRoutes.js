@@ -5,18 +5,19 @@ const {
     createContacts,
     getContact,
     updateContact,
-    deleteContact
+    deleteContact,
+    addContactForm,
  } = require("../controllers/contactController");
 
 // /contacts에 대한 라우터 미들웨어 사용
-router.route("/")
- .get(getAllContacts)
- .post(createContacts)
+router.route("/").get(getAllContacts);
+
+router.route("/add").get(addContactForm).post(createContacts);
 
 // /contacts/:id 에 대한 라우터 미들웨어 사용
 router.route("/:id")
  .get(getContact)
  .put(updateContact)
- .delete(deleteContact)
+ .delete(deleteContact);
 
  module.exports = router;

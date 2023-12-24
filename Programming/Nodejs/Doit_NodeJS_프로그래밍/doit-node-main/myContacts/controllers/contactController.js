@@ -5,9 +5,16 @@ const Contact = require("../models/contactModel");
 // GET /contacts
 const getAllContacts = asyncHandler(async (req, res) => {
     const contacts = await Contact.find();
-    res.send(contacts);
+    res.render("index", { contacts: contacts });
+    // res.send(contacts);
 });
 
+// View and Contact form 
+// GET /contacts/add
+
+const addContactForm =  asyncHandler(async (req, res) => {
+    res.render("add");
+});
 
 // Create contact
 // POST /contacts
@@ -29,7 +36,9 @@ const createContacts = asyncHandler(async (req, res) => {
 const getContact = asyncHandler(async (req, res) => {
     // 연락처 상세 보기
     const contact = await Contact.findById(req.params.id);
-    res.status(200).send(contact);
+    res.render("update", { contact: contact}); 
+
+    // res.status(200).send(contact);
 });
 
 // @desc Put contact
@@ -49,7 +58,8 @@ const updateContact = asyncHandler(async (req, res) => {
 
     contact.save(); // DB에 저장
 
-    res.json(contact);
+    res.redirect("/contacts");
+    // res.json(contact);
 });
 
 // @desc Delete contact
@@ -58,13 +68,16 @@ const deleteContact = asyncHandler(async (req, res) => {
     // 연락처 삭제하기
     const id = req.params.id;
 
-    const contact = await Contact.findById(id);
-    if(!contact) {
-        throw new Error("Contact not found");
-    }
+    await Contact.findByIdAndDelete(id);
+    res.redirect("/contacts");
 
-    await Contact.deleteOne(contact);
-    res.status(200).send(`Deleted Contact for ID : ${req.params.id}`);
+    // const contact = await Contact.findById(id);
+    // if(!contact) {
+    //     throw new Error("Contact not found");
+    // }
+
+    // await Contact.deleteOne(contact);
+    // res.status(200).send(`Deleted Contact for ID : ${req.params.id}`);
 });
 
 module.exports = { 
@@ -72,5 +85,6 @@ module.exports = {
     createContacts, 
     getContact, 
     updateContact, 
-    deleteContact 
+    deleteContact,
+    addContactForm,
 };
