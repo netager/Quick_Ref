@@ -396,4 +396,369 @@ var jsBook = new Book("홍길동", 500, 15000, "자바스크립트")
     - var numbers = new Array("one", "two", "three", "four");   // Array 객체를 사용한 배열
 
 
-### 
+## 08-1강. 문서 객체 모델(DOM-Document Object Model)
+- 자바스크립트가 웹 문서를 동적으로 다룰 수 있도록 문서에 있는 각 요소를 객체 형태로 처리하는 것
+- 예) 문서에서 특정 부분을 가져와서 visibility 속성 값을 바꾸면 화면에서 사라짐
+    - document.querySelector('#detail p').style.visibility = 'hidden'
+
+### DOM 트리
+- DOM은 웹 문서의 요소를 부모 요소와 자식 요소로 구분
+- 웹 문서 구조를 부모/자식 관계로 표시하면 나무를 거꾸로 뒤집어 놓은 모습 -> DOM 트리
+
+### DOM 트리의 노드
+- 웹 문서의 태그는 요소(Element) 노드로 표현합니다.
+- 태그가 품고 있는 텍스트는 해당 요소 노드(태그)의 자식 노드인 텍스트(Text) 노드로 표현합니다.
+- 태그의 속성은 모두 해당 요소 노드(태그)의 자식 노드인 속성(Attribute) 노드로 표현합니다.
+- 주석은 주석(Comment) 노드로 표현합니다.
+
+- 요소 노드 - 텍스트 노드 - 속성 노드 - 주석 노드
+
+### getElementById() - id 선택자를 사용해 접근하기
+```html
+<body>
+    <div id="container">
+        <h1 id="heading">에디오피아 게뎁</h1> // 찾고자 하는 요소노드
+        <div id="prod-img">
+```
+
+```javascript
+document.getElementById("heading")
+```
+
+
+## 08-2강. DOM과 이벤트
+
+### DOM에서 이벤트 처리하기
+#### addEventListener() 사용하기
+```javascript
+var pic = document.querySelector('#pic');
+pic.addEventListener("mouseover", changePic, false);
+
+function changePic() {
+    pic.src = "images/boy.png";
+}
+
+function originPic() {
+    pic.src = "images/girl.png";
+}
+```
+
+### 웹 요소의 스타일 가져와서 수정하기
+#### DOM으로 CSS 속성에 접근하고 수정하기
+- style 속성 다음에 속성 이름 작성
+- 텍스트 스타일 바꾸려면 (요소).style.color
+```javascript
+document.querySelector("#heading").style.color = "white"
+```
+
+- background-color처럼 두 단어로 된 속성은 backgroundColor처럼 사용
+```javascript
+document.querySelector("#heading").style.backgroundColor = "gray"
+```
+
+
+## 08-3강. DOM에서 노드 추가하기
+
+### DOM 트리의 노드
+- 웹 문서의 태그는 요소(Element) 노드로 표현합니다.
+- 태그가 품고 있는 텍스트는 해당 요소 노드(태그)의 자식 노드인 텍스트(Text) 노드로 표현합니다.
+- 태그의 속성은 모두 해당 요소 노드(태그)의 자식 노드인 속성(Attribute) 노드로 표현합니다.
+- 주석은 주석(Comment) 노드로 표현합니다.
+
+- <p class="accent">주문이 완료되었습니다.</p>
+    - <p> : p 요소(Element) 노드
+    - class="accent" : 속성 노드
+    - 주문이 완료되었습니다. : 텍스트 노드
+
+### DOM에 요소 추가하기
+#### 새로 노드를 만들거나 부모 노드에 연결할 때
+- 1   : createElement()       - 새 요소 노드를 만듭니다
+- 2-1 : createTextNode()      - 텍스트 내용이 있을 경우 텍스트 노드를 만듭니다
+- 2-1 : appendChild()         - 텍스트 노드를 요소 노드에서 자식 노드로 추가합니다
+- 3-1 : createAttribute()     - 요소에 속성이 있을 경우 속성 노드를 만듭니다
+- 3-2 : setAttributeNode()    - 속성 노드를 요소 노드에 연결합니다 
+- 4   : appendChild()         - 새로 만든 요소 노드를 부모 노드에 추가합니다
+
+```javascript
+<script>
+    var newP = document.createElement("p");
+    var newText = document.createTextNode("주문이 완료되었습니다.");
+    newP.appendChile(newText);
+    var newAttr = document.createAttribute("class");
+    newAttr.value = "accent";
+    newP.setAttribute(newAttr);
+
+    document.body.appendChild(newP);
+</script>
+```
+
+
+## 08-4강. DOM에서 노드 삭제하기
+```html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="css/nameList.css">
+	<title>노드 리스트</title>
+</head>
+<body>
+	<div id="container">
+			<h1>참석자 명단</h1>
+			<div id="nameList">
+				<p>홍길동 <span class="del">X</span></p>
+				<p>백두산 <span class="del">X</span></p>
+				<p>도레미 <span class="del">X</span></p>
+			</div>
+	</div>
+
+	<script>
+		var delButtons = document.querySelectorAll(".del");
+
+		console.log("Scritp Start ...");
+		for(var i=0; i<delButtons.length; i++) {
+			delButtons[i].addEventListener("click", function() {
+				this.parentNode.parentNode.removeChild(this.parentNode);
+			});
+		}
+	</script>
+</body>
+</html>
+```
+
+
+## 09강. 폼과 자바스크립트
+
+### 폼에 접근하는 방법
+- 첫번째 방법 - id를 이용하는 방법
+```javascript
+document.querySelector("#billingName").value
+```
+
+- 두번째 방법 - name을 이용하는 방법
+```javascript
+document.order.billingName.value
+```
+
+- 세번째 방법 - form 
+    - document에 form이 있으면 document.forms에서 관리 됨
+    - form 내에 있는 요소는 elements에 관리
+        - document.forms[0].elements
+
+```javascript
+document.forms[0].elements[1].value
+```
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>수강신청하기</title>
+	<link rel="stylesheet" href="css/getForm.css">
+</head>
+<body>
+	<div id="container">
+		<h1>수강신청</h1>
+		<form name="testForm">
+			<fieldset>
+				<legend>신청인</legend>
+				<ul>
+					<li>       	
+						<label class="reg" for="userName">이름</label>
+						<input type="text" id="userName" name="userName" maxlength="50">               
+					</li>
+					<li>
+						<label class="reg" for="class">학과</label>
+						<select name="major" id="major" onchange="displaySelect()">
+							<option>---- 학과 선택 ----</option>
+							<option value="archi">건축공학과</option>
+							<option value="mechanic">기계공학과</option>
+							<option value="indust">산업공학과</option>
+							<option value="elec">전기전자공학과</option>
+							<option value="computer">컴퓨터공학과</option>
+							<option value="chemical">화학공학과</option>
+						</select>
+					</li>
+				</ul>				
+			</fieldset>
+			<fieldset>
+				<legend>신청 과목</legend>
+				<p>이 달에 신청할 과목을 선택하세요.</p>
+				<label><input type="radio" name="subject" value="speaking">회화</label>
+				<label><input type="radio" name="subject" value="grammar">문법</label>
+				<label><input type="radio" name="subject" value="writing">작문</label>       
+			</fieldset>
+			<fieldset>
+				<legend>메일링</legend>
+				<p>메일로 받고 싶은 뉴스 주제를 선택해 주세요</p>
+				<label><input type="checkbox" name="mailing1" value="news">해외 단신</label>
+				<label><input type="checkbox" name="mailing2" value="dialog">5분 회화</label>
+				<label><input type="checkbox" name="mailing3" value="pops">모닝팝스</label>
+			</fieldset>
+		</form>
+	</div>
+
+	<!-- <script src="js/getForm.js"></script> -->
+	<script>
+		var selectMenu = document.testForm.major;
+		function displaySelect() {
+			var selectedText = selectMenu.options[selectMenu.selectedIndex].innerText;
+			alert("["+selectedText + "]를 선택했습니다.");
+		}
+	</script>
+</body>
+</html>
+```
+
+
+## 10강. 브라우저 객체 모델
+
+### 브라우저 객체 모델이란
+- 자바스크립트 프로그램을 통해 브라우저 창을 관리할 수 있도록 브라우저 요소를 객체화해 놓은 것
+
+### 팝업 창 표시하기
+- Window 객체를 사용해서 웹 문서를 불러오자마자 팝업 창 표시하기
+
+### Window 객체
+
+#### Window 객체의 속성
+- 자바스크립트 객체 중 최상위 객체
+    - document
+    - frameElement
+    - innerHeight
+    - innerWidth
+    - localStorage
+    - location
+    - name
+    - outerHeight
+    - outerWidth
+    - pageXOffset
+    - pageYOffset
+    - parent
+    - screenX
+    - screenY
+    - scrollX
+    - scrollY
+    - sessionStorage
+
+#### Window 객체의 함수
+- alert()나 prompt()도 Window 객체의 함수
+    - window.alert(), window.prompt()
+- Window 객체는 기본 객체이기 때문에 window를 생략하고 간단히 alert(), prompt()로 사용할 수 있음
+    - alert()
+    - blur()
+    - close()
+    - confirm()
+    - focus()
+    - moveBy()
+    - moveTo()
+    - open()
+    - postMessage()
+    - prinit()
+    - prompt()
+    - resizeBy()
+    - resizeTo()
+    - scroll()
+    - scrollBy()
+    - scrollTo()
+    - setCursor()
+    - showModalDialog()
+    - sizeToContent()
+    - stop()
+
+- 예시
+    - window.open("http://www.google.com"); // 새로운 창 오픈
+    - window.open("http://www.google.com", "", "left=0, top=0, width=500, height=700"); // 팝업창 오픈
+
+### Navigator 객체
+- 웹 브라우저 버전, 렌더링 엔진, 사용자 에이전트 문자열 등을 비롯해 웹 브라우저 정보가 담긴 객체
+#### 주요 속성
+- appCodeName
+- appName
+- appVersion
+- battery
+- connection
+- cookieEnabled
+- geolocation
+- maxTouchPoints
+- platform
+- userAgent
+
+### 렌더링 엔진 & 자바스크립트 엔진
+- 렌더링 엔진 : 브라우저에서 웹 문서의 태그와 스타일을 해석하는 프로그램
+- 자바스크립트 엔진 : 브라우저에서 자바스크립트를 해석하는 프로그램
+- 웹 브라우저마다 내장된 렌더링 엔진과 자바스크립트 엔진이 다름 -> 웹 브라우저를 구별하는데 사용
+
+#### 브라우저 별 엔진 종류
+브라우저            | 렌더링 엔진         | 자바스크립트 엔진
+-------------------|--------------------|----------------------------------
+크롬(Chrome)        | 블링크(Blink)      | V8
+파이어폭스(Firefox) | 게코(Gecko)        | 스파이더몽키(SpiderMonkey)
+인터넷 익스플로러   | 트라이덴트(Trident) | 차크라(Chakra)
+사파리(Safari)     | 웹킷(Webkit)        | 자바스크립트코어(JavascriptCore)
+오페라(Opera)      | 블링크(Blink)       | V8
+
+#### 사용자 에이전트 문자열
+- 클라이언트에서 서버로 정보를 보낼 때 클라이언트에서 함께 보내는 정보
+- 서버에서는 이 정보를 보고 브라우저 종류를 확인한 후 그 브라우저에 맞게 웹 페이지 표시
+- navigator.useragent에 포함되어 있음
+
+
+### History 객체
+- 브라우저에서 '뒤로', '앞으로' 또는 주소 표시줄에 입력해서 돌아다녔던 사이트 주소 저장
+- 읽기 전용
+
+#### History 객체의 속성과 함수
+- 속성
+    - length : 현재 브라우저 창의 History 목록에 있는 항목의 개수, 즉 방문한 사이트 개수를 반환
+- 함수
+    - back()
+    - forward()
+    - go()    
+
+### Location 객체
+- 현재 문서의 URL 주소 정보
+- 이 정보를 편집하면 현재 브라우저 창에 열릴 사이트나 문서를 지정할 수 있음
+
+#### Location 객체의 속성과 함수
+- 속성
+    - hash - URL 중 #로 시작하는 해시 부분을 나타냄
+    - host - 호스트 이름과 포트
+    - hostname
+    - href
+    - pathname
+    - port
+    - protocol
+    - password
+    - search
+    - username
+- 함수
+    - assign()
+    - reload()
+    - replace()
+    - toString()
+
+### Screen 객체
+- 화면 정보(TV 모니터나 모바일기기 화면)
+
+#### 스크린 객체의 속성과 함수
+- 속성
+    - availHeight
+    - availWidth
+    - colorDepth
+    - height
+    - orientation - 화년의 현재 방향. 기본은 가로 방향
+    - pixelDepth
+    - width
+- 함수
+    - lockOrientation()    
+    - unlockOrientation()
+
+
+
+
