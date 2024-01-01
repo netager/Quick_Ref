@@ -1,0 +1,26 @@
+// Symbol
+
+// 다른 사용자가 만들어 놓은 객체
+const user = {
+    name: 'Mike',
+    age: 30,
+};
+
+// 내가 작업 - 메서드를 추가하면 아래의 메시지에 추가된 메서드가 출력됨. 원래 개발자의 의도와 상관없는 내용 출력
+// user.showName = function () {};
+
+// 이럴 때 사용하는 것이 Symbol
+const showName = Symbol('show name');
+user[showName] = function () {
+    console.log(this.name);
+};
+
+// 추가한 Symbol 메서드 사용
+user[showName]();
+
+
+// 사용자가 접속하면 보는 메시지
+// for문에서 Symbol은 순회하지 않음
+for(let key in user) {
+    console.log(`His ${key} is ${user[key]}.`);
+}
