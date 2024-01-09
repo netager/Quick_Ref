@@ -3,6 +3,8 @@ package com.mysite.sbb.question;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface QuestionRepository extends JpaRepository<Question, Integer>{
@@ -27,6 +29,9 @@ public interface QuestionRepository extends JpaRepository<Question, Integer>{
 	List<Question> findBySubjectLike(String subject);
 	Question findBySubjectIn(String[] subjects);
 	Question findBySubjectOrderByCreateDateAsc(String subject);
+	
+	// Paging 처리를 위한 것
+	Page<Question> findAll(Pageable pageable);
 	
 	
 }
