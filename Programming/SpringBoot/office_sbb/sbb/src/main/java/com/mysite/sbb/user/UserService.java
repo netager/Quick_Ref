@@ -33,7 +33,8 @@ public class UserService {
 			throw new DataNotFoundException("siteuser not found");
 		}
 	}
-	
+}
+
 //	public List<Question> getList() {
 //		return this.questionRepository.findAll();
 //	}
@@ -67,4 +68,4 @@ public class UserService {
 //	}
 //
 //
-}
+//}
