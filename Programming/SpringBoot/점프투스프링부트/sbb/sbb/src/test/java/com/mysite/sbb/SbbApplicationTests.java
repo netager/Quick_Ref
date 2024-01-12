@@ -5,21 +5,41 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.mysite.sbb.question.QuestionService;
+import com.mysite.sbb.user.SiteUser;
+import com.mysite.sbb.user.UserService;
 
 @SpringBootTest
 class SbbApplicationTests {
 	@Autowired
 	private QuestionService questionService;
-	
+
+	@Autowired
+	private UserService userService;
+
 	@Test
 	void testJpa() {
+
+		SiteUser siteUser = this.userService.getUser("test1"); 
+
 		for(int i = 1; i<= 300; i++) {
 			String subject = String.format("테스트 데이터입니다:[%03d]", i);
 			String content = "내용무";
 			this.questionService.create(subject, content, null);
+			
+			this.questionService.create(subject, content, siteUser);
 		}
 	}
 }
+
+//public String questionCreate(@Valid QuestionForm questionForm, BindingResult bindingResult,
+//		Principal principal) {
+//	if(bindingResult.hasErrors()) {
+//		return "question_form";
+//	}
+//	SiteUser siteUser = this.userService.getUser(principal.getName()); 
+//	this.questionService.create(questionForm.getSubject(), questionForm.getContent(), siteUser);
+//	return "redirect:/question/list";
+
 
 //	@Autowired
 //	private QuestionRepository questionRepository;
