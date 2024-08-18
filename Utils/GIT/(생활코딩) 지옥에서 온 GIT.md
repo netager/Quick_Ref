@@ -5,7 +5,7 @@
 - Version Management, not by changing the file name
 - Backup Recovery Collaboration
 - CVS - SVN - GIT
-- GIT is incredibly complex
+- GIT is incredibly complex - 믿을 수 없을만큼 복잡하다.
 
 ## GIT을 사용하는 목적
 - 프로그램 논리적 오류시 이전 버전으로 회귀하면서 오류 발견 → Debug로 활용
